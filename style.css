@@ -450,7 +450,6 @@ img{max-width:100%;display:block;}
   .footer-top{grid-template-columns:1fr 1fr;gap:36px;}
 }
 @media (max-width:560px){
-  .voices-grid{grid-template-columns:1fr;}
   .big-nodes{grid-template-columns:1fr;}
   .quote-band q{font-size:26px;}
   .form-row{grid-template-columns:1fr;}
@@ -467,6 +466,10 @@ img{max-width:100%;display:block;}
   .yoga-card{padding:26px 24px;}
   .big-panel{padding:32px 22px 28px;}
   .form{padding:28px 22px 24px;}
+  /* voices: horizontal swipe slider */
+  .voices-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:16px;padding-bottom:4px;}
+  .voices-grid::-webkit-scrollbar{display:none;}
+  .voices-grid .voice{min-width:100%;flex:0 0 100%;scroll-snap-align:start;}
 }
 
 /* mobile menu overlay */
@@ -476,4 +479,6 @@ img{max-width:100%;display:block;}
 .mobile-menu.open{opacity:1;pointer-events:auto;}
 .mobile-menu a{font-size:26px;font-weight:700;letter-spacing:-.02em;padding:10px 0;color:var(--ink);}
 .mobile-menu a:hover{color:var(--green-deep);}
-.mobile-menu .btn{margin-top:22px;}
+.mobile-menu .btn{margin-top:36px;font-size:16px;padding:15px 36px;min-width:200px;justify-content:center;letter-spacing:-.01em;background:var(--ink);color:var(--chalk);}
+.mobile-menu .btn:hover{background:#3a362e;color:var(--chalk);}
+.voices-dots .vd{cursor:pointer;}
