@@ -428,6 +428,7 @@ img{max-width:100%;display:block;}
   .nav-links{display:none;}
   .nav-burger{display:flex;}
   .hero-cta-only{display:none;}
+  .nav-right .btn{display:none;}
 }
 @media (max-width:900px){
   .sec{padding:78px 0;}
@@ -457,8 +458,15 @@ img{max-width:100%;display:block;}
   .about-skills{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;align-items:flex-start;}
-  .nav-inner{padding-left:18px;}
+  .nav-inner{padding:9px 10px 9px 16px;}
   .hero-chip{display:none;}
+  .brand{font-size:17px;gap:8px;}
+  .brand svg{width:24px;height:15px;}
+  .pain-list{grid-template-columns:1fr;}
+  .hero{padding:110px 0 48px;}
+  .yoga-card{padding:26px 24px;}
+  .big-panel{padding:32px 22px 28px;}
+  .form{padding:28px 22px 24px;}
 }
 
 /* mobile menu overlay */
