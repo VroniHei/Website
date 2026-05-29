@@ -82,13 +82,23 @@
     sections.forEach(function (s) { if (s) spy.observe(s); });
   }
 
-  /* ---- Contact form (prototype) ---- */
+  /* ---- Contact form (mailto) ---- */
   var sendBtn = document.getElementById('sendBtn');
   var form = document.getElementById('contactForm');
   if (sendBtn && form) {
     sendBtn.addEventListener('click', function () {
-      form.classList.add('sent');
-      form.scrollIntoView ? null : null; // no-op; avoid scrollIntoView per guidelines
+      var name = document.getElementById('f-name').value.trim();
+      var email = document.getElementById('f-mail').value.trim();
+      var topic = document.getElementById('f-topic').value.trim();
+      var message = document.getElementById('f-msg').value.trim();
+      var to = 'info@veronika-heidrich.de';
+      var subject = 'Kontaktanfrage von ' + (name || 'Interessent:in');
+      var body = 'Name: ' + (name || '–') + '\n';
+      body += 'E-Mail: ' + (email || '–') + '\n';
+      body += 'Thema: ' + (topic || '–') + '\n\n';
+      body += 'Nachricht:\n' + (message || '–');
+      var href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      window.location.href = href;
     });
   }
   /* ---- Ansatz accordion (single open) ---- */
