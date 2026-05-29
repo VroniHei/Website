@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
+    "ui-ux-pro-max": {
+      "source": "likaia/nginxpulse",
+      "sourceType": "github",
+      "skillPath": ".codex/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "0748e5ae5abc760499ed12f197f96fce307d44b25290f2978ac5ccea671eca7e"
+    }
+  }
+}
