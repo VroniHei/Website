@@ -29,45 +29,49 @@
 
 | Feld              | Wert                              |
 |-------------------|-----------------------------------|
-| Projektname       | _(noch nicht definiert)_          |
-| Vision            | _(noch nicht definiert)_          |
-| Zielgruppe        | _(noch nicht definiert)_          |
-| Kernanforderungen | _(noch nicht definiert)_          |
-| Erfolgskriterien  | _(noch nicht definiert)_          |
-| Deadline          | _(noch nicht definiert)_          |
-| Verantwortlich    | team-mt25                         |
+| Projektname       | Website Veronika Heidrich         |
+| Vision            | Professionelle Personal-Website als Yoga-Lehrerin & Coach |
+| Zielgruppe        | Interessierte an Yoga / Coaching (Kund:innen von veronika-heidrich.de) |
+| Kernanforderungen | Ansprechendes Design, Mobile-First, Kontaktformular, GitHub Pages Hosting |
+| Erfolgskriterien  | Responsive auf allen Geräten, professioneller Auftritt, funktionierender Kontaktweg |
+| Deadline          | _(laufend)_                       |
+| Verantwortlich    | Veronika Heidrich (VroniHei)      |
 | Gestartet         | 2026-05-29                        |
 
 ### Was soll dieses Projekt leisten?
 
-_Noch nicht definiert. Wird beim nächsten Gespräch ausgefüllt._
+Eine professionelle persönliche Website für Veronika Heidrich als Yoga-Lehrerin und Coach. Die Seite präsentiert Angebote, weckt Vertrauen durch Stimmen/Testimonials und ermöglicht direkten Kontakt per E-Mail (info@veronika-heidrich.de).
 
 ### Was soll es ausdrücklich NICHT leisten?
 
-_Noch nicht definiert._
+Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Plain HTML/CSS/JS + GitHub Pages).
 
 ---
 
 ## 2. Aktueller Status
 
-**Phase:** `Initialisierung`
-**Gesamtfortschritt:** ▓░░░░░░░░░ 10%
+**Phase:** `Aktive Entwicklung / Feinschliff`
+**Gesamtfortschritt:** ▓▓▓▓▓▓▓░░░ 70%
 
 | Meilenstein                     | Status        | Datum      |
 |---------------------------------|---------------|------------|
 | Entwicklungsumgebung aufsetzen  | ✅ Fertig     | 2026-05-29 |
 | Skills installieren             | ✅ Fertig     | 2026-05-29 |
 | Wissensdatenbank aufbauen       | ✅ Fertig     | 2026-05-29 |
-| Projektziel & Anforderungen     | ⏳ Ausstehend | —          |
-| Technologie-Stack entscheiden   | ⏳ Ausstehend | —          |
-| Erste Projektstruktur aufbauen  | ⏳ Ausstehend | —          |
-| Entwicklung starten             | ⏳ Ausstehend | —          |
+| Projektziel & Anforderungen     | ✅ Fertig     | 2026-05-29 |
+| Technologie-Stack entscheiden   | ✅ Fertig     | 2026-05-29 |
+| Website-Grundstruktur (HTML/CSS)| ✅ Fertig     | 2026-05-29 |
+| Kontaktformular (mailto)        | ✅ Fertig     | 2026-05-29 |
+| Hero-Blur-Hintergrundanimation  | ✅ Fertig     | 2026-05-29 |
+| Mobile-Optimierung              | ✅ Fertig     | 2026-05-29 |
+| Voices-Swipe-Slider (mobil)     | ✅ Fertig     | 2026-05-29 |
+| Deployment auf GitHub Pages     | ✅ Fertig     | 2026-05-29 |
+| Letzter Feinschliff / QA        | ⏳ Ausstehend | —          |
 
 ### Aktuelle Sprint-Aufgaben
 
-- [ ] Projektziel und Vision definieren
-- [ ] Framework-Entscheidung treffen (→ siehe ADR-002)
-- [ ] Erste Seite / ersten Prototyp bauen
+- [ ] Abschließende QA auf verschiedenen Geräten / Browsern
+- [ ] Ggf. SEO-Meta-Tags prüfen
 
 ---
 
@@ -83,9 +87,10 @@ _Noch nicht definiert._
 |---------------|-------------------|------------|----------|-----------------------------------------|
 | Runtime       | Node.js (nvm)     | v24.16.0   | Adopt    | Stabil, LTS, via nvm flexibel verwaltbar |
 | Package Mgr   | npm               | 11.13.0    | Adopt    | Standard, mit Node.js mitgeliefert      |
-| Framework     | _(offen)_         | —          | Assess   | → ADR-002                               |
-| Styling       | _(offen)_         | —          | Assess   | → ADR-002                               |
-| Deployment    | _(offen)_         | —          | Assess   | Noch nicht entschieden                  |
+| Framework     | Plain HTML/CSS/JS | —          | Adopt    | Kein Framework nötig für statische Personal-Site → ADR-002 |
+| Styling       | Plain CSS         | —          | Adopt    | Volle Kontrolle, keine Build-Pipeline nötig |
+| Deployment    | GitHub Pages      | —          | Adopt    | Kostenlos, einfach, direkt via `gh-pages` Branch |
+| Kontakt       | mailto-Link       | —          | Adopt    | Serverlos — Kontaktformular öffnet Mail-Client (info@veronika-heidrich.de) |
 
 ---
 
@@ -93,20 +98,21 @@ _Noch nicht definiert._
 
 ```
 Website/
+├── index.html                          ← Haupt-HTML-Datei (One-Page-Website)
+├── style.css                           ← Alle Styles inkl. Mobile-Responsive-Rules
+├── script.js                           ← Interaktivität (Slider, Menü, Blur-Anim.)
+├── image-slot.js                       ← Bild-Slot-Verwaltung
 ├── PROJECT.md                          ← Diese Datei (Wissensdatenbank)
 ├── CLAUDE.md                           ← Claude-Konfiguration & Arbeitsprinzipien
+├── README.md                           ← Projektbeschreibung
 ├── skills-lock.json                    ← Installierte Skills (versioniert)
+├── Screenshots Arbeitsdateien/         ← Design-Referenzmaterial
 ├── .agents/
 │   └── skills/
 │       └── frontend-design/            ← Frontend-Design-Skill (Anthropic)
-│           ├── SKILL.md
-│           └── LICENSE.txt
 └── .claude/
     └── skills/
         └── ui-ux-pro-max/              ← UI/UX Pro Max Skill
-            ├── SKILL.md
-            ├── data/                   ← Design-Daten (Farben, Fonts, UX-Regeln)
-            └── scripts/                ← Python-Generatoren
 ```
 
 _Wird bei jeder Strukturänderung aktualisiert._
@@ -150,22 +156,28 @@ nvm v0.39.7 + Node.js v24.16.0 (LTS)
 
 ### ADR-002 — Framework-Entscheidung
 
-**Status:** `Proposed` — offen
+**Status:** `Accepted` — 2026-05-29
 
 **Kontext:**
-Das Projekt hat noch kein Framework. Entscheidung steht aus bis das Projektziel klar ist.
+Die Website ist eine Personal-Site für eine Yoga-Lehrerin. Keine komplexe Daten-Logik, kein CMS, keine dynamischen Routen. Die Entscheidung fiel früh auf das einfachste mögliche Setup.
 
 **Betrachtete Optionen:**
 
 | Option        | Ideal für                          | Pro                                    | Contra                                  |
 |---------------|------------------------------------|----------------------------------------|-----------------------------------------|
-| Next.js       | Fullstack, SEO-kritisch, komplex   | SSR/SSG, großes Ökosystem, Vercel-Fit  | Größerer Overhead für einfache Sites    |
-| Astro         | Content-Sites, Portfolios, Blogs   | Extrem schnell, wenig JS by default    | Weniger dynamisch                       |
-| React + Vite  | SPAs, interaktive Apps             | Maximale Flexibilität                  | Kein SSR ohne Zusatzaufwand             |
-| Plain HTML/CSS| Landing Pages, einfache Websites   | Zero Dependencies, maximale Kontrolle  | Keine Komponenten-Wiederverwendung      |
+| Next.js       | Fullstack, SEO-kritisch, komplex   | SSR/SSG, großes Ökosystem, Vercel-Fit  | Größerer Overhead für eine einfache Site |
+| Astro         | Content-Sites, Portfolios, Blogs   | Extrem schnell, wenig JS by default    | Noch ein Build-Tool für eine HTML-Seite |
+| React + Vite  | SPAs, interaktive Apps             | Maximale Flexibilität                  | Zu viel Overhead, keine SSR nötig      |
+| **Plain HTML/CSS** | Landing Pages, Personal Sites | Zero Dependencies, maximale Kontrolle, direkt auf GitHub Pages deployen | Keine Komponenten-Wiederverwendung |
 | Vue / Nuxt    | Ähnlich React/Next, anderer DX     | Sanftere Lernkurve                     | Kleineres Ökosystem als React           |
 
-**Entscheidung:** _(Ausstehend — wird nach Klärung des Projektziels getroffen)_
+**Entscheidung:** Plain HTML + CSS + Vanilla JS. Die Seite ist eine One-Page-Website ohne Backend-Anforderungen. Jedes Framework wäre Over-Engineering.
+
+**Konsequenzen:**
+- ✅ Zero Dependencies, kein Build-Step, kein Node-Server nötig
+- ✅ Direkt auf GitHub Pages deploybar (statische Dateien)
+- ✅ Maximale Kontrolle über jeden CSS-Pixel
+- ⚠️ Kein Komponenten-System — CSS und JS manuell strukturieren
 
 ---
 
@@ -222,6 +234,33 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-05-29 — Session 2: Mobile-Optimierung (3 Commits, direkt auf GitHub gepushed)
+
+**Ziel der Session:** Responsive-Probleme in der mobilen Ansicht beheben.
+
+**Commit 1 — `9acad10`: Fix mobile navigation and layout issues**
+- CTA-Button in `nav-right` auf Mobile ausgeblendet → Burger-Menü bleibt sichtbar
+- Brand-Schriftgröße auf 17 px reduziert (Overflow auf kleinen Screens verhindert)
+- Pain-List: Cards auf Mobilgeräten in eine Spalte gestapelt
+- Abstände reduziert: `yoga-card`, `big-panel`, Formular-Padding auf Mobile angepasst
+- Hero-Top-Padding und `nav-inner`-Padding für Mobile justiert
+- **Dateien:** `style.css` (+9 Zeilen, −1)
+
+**Commit 2 — `67dfce9`: Fix mobile menu button + add voices swipe slider**
+- Mobile-Menü-CTA: Spezifitätsproblem gelöst (`.mobile-menu a` überschrieb `.btn`) → dunkler Ink-Hintergrund gesetzt
+- Voices-Bereich: horizontaler Snap-Scroll-Slider auf Mobile mit Dot-Navigation
+- Dots sind klickbar und springen direkt zum jeweiligen Slide
+- **Dateien:** `style.css` (+9 Zeilen, −2), `script.js` (+29 Zeilen)
+
+**Commit 3 — `7e76f25`: Improve mobile layout: horizontal icon+text rows for steps, nodes, pain**
+- Steps: Nummernkreis links (52 px), Titel + Beschreibung rechts gestapelt
+- „Das große Ganze"-Nodes: Icon links, Titel + Beschreibung rechts
+- Pain-Items: Icon links, Text rechts (konsistentes Row-Pattern)
+- Desktop-Layout vollständig unverändert — alle Regeln auf `max-width: 560px` begrenzt
+- **Dateien:** `style.css` (+12 Zeilen)
+
+---
+
 ## 7. Learnings & Retrospektiven
 
 > Das Herzstück der Wissensdatenbank. Hier wächst das "wie wir arbeiten" über Zeit.
@@ -264,13 +303,14 @@ _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Me
 
 > Dinge die noch nicht entschieden sind, aber durchdacht werden müssen. Mit allen Denkrichtungen.
 
-| # | Frage                              | Denkrichtungen / Optionen                           | Priorität | Deadline  |
+| # | Frage                              | Denkrichtungen / Optionen                           | Priorität | Status    |
 |---|------------------------------------|-----------------------------------------------------|-----------|-----------|
-| 1 | Was ist das Projektziel?           | Website, App, Landing Page, Portfolio, Shop, ...?   | 🔴 Hoch   | Nächste Session |
-| 2 | Welches Framework?                 | Next.js, Astro, React, Plain HTML — je nach Ziel   | 🔴 Hoch   | Nach Frage 1 |
-| 3 | Deployment-Ziel?                   | Vercel, Netlify, GitHub Pages, eigener Server       | 🟡 Mittel | Nach Framework |
-| 4 | Design-Richtung?                   | Corporate, kreativ, minimalistisch, maximalisch     | 🟡 Mittel | Nach Zieldefinition |
-| 5 | Brauchen wir ein CMS?              | Kein CMS / Markdown / Contentful / Sanity / Notion  | 🟢 Niedrig | Nach Frage 1 |
+| 1 | Was ist das Projektziel?           | Personal-Website Yoga-Lehrerin Veronika Heidrich    | 🔴 Hoch   | ✅ Geklärt |
+| 2 | Welches Framework?                 | Plain HTML/CSS/JS — → ADR-002                       | 🔴 Hoch   | ✅ Geklärt |
+| 3 | Deployment-Ziel?                   | GitHub Pages (Branch `gh-pages`)                   | 🟡 Mittel | ✅ Geklärt |
+| 4 | Design-Richtung?                   | Ruhig, professionell, warm — passend zu Yoga/Coaching | 🟡 Mittel | ✅ Umgesetzt |
+| 5 | Brauchen wir ein CMS?              | Nein — statisch, direkt im HTML pflegbar            | 🟢 Niedrig | ✅ Geklärt |
+| 6 | SEO-Meta-Tags vollständig?         | title, description, og:* Tags prüfen               | 🟡 Mittel | ⏳ Offen  |
 
 ---
 
@@ -341,4 +381,4 @@ _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Me
 
 _Dieses Dokument ist lebendig — es wächst mit dem Projekt._
 _Jede Session hinterlässt Spuren. Jede Entscheidung wird begründet. Jedes Learning wird gesichert._
-_Letzte Aktualisierung: 2026-05-29_
+_Letzte Aktualisierung: 2026-05-30_
