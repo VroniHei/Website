@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barrierefreiheit · Vroni / InnerLine</title>
+<meta name="description" content="Informationen zur Barrierefreiheit der Website von Veronika Heidrich / InnerLine.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://vronihei.github.io/Website/barrierefreiheit.html">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Zum Hauptinhalt springen</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand brand--line" aria-label="INNERLINE – zurück zur Startseite">
+      <span class="bl-word"><span class="bl-up">inn</span><span class="bl-tail">erline</span></span>
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="btn btn--sec btn--sm">← Zurück zur Startseite</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main" style="padding:140px 0 80px;">
+  <div class="wrap" style="max-width:760px;">
+
+    <h1 style="font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-.03em;margin:0 0 48px;">Barrierefreiheit</h1>
+
+    <section style="margin-bottom:40px;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 12px;">Allgemeine Beschreibung</h2>
+      <p>Diese Website informiert über die Angebote von Veronika Heidrich / InnerLine in den Bereichen Brand- und Website-Strategie, Webdesign, KI-Workflows sowie Yoga und Bewegung.</p>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 12px;">Unser Anspruch</h2>
+      <p>Ich möchte diese Website möglichst barrierearm und für möglichst viele Menschen gut nutzbar gestalten. Dazu orientiert sich die technische Umsetzung an den anerkannten Standards für digitale Barrierefreiheit, insbesondere an <strong>WCAG 2.2 Level AA</strong>.</p>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 12px;">Stand der Vereinbarkeit</h2>
+      <p>Diese Website wird derzeit technisch geprüft und kontinuierlich verbessert. Ziel ist eine möglichst barrierearme Nutzung auf Desktop, Tablet und Smartphone.</p>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 12px;">Bereits berücksichtigte Maßnahmen</h2>
+      <ul style="margin:0;padding-left:22px;line-height:1.8;">
+        <li>Semantische HTML-Struktur mit <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code></li>
+        <li>Klare Überschriftenhierarchie (H1 → H2 → H3 → H4, keine Lücken)</li>
+        <li>Ausreichende Farbkontraste für Fließtext und Links (WCAG AA)</li>
+        <li>Sichtbare Fokuszustände für alle interaktiven Elemente (Tastatur-Navigation)</li>
+        <li>Skip-Link „Zum Hauptinhalt springen" am Seitenanfang</li>
+        <li>Alt-Texte für alle inhaltlichen Bilder; dekorative Bilder mit leerem <code>alt=""</code></li>
+        <li>Responsives Design für alle Gerätegrößen (320 px bis Desktop)</li>
+        <li>Zugängliche Formulare mit sichtbaren Labels, Pflichtfeld-Markierungen und Fehlermeldungen</li>
+        <li>Barrierefreie FAQ-Accordions über natives <code>&lt;details&gt;/&lt;summary&gt;</code></li>
+        <li>Animationen respektieren <code>prefers-reduced-motion</code></li>
+        <li>Sprachauszeichnung <code>lang="de"</code> im HTML-Element</li>
+        <li>Burger-Menü mit <code>aria-expanded</code>, <code>aria-controls</code> und Escape-Taste</li>
+        <li>Schrift ausreichend groß (16 px Basis, flüssig mit <code>clamp()</code>)</li>
+        <li>Externe Links mit Hinweis im <code>aria-label</code></li>
+      </ul>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 12px;">Bekannte Einschränkungen</h2>
+      <p style="margin-bottom:12px;">Folgende Punkte werden aktuell noch verbessert:</p>
+      <ul style="margin:0;padding-left:22px;line-height:1.8;">
+        <li><strong>Placeholder-Text im Formular</strong>: Kontrast des Placeholder-Textes liegt unter 4.5:1. Sichtbare Labels sind vorhanden, Placeholder-Text gilt ergänzend.</li>
+        <li><strong>Hero-Tag-Labels</strong> (z. B. „Personal Branding", „Yoga &amp; Bewegung"): Kontrast der grauen Farbe liegt unter 4.5:1. Diese Labels sind rein ergänzend und inhaltlich im Haupttext abgedeckt.</li>
+        <li><strong>Manuelle Screenreader-Prüfung</strong>: Noch nicht vollständig mit NVDA/VoiceOver/JAWS getestet.</li>
+        <li><strong>Formularanbindung</strong>: Das Kontaktformular öffnet das E-Mail-Programm (mailto). Nicht alle Geräte haben ein E-Mail-Programm konfiguriert. Eine direkte Server-Anbindung wird geprüft.</li>
+        <li><strong>Impressum und Datenschutz</strong>: Diese Seiten sind noch in Vorbereitung (<code>noindex</code>).</li>
+      </ul>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 12px;">Feedback und Kontakt</h2>
+      <p>Wenn dir eine Barriere auffällt oder du Inhalte nicht gut nutzen kannst, schreib mir gerne:</p>
+      <p style="margin-top:12px;"><a href="mailto:info@veronika-heidrich.de" style="color:var(--green-text);font-weight:600;">info@veronika-heidrich.de</a></p>
+      <p style="margin-top:12px;">Ich schaue mir das an und versuche, eine sinnvolle Lösung zu finden.</p>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 12px;">Rechtlicher Hinweis</h2>
+      <p>Diese Website wird von einer Einzelperson betrieben. Der genaue gesetzliche Geltungsbereich des BFSG für privat betriebene Dienstleistungsseiten dieser Größe wird derzeit noch geprüft. Die technische Umsetzung orientiert sich unabhängig davon an WCAG 2.2 Level AA als Best-Practice-Standard.</p>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 12px;">Stand</h2>
+      <p>Diese Seite wurde zuletzt überarbeitet am: <strong>2026-05-31</strong></p>
+    </section>
+
+    <p style="margin-top:56px;font-size:13px;color:var(--ink-soft);padding:20px;background:rgba(168,232,79,.08);border:1px solid rgba(168,232,79,.2);border-radius:12px;">
+      <strong>Hinweis:</strong> Diese Seite ersetzt keine abschließende rechtliche oder fachliche Accessibility-Prüfung. Für eine vollständige BFSG-konforme Erklärung empfehlen wir eine professionelle Prüfung durch einen Accessibility-Experten.
+    </p>
+
+  </div>
+</main>
+
+<footer class="footer" style="padding:32px 0;">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span class="footer-mark">
+        <span class="footer-brand"><span class="bl-up">inn</span><span class="bl-tail">erline</span></span>
+        <span class="footer-meaning">Die innere Linie, die sich durch alles zieht.</span>
+      </span>
+      <span>© 2026 Veronika Heidrich · alle Rechte vorbehalten.</span>
+      <div class="legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="barrierefreiheit.html" aria-current="page">Barrierefreiheit</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

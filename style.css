@@ -16,6 +16,9 @@
   --chalk:#F8F5EE; --sand:#EFEADD; --ink:#23221A; --forest:#2C3522;
   --green:#A8E84F; --green-deep:#6E9B2C; --sage:#9BA383; --olive:#6E7449;
   --clay:#CD8A5B; --lilac:#CBBEF4; --ink-soft:#5d564a; --white:#FFFFFF;
+  /* --green-text: WCAG-konformes Dunkelgrün (5.1:1 auf --chalk) für Kleinsttext/Links.
+     --green-deep nur noch für Großschrift (H2+) erlaubt — dort reichen 3:1. */
+  --green-text:#447510;
   --hair:rgba(35,34,26,.12); --hair-soft:rgba(35,34,26,.07);
   --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:34px;
   --ff:'Open Sauce Sans', system-ui, -apple-system, sans-serif;
@@ -94,7 +97,7 @@ img{max-width:100%;display:block;}
 .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink);padding:8px 14px;border-radius:100px;
   transition:background .15s,color .15s;position:relative;}
 .nav-links a:hover{background:rgba(35,34,26,.05);}
-.nav-links a.active{color:var(--green-deep);}
+.nav-links a.active{color:var(--green-text);}
 .nav-right{display:flex;align-items:center;gap:10px;}
 .nav-burger{display:none;width:44px;height:44px;border:none;background:transparent;cursor:pointer;
   border-radius:50%;align-items:center;justify-content:center;}
@@ -198,7 +201,7 @@ img{max-width:100%;display:block;}
 .offer .desc{font-size:15px;color:var(--ink-soft);line-height:1.6;margin:0 0 20px;}
 .offer .tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px;}
 .offer .tag{font-size:11.5px;font-weight:500;padding:5px 11px;border-radius:100px;background:rgba(35,34,26,.05);color:var(--ink-soft);}
-.offer .more{margin-top:auto;align-self:flex-start;font-family:var(--ff);font-weight:600;font-size:14px;color:var(--green-deep);background:rgba(168,232,79,.14);border-radius:100px;padding:11px 20px;display:inline-flex;align-items:center;gap:8px;transition:background .16s,color .16s,gap .16s;cursor:pointer;}
+.offer .more{margin-top:auto;align-self:flex-start;font-family:var(--ff);font-weight:600;font-size:14px;color:var(--green-text);background:rgba(168,232,79,.14);border-radius:100px;padding:11px 20px;display:inline-flex;align-items:center;gap:8px;transition:background .16s,color .16s,gap .16s;cursor:pointer;}
 .offer .more svg{width:15px;height:15px;flex:0 0 auto;}
 .offer:hover .more{background:var(--green);color:var(--ink);gap:11px;}
 .offer .acc{display:none;}
@@ -249,8 +252,8 @@ img{max-width:100%;display:block;}
 .about .body p{font-size:16px;color:#3a362e;line-height:1.72;margin:0 0 16px;max-width:54ch;}
 .about .body p.about-claim{font-size:clamp(17.5px,1.7vw,20px);color:var(--ink);font-weight:600;line-height:1.45;letter-spacing:-.01em;margin:20px 0;max-width:34ch;}
 .about-sign{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin:24px 0 0;}
-.about-sign .as-name-row{display:inline-flex;align-items:center;gap:11px;color:var(--green-deep);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;}
-.about-sign .as-line{width:26px;height:2px;background:var(--green-deep);border-radius:2px;flex:0 0 auto;}
+.about-sign .as-name-row{display:inline-flex;align-items:center;gap:11px;color:var(--green-text);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;}
+.about-sign .as-line{width:26px;height:2px;background:var(--green-text);border-radius:2px;flex:0 0 auto;}
 .about-sign .as-name{color:var(--ink);font-weight:600;letter-spacing:.2em;}
 .about-sign .as-brand{font-family:var(--ff-display);font-weight:400;font-size:18px;letter-spacing:.015em;text-transform:uppercase;color:var(--ink);font-style:normal;position:relative;line-height:1;display:inline-block;margin-left:37px;}
 .about-sign .as-up{text-transform:uppercase;font-feature-settings:"dlig" 1;}
@@ -332,19 +335,19 @@ img{max-width:100%;display:block;}
 .faq-item summary{list-style:none;cursor:pointer;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:24px;
   font-weight:600;color:var(--ink);transition:color .2s ease;}
 .faq-item summary::-webkit-details-marker{display:none;}
-.faq-item summary:hover{color:var(--green-deep);}
+.faq-item summary:hover{color:var(--green-text);}
 .faq-item .fq-title{font-size:clamp(16px,1.5vw,18px);line-height:1.4;letter-spacing:-.005em;text-wrap:balance;}
 .faq-item .fq-chev{display:flex;align-items:center;justify-content:center;color:var(--ink-soft);flex:0 0 auto;
   transition:transform .35s cubic-bezier(.2,.7,.15,1), color .25s ease;}
 .faq-item .fq-chev svg{width:18px;height:18px;}
-.faq-item[open] .fq-chev{transform:rotate(180deg);color:var(--green-deep);}
+.faq-item[open] .fq-chev{transform:rotate(180deg);color:var(--green-text);}
 .faq-item .fq-body{padding:0 26px 24px 26px;border-top:1px solid color-mix(in srgb,var(--ink) 6%, transparent);}
 .faq-item .fq-body p{font-size:15.5px;color:#3a362e;line-height:1.72;margin:16px 0 0;text-wrap:pretty;}
 .faq-item .fq-body p:first-child{margin-top:18px;}
 .faq-item .fq-body strong{color:var(--ink);font-weight:600;}
 .faq-foot{position:relative;z-index:1;text-align:center;margin:40px auto 0;font-size:15.5px;color:var(--ink-soft);}
-.faq-foot a{color:var(--green-deep);font-weight:600;border-bottom:1.5px solid color-mix(in srgb, var(--green-deep) 35%, transparent);padding-bottom:1px;transition:border-color .2s ease;}
-.faq-foot a:hover{border-bottom-color:var(--green-deep);}
+.faq-foot a{color:var(--green-text);font-weight:600;border-bottom:1.5px solid color-mix(in srgb, var(--green-text) 35%, transparent);padding-bottom:1px;transition:border-color .2s ease;}
+.faq-foot a:hover{border-bottom-color:var(--green-text);}
 .faq-item[open] .fq-body{animation:faqOpen .35s ease;}
 @keyframes faqOpen{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){
@@ -383,8 +386,8 @@ img{max-width:100%;display:block;}
 }
 .trust-foot{position:relative;z-index:1;text-align:center;margin:42px auto 0;}
 .trust-foot p{font-size:15.5px;color:var(--ink-soft);margin:0;}
-.trust-foot a{color:var(--green-deep);font-weight:600;border-bottom:1.5px solid color-mix(in srgb, var(--green-deep) 35%, transparent);padding-bottom:1px;transition:border-color .2s ease;}
-.trust-foot a:hover{border-bottom-color:var(--green-deep);}
+.trust-foot a{color:var(--green-text);font-weight:600;border-bottom:1.5px solid color-mix(in srgb, var(--green-text) 35%, transparent);padding-bottom:1px;transition:border-color .2s ease;}
+.trust-foot a:hover{border-bottom-color:var(--green-text);}
 
 /* ===== ARBEITSWEISE — editorial Step-Cards mit großen Nummern ===== */
 #arbeitsweise{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--chalk) 0%,#F4EFE3 100%);}
@@ -453,7 +456,7 @@ img{max-width:100%;display:block;}
 .cd-link .cd-ic svg{width:15px;height:15px;}
 .contact .deco{margin-top:34px;width:260px;height:32px;color:var(--green);}
 .form{background:var(--chalk);border-radius:var(--r-xl);padding:38px 38px 34px;color:var(--ink);box-shadow:0 30px 70px rgba(0,0,0,.3);position:relative;}
-.form .form-eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);margin:0 0 18px;display:flex;align-items:center;gap:9px;}
+.form .form-eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green-text);margin:0 0 18px;display:flex;align-items:center;gap:9px;}
 .form .form-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);}
 .field .req{color:var(--clay);margin-left:2px;font-weight:700;}
 .field{margin-bottom:16px;}
@@ -722,6 +725,11 @@ img{max-width:100%;display:block;}
   .big-panel{padding:32px 22px 28px;}
   .form{padding:28px 22px 24px;}
 }
+
+/* ===== SKIP-LINK ===== */
+.skip-link{position:absolute;top:-100%;left:16px;z-index:9999;padding:12px 22px;background:var(--ink);color:var(--chalk);font-weight:700;font-size:15px;letter-spacing:.01em;border-radius:0 0 8px 8px;text-decoration:none;white-space:nowrap;}
+.skip-link:focus{top:0;outline:3px solid var(--green);outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){.skip-link{transition:none;}}
 
 /* ===== FOCUS VISIBLE — BFSG/WCAG 2.1 AA ===== */
 :focus{outline:none;}
