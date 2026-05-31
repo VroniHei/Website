@@ -488,6 +488,21 @@ img{max-width:100%;display:block;}
 .quote-band .qby .qline{width:26px;height:2px;background:var(--green);border-radius:2px;}
 .quote-band .qby b{color:#cdd2c4;font-weight:600;}
 
+/* ===== CLAIM-BAND (zwischen Arbeitsweise und Voices) ===== */
+.claim-band{position:relative;overflow:hidden;color:var(--chalk);
+  padding:clamp(110px,14vw,180px) 0;display:flex;align-items:center;}
+.claim-band .cb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;z-index:0;
+  animation:cbDrift 28s ease-in-out infinite alternate;}
+@keyframes cbDrift{from{transform:scale(1.03);}to{transform:scale(1.11);}}
+@media (prefers-reduced-motion:reduce){.claim-band .cb-img{animation:none;}}
+.claim-band .cb-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(35,34,26,.55) 0%,rgba(35,34,26,.42) 50%,rgba(35,34,26,.62) 100%);}
+.claim-band .wrap{position:relative;z-index:2;}
+.cb-content{max-width:920px;}
+.cb-claim{font-weight:800;font-size:clamp(28px,3.8vw,52px);letter-spacing:-.02em;line-height:1.12;
+  color:var(--chalk);margin:0;text-wrap:balance;text-shadow:0 2px 24px rgba(0,0,0,.32);}
+.cb-claim .g{color:var(--green);}
+
 /* ===== KUNDENSTIMMEN ===== */
 .voices{position:relative;overflow:hidden;background:linear-gradient(180deg,#EAE3D4,#F1ECE0);}
 .voices::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
@@ -613,6 +628,7 @@ img{max-width:100%;display:block;}
   .footer-top{grid-template-columns:1fr 1fr;gap:36px;}
 }
 @media (max-width:560px){
+  .cb-claim{font-size:clamp(24px,5.5vw,40px);}
   .voice{flex:0 0 90%;}
   .quote-band q{font-size:26px;}
   .form-row{grid-template-columns:1fr;}
