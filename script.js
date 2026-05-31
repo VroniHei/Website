@@ -122,33 +122,4 @@
     });
   }
 
-  /* ---- Voices swipe slider + dots ---- */
-  var voicesGrid = document.querySelector('.voices-grid');
-  var vDots = Array.prototype.slice.call(document.querySelectorAll('.voices-dots .vd'));
-  if (voicesGrid && vDots.length) {
-    function isSliderMode() { return voicesGrid.scrollWidth > voicesGrid.clientWidth + 4; }
-    function getSlideIndex() {
-      var firstCard = voicesGrid.querySelector('.voice');
-      if (!firstCard) return 0;
-      var step = firstCard.offsetWidth + 16;
-      return Math.round(voicesGrid.scrollLeft / step);
-    }
-    function activateDot(index) {
-      vDots.forEach(function (d, i) { d.classList.toggle('on', i === index); });
-    }
-    voicesGrid.addEventListener('scroll', function () {
-      if (!isSliderMode()) return;
-      activateDot(getSlideIndex());
-    }, { passive: true });
-    vDots.forEach(function (dot, i) {
-      dot.addEventListener('click', function () {
-        if (!isSliderMode()) return;
-        var firstCard = voicesGrid.querySelector('.voice');
-        if (!firstCard) return;
-        var step = firstCard.offsetWidth + 16;
-        voicesGrid.scrollTo({ left: i * step, behavior: 'smooth' });
-      });
-    });
-  }
-
 })();

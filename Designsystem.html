@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vroni · Designsystem — Fresh Organic Hybrid</title>
+<style>
+  /* ---- Open Sauce Sans ---- */
+  @font-face{font-family:'Open Sauce Sans';font-weight:400;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-400-normal.woff') format('woff');}
+  @font-face{font-family:'Open Sauce Sans';font-weight:500;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-500-normal.woff2') format('woff2');}
+  @font-face{font-family:'Open Sauce Sans';font-weight:600;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-600-normal.woff2') format('woff2');}
+  @font-face{font-family:'Open Sauce Sans';font-weight:700;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-700-normal.woff2') format('woff2');}
+  @font-face{font-family:'Open Sauce Sans';font-weight:800;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-800-normal.woff2') format('woff2');}
+
+  :root{
+    --chalk:#F8F5EE; --sand:#EFEADD; --ink:#23221A; --forest:#2C3522;
+    --green:#A8E84F; --green-deep:#6E9B2C; --sage:#9BA383; --olive:#6E7449;
+    --clay:#CD8A5B; --lilac:#CBBEF4; --ink-soft:#5d564a;
+    --hair:rgba(35,34,26,.12); --white:#FFFFFF;
+    --r-sm:12px; --r-md:18px; --r-lg:26px;
+    --ff:'Open Sauce Sans', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#ded8cd;font-family:var(--ff);color:var(--ink);}
+  .board{width:1280px;margin:0 auto;background:var(--chalk);}
+
+  .lbl{font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);}
+  section{padding:60px 80px;border-top:1px solid var(--hair);}
+  .sec-h{display:flex;align-items:baseline;gap:16px;margin:0 0 8px;}
+  .sec-h .no{font-weight:800;font-size:14px;color:var(--green-deep);}
+  .sec-h h2{font-weight:700;font-size:22px;letter-spacing:-.01em;margin:0;}
+  .sec-sub{font-size:14px;color:var(--ink-soft);margin:0 0 34px;max-width:680px;line-height:1.5;}
+
+  /* Masthead */
+  .masthead{padding:72px 80px 60px;position:relative;}
+  .eyebrow{display:flex;gap:12px;align-items:center;}
+  .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--green);}
+  .mast-title{font-weight:800;font-size:64px;line-height:.96;letter-spacing:-.03em;margin:22px 0 0;}
+  .mast-title .em{color:var(--green-deep);}
+  .mast-sub{font-size:18px;line-height:1.5;font-weight:400;color:#3a362e;max-width:640px;margin:18px 0 0;}
+  .mast-wave{margin-top:36px;}
+  .mast-wave svg{width:100%;height:64px;display:block;}
+
+  /* Tokens */
+  .tok-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .tok{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);overflow:hidden;}
+  .tok .sw{height:78px;}
+  .tok .m{padding:12px 14px 14px;}
+  .tok .nm{font-weight:600;font-size:13.5px;}
+  .tok .vr{font-size:11px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:4px;}
+  .tok .hx{font-size:11px;color:var(--ink-soft);letter-spacing:.03em;margin-top:2px;text-transform:uppercase;}
+  .mini-tokens{display:flex;gap:32px;flex-wrap:wrap;margin-top:26px;}
+  .mini-tokens .grp{display:flex;flex-direction:column;gap:10px;}
+  .radii{display:flex;gap:12px;align-items:flex-end;}
+  .radii .rx{width:54px;height:54px;background:var(--sage);}
+  .radii .cap{font-size:11px;color:var(--ink-soft);margin-top:6px;text-align:center;}
+  .spacers{display:flex;gap:10px;align-items:center;}
+  .spacers .sp{background:var(--green);height:22px;border-radius:4px;}
+
+  /* Type scale */
+  .type-row{display:flex;align-items:baseline;gap:24px;padding:14px 0;border-bottom:1px solid var(--hair);}
+  .type-row:last-child{border-bottom:none;}
+  .type-row .tag{flex:0 0 120px;font-size:12px;color:var(--ink-soft);}
+  .type-row .tag b{display:block;color:var(--ink);font-size:12px;font-weight:600;margin-bottom:2px;}
+  .type-row .demo{flex:1;letter-spacing:-.02em;line-height:1.05;}
+
+  /* generic card grid */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .panel{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:30px 32px;}
+  .panel > .lbl{display:block;margin-bottom:22px;}
+
+  /* Buttons */
+  .btn{font-family:var(--ff);font-weight:600;font-size:15px;border:none;border-radius:100px;padding:13px 26px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:9px;}
+  .btn--pri{background:var(--green);color:var(--ink);}
+  .btn--pri:hover,.btn--pri.is-hover{background:#bdf06a;}
+  .btn--sec{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+  .btn--sec:hover,.btn--sec.is-hover{background:var(--ink);color:var(--chalk);}
+  .btn--dark{background:var(--forest);color:var(--chalk);}
+  .btn--dark:hover,.btn--dark.is-hover{background:#3a4730;}
+  .btn--ghost{background:transparent;color:var(--ink);padding-left:8px;padding-right:8px;}
+  .btn--ghost:hover,.btn--ghost.is-hover{color:var(--green-deep);}
+  .btn--sm{font-size:13px;padding:9px 18px;}
+  .btn--lg{font-size:17px;padding:16px 32px;}
+  .btn:disabled,.btn.is-disabled{opacity:.4;cursor:not-allowed;}
+  .btn-row{display:flex;gap:13px;flex-wrap:wrap;align-items:center;}
+  .state-cap{font-size:11px;color:var(--ink-soft);margin-top:18px;display:flex;gap:42px;}
+
+  /* Pills / tags */
+  .pill{font-size:13px;font-weight:500;padding:8px 15px;border-radius:100px;background:var(--sand);color:var(--ink);display:inline-flex;align-items:center;gap:8px;}
+  .pill .d{width:8px;height:8px;border-radius:50%;}
+  .pill--green{background:var(--green);color:var(--ink);}
+  .pill--sage{background:var(--sage);color:#fff;}
+  .pill--clay{background:var(--clay);color:#fff;}
+  .pill--lilac{background:var(--lilac);color:var(--ink);}
+  .pill--outline{background:transparent;border:1.5px solid var(--hair);}
+  .pills-row{display:flex;gap:10px;flex-wrap:wrap;}
+
+  /* Cards */
+  .offer{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:28px 28px 26px;display:flex;flex-direction:column;height:100%;}
+  .offer .mark{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .offer .mark svg{width:22px;height:22px;}
+  .offer h4{font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0 0 8px;}
+  .offer p{font-size:14px;line-height:1.55;color:var(--ink-soft);margin:0 0 18px;}
+  .offer .more{font-size:13.5px;font-weight:600;color:var(--green-deep);margin-top:auto;display:inline-flex;gap:6px;align-items:center;}
+
+  .stat-card{background:var(--forest);border-radius:var(--r-lg);padding:26px 28px;color:var(--chalk);}
+  .stat-card .top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .stat-card .top h4{font-weight:700;font-size:19px;margin:0;letter-spacing:-.01em;}
+  .stat-card .badge{font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--green);color:var(--ink);padding:5px 11px;border-radius:100px;}
+  .stat-card .route{width:100%;height:60px;margin:16px 0 14px;display:block;}
+  .stat-card .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .stat-card .k{font-size:10.5px;color:#9aa589;letter-spacing:.06em;text-transform:uppercase;}
+  .stat-card .v{font-weight:700;font-size:19px;margin-top:4px;}
+
+  /* Navigation */
+  .nav{background:var(--white);border:1px solid var(--hair);border-radius:100px;padding:12px 14px 12px 26px;display:flex;align-items:center;justify-content:space-between;}
+  .nav .wm{font-weight:800;font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px;}
+  .nav .wm svg{width:28px;height:18px;}
+  .nav .links{display:flex;gap:26px;font-size:14.5px;font-weight:500;align-items:center;}
+  .nav .links a{color:var(--ink);text-decoration:none;}
+  .nav .links a.active{color:var(--green-deep);}
+  .nav .right{display:flex;align-items:center;gap:16px;}
+
+  /* Forms */
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  .field input,.field textarea,.field select{width:100%;font-family:var(--ff);font-size:15px;color:var(--ink);background:var(--chalk);border:1.5px solid var(--hair);border-radius:14px;padding:13px 16px;outline:none;transition:.15s;}
+  .field textarea{resize:none;min-height:88px;}
+  .field input::placeholder,.field textarea::placeholder{color:#9a9384;}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green-deep);box-shadow:0 0 0 4px rgba(168,232,79,.28);}
+  .field.is-focus input{border-color:var(--green-deep);box-shadow:0 0 0 4px rgba(168,232,79,.28);}
+  .check{display:flex;align-items:center;gap:11px;font-size:14px;color:var(--ink-soft);}
+  .check .box{width:22px;height:22px;border-radius:7px;border:1.5px solid var(--hair);background:var(--chalk);display:flex;align-items:center;justify-content:center;}
+  .check .box.on{background:var(--green);border-color:transparent;}
+  .check .box.on svg{width:13px;height:13px;}
+
+  /* Image masks */
+  .masks{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .ph{position:relative;background:repeating-linear-gradient(135deg,#e6ddcd 0 13px,#ece4d6 13px 26px);display:flex;align-items:flex-end;min-height:200px;}
+  .ph .pc{padding:12px 14px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8a8275;}
+  .m-rounded{border-radius:var(--r-lg);}
+  .m-squircle{border-radius:42% 58% 56% 44% / 48% 44% 56% 52%;}
+  .m-blob{border-radius:66% 34% 38% 62% / 56% 42% 58% 44%;}
+  .m-circle{border-radius:50%;}
+  /* Bleed image pattern (primary) */
+  .bleed-demo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px;}
+  .bleed-card{background:var(--sand);border-radius:var(--r-lg);overflow:hidden;display:grid;align-items:center;min-height:220px;}
+  .bleed-card.r{grid-template-columns:1fr 1.05fr;}
+  .bleed-card.l{grid-template-columns:1.05fr 1fr;}
+  .bleed-card .txt{padding:26px;}
+  .bleed-card .txt .k{font-weight:700;font-size:16px;}
+  .bleed-card .txt .v{font-size:12.5px;color:var(--ink-soft);margin-top:6px;line-height:1.5;}
+  .bleed-card .img{align-self:stretch;background:linear-gradient(150deg,#e4e7d9,#d2d7c3);position:relative;display:flex;align-items:flex-end;box-shadow:-20px 0 50px rgba(35,34,26,.1);}
+  .bleed-card.r .img{border-radius:26px 0 0 26px;}
+  .bleed-card.l .img{border-radius:0 26px 26px 0;order:-1;box-shadow:20px 0 50px rgba(35,34,26,.1);}
+  .bleed-card .img .pc{padding:12px 14px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#727860;}
+
+  /* Section rhythm */
+  .rhythm{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .band{border-radius:var(--r-lg);padding:22px;min-height:128px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--hair);}
+  .band .bn{font-weight:700;font-size:15px;}
+  .band .bd{font-size:12px;margin-top:6px;line-height:1.45;}
+  .band.chalk{background:var(--chalk);}
+  .band.sand{background:linear-gradient(180deg,#EFEADD,#E8E0D0);}
+  .band.forest{background:var(--forest);color:var(--chalk);border-color:transparent;}
+  .band.forest .bd{color:#9aa589;}
+  .anatomy{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:30px 32px;margin-top:18px;}
+  .anatomy .arow{display:flex;align-items:center;gap:16px;padding:11px 0;border-bottom:1px solid var(--hair);}
+  .anatomy .arow:last-child{border-bottom:none;}
+  .anatomy .astep{font-family:ui-monospace,monospace;font-size:11px;color:var(--green-deep);width:88px;flex:0 0 auto;font-weight:600;}
+  .anatomy .aname{font-weight:600;font-size:14px;width:150px;flex:0 0 auto;}
+  .anatomy .adesc{font-size:13px;color:var(--ink-soft);}
+
+  /* Line motif usages */
+  .motif-uses{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .mu{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px 26px;}
+  .mu .cap{font-size:11px;color:var(--ink-soft);margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;}
+  .mu .divider svg{width:100%;height:24px;display:block;}
+  .mu .uhead{font-weight:700;font-size:26px;letter-spacing:-.02em;position:relative;display:inline-block;}
+  .mu .uhead svg{position:absolute;left:0;right:0;bottom:-8px;width:100%;height:11px;}
+  .mu.dark{background:var(--forest);}
+  .mu.dark .cap{color:#9aa589;}
+
+  /* Example components wrapper */
+  .ex{border:1px dashed var(--hair);border-radius:var(--r-lg);overflow:hidden;margin-bottom:26px;background:var(--chalk);}
+  .ex-cap{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);padding:14px 22px;background:var(--sand);border-bottom:1px solid var(--hair);}
+  .ex-body{padding:0;}
+
+  /* Hero example */
+  .hero{padding:40px 44px 46px;}
+  .hero .row{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch;}
+  .hero .copy{align-self:center;}
+  .hero .h{font-weight:800;font-size:54px;line-height:1.0;letter-spacing:-.03em;margin:14px 0 0;}
+  .hero .p{font-size:17px;line-height:1.55;color:#3a362e;margin:22px 0 26px;max-width:430px;}
+  .hero .htags{display:flex;flex-wrap:wrap;align-items:center;gap:7px 22px;margin:22px 0 0;}
+  .hero .htags span{position:relative;font-size:13px;font-weight:600;color:#9a9486;}
+  .hero .htags span:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--green);transform:translateY(-50%);}
+  .hero .vis{align-self:stretch;min-height:340px;margin:0 -44px 0 0;border-radius:26px 0 0 26px;
+    background:linear-gradient(150deg,#e4e7d9,#d2d7c3);color:#727860;display:flex;align-items:flex-end;
+    box-shadow:-22px 22px 60px rgba(35,34,26,.14);}
+  .hero .vis .pc{padding:14px 16px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#727860;}
+
+  /* About teaser */
+  .about{padding:0;display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center;background:var(--sand);overflow:hidden;}
+  .about .img{align-self:stretch;min-height:340px;margin:0;border-radius:0 26px 26px 0;
+    background:linear-gradient(150deg,#e7ded0,#dbcdbb);color:#857a67;display:flex;align-items:flex-end;
+    box-shadow:22px 0 60px rgba(35,34,26,.12);}
+  .about .img .pc{padding:14px 16px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#857a67;}
+  .about .atxt{padding:40px 44px 40px 0;}
+  .about h3{font-weight:700;font-size:34px;letter-spacing:-.02em;margin:0 0 16px;}
+  .about p{font-size:16px;line-height:1.6;color:#3a362e;margin:0 0 14px;max-width:460px;}
+  .about .sig{display:flex;align-items:center;gap:12px;margin-top:20px;}
+  .about .sig svg{width:70px;height:24px;}
+  .about .sig span{font-size:14px;color:var(--ink-soft);}
+
+  /* Course / Yoga hint (matches site) */
+  .course{padding:40px 44px;background:linear-gradient(180deg,#EEE8DA,#E7DECE);display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;}
+  .course .ytxt .lbl{color:var(--ink-soft);}
+  .course .badge-active{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--hair);border-radius:100px;padding:7px 15px 7px 9px;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:12px;box-shadow:0 4px 14px rgba(35,34,26,.05);}
+  .course .badge-active .pulse{width:20px;height:20px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;}
+  .course .badge-active .pulse svg{width:11px;height:11px;}
+  .course h3{font-weight:800;font-size:32px;letter-spacing:-.02em;margin:8px 0 14px;line-height:1.06;}
+  .course h3 .g{color:var(--green-deep);}
+  .course .ytxt p{font-size:15px;line-height:1.65;color:#3a362e;max-width:440px;margin:0;}
+  .ycard{background:var(--forest);color:var(--chalk);border-radius:var(--r-lg);padding:30px 32px;box-shadow:0 26px 60px rgba(35,34,26,.22);}
+  .ycard .lbl{color:#9aa589;}
+  .ycard .yh{font-weight:700;font-size:22px;margin:12px 0 0;}
+  .ycard .route{width:100%;height:56px;display:block;margin:18px 0;}
+  .ycard .days{display:flex;flex-direction:column;gap:11px;}
+  .ycard .yday{background:rgba(248,245,238,.07);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;}
+  .ycard .yday .dl{font-weight:700;font-size:15px;}
+  .ycard .yday .dr{font-size:12.5px;color:#9aa589;margin-top:2px;}
+  .ycard .yday .dtag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--green);color:var(--ink);padding:5px 10px;border-radius:100px;}
+  .ycard .ynote{font-size:12px;color:#9aa589;margin:14px 0 0;line-height:1.5;}
+  .ycard .ycta{margin-top:20px;}
+
+  /* Contact (matches site) */
+  .contact{padding:42px 44px;background:var(--forest);color:var(--chalk);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .contact .lbl{color:var(--green);}
+  .contact h3{font-weight:800;font-size:38px;letter-spacing:-.025em;line-height:1.04;margin:12px 0 16px;color:var(--chalk);}
+  .contact h3 .g{color:var(--green);}
+  .contact p{font-size:15.5px;line-height:1.65;color:#c5cbb8;max-width:380px;margin:0;}
+  .contact .deco{margin-top:26px;width:220px;height:26px;display:block;}
+  .contact .cform{background:var(--chalk);border-radius:var(--r-lg);padding:30px 30px 28px;color:var(--ink);box-shadow:0 30px 70px rgba(0,0,0,.3);}
+  .contact .cform .ceyebrow{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);margin:0 0 16px;display:flex;align-items:center;gap:9px;}
+  .contact .cform .ceyebrow::before{content:"";width:16px;height:16px;border-radius:50%;background:var(--green);}
+
+  .foot{padding:30px 80px 54px;display:flex;justify-content:space-between;color:var(--ink-soft);font-size:12px;border-top:1px solid var(--hair);}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="eyebrow"><span class="dot"></span><span class="lbl">Designsystem · Komponenten-Board · v2</span></div>
+    <h1 class="mast-title">Fresh Organic Hybrid<br><span class="em">Komponenten</span></h1>
+    <p class="mast-sub">Der Baukasten für deine Website: Tokens, Typo, Buttons, Karten, Navigation, Formulare, Bildstil, das Linienmotiv, ein Sektions-Baukasten — und fertige Beispiel-Komponenten. Hell, offen, organisch.</p>
+    <div class="mast-wave">
+      <svg viewBox="0 0 1120 64" preserveAspectRatio="none" fill="none">
+        <path d="M0,40 C120,40 150,14 260,14 C370,14 400,50 520,50 C640,50 660,20 780,20 C900,20 920,44 1040,44 C1100,44 1110,36 1120,35" stroke="#A8E84F" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="260" cy="14" r="6" fill="#9BA383"/><circle cx="780" cy="20" r="6" fill="#CD8A5B"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 01 TOKENS -->
+  <section>
+    <div class="sec-h"><span class="no">01</span><h2>Farb-Tokens</h2></div>
+    <p class="sec-sub">Acht Rollen, als CSS-Variablen. Helle Basis dominiert, Green ist der Hauptakzent, Sage erdet, Clay wärmt, Lavender bleibt selten.</p>
+    <div class="tok-grid">
+      <div class="tok"><div class="sw" style="background:#F8F5EE;border-bottom:1px solid var(--hair)"></div><div class="m"><div class="nm">Chalk</div><div class="vr">--chalk</div><div class="hx">#F8F5EE</div></div></div>
+      <div class="tok"><div class="sw" style="background:#EFEADD"></div><div class="m"><div class="nm">Sand</div><div class="vr">--sand</div><div class="hx">#EFEADD</div></div></div>
+      <div class="tok"><div class="sw" style="background:#23221A"></div><div class="m"><div class="nm">Ink</div><div class="vr">--ink</div><div class="hx">#23221A</div></div></div>
+      <div class="tok"><div class="sw" style="background:#2C3522"></div><div class="m"><div class="nm">Forest</div><div class="vr">--forest</div><div class="hx">#2C3522</div></div></div>
+      <div class="tok"><div class="sw" style="background:#A8E84F"></div><div class="m"><div class="nm">Spring Green</div><div class="vr">--green</div><div class="hx">#A8E84F</div></div></div>
+      <div class="tok"><div class="sw" style="background:#9BA383"></div><div class="m"><div class="nm">Sage / Olive</div><div class="vr">--sage</div><div class="hx">#9BA383</div></div></div>
+      <div class="tok"><div class="sw" style="background:#CD8A5B"></div><div class="m"><div class="nm">Clay / Peach</div><div class="vr">--clay</div><div class="hx">#CD8A5B</div></div></div>
+      <div class="tok"><div class="sw" style="background:#CBBEF4"></div><div class="m"><div class="nm">Soft Lavender</div><div class="vr">--lilac</div><div class="hx">#CBBEF4</div></div></div>
+    </div>
+    <div class="mini-tokens">
+      <div class="grp">
+        <span class="lbl">Radien</span>
+        <div class="radii">
+          <div><div class="rx" style="border-radius:12px"></div><div class="cap">12 · sm</div></div>
+          <div><div class="rx" style="border-radius:18px"></div><div class="cap">18 · md</div></div>
+          <div><div class="rx" style="border-radius:26px"></div><div class="cap">26 · lg</div></div>
+          <div><div class="rx" style="border-radius:100px"></div><div class="cap">pill</div></div>
+        </div>
+      </div>
+      <div class="grp">
+        <span class="lbl">Abstände · 4er-Raster</span>
+        <div class="spacers">
+          <div class="sp" style="width:8px"></div><span class="cap" style="font-size:11px;color:var(--ink-soft)">8</span>
+          <div class="sp" style="width:16px"></div><span class="cap" style="font-size:11px;color:var(--ink-soft)">16</span>
+          <div class="sp" style="width:24px"></div><span class="cap" style="font-size:11px;color:var(--ink-soft)">24</span>
+          <div class="sp" style="width:40px"></div><span class="cap" style="font-size:11px;color:var(--ink-soft)">40</span>
+          <div class="sp" style="width:64px"></div><span class="cap" style="font-size:11px;color:var(--ink-soft)">64</span>
+        </div>
+      </div>
+    </div>
+    <div class="sub-h" style="margin-top:36px;font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;">Tiefe · Schatten &amp; Verläufe</div>
+    <p class="sec-sub" style="margin-bottom:22px;">Tiefe entsteht über weiche, weit gestreute Schatten und subtile organische Verlaufs-Hintergründe — nie über harte Linien oder graue Kästen. So bleibt alles hell und lebendig.</p>
+    <div class="grid-3" style="gap:18px;">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 6px 22px rgba(35,34,26,.05);border:1px solid var(--hair);"><div style="font-weight:600;font-size:14px;">Karte · ruhig</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">0 6px 22px / .05</div></div>
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 20px 46px rgba(35,34,26,.11);border:1px solid var(--hair);"><div style="font-weight:600;font-size:14px;">Karte · Hover</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">0 20px 46px / .11</div></div>
+      <div style="border-radius:18px;padding:22px;background:radial-gradient(120% 120% at 80% 0,rgba(155,163,131,.5),transparent 60%),#EFEADD;border:1px solid var(--hair);"><div style="font-weight:600;font-size:14px;">Sektion · Verlauf</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">radial sage / clay</div></div>
+    </div>
+  </section>
+
+  <!-- 02 TYPE SCALE -->
+  <section>
+    <div class="sec-h"><span class="no">02</span><h2>Typografie-Skala</h2></div>
+    <p class="sec-sub">Open Sauce Sans, eine Familie. Hierarchie über Schnitt und Größe — ruhig, rund, klar.</p>
+    <div class="type-row"><div class="tag"><b>Display</b>64 / 800 / -3%</div><div class="demo" style="font-size:64px;font-weight:800;">Klarheit in Bewegung</div></div>
+    <div class="type-row"><div class="tag"><b>H1</b>46 / 800</div><div class="demo" style="font-size:46px;font-weight:800;">Sichtbar werden</div></div>
+    <div class="type-row"><div class="tag"><b>H2</b>32 / 700</div><div class="demo" style="font-size:32px;font-weight:700;">Viele Themen, ein Faden</div></div>
+    <div class="type-row"><div class="tag"><b>H3</b>22 / 700</div><div class="demo" style="font-size:22px;font-weight:700;">Deine Marke zeigt dich</div></div>
+    <div class="type-row"><div class="tag"><b>Body L</b>18 / 400</div><div class="demo" style="font-size:18px;font-weight:400;letter-spacing:0;line-height:1.5;">Eine Website darf schön aussehen — und vor allem verständlich machen, warum man mit dir arbeiten sollte.</div></div>
+    <div class="type-row"><div class="tag"><b>Body</b>15 / 400</div><div class="demo" style="font-size:15px;font-weight:400;letter-spacing:0;line-height:1.6;color:var(--ink-soft)">Ruhig, humanistisch, gut lesbar. Trägt längere Texte, ohne sich vorzudrängen.</div></div>
+    <div class="type-row"><div class="tag"><b>Label</b>11 / 600 / +20%</div><div class="demo" style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)">Personal Branding · Webdesign · KI · Yoga</div></div>
+  </section>
+
+  <!-- 03 BUTTONS -->
+  <section>
+    <div class="sec-h"><span class="no">03</span><h2>Button-Stile</h2></div>
+    <p class="sec-sub">Voll gerundete Pills. Green = Hauptaktion, Outline = sekundär, Forest = auf hellem Grund für Kontrast, Ghost = textnah.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <span class="lbl">Varianten</span>
+        <div class="btn-row">
+          <button class="btn btn--pri">Lass uns reden</button>
+          <button class="btn btn--sec">Mehr erfahren</button>
+          <button class="btn btn--dark">Kontakt</button>
+          <button class="btn btn--ghost">Alle Angebote →</button>
+        </div>
+        <div class="state-cap"><span>Default</span></div>
+      </div>
+      <div class="panel">
+        <span class="lbl">Zustände &amp; Größen</span>
+        <div class="btn-row">
+          <button class="btn btn--pri is-hover">Hover</button>
+          <button class="btn btn--pri is-disabled" disabled>Disabled</button>
+        </div>
+        <div class="btn-row" style="margin-top:16px;">
+          <button class="btn btn--pri btn--sm">Small</button>
+          <button class="btn btn--pri">Default</button>
+          <button class="btn btn--pri btn--lg">Large</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 PILLS -->
+  <section>
+    <div class="sec-h"><span class="no">04</span><h2>Tag- / Pill-Stile</h2></div>
+    <p class="sec-sub">Für Kategorien und Filter. Farbcodierung pro Bereich — Lavender nur für kreative Spezialfälle.</p>
+    <div class="panel">
+      <div class="pills-row">
+        <span class="pill pill--green">Personal Branding</span>
+        <span class="pill pill--sage">Webdesign &amp; WordPress</span>
+        <span class="pill pill--clay">KI &amp; Marketing</span>
+        <span class="pill">Yoga &amp; Bewegung</span>
+        <span class="pill pill--lilac">Kreativ-Special</span>
+        <span class="pill pill--outline">Filter</span>
+      </div>
+      <div class="pills-row" style="margin-top:18px;">
+        <span class="pill"><span class="d" style="background:var(--green)"></span>Strategie</span>
+        <span class="pill"><span class="d" style="background:var(--sage)"></span>Umsetzung</span>
+        <span class="pill"><span class="d" style="background:var(--clay)"></span>Content</span>
+        <span class="pill"><span class="d" style="background:var(--ink)"></span>Methode</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 CARDS -->
+  <section>
+    <div class="sec-h"><span class="no">05</span><h2>Karten-Komponenten</h2></div>
+    <p class="sec-sub">Weiche, helle Karten auf Sand; die dunkle Stat-/Bewegungskarte nutzt Forest und die Datenlinie.</p>
+    <div class="grid-3">
+      <div class="offer">
+        <div class="mark" style="background:var(--green)"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16 C8 16 9 7 12 7 C15 7 16 17 20 11" stroke="#23221A" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <h4>Personal Branding</h4>
+        <p>Deine Marke sollte dich zeigen, nicht verkleiden. Positionierung, Brand Voice, roter Faden.</p>
+        <span class="more">Mehr erfahren →</span>
+      </div>
+      <div class="offer">
+        <div class="mark" style="background:var(--sage)"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="12" rx="2.5" stroke="#fff" stroke-width="2.2"/><path d="M9 21h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <h4>Webdesign &amp; WordPress</h4>
+        <p>Schön, aber vor allem verständlich: Konzept, Struktur, UX und Umsetzung in WordPress / Elementor.</p>
+        <span class="more">Mehr erfahren →</span>
+      </div>
+      <div class="offer">
+        <div class="mark" style="background:var(--clay)"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="2.2"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <h4>KI &amp; Workflows</h4>
+        <p>KI soll dir Arbeit erleichtern, nicht deinen Kopf ersetzen. Schulungen, Prompting, Marketing-Workflows.</p>
+        <span class="more">Mehr erfahren →</span>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:22px;">
+      <div class="panel">
+        <span class="lbl">Basis-Karte</span>
+        <h4 style="font-weight:700;font-size:20px;margin:0 0 8px;letter-spacing:-.01em;">Karte / Container</h4>
+        <p style="font-size:14px;line-height:1.55;color:var(--ink-soft);margin:0;">Weiße Fläche, Radius 26, feine Hairline und ein weicher, weit gestreuter Schatten für Tiefe. Beim Hover hebt die Karte leicht an. Für Inhalte, Listen, Teaser.</p>
+      </div>
+      <div class="stat-card">
+        <div class="top"><h4>Im Fluss bleiben</h4><span class="badge">Mittwoch · Yoga</span></div>
+        <svg class="route" viewBox="0 0 420 60" preserveAspectRatio="none" fill="none"><path d="M0,42 C60,42 78,12 140,12 C202,12 220,46 290,38 C340,32 380,22 420,24" stroke="#A8E84F" stroke-width="3.2" stroke-linecap="round"/><circle cx="140" cy="12" r="4.5" fill="#CBBEF4"/><circle cx="420" cy="24" r="4.5" fill="#CD8A5B"/></svg>
+        <div class="stats"><div><div class="k">Fokus</div><div class="v">Mobility</div></div><div><div class="k">Dauer</div><div class="v">75 min</div></div><div><div class="k">Level</div><div class="v">Alle</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 NAVIGATION -->
+  <section>
+    <div class="sec-h"><span class="no">06</span><h2>Navigation</h2></div>
+    <p class="sec-sub">Schwebende Pill-Navigation auf hellem Grund. Logo links, Bereiche mittig, klare Haupt-Aktion rechts.</p>
+    <div class="nav">
+      <div class="wm"><svg viewBox="0 0 40 24" fill="none"><path d="M3,18 C9,18 11,6 18,6 C25,6 27,20 34,12" stroke="#A8E84F" stroke-width="3.5" stroke-linecap="round"/></svg>vroni</div>
+      <div class="links">
+        <a href="#" class="active">Branding</a>
+        <a href="#">Webdesign</a>
+        <a href="#">KI</a>
+        <a href="#">Yoga</a>
+        <a href="#">Über mich</a>
+      </div>
+      <div class="right">
+        <button class="btn btn--pri btn--sm">Kennenlernen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 FORMS -->
+  <section>
+    <div class="sec-h"><span class="no">07</span><h2>Formularfelder</h2></div>
+    <p class="sec-sub">Weiche Felder auf Chalk, Hairline-Rahmen, Green-Fokus-Ring. Labels in gesperrten Großbuchstaben.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="field"><label>Name</label><input type="text" placeholder="Wie heißt du?"></div>
+        <div class="field is-focus"><label>E-Mail · Fokus-Zustand</label><input type="text" value="hallo@vroni.de"></div>
+        <div class="field"><label>Worum geht’s?</label><select><option>Branding &amp; Strategie</option><option>Webdesign</option><option>KI &amp; Workflows</option><option>Yoga &amp; Bewegung</option></select></div>
+      </div>
+      <div class="panel">
+        <div class="field"><label>Deine Nachricht</label><textarea placeholder="Erzähl mir kurz, wo du gerade stehst. Du musst noch nicht alles fertig sortiert haben.">Erzähl mir kurz, wo du gerade stehst. Du musst noch nicht alles fertig sortiert haben.</textarea></div>
+        <label class="check"><span class="box on"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-11" stroke="#23221A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ich habe die Datenschutzhinweise gelesen.</label>
+        <div style="margin-top:20px;"><button class="btn btn--pri">Nachricht senden</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 IMAGE STYLE -->
+  <section>
+    <div class="sec-h"><span class="no">08</span><h2>Bildstil &amp; Bildmasken</h2></div>
+    <p class="sec-sub">Bewegung, Natur, echtes Licht — warme Töne, Persönlichkeit. <b>Primär-Pattern: randabfallende Bilder.</b> Große Bilder laufen zur Seitenkante aus und sind nur innen abgerundet — das gibt Halt und wirkt ruhiger als freie Blob-Formen.</p>
+    <div class="bleed-demo">
+      <div class="bleed-card r">
+        <div class="txt"><div class="k">Randabfallend rechts</div><div class="v">Hero &amp; große Bildflächen — Bild läuft zur rechten Kante, links abgerundet.</div></div>
+        <div class="img"><div class="pc">Foto</div></div>
+      </div>
+      <div class="bleed-card l">
+        <div class="txt"><div class="k">Randabfallend links</div><div class="v">Über-mich &amp; Wechselsektionen — Bild läuft zur linken Kante, rechts abgerundet.</div></div>
+        <div class="img"><div class="pc">Foto</div></div>
+      </div>
+    </div>
+    <p class="sec-sub" style="margin-bottom:16px;">Für kleinere Bilder &amp; Akzente: weich gerundete Rechtecke und Kreise. Squircle/Blob nur noch sparsam als Sonderfall.</p>
+    <div class="masks">
+      <div class="ph m-rounded"><div class="pc">Rounded · 26px</div></div>
+      <div class="ph m-rounded" style="border-radius:34px"><div class="pc">Rounded · 34px</div></div>
+      <div class="ph m-circle"><div class="pc">Kreis · Avatar</div></div>
+      <div class="ph m-squircle"><div class="pc">Squircle · sparsam</div></div>
+    </div>
+  </section>
+
+  <!-- 09 LINE MOTIF -->
+  <section>
+    <div class="sec-h"><span class="no">09</span><h2>Linienmotiv im Einsatz</h2></div>
+    <p class="sec-sub">Die fließende Linie als roter Faden — als Trenner, hinter Headlines, als Datenlinie und als grafischer Akzent.</p>
+    <div class="motif-uses">
+      <div class="mu">
+        <div class="cap">Als Abschnitts-Trenner</div>
+        <div class="divider"><svg viewBox="0 0 600 24" preserveAspectRatio="none" fill="none"><path d="M0,12 C100,12 130,4 220,4 C310,4 340,20 430,20 C520,20 540,8 600,9" stroke="#A8E84F" stroke-width="3" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="mu">
+        <div class="cap">Als Headline-Unterstreichung</div>
+        <span class="uhead">verbiegen.<svg viewBox="0 0 200 14" preserveAspectRatio="none" fill="none"><path d="M2,8 C45,2 90,12 130,7 C165,3 185,10 198,6" stroke="#A8E84F" stroke-width="5" stroke-linecap="round"/></svg></span>
+      </div>
+      <div class="mu dark">
+        <div class="cap">Als Datenlinie (Bewegung)</div>
+        <svg viewBox="0 0 560 70" preserveAspectRatio="none" fill="none" style="width:100%;height:60px;display:block"><path d="M0,48 C70,48 90,14 170,14 C250,14 270,56 350,46 C420,38 470,26 560,28" stroke="#A8E84F" stroke-width="3.4" stroke-linecap="round"/><circle cx="170" cy="14" r="5" fill="#CD8A5B"/><circle cx="350" cy="46" r="5" fill="#9BA383"/></svg>
+      </div>
+      <div class="mu">
+        <div class="cap">Als grafischer Akzent</div>
+        <svg viewBox="0 0 560 70" preserveAspectRatio="none" fill="none" style="width:100%;height:60px;display:block"><path d="M0,36 C90,36 110,60 200,60 C290,60 310,12 400,12 C470,12 510,40 560,40" stroke="#9BA383" stroke-width="3" stroke-linecap="round" opacity=".8"/><path d="M0,52 C90,52 110,24 200,24 C290,24 310,64 400,56" stroke="#CD8A5B" stroke-width="3" stroke-linecap="round" opacity=".7"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 SECTION KIT -->
+  <section>
+    <div class="sec-h"><span class="no">10</span><h2>Sektions-Baukasten</h2></div>
+    <p class="sec-sub">Damit weitere Seiten wie aus einem Guss wirken: ein fester Hintergrund-Rhythmus und ein immer gleicher Sektions-Aufbau.</p>
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">Hintergrund-Rhythmus · im Wechsel</div>
+    <div class="rhythm">
+      <div class="band chalk"><div><div class="bn">Chalk</div><div class="bd">Standard-Sektionen. Hell, viel Weißraum.</div></div><span class="lbl">#F8F5EE</span></div>
+      <div class="band sand"><div><div class="bn">Sand-Verlauf</div><div class="bd">Zur Abgrenzung benachbarter heller Sektionen + weiche radiale Akzente.</div></div><span class="lbl">Painpoints · Yoga · Stimmen</span></div>
+      <div class="band forest"><div><div class="bn">Forest</div><div class="bd">Statement- &amp; Kontrast-Sektionen. Sparsam, nie als Dauerton.</div></div><span class="lbl">Ansatz · Kontakt</span></div>
+    </div>
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:30px 0 0;">Anatomie einer Sektion</div>
+    <div class="anatomy">
+      <div class="arow"><span class="astep">Eyebrow</span><span class="aname">Label + Punkt</span><span class="adesc">Grüner Punkt + gesperrtes Label in Versalien — ordnet die Sektion ein.</span></div>
+      <div class="arow"><span class="astep">H2</span><span class="aname">Überschrift</span><span class="adesc">800er Open Sauce, ein Schlüsselwort optional in Grün hervorgehoben.</span></div>
+      <div class="arow"><span class="astep">Lead</span><span class="aname">Einleitung</span><span class="adesc">1–2 ruhige Sätze. Zentriert (.shead--center) oder gesplittet (.shead--split: H2 links, Text rechts).</span></div>
+      <div class="arow"><span class="astep">Content</span><span class="aname">Karten / Raster</span><span class="adesc">Weiße Karten mit weichem Schatten, Pills, randabfallende Bilder — nach Pattern oben.</span></div>
+      <div class="arow"><span class="astep">Faden</span><span class="aname">Linienmotiv</span><span class="adesc">Optionaler Verlaufs-Faden, der Bereiche oder Schritte verbindet.</span></div>
+    </div>
+  </section>
+
+  <!-- 11 EXAMPLE COMPONENTS -->
+  <section>
+    <div class="sec-h"><span class="no">11</span><h2>Beispiel-Komponenten</h2></div>
+    <p class="sec-sub">So setzen sich die Bausteine zu echten Sektionen zusammen — die Vorschau auf deine Website.</p>
+
+    <!-- Hero -->
+    <div class="ex">
+      <div class="ex-cap">Hero</div>
+      <div class="ex-body">
+        <div class="hero">
+          <div class="nav" style="margin-bottom:34px;">
+            <div class="wm"><svg viewBox="0 0 40 24" fill="none"><path d="M3,18 C9,18 11,6 18,6 C25,6 27,20 34,12" stroke="#A8E84F" stroke-width="3.5" stroke-linecap="round"/></svg>vroni</div>
+            <div class="links"><a href="#" class="active">Branding</a><a href="#">Webdesign</a><a href="#">KI</a><a href="#">Yoga</a></div>
+            <div class="right"><button class="btn btn--pri btn--sm">Kennenlernen</button></div>
+          </div>
+          <div class="row">
+            <div class="copy">
+              <span class="lbl">Strategie · Web · KI · Bewegung</span>
+              <h2 class="h">Sichtbar werden,<br>ohne dich zu verbiegen.</h2>
+              <p class="p">Klarheit, Sichtbarkeit und gesunde Leistungsfähigkeit — für Menschen, die viel leisten, viel denken und ihren eigenen Weg gehen.</p>
+              <div class="htags"><span>Personal Branding</span><span>Webdesign &amp; WordPress</span><span>KI-Workflows</span><span>Yoga</span></div>
+              <div class="btn-row" style="margin-top:26px;"><button class="btn btn--pri btn--lg">Lass uns reden</button><button class="btn btn--sec">So arbeite ich</button></div>
+            </div>
+            <div class="vis"><div class="pc">Hero-Bild · randabfallend rechts</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Angebotskarte (row) -->
+    <div class="ex">
+      <div class="ex-cap">Angebotskarten</div>
+      <div class="ex-body" style="padding:36px 44px;">
+        <div class="grid-3">
+          <div class="offer">
+            <div class="mark" style="background:var(--green)"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16 C8 16 9 7 12 7 C15 7 16 17 20 11" stroke="#23221A" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+            <h4>Personal Branding</h4><p>Positionierung, Brand Voice und ein roter Faden, der zu dir passt.</p><span class="more">Mehr erfahren →</span>
+          </div>
+          <div class="offer">
+            <div class="mark" style="background:var(--sage)"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="12" rx="2.5" stroke="#fff" stroke-width="2.2"/><path d="M9 21h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+            <h4>Webdesign</h4><p>Strategische, persönliche Websites in WordPress / Elementor.</p><span class="more">Mehr erfahren →</span>
+          </div>
+          <div class="offer">
+            <div class="mark" style="background:var(--clay)"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="2.2"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+            <h4>KI &amp; Workflows</h4><p>KI sinnvoll integrieren — ohne generisch zu klingen.</p><span class="more">Mehr erfahren →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About teaser -->
+    <div class="ex">
+      <div class="ex-cap">Über-mich-Teaser</div>
+      <div class="ex-body">
+        <div class="about">
+          <div class="img"><div class="pc">Portrait · randabfallend links</div></div>
+          <div class="atxt">
+            <span class="lbl">Über mich</span>
+            <h3 style="margin-top:12px;">Kreative Strategin für Menschen &amp; Marken.</h3>
+            <p>Ich verbinde Strategie, Text, Design und Umsetzung — und denke Körper und Energie mit. Du musst noch nicht alles fertig sortiert haben. Genau dafür bin ich ja da.</p>
+            <p>Branding, Webdesign, KI und Yoga gehören bei mir zu einem stimmigen Ganzen.</p>
+            <div class="sig"><svg viewBox="0 0 80 24" fill="none"><path d="M4 18 C14 18 16 6 26 6 C36 6 38 20 48 12 C56 6 64 8 76 8" stroke="#A8E84F" stroke-width="3" stroke-linecap="round"/></svg><span>Vroni · Veronika Heidrich</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course / Yoga hint -->
+    <div class="ex">
+      <div class="ex-cap">Kurs- / Yoga-Hinweis</div>
+      <div class="ex-body">
+        <div class="course">
+          <div class="ytxt">
+            <span class="badge-active"><span class="pulse"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h3l2-5 3 10 2-5h6" stroke="#23221A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Aktiver Bereich · Körper &amp; Energie</span>
+            <span class="lbl">Yoga · Bewegung · gesunde Leistungsfähigkeit</span>
+            <h3>Hohe Leistung braucht einen Körper, der <span class="g">mitkommt.</span></h3>
+            <p>Regelmäßige Kurse — kraftvoll, modern, regulierend. Für Menschen, die viel leisten und wieder mehr Kraft, Ruhe und Körpergefühl wollen.</p>
+          </div>
+          <div class="ycard">
+            <span class="lbl">Regelmäßige Kurse</span>
+            <div class="yh">Im Fluss bleiben</div>
+            <svg class="route" viewBox="0 0 420 56" preserveAspectRatio="none" fill="none"><path d="M0,40 C60,40 80,12 140,12 C202,12 222,46 292,38 C342,32 382,22 420,24" stroke="#A8E84F" stroke-width="3.2" stroke-linecap="round"/><circle cx="140" cy="12" r="4.5" fill="#CBBEF4"/><circle cx="292" cy="38" r="4.5" fill="#CD8A5B"/></svg>
+            <div class="days">
+              <div class="yday"><div><div class="dl">Mittwoch</div><div class="dr">Rücken Yoga · über die VHS</div></div><span class="dtag">Rücken</span></div>
+              <div class="yday"><div><div class="dl">Donnerstag</div><div class="dr">Power Yoga · über die VHS</div></div><span class="dtag">Power</span></div>
+            </div>
+            <p class="ynote">Beide Kurse laufen über die Volkshochschule — Anmeldung direkt bei der VHS.</p>
+            <div class="ycta"><button class="btn btn--pri">Yoga-Anfrage senden</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="ex" style="margin-bottom:0;">
+      <div class="ex-cap">Kontaktbereich</div>
+      <div class="ex-body">
+        <div class="contact">
+          <div>
+            <span class="lbl">Kontakt</span>
+            <h3>Lass uns <span class="g">reden.</span></h3>
+            <p>Schreib mir, wo du gerade stehst — egal ob Marke, Website, KI oder Bewegung. Wir sortieren das gemeinsam.</p>
+            <svg class="deco" viewBox="0 0 220 26" preserveAspectRatio="none" fill="none"><path d="M2,15 C40,15 58,6 100,6 C142,6 160,21 200,16 C212,14 216,12 218,12" stroke="#A8E84F" stroke-width="3.5" stroke-linecap="round"/><circle cx="100" cy="6" r="4.5" fill="#CD8A5B"/></svg>
+          </div>
+          <div class="cform">
+            <p class="ceyebrow">Schreib mir</p>
+            <div class="field"><label>Name</label><input type="text" placeholder="Dein Name"></div>
+            <div class="field"><label>E-Mail</label><input type="text" placeholder="hallo@…"></div>
+            <div class="field"><label>Nachricht</label><textarea placeholder="Worum geht’s?"></textarea></div>
+            <button class="btn btn--pri" style="width:100%;justify-content:center;">Nachricht senden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="foot">
+    <span>Vroni · Veronika Heidrich — Designsystem „Fresh Organic Hybrid" · v2</span>
+    <span>Open Sauce Sans · Spring Green / Sage / Clay · helle Basis</span>
+  </div>
+
+</div>
+</body>
+</html>
