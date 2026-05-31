@@ -48,6 +48,10 @@
 - [ ] Neue Signatur-Struktur: `.about-sign` mit `as-name-row` (grüner Strich + „VRONI HEIDRICH" in Caps) + `as-brand` (Vaelia „INNERLINE" mit grünem Durchstrich).
 - [ ] Zitat-Band-Autorenzeile: nur **„Vroni Heidrich"** (kein „Veronika Heidrich", kein Mittelpunkt).
 
+### Footer-Tagline (neu, Design-Update VI)
+- [ ] `.footer-mark` wrappt `.footer-brand` + `.footer-meaning` im Footer-Bottom.
+- [ ] Tagline: „Die innere Linie, die sich durch alles zieht." — kursiv, gedämpft.
+
 ### Trust-Section (neu, Design-Update V)
 - [ ] 4 Karten mit echten Bildern: `trust-ehrliche-einschaetzung`, `trust-direkter-kontakt`, `trust-sortieren-vor-gestalten`, `trust-ki-werkzeug`.
 - [ ] Nav-Link „Werte" → `#trust`, mobiles Menü ebenso.
@@ -71,6 +75,10 @@
 - **Gedankenstriche**: 2 em-Dashes in Voices-Zitaten zu Punkten geändert (natürlicherer Vroni-Ton).
 
 ---
+
+### 2026-05-31 — Design-Update VI: Footer-Tagline, Big-Nodes Mobile-Grid
+- **Footer-Tagline**: Wortmarke „innerline" in `.footer-mark` gewrappt, darunter `<span class="footer-meaning">` mit kursivem Text „Die innere Linie, die sich durch alles zieht."
+- **Big-Nodes Mobile-Fix**: `grid-template-areas:"icon title" "icon desc"` — Icon bündig neben Titel UND Beschreibung (vorher nur neben Titel bei flex-direction:row).
 
 ### 2026-05-31 — Design-Update V: Trust-Section, Footer-Redesign, WebP, SEO-Meta
 - **Neue Trust-Section** „Was mir wichtig ist" (4 Bild-Karten): ehrliche Einschätzung, direkter Kontakt, Sortieren vor Gestalten, KI als Werkzeug — positioniert zwischen Claim-Band und Kundenstimmen.
