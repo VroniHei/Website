@@ -1,6 +1,6 @@
 # PROTOKOLL · Vroni / InnerLine Website
 
-> Laufendes Entscheidungs- und Änderungsprotokoll für das Design-Atelier.
+> Laufendes Entscheidungs- und Änderungsprotokoll.
 > Zweck: Regressionen vermeiden. Vor JEDER neuen Runde zuerst die **Invarianten** unten prüfen,
 > nach JEDER Änderung den **Verlauf** ergänzen. Geht 1:1 mit ins Repo `vronihei/Website`.
 
@@ -8,105 +8,120 @@
 
 ## 1. INVARIANTEN — „Das darf nicht (wieder) rausfallen"
 
-Diese Dinge sind bewusst so gebaut und mehrfach abgestimmt. Bei neuen Änderungen **immer gegenprüfen**,
-dass sie noch vorhanden/funktionsfähig sind (besonders, wenn CSS-Blöcke umgeschrieben werden).
-
 ### Logo / Wortmarke
 - [ ] Wortmarke **„innerline"** in der Schrift **Vaelia** (lokal, `fonts/Vaelia.woff2`/`.woff`).
-- [ ] **NN-Ligatur**: erreicht über `text-transform:uppercase` + `font-feature-settings:"dlig" 1`.
-      DOM-Text bleibt `innerline` (Screenreader/SEO). Markup: `inn` in `.bl-up` (uppercase), `erline` in `.bl-tail`.
-- [ ] **Linie hinter dem Wort** (`.bl-word::before`): läuft über das **ganze Wort**, leicht erhöht (`top:46%`).
-      Nav = helles Grün `#B9ED72`, Footer = Clay `#BC7B4C` (Kontrast zu weißer Schrift im Footer).
-- [ ] Logo-Größe Nav **21px**, optisch mittig (`.nav .brand{transform:translateY(2px)}`), Footer **21px**.
+- [ ] **NN-Ligatur**: `text-transform:uppercase` + `font-feature-settings:"dlig" 1` auf `.bl-up`. DOM-Text bleibt `inn` + `erline`.
+- [ ] **Linie hinter dem Wort** (`.bl-word::before`): Nav = `#B9ED72`, Footer = `#BC7B4C`.
+- [ ] Logo-Größe Nav + Footer **21px**, Nav mit `translateY(2px)`.
 
-### Motion / Animation  ⚠️ schon einmal versehentlich rausgefallen
-- [ ] **Hero-Bild Hover-Zoom**: `.hero-portrait img{position:absolute;inset:0;object-fit:cover;transition:transform 1.5s …}`
-      + `.hero-portrait:hover img{transform:scale(1.06)}`. (Diese Regel NICHT löschen, wenn About-CSS umgebaut wird!)
-- [ ] **Über-mich-Bilder Hover-Zoom**: `.about-media .am-main img` + `.am-sub img` (scale beim Hover).
-- [ ] **Zitat-Band Ken-Burns-Drift**: `.quote-band .qb-img{animation:qbDrift 24s …}`.
-- [ ] Alle Motion-Effekte sind unter `@media (prefers-reduced-motion:reduce)` deaktiviert (a11y) — beibehalten.
+### Motion / Animation ⚠️ schon einmal versehentlich rausgefallen
+- [ ] **Hero-Bild Hover-Zoom**: `.hero-portrait img{position:absolute;inset:0;transition:transform 1.5s …}` + `.hero-portrait:hover img{transform:scale(1.06)}`.
+- [ ] **Über-mich-Bilder Hover-Zoom**: `.am-main img` + `.am-sub img` je scale(1.05/1.06).
+- [ ] **Yoga-Bild Hover-Zoom**: `.yoga-image img{transition:transform 1.6s …}` + hover scale(1.05).
+- [ ] **Zitat-Band Ken-Burns**: `.quote-band .qb-img{animation:qbDrift 24s …}`.
+- [ ] Alle Motion unter `@media (prefers-reduced-motion:reduce)` deaktiviert.
 
 ### Schrift-System
-- [ ] **Vaelia = nur Display/Wortmarke** (organische Versalien). NIEMALS für Fließtext oder normale Überschriften.
-- [ ] Überschriften = **Open Sauce Sans**, `font-weight:800`. Fließtext Open Sauce Sans 400.
-- [ ] In einzelnen Sektionen nicht mehrere Display-Schriften mischen (führte zu „unruhig").
+- [ ] **Vaelia = nur Display/Wortmarke** (Logo + `about-sign .as-brand`). NIEMALS für Fließtext.
+- [ ] Überschriften = **Open Sauce Sans 800**. Fließtext Open Sauce Sans 400.
 
-### Mobile
-- [ ] **Burger-CTA „Lass uns reden"** im Overlay = **schwarz (`--ink`) mit weißem Text** (`.mobile-menu .btn`).
-- [ ] Hero-Bild auf Mobile als **Banner über** der Headline (`.hero-visual{order:-1}`).
-- [ ] Über-mich-Bildkomposition zentriert, `.am-sub` **nicht** über den Viewport-Rand (kein Horizontal-Scroll).
-- [ ] Timeline (roter Faden) auf Mobile **vertikal** (Badges links, vertikaler Clay-Faden), letztes ohne Linie.
-- [ ] Generell: `document.body.scrollWidth <= window.innerWidth` (kein horizontaler Scroll).
+### Mobile — Bild-Anzeige ⚠️ mehrfach repariert
+- [ ] **hero-portrait braucht `width:100%`** im 900px-Breakpoint (flex:none allein → Kollaps, da Inhalt absolut positioniert).
+- [ ] **about-media .am-main braucht explizite Höhe** im 900px-Breakpoint (`height:clamp(320px,70vw,520px)`), da `aspect-ratio` allein den Containing-Block nicht zuverlässig aufbaut für absolut positionierte Kinder.
 
-### Icons (Konzept = immer gleiches Icon)
-- [ ] **Marke / Branding** = Wellen-Icon (roter-Faden-Welle).
-- [ ] **Website / Webdesign** = Monitor-Icon.
-- [ ] **KI / Workflows** = **Sparkle** (4-Punkt-Stern) — überall identisch (Pain-Liste, Angebot, „Das große Ganze").
-- [ ] **Körper / Energie / Yoga / Bewegung** = Herz-Icon.
+### Mobile — Layout
+- [ ] **Burger-CTA** im Overlay = `background:var(--ink); color:var(--chalk)` (schwarz/weiß).
+- [ ] Hero-Bild Mobile als **Banner über** der Headline (`.hero-visual{order:-1}`).
+- [ ] **Pain-Items** auf Mobile: `flex-direction:row` (Icon links, Text rechts). Invariante dokumentiert im CSS.
+- [ ] **Big-Nodes** auf Mobile: `flex-direction:row` (Icon links, Text rechts). Invariante dokumentiert im CSS.
+- [ ] **Voices-Grid** auf Mobile/Tablet: scroll-snap horizontal, 1 Card sichtbar, Dots klickbar.
+- [ ] Timeline auf Mobile vertikal (Badges links, Clay-Faden), letztes ohne Linie.
+- [ ] Kein horizontaler Scroll.
 
-### Über-mich-Sektion (Home = Teaser)
-- [ ] Kurz halten (Teaser). Ausführliche Story kommt später auf eigene Über-mich-Seite. CTA-Wechsel zu „Mehr über mich" erst, wenn die Seite existiert.
-- [ ] Kernsatz (Claim) bleibt: „Es ging immer darum, Dinge in eine stimmige Form zu bringen: visuell, strategisch, digital und körperlich." — als ruhiges Statement, **nicht zu massiv** (≈ 20px max).
-- [ ] Byline mit Clay-Strich: „Veronika Heidrich · Brand- & Website-Strategin".
-- [ ] **Timeline-Stationen (7):** 01 Floristik · 02 Mediendesign (Desc nennt **Grafik**) · 03 Marketing · 04 Webdesign · 05 Branding · 06 KI-Workflows · 07 Bewegung. Titel **einzeilig** (`.faden .fl{white-space:nowrap}`).
+### Icons (System — überall identisch halten)
+- [ ] **Marke/Branding** = Wellen-Kurve.
+- [ ] **Website/Webdesign** = Monitor-Icon.
+- [ ] **KI/Workflows** = **Sparkle** (4-Punkt-Stern) — überall identisch.
+- [ ] **Körper/Energie/Yoga** = Herz-Icon.
+
+### Über-mich-Signatur
+- [ ] Neue Signatur-Struktur: `.about-sign` mit `as-name-row` (grüner Strich + „VRONI HEIDRICH" in Caps) + `as-brand` (Vaelia „INNERLINE" mit grünem Durchstrich).
+- [ ] Zitat-Band-Autorenzeile: nur **„Vroni Heidrich"** (kein „Veronika Heidrich", kein Mittelpunkt).
+
+### Farb-System (Lilac als wiederkehrender Akzent)
+- [ ] **Lilac (`#CBBEF4`)** erscheint als dezenter Background-Blob in 5 Sections: Das große Ganze, Arbeitsweise, FAQ, Kundenstimmen, Kontakt. Konsistent halten — keine neue Section ohne Abgleich mit dem Gesamtbild.
+
+### FAQ
+- [ ] Semantisch `<details><summary>` (Google erkennt FAQ-Schema automatisch).
+- [ ] Alle 7 Fragen geschlossen beim Start (kein `open`-Attribut).
+- [ ] `.fq-chev` = nur Pfeil, kein Kreis — konsistent mit Ansatz-Accordion.
 
 ---
 
-## 2. ASSETS (müssen ins Repo committet werden!)
-> Beim letzten Handoff fehlten Bilder mobil — Ursache war vermutlich nicht-committete Ordner.
-> Sicherstellen, dass `images/` und `fonts/` **nicht** in `.gitignore` stehen.
+## 2. ASSETS (müssen ins Repo committet sein!)
 
-- `images/hero-visual.png` — Hero (Arbeitsplatz/Naturlicht)
+- `images/hero-visual.png` — Hero
 - `images/about-workspace.png` — Über mich, Hauptbild
-- `images/about-weg.png` — Über mich, kleines versetztes Bild (Bergweg mit rotem Faden)
+- `images/about-weg.png` — Über mich, versetztes Bild (Bergweg)
+- `images/yoga.png` — Yoga-Section Bild (seit 2026-05-31 drin)
 - `images/zitat-weg.png` — Zitat-Band Hintergrund
-- `images/footer-weg.png` — Footer-Hintergrund (Bergpfad)
+- `images/footer-weg.png` — Footer-Hintergrund
 - `fonts/Vaelia.woff2`, `fonts/Vaelia.woff` — Wortmarke/Display
 
 ---
 
 ## 3. VERLAUF (neueste zuerst)
 
-### Runde — Feinschliff Über mich + Regressions-Fixes
-- Hero-Bild **Motion wiederhergestellt** (`.hero-portrait img` Transition + Hover-Zoom war beim About-Umbau rausgefallen).
-- Timeline: **„Marketing"** als eigene Station ergänzt → 7 Stationen; Reihenfolge Floristik → Mediendesign → Marketing → Webdesign → Branding → KI-Workflows → Bewegung.
-- **Grafikdesign** in der Mediendesign-Beschreibung verankert („Grafik, Layout und Bildsprache.") — Titel bleibt „Mediendesign".
-- Titel der Timeline **einzeilig** erzwungen (`white-space:nowrap`), v.a. „KI-Workflows".
-- **KI-Icon vereinheitlicht** → Sparkle (vorher Sonne/Strahlen, uneinheitlich 4 vs. 8 Strahlen).
-- „Mein Ansatz"-Accordion geprüft: in dieser Datei korrekt (gleiche Schrift, schließbar, single-open). Buggy war vmtl. die deployte Version → wird beim Handoff überschrieben.
-- Dieses Protokoll angelegt.
+### 2026-05-31 — Design-Update III: Arbeitsweise-Cards, FAQ, Kontakt, Lilac-System
+- **Arbeitsweise** komplett neu: editorial Step-Cards (weiß, Border, Hover-Lift), große Lime-Nummern (01–04, werden beim Hover grüner), Clay-Labels, Pfeil-Indikatoren zwischen Cards, Lime- + Lilac-Orbs mit Drift-Animation.
+- **FAQ-Headline**: „Was du dich vielleicht auch fragst." (statt „Was Menschen mich vorher oft fragen").
+- **FAQ 7 Fragen**: Neue Frage „Arbeitest du mit WordPress und Elementor?" ergänzt (wichtig für SEO). Alle Antworten natürlicher (Vroni-Voice), Punkte statt Gedankenstriche in Frage 1.
+- **Voices-Headline**: „Was nach der Zusammenarbeit zurückkommt" (kein „Menschen" mehr, doppelte Verwendung vermieden).
+- **Kontakt** neu: H2 umgestellt (Idee/Projekt zuerst), kompakterer Body ohne Aufzählung, zwei direkte Kontakt-Pills (E-Mail + Instagram-Icon), Formular mit natürlicherem Label („Worum geht's?"), neue Optionen, Button „Nachricht abschicken".
+- **H2 überall** einheitlich auf `clamp(28px,3.2vw,40px)` reduziert.
+- **shead p** max-width: 620 → 760px (FAQ-Intro hatte zu frühen Zeilenumbruch).
+- **Lilac** jetzt in 5 Sections als kohärentes Akzent-System verteilt (statt nur in Arbeitsweise/FAQ).
+- **Big-Section**: Lilac-Blob unten rechts ergänzt (5. Akzentpunkt).
 
-### Runde — Über-mich-Redesign (editorial) + Kürzung
-- Sektion neu gestaltet: 1 Schrift (Open Sauce Sans), editoriale **2-Bild-Komposition** (Haupt- + versetztes Bild), `align-items:start`.
-- Roter-Faden-**Timeline** mit nummerierten Clay-Badges; Titel einzeilig + Beschreibungen als gleich aufgebaute Dreier.
-- Text mehrfach gestrafft (Claude-Feedback eingearbeitet): Teaser-Länge, aktiver Abschlusssatz, „erstmal nach viel", Webdesign-Desc „Struktur, Inhalte und Sichtbarkeit". Claim-Statement verkleinert (war zu massiv).
-- Byline mit Clay-Strich ergänzt.
+### 2026-05-31 — Design-Update II: FAQ, Yoga, Pain-Items, Angebote, About-Signatur
+- **FAQ-Section** neu eingebaut: `<details><summary>`, Glaseffekt-Cards, 6→7 Fragen, vor Kontakt.
+- **Yoga-Section** komplett neu: `yoga-bento` mit Foto links / Forest-Card rechts, 3-Wege-Struktur (ypaths/ypath), VHS-Kurs-Tags Mi/Do.
+- **Pain-Items** neue Struktur: `pi-body/pi-cat/pi-text` mit Kategorie-Label (Klarheit, Website, KI …) + Icon-Farbschema nach Position.
+- **Angebote**: `offer-for` (Zielgruppe, fett, mit Trennlinie) + `desc` (Beschreibung) aufgeteilt.
+- **About-Signatur** neu: `as-name-row` (grüner Strich + „VRONI HEIDRICH" Caps) + `as-brand` (Vaelia Innerline-Wordmark mit grünem Durchstrich).
+- **Zitat**: Autorenzeile vereinheitlicht zu „Vroni Heidrich".
+- **Big-Section**: „zusammengehört" grün, big-foot-Text kompakter.
+- **script.js**: Voices-Slider mit scroll-snap + dot-navigation ergänzt.
+- **images/yoga.png** hinzugefügt.
 
-### Runde — Logo-Linie + Mobile
-- Logo-Variante „Linie hinter dem Schriftzug" final (statt Welle davor). Nav helles Grün, Footer Clay (Lesbarkeit).
-- Linie über ganzes Wort, leicht erhöht. Logo verkleinert + vertikal zentriert.
-- Burger-CTA mobil **schwarz/weiß** gesetzt (deckungsgleich mit Claude-Code-Fix).
-- Hero-Bild mobil als Banner über der Headline.
+### 2026-05-31 — Mobile-Fix: Pain-Items + Big-Nodes row-Layout
+- Pain-Items auf Mobile/Tablet: `flex-direction:row` (Icon links, Text rechts).
+- Big-Nodes auf Mobile/Tablet: `flex-direction:row` als horizontale Cards.
+- `about-media .am-main`: explizite Höhe in Mobile-Breakpoint.
+- `hero-portrait`: `width:100%` in Mobile-Breakpoint.
 
-### Runde — Bilder + Logo + Schrift einbinden
-- Eigene Bilder in Hero, Über-mich, Zitat-Band, Footer eingebunden (Platzhalter ersetzt).
-- Wortmarke „innerline" in Vaelia mit **NN-Ligatur**; Vaelia nur als Display-Font.
-- Hover-/Drift-Motion-Effekte ergänzt (Hero/About Hover-Zoom, Zitat-Band Ken-Burns).
+### Frühere Runden (im Atelier, vor GitHub-Sync)
+- Hero-Bild Motion wiederhergestellt (war beim About-Umbau rausgefallen).
+- Timeline 7 Stationen, KI-Icon vereinheitlicht (Sparkle).
+- Über-mich editoriales Layout, 2-Bild-Komposition.
+- Logo-Linie final (Nav grün, Footer clay). Burger-CTA schwarz/weiß.
+- Bilder eingebunden, Vaelia-Wortmarke mit NN-Ligatur, Motion-Effekte.
 
 ---
 
-## 4. OFFENE TODOS (aus dem Briefing)
-- [ ] **FAQ-Section** (Accordion im Stil von „Mein Ansatz"), gut für SEO/GEO.
-- [ ] **SEO/GEO-Feinschliff** (H2/H3-Struktur, Definitionen, kurze Antwortblöcke; nicht keyword-stuffen).
-- [ ] Optionaler **Nutzen-/Vorher-Nachher-Block** (nur wenn nicht redundant zu Problem-/Ansatz-Section).
-- [ ] **Eigene Über-mich-Seite** (ausführliche Story: Floristik, Trailrunning, Bailey, KI, Yoga …) + CTA „Mehr über mich" verlinken.
-- [ ] **Roter-Faden-Scroll-Effekt** (dezent, SVG-Pfad, scrollbasiert) — erst wenn Inhalte/FAQ/Über-mich/Bilder/Mobile stehen; bei `prefers-reduced-motion` deaktivieren.
-- [ ] **A11y-Audit** über die fertige Seite (Kontraste, Fokus, Semantik, Touch-Targets ≥44px).
+## 4. OFFENE TODOS
+
+- [ ] **Echte Kundenstimmen** eintragen (aktuell Platzhalter — Hinweis ist sichtbar auf der Seite).
+- [ ] **SEO/GEO-Feinschliff**: H2/H3-Struktur prüfen, Meta-Tags (title, description), OG-Tags.
+- [ ] **Eigene Über-mich-Seite** (ausführliche Story) + CTA „Mehr über mich" auf der Startseite verlinken.
+- [ ] **A11y-Audit** über die fertige Seite (Kontraste, Fokus, Semantik, Touch-Targets ≥44px). BFSG gilt ab 28.06.2025.
+- [ ] **Footer** noch nicht final überarbeitet (Kontakt-Sektion im Atelier war letzter Stand, Footer noch auf Platzhalter-Links).
+- [ ] **Impressum / Datenschutz** Seiten müssen noch gebaut werden (aktuell Anker ohne Ziel).
 
 ---
 
 ## 5. ARBEITSREGEL
 1. Vor Änderungen: Abschnitt **1 (Invarianten)** lesen.
-2. Beim Umschreiben von CSS-Blöcken prüfen, ob gemeinsam genutzte Regeln (z. B. `.hero-portrait img`) mit drinbleiben.
-3. Nach Änderungen: **Verlauf** ergänzen, ggf. Invarianten/TODOs aktualisieren.
-4. Brand Voice 2.0 & BFSG/WCAG-AA (siehe `CLAUDE.md` / `uploads/Vroni_Brand_Voice_2_0.md`) gelten immer.
+2. Beim Umschreiben von CSS-Blöcken prüfen, ob geteilte Regeln (z. B. `.hero-portrait img`) erhalten bleiben.
+3. Nach Änderungen: **Verlauf** ergänzen, Invarianten/TODOs aktualisieren.
+4. Brand Voice 2.0 & BFSG/WCAG-AA (siehe `CLAUDE.md`) gelten immer.
