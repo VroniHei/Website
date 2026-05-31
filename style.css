@@ -723,6 +723,20 @@ img{max-width:100%;display:block;}
   .form{padding:28px 22px 24px;}
 }
 
+/* ===== FOCUS VISIBLE — BFSG/WCAG 2.1 AA ===== */
+:focus{outline:none;}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:4px;}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px;}
+.nav-links a:focus-visible,.mobile-menu a:focus-visible,.footer-col a:focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:4px;}
+.principle:focus-visible{outline:3px solid var(--green);outline-offset:2px;}
+.faq-item summary:focus-visible{outline:3px solid var(--green-deep);outline-offset:-3px;border-radius:var(--r-md);}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;}
+
+/* ===== FORM ERROR STATES ===== */
+.field.error input,.field.error textarea{border-color:var(--clay);box-shadow:0 0 0 3px rgba(205,138,91,.18);}
+.field-error{font-size:11.5px;color:var(--clay);margin-top:5px;display:none;}
+.field.error .field-error{display:block;}
+
 /* mobile menu overlay */
 .mobile-menu{position:fixed;inset:0;z-index:55;background:rgba(248,245,238,.97);backdrop-filter:blur(8px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;

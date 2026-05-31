@@ -3,24 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vroni · Veronika Heidrich · Klarheit in Bewegung</title>
-<meta name="description" content="Brand- und Website-Strategie mit KI als Werkzeug. Veronika Heidrich (Vroni) hilft Selbstständigen und kreativen Unternehmer:innen, Marke, Website und Workflows klar zu sortieren — und verbindet das mit Yoga und Bewegung als Basis für nachhaltige Leistungsfähigkeit.">
+<title>Vroni · Brand- &amp; Website-Strategin mit KI als Werkzeug</title>
+<meta name="description" content="Personal Branding, Webdesign, KI-Workflows und Bewegung für Selbstständige mit vielen Ideen. Vroni hilft dir, Klarheit zu finden und stimmig sichtbar zu werden.">
 <meta name="author" content="Veronika Heidrich">
 <meta name="keywords" content="Personal Branding, Webdesign, WordPress, Elementor, KI-Workflows, Brand-Strategie, Yoga Brannenburg, Power Yoga, Holistic Performance, Klarheit in Bewegung">
 <link rel="canonical" href="https://vronihei.github.io/Website/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Vroni · Veronika Heidrich — Klarheit in Bewegung">
-<meta property="og:description" content="Brand- und Website-Strategie mit KI als Werkzeug. Klar sortieren, sichtbar werden, ohne dich zu verbiegen.">
+<meta property="og:title" content="Vroni · Brand- &amp; Website-Strategin mit KI als Werkzeug">
+<meta property="og:description" content="Personal Branding, Webdesign, KI-Workflows und Bewegung für Selbstständige mit vielen Ideen. Klarheit finden und stimmig sichtbar werden.">
 <meta property="og:url" content="https://vronihei.github.io/Website/">
 <meta property="og:image" content="https://vronihei.github.io/Website/images/hero-visual.png">
 <meta property="og:site_name" content="InnerLine · Veronika Heidrich">
-<!-- Twitter -->
+<!-- Twitter/X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vroni · Veronika Heidrich — Klarheit in Bewegung">
-<meta name="twitter:description" content="Brand- und Website-Strategie mit KI als Werkzeug. Klar sortieren, sichtbar werden, ohne dich zu verbiegen.">
+<meta name="twitter:title" content="Vroni · Brand- &amp; Website-Strategin mit KI als Werkzeug">
+<meta name="twitter:description" content="Personal Branding, Webdesign, KI-Workflows und Bewegung für Selbstständige mit vielen Ideen. Klarheit finden und stimmig sichtbar werden.">
 <meta name="twitter:image" content="https://vronihei.github.io/Website/images/hero-visual.png">
+<!-- Performance: Preconnect + Preload -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="preload" href="fonts/Vaelia.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="images/hero-visual.webp" as="image" type="image/webp">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -41,12 +46,12 @@
     </div>
     <div class="nav-right">
       <a href="#kontakt" class="btn btn--pri btn--sm">Lass uns reden</a>
-      <button class="nav-burger" id="burger" aria-label="Menü öffnen"><span></span></button>
+      <button class="nav-burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
     </div>
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
   <a href="#angebote">Angebote</a>
   <a href="#system">Ansatz</a>
   <a href="#ueber">Über mich</a>
@@ -492,7 +497,7 @@
     <div class="trust-grid">
       <article class="trust-card reveal d1">
         <div class="tc-img">
-          <picture><source srcset="images/trust-ehrliche-einschaetzung.webp" type="image/webp"><img src="images/trust-ehrliche-einschaetzung.png" loading="lazy" decoding="async" alt="Offenes Notizbuch mit Stift, Vase mit Olivenzweig und Tasse im warmen Morgenlicht — Sinnbild für ruhige, ehrliche Einschätzung"></picture>
+          <picture><source srcset="images/trust-ehrliche-einschaetzung.webp" type="image/webp"><img src="images/trust-ehrliche-einschaetzung.png" width="1448" height="1086" loading="lazy" decoding="async" alt="Offenes Notizbuch mit Stift, Vase mit Olivenzweig und Tasse im warmen Morgenlicht — Sinnbild für ruhige, ehrliche Einschätzung"></picture>
         </div>
         <div class="tc-body">
           <h3>Ich sage dir ehrlich, was sinnvoll ist.</h3>
@@ -501,7 +506,7 @@
       </article>
       <article class="trust-card reveal d2">
         <div class="tc-img">
-          <picture><source srcset="images/trust-direkter-kontakt.webp" type="image/webp"><img src="images/trust-direkter-kontakt.png" loading="lazy" decoding="async" alt="Persönliches Gespräch am Holztisch mit Laptop, Notizbuch und Tasse im Naturlicht — direkter Kontakt ohne Zwischenstationen"></picture>
+          <picture><source srcset="images/trust-direkter-kontakt.webp" type="image/webp"><img src="images/trust-direkter-kontakt.png" width="1448" height="1086" loading="lazy" decoding="async" alt="Persönliches Gespräch am Holztisch mit Laptop, Notizbuch und Tasse im Naturlicht — direkter Kontakt ohne Zwischenstationen"></picture>
         </div>
         <div class="tc-body">
           <h3>Du redest direkt mit mir.</h3>
@@ -510,7 +515,7 @@
       </article>
       <article class="trust-card reveal d3">
         <div class="tc-img">
-          <picture><source srcset="images/trust-sortieren-vor-gestalten.webp" type="image/webp"><img src="images/trust-sortieren-vor-gestalten.png" loading="lazy" decoding="async" alt="Hände sortieren Moodboard-Karten mit Naturmaterialien und Stoffmustern auf einem Holztisch — erst sortieren, dann gestalten"></picture>
+          <picture><source srcset="images/trust-sortieren-vor-gestalten.webp" type="image/webp"><img src="images/trust-sortieren-vor-gestalten.png" width="1448" height="1086" loading="lazy" decoding="async" alt="Hände sortieren Moodboard-Karten mit Naturmaterialien und Stoffmustern auf einem Holztisch — erst sortieren, dann gestalten"></picture>
         </div>
         <div class="tc-body">
           <h3>Wir machen nicht einfach irgendwas hübsch.</h3>
@@ -519,7 +524,7 @@
       </article>
       <article class="trust-card reveal d4">
         <div class="tc-img">
-          <picture><source srcset="images/trust-ki-werkzeug.webp" type="image/webp"><img src="images/trust-ki-werkzeug.png" loading="lazy" decoding="async" alt="Arbeitsplatz mit Laptop, Notizbuch, Materialkarten und einer Karte mit der Aufschrift „AI unterstützt, nicht ersetzt" — KI als Werkzeug"></picture>
+          <picture><source srcset="images/trust-ki-werkzeug.webp" type="image/webp"><img src="images/trust-ki-werkzeug.png" width="1448" height="1086" loading="lazy" decoding="async" alt="Arbeitsplatz mit Laptop, Notizbuch, Materialkarten und einer Karte mit der Aufschrift „AI unterstützt, nicht ersetzt" — KI als Werkzeug"></picture>
         </div>
         <div class="tc-body">
           <h3>KI darf helfen. Aber sie übernimmt nicht das Denken.</h3>
@@ -659,14 +664,14 @@
           <a class="cd-link" href="mailto:info@veronika-heidrich.de"><span class="cd-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8 6 8-6M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>info@veronika-heidrich.de</a>
           <a class="cd-link" href="https://instagram.com/vronihei" target="_blank" rel="noopener"><span class="cd-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="7" r="1.1" fill="currentColor"/></svg></span>@vronihei</a>
         </div>
-        <p class="contact-privacy">Pflichtfelder mit <span aria-hidden="true">*</span> · Hinweise zum Umgang mit deinen Daten findest du in der <a href="#">Datenschutzerklärung</a>.</p>
+        <p class="contact-privacy">Pflichtfelder mit <span aria-hidden="true">*</span> · Mit dem Absenden erklärst du dich einverstanden, dass deine Angaben zur Bearbeitung deiner Anfrage verwendet werden. Mehr Infos in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       </div>
       <div class="form reveal d2" id="contactForm">
         <div class="form-body">
           <p class="form-eyebrow">Schreib mir</p>
           <div class="form-row">
             <div class="field"><label for="f-name">Name</label><input id="f-name" type="text" placeholder="Dein Name"></div>
-            <div class="field"><label for="f-mail">E-Mail <span class="req" aria-hidden="true">*</span></label><input id="f-mail" type="email" placeholder="info@…" required aria-required="true"></div>
+            <div class="field" id="field-mail"><label for="f-mail">E-Mail <span class="req" aria-hidden="true">*</span></label><input id="f-mail" type="email" placeholder="info@…" required aria-required="true" aria-describedby="err-mail"><span class="field-error" id="err-mail" role="alert">Bitte gib deine E-Mail-Adresse an.</span></div>
           </div>
           <div class="field"><label for="f-topic">Worum geht's?</label>
             <select id="f-topic">
@@ -678,9 +683,9 @@
               <option>Etwas anderes</option>
             </select>
           </div>
-          <div class="field"><label for="f-msg">Nachricht <span class="req" aria-hidden="true">*</span></label><textarea id="f-msg" placeholder="Erzähl mir kurz, wo du gerade stehst. Ein paar Sätze reichen." required aria-required="true"></textarea></div>
+          <div class="field" id="field-msg"><label for="f-msg">Nachricht <span class="req" aria-hidden="true">*</span></label><textarea id="f-msg" placeholder="Erzähl mir kurz, wo du gerade stehst. Ein paar Sätze reichen." required aria-required="true" aria-describedby="err-msg"></textarea><span class="field-error" id="err-msg" role="alert">Bitte schreib kurz, worum es geht.</span></div>
           <button class="btn btn--pri" id="sendBtn" type="button">Nachricht abschicken</button>
-          <p class="form-note">Das Formular öffnet dein Mailprogramm. Ich melde mich in der Regel innerhalb von ein bis zwei Werktagen.</p>
+          <p class="form-note">Deine Nachricht landet direkt bei mir — das Formular öffnet dein Mailprogramm. Ich melde mich in der Regel innerhalb von ein bis zwei Werktagen.</p>
         </div>
         <div class="form-success">
           <div class="sc-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-11" stroke="#23221A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -733,8 +738,8 @@
       </span>
       <span>© 2026 Veronika Heidrich · alle Rechte vorbehalten.</span>
       <div class="legal">
-        <a href="#">Impressum</a>
-        <a href="#">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
       </div>
     </div>
   </div>
