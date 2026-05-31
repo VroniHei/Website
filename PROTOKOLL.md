@@ -48,6 +48,11 @@
 - [ ] Neue Signatur-Struktur: `.about-sign` mit `as-name-row` (grüner Strich + „VRONI HEIDRICH" in Caps) + `as-brand` (Vaelia „INNERLINE" mit grünem Durchstrich).
 - [ ] Zitat-Band-Autorenzeile: nur **„Vroni Heidrich"** (kein „Veronika Heidrich", kein Mittelpunkt).
 
+### Trust-Section (neu, Design-Update V)
+- [ ] 4 Karten mit echten Bildern: `trust-ehrliche-einschaetzung`, `trust-direkter-kontakt`, `trust-sortieren-vor-gestalten`, `trust-ki-werkzeug`.
+- [ ] Nav-Link „Werte" → `#trust`, mobiles Menü ebenso.
+- [ ] Footer: 4-Spalten-Layout mit `.footer-quote`-Bild-Block. `.footer-brand` (Vaelia-Wortmarke) im Footer-Bottom.
+
 ### Farb-System (Lilac als wiederkehrender Akzent)
 - [ ] **Lilac (`#CBBEF4`)** erscheint als dezenter Background-Blob in 5 Sections: Das große Ganze, Arbeitsweise, FAQ, Kundenstimmen, Kontakt. Konsistent halten — keine neue Section ohne Abgleich mit dem Gesamtbild.
 
@@ -67,15 +72,31 @@
 
 ---
 
+### 2026-05-31 — Design-Update V: Trust-Section, Footer-Redesign, WebP, SEO-Meta
+- **Neue Trust-Section** „Was mir wichtig ist" (4 Bild-Karten): ehrliche Einschätzung, direkter Kontakt, Sortieren vor Gestalten, KI als Werkzeug — positioniert zwischen Claim-Band und Kundenstimmen.
+- **Footer komplett neu**: editoriales 4-Spalten-Layout mit Zitat-Bild-Block (`.footer-quote`, `footer-weg.png` mit Overlay + Claim-Text), 3 Link-Spalten (Navigation, Kontakt, Über Veronika Heidrich) statt bisherigem Full-Bleed-Hintergrund-Footer.
+- **SEO-Meta vollständig**: `<title>`, `<meta description>`, `<meta keywords>`, `<meta author>`, `<link rel=canonical>`, Open Graph (og:type, locale, title, description, url, image, site_name), Twitter-Card — alles neu.
+- **`<picture>` + WebP für alle Bilder**: hero-visual, about-workspace, about-weg, zitat-weg, yoga, claim-weg, footer-weg, alle trust-* Bilder. Fallback PNG bleibt.
+- **Nav-Update**: „Werte" (→ #trust) und „FAQ" (→ #faq) hinzugefügt; „Stimmen" aus Nav entfernt (Section bleibt im DOM als Platzhalter).
+- **Kontaktformular A11y**: `required`, `aria-required="true"`, `.req`-Markierung auf Pflichtfeldern (BFSG-Anforderung).
+- **contact-privacy** Zeile vorbereitet in CSS (Datenschutz-Hinweis-Styling, bereit für Texteintrag).
+
+---
+
 ## 2. ASSETS (müssen ins Repo committet sein!)
 
 - `images/hero-visual.png` — Hero
 - `images/about-workspace.png` — Über mich, Hauptbild
 - `images/about-weg.png` — Über mich, versetztes Bild (Bergweg)
 - `images/yoga.png` — Yoga-Section Bild (seit 2026-05-31 drin)
-- `images/claim-weg.png` — Claim-Band (See/Wasser, goldene Stunde, seit 2026-05-31 drin)
-- `images/zitat-weg.png` — Zitat-Band Hintergrund
-- `images/footer-weg.png` — Footer-Hintergrund
+- `images/claim-weg.png` + `.webp` — Claim-Band (See/Wasser, goldene Stunde)
+- `images/zitat-weg.png` + `.webp` — Zitat-Band Hintergrund
+- `images/footer-weg.png` + `.webp` — Footer (jetzt als `.footer-quote`-Bild-Block)
+- `images/trust-ehrliche-einschaetzung.png` + `.webp` — Trust-Card 1 (Notizbuch, Morgenlicht)
+- `images/trust-direkter-kontakt.png` + `.webp` — Trust-Card 2 (Gespräch am Holztisch)
+- `images/trust-sortieren-vor-gestalten.png` + `.webp` — Trust-Card 3 (Moodboard-Karten)
+- `images/trust-ki-werkzeug.png` + `.webp` — Trust-Card 4 (Laptop, AI-Karte)
+- Alle Bilder haben `.webp`-Variante (seit 2026-05-31 drin, via `<picture>`-Element)
 - `fonts/Vaelia.woff2`, `fonts/Vaelia.woff` — Wortmarke/Display
 
 ---
@@ -122,7 +143,8 @@
 ## 4. OFFENE TODOS
 
 - [ ] **Echte Kundenstimmen** eintragen (aktuell Platzhalter — sichtbarer Hinweis entfernt, nur noch HTML-Kommentar im Code).
-- [ ] **SEO/GEO-Feinschliff**: H2/H3-Struktur prüfen, Meta-Tags (title, description), OG-Tags.
+- [x] **SEO/GEO-Meta** ergänzt (Design-Update V): title, description, keywords, canonical, OG, Twitter-Card.
+- [ ] **SEO/GEO-Feinschliff**: H2/H3-Struktur prüfen, strukturierte Daten.
 - [ ] **Eigene Über-mich-Seite** (ausführliche Story) + CTA „Mehr über mich" auf der Startseite verlinken.
 - [ ] **A11y-Audit** über die fertige Seite (Kontraste, Fokus, Semantik, Touch-Targets ≥44px). BFSG gilt ab 28.06.2025.
 - [ ] **Footer** noch nicht final überarbeitet (Kontakt-Sektion im Atelier war letzter Stand, Footer noch auf Platzhalter-Links).
