@@ -58,12 +58,22 @@
 
 ---
 
+### 2026-05-31 — Design-Update IV: Claim-Band, Footer-Claim, Platzhalter-Bereinigung
+- **Neue Claim-Band-Section** zwischen Arbeitsweise und Kundenstimmen: atmosphärisches See-Bild (`claim-weg.png`) mit Ken-Burns-Drift (28s), dunklem Overlay, Statement „Gute Sichtbarkeit fühlt sich nicht *lauter* an. Sondern *klarer.*" (grüne Akzente).
+- **Voices**: sichtbarer „Platzhalter-Stimmen"-Text raus (war öffentlich sichtbar — jetzt nur noch HTML-Kommentar mit TODO).
+- **Footer-Claim** auf finalen Stand: „Veronika Heidrich · Brand- & Website-Strategin mit KI als Werkzeug. *Klarheit in Bewegung.*"
+- **Personal Branding Karte**: Beschreibung geglättet: „…damit deine Marke klarer wird und sich trotzdem nach dir anfühlt."
+- **Gedankenstriche**: 2 em-Dashes in Voices-Zitaten zu Punkten geändert (natürlicherer Vroni-Ton).
+
+---
+
 ## 2. ASSETS (müssen ins Repo committet sein!)
 
 - `images/hero-visual.png` — Hero
 - `images/about-workspace.png` — Über mich, Hauptbild
 - `images/about-weg.png` — Über mich, versetztes Bild (Bergweg)
 - `images/yoga.png` — Yoga-Section Bild (seit 2026-05-31 drin)
+- `images/claim-weg.png` — Claim-Band (See/Wasser, goldene Stunde, seit 2026-05-31 drin)
 - `images/zitat-weg.png` — Zitat-Band Hintergrund
 - `images/footer-weg.png` — Footer-Hintergrund
 - `fonts/Vaelia.woff2`, `fonts/Vaelia.woff` — Wortmarke/Display
@@ -111,7 +121,7 @@
 
 ## 4. OFFENE TODOS
 
-- [ ] **Echte Kundenstimmen** eintragen (aktuell Platzhalter — Hinweis ist sichtbar auf der Seite).
+- [ ] **Echte Kundenstimmen** eintragen (aktuell Platzhalter — sichtbarer Hinweis entfernt, nur noch HTML-Kommentar im Code).
 - [ ] **SEO/GEO-Feinschliff**: H2/H3-Struktur prüfen, Meta-Tags (title, description), OG-Tags.
 - [ ] **Eigene Über-mich-Seite** (ausführliche Story) + CTA „Mehr über mich" auf der Startseite verlinken.
 - [ ] **A11y-Audit** über die fertige Seite (Kontraste, Fokus, Semantik, Touch-Targets ≥44px). BFSG gilt ab 28.06.2025.
