@@ -29,6 +29,9 @@
   }
   if (burger) burger.addEventListener('click', toggleMenu);
   menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) { closeMenu(); if (burger) burger.focus(); }
+  });
 
   /* ---- Smooth anchor scroll with nav offset ---- */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
