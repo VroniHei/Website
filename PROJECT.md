@@ -29,18 +29,18 @@
 
 | Feld              | Wert                              |
 |-------------------|-----------------------------------|
-| Projektname       | Website Veronika Heidrich         |
-| Vision            | Professionelle Personal-Website als Yoga-Lehrerin & Coach |
-| Zielgruppe        | Interessierte an Yoga / Coaching (Kund:innen von veronika-heidrich.de) |
-| Kernanforderungen | Ansprechendes Design, Mobile-First, Kontaktformular, GitHub Pages Hosting |
-| Erfolgskriterien  | Responsive auf allen Geräten, professioneller Auftritt, funktionierender Kontaktweg |
+| Projektname       | Website InnerLine / Veronika Heidrich |
+| Vision            | Professionelle Personal-Website als Brand- & Website-Strategin, Yoga-Lehrerin und KI-Expertin |
+| Zielgruppe        | Selbstständige, Kreative, Coaches — Menschen mit vielen Themen und fehlendem roten Faden |
+| Kernanforderungen | Fresh Organic Hybrid Design, Mobile-First, Kontaktformular, GitHub Pages, Vaelia-Wortmarke |
+| Erfolgskriterien  | Responsive auf allen Geräten, professioneller Auftritt, funktionierender Kontaktweg, WCAG 2.1 AA |
 | Deadline          | _(laufend)_                       |
 | Verantwortlich    | Veronika Heidrich (VroniHei)      |
 | Gestartet         | 2026-05-29                        |
 
 ### Was soll dieses Projekt leisten?
 
-Eine professionelle persönliche Website für Veronika Heidrich als Yoga-Lehrerin und Coach. Die Seite präsentiert Angebote, weckt Vertrauen durch Stimmen/Testimonials und ermöglicht direkten Kontakt per E-Mail (info@veronika-heidrich.de).
+Eine professionelle Personal-Website für Veronika Heidrich als Brand- & Website-Strategin, KI-Expertin und Yoga-Lehrerin. Markenkern: „Sichtbar werden, ohne dich zu verbiegen." Die Seite präsentiert vier Angebotsbereiche (Personal Branding, Webdesign, KI-Workflows, Yoga & Bewegung), weckt Vertrauen durch Kundenstimmen und ermöglicht direkten Kontakt per E-Mail (info@veronika-heidrich.de).
 
 ### Was soll es ausdrücklich NICHT leisten?
 
@@ -50,28 +50,36 @@ Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Pl
 
 ## 2. Aktueller Status
 
-**Phase:** `Aktive Entwicklung / Feinschliff`
-**Gesamtfortschritt:** ▓▓▓▓▓▓▓░░░ 70%
+**Phase:** `Aktive Entwicklung / Iterativer Feinschliff via Claude Design`
+**Gesamtfortschritt:** ▓▓▓▓▓▓▓▓░░ 82%
 
-| Meilenstein                     | Status        | Datum      |
-|---------------------------------|---------------|------------|
-| Entwicklungsumgebung aufsetzen  | ✅ Fertig     | 2026-05-29 |
-| Skills installieren             | ✅ Fertig     | 2026-05-29 |
-| Wissensdatenbank aufbauen       | ✅ Fertig     | 2026-05-29 |
-| Projektziel & Anforderungen     | ✅ Fertig     | 2026-05-29 |
-| Technologie-Stack entscheiden   | ✅ Fertig     | 2026-05-29 |
-| Website-Grundstruktur (HTML/CSS)| ✅ Fertig     | 2026-05-29 |
-| Kontaktformular (mailto)        | ✅ Fertig     | 2026-05-29 |
-| Hero-Blur-Hintergrundanimation  | ✅ Fertig     | 2026-05-29 |
-| Mobile-Optimierung              | ✅ Fertig     | 2026-05-29 |
-| Voices-Swipe-Slider (mobil)     | ✅ Fertig     | 2026-05-29 |
-| Deployment auf GitHub Pages     | ✅ Fertig     | 2026-05-29 |
-| Letzter Feinschliff / QA        | ⏳ Ausstehend | —          |
+| Meilenstein                           | Status        | Datum      |
+|---------------------------------------|---------------|------------|
+| Entwicklungsumgebung aufsetzen        | ✅ Fertig     | 2026-05-29 |
+| Skills installieren                   | ✅ Fertig     | 2026-05-29 |
+| Wissensdatenbank aufbauen             | ✅ Fertig     | 2026-05-29 |
+| Projektziel & Anforderungen           | ✅ Fertig     | 2026-05-29 |
+| Technologie-Stack entscheiden         | ✅ Fertig     | 2026-05-29 |
+| Website-Grundstruktur (HTML/CSS)      | ✅ Fertig     | 2026-05-29 |
+| Kontaktformular (mailto)              | ✅ Fertig     | 2026-05-29 |
+| Design-System (Fresh Organic Hybrid)  | ✅ Fertig     | 2026-05-30 |
+| Echte Bilder & Vaelia-Font eingebunden| ✅ Fertig     | 2026-05-30 |
+| Logo-System (Vaelia + NN-Ligatur)     | ✅ Fertig     | 2026-05-31 |
+| Über-mich-Redesign + Timeline         | ✅ Fertig     | 2026-05-31 |
+| Mobile-Optimierung (order:-1, Burger) | ✅ Fertig     | 2026-05-31 |
+| PROTOKOLL.md (Regressions-Schutz)     | ✅ Fertig     | 2026-05-31 |
+| Deployment auf GitHub Pages           | ✅ Fertig     | laufend    |
+| FAQ-Section (SEO/GEO)                 | ⏳ Ausstehend | —          |
+| Eigene Über-mich-Unterseite           | ⏳ Ausstehend | —          |
+| SEO-Meta-Tags (og:*, description)     | ⏳ Ausstehend | —          |
+| A11y-Audit (WCAG 2.1 AA)              | ⏳ Ausstehend | —          |
 
 ### Aktuelle Sprint-Aufgaben
 
-- [ ] Abschließende QA auf verschiedenen Geräten / Browsern
-- [ ] Ggf. SEO-Meta-Tags prüfen
+- [ ] FAQ-Section (Accordion, gut für SEO/GEO)
+- [ ] SEO-Meta-Tags prüfen (title, description, og:*)
+- [ ] A11y-Audit: Kontraste, Fokus, Touch-Targets ≥44px
+- [ ] Über-mich-Unterseite ausbauen (ausführliche Story)
 
 ---
 
@@ -83,14 +91,18 @@ Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Pl
 > - **Assess** — Beobachten, noch nicht einsetzen
 > - **Hold** — Vorerst nicht nutzen
 
-| Bereich       | Technologie       | Version    | Status   | Begründung                              |
-|---------------|-------------------|------------|----------|-----------------------------------------|
-| Runtime       | Node.js (nvm)     | v24.16.0   | Adopt    | Stabil, LTS, via nvm flexibel verwaltbar |
-| Package Mgr   | npm               | 11.13.0    | Adopt    | Standard, mit Node.js mitgeliefert      |
-| Framework     | Plain HTML/CSS/JS | —          | Adopt    | Kein Framework nötig für statische Personal-Site → ADR-002 |
-| Styling       | Plain CSS         | —          | Adopt    | Volle Kontrolle, keine Build-Pipeline nötig |
-| Deployment    | GitHub Pages      | —          | Adopt    | Kostenlos, einfach, direkt via `gh-pages` Branch |
-| Kontakt       | mailto-Link       | —          | Adopt    | Serverlos — Kontaktformular öffnet Mail-Client (info@veronika-heidrich.de) |
+| Bereich         | Technologie           | Version    | Status   | Begründung                              |
+|-----------------|-----------------------|------------|----------|-----------------------------------------|
+| Runtime         | Node.js (nvm)         | v24.16.0   | Adopt    | Stabil, LTS, via nvm flexibel verwaltbar |
+| Package Mgr     | npm                   | 11.13.0    | Adopt    | Standard, mit Node.js mitgeliefert      |
+| Framework       | Plain HTML/CSS/JS     | —          | Adopt    | Kein Framework nötig → ADR-002          |
+| Styling         | Plain CSS             | —          | Adopt    | Volle Kontrolle, keine Build-Pipeline   |
+| Deployment      | GitHub Pages          | —          | Adopt    | Kostenlos, Branch `gh-pages`            |
+| Kontakt         | mailto-Link           | —          | Adopt    | Serverlos, öffnet Mail-Client           |
+| Schrift (Text)  | Open Sauce Sans       | via CDN    | Adopt    | Humanistisch-rund, ruhige Wirkung       |
+| Schrift (Logo)  | Vaelia (lokal)        | —          | Adopt    | Organische Versalien, NN-Ligatur, nur Display |
+| Design-Atelier  | Claude Design         | —          | Adopt    | Visuelle Iterationen, Export via Handoff → ADR-004 |
+| Design-System   | Fresh Organic Hybrid  | —          | Adopt    | Chalk/Sand/Green/Sage/Clay Palette → ADR-005 |
 
 ---
 
@@ -98,14 +110,25 @@ Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Pl
 
 ```
 Website/
-├── index.html                          ← Haupt-HTML-Datei (One-Page-Website)
-├── style.css                           ← Alle Styles inkl. Mobile-Responsive-Rules
-├── script.js                           ← Interaktivität (Slider, Menü, Blur-Anim.)
-├── image-slot.js                       ← Bild-Slot-Verwaltung
-├── PROJECT.md                          ← Diese Datei (Wissensdatenbank)
-├── CLAUDE.md                           ← Claude-Konfiguration & Arbeitsprinzipien
+├── index.html                          ← One-Page-Website (Haupt-Deliverable)
+├── style.css                           ← Alle Styles inkl. Mobile/Responsive
+├── script.js                           ← Interaktivität (Menü, Scroll-Reveal, mailto)
+├── image-slot.js                       ← Bild-Slot-Verwaltung (Claude Design Kompatibilität)
+├── Designsystem.html                   ← Lebendiges Komponenten-Board (aus Claude Design)
+├── PROJECT.md                          ← Diese Wissensdatenbank (Claude Code)
+├── PROTOKOLL.md                        ← Regressions-Schutz & Änderungsprotokoll (Claude Design)
+├── CLAUDE.md                           ← Arbeitsregeln für Claude (Brand Voice, A11y, Sync)
 ├── README.md                           ← Projektbeschreibung
 ├── skills-lock.json                    ← Installierte Skills (versioniert)
+├── images/
+│   ├── hero-visual.png                 ← Hero-Bild (Arbeitsplatz/Naturlicht)
+│   ├── about-workspace.png             ← Über-mich Hauptbild
+│   ├── about-weg.png                   ← Über-mich versetztes Bild (Bergweg)
+│   ├── zitat-weg.png                   ← Zitat-Band Hintergrund
+│   └── footer-weg.png                  ← Footer-Hintergrund
+├── fonts/
+│   ├── Vaelia.woff2                    ← Wortmarke-Font (primär)
+│   └── Vaelia.woff                     ← Wortmarke-Font (Fallback)
 ├── Screenshots Arbeitsdateien/         ← Design-Referenzmaterial
 ├── .agents/
 │   └── skills/
@@ -206,6 +229,64 @@ Beide Skills installiert. Sie ergänzen sich: `frontend-design` für kreative Ri
 
 ---
 
+### ADR-004 — Claude Design als paralleles Design-Atelier
+
+**Status:** `Accepted` — 2026-05-30
+
+**Kontext:**
+Das visuelle Design der Website sollte iterativ und ohne Build-Pipeline weiterentwickelt werden. Claude Design (claude.ai/design) bietet einen visuellen Prototyping-Workspace, der nahtlos mit Claude Code integriert werden kann.
+
+**Betrachtete Optionen:**
+
+| Option                 | Pro                                             | Contra                                       |
+|------------------------|--------------------------------------------------|----------------------------------------------|
+| Claude Design (gewählt)| Visuell iterativ, Handoff-Export, kein Setup     | Export-URL läuft ab, Share-Link ≠ Export-URL |
+| Figma + Handoff        | Professionell, Versionskontrolle                 | Overhead für eine One-Person-Site             |
+| Direkt in Code         | Schnell für kleine Änderungen                    | Kein visuelles Preview ohne Browser           |
+
+**Entscheidung:**
+Claude Design als Design-Atelier, Claude Code als Produktions-Repo. Änderungsfluss: Design-Iteration → Export → Handoff-Bundle (API-URL) → Claude Code implementiert.
+
+**Konsequenzen:**
+- ✅ Schnelle visuelle Iteration ohne Build-Pipeline
+- ✅ Handoff-Bundle enthält alle Assets (HTML, CSS, Bilder, Fonts)
+- ⚠️ Export-URL (`api.anthropic.com/v1/design/h/[HASH]`) läuft ab — immer neu exportieren
+- ⚠️ Share-URL (`claude.ai/design/p/[UUID]`) funktioniert NICHT für Handoff — braucht Auth
+- ⚠️ Zwei parallele Dokumente: `PROJECT.md` (Claude Code) + `PROTOKOLL.md` (Claude Design)
+
+---
+
+### ADR-005 — Design-System „Fresh Organic Hybrid"
+
+**Status:** `Accepted` — 2026-05-30
+
+**Kontext:**
+Nach mehreren Designrichtungen (Editorial, Calm Modernism, Bold Signal) und Farbvarianten (Frisch, Erdig, Hybrid) wurde eine finale Palette definiert.
+
+**Entscheidung:**
+Fresh Organic Hybrid — hell, frisch, organisch, strategisch.
+
+**Farbpalette:**
+| Rolle            | Variable         | Hex       | Einsatz                          |
+|------------------|------------------|-----------|----------------------------------|
+| Hintergrund      | `--chalk`        | `#F8F5EE` | Dominant (~60%)                  |
+| Surface          | `--sand`         | `#EFEADD` | Karten, Sektionen                |
+| Text             | `--ink`          | `#23221A` | Fließtext, Headlines             |
+| Dunkel-Kontrast  | `--forest`       | `#2C3522` | Ansatz, Kontakt, Footer          |
+| Hauptakzent      | `--green`        | `#A8E84F` | CTAs, Dots, Highlights           |
+| Organische Erdung| `--sage`         | `#9BA383` | Webdesign-Karte, Sekundär        |
+| Wärme            | `--clay`         | `#CD8A5B` | Yoga-Karte, Byline, Timeline     |
+| Tertiär (sparsam)| `--lilac`        | `#CBBEF4` | Nur punktuelle Akzente           |
+
+**Typografie:** Open Sauce Sans (Text) + Vaelia (nur Wortmarke „innerline")
+
+**Konsequenzen:**
+- ✅ Konsistente Markensprache über alle Sektionen
+- ✅ Barrierefreiheits-Kandidaten dokumentiert (`green-deep` auf Weiß = 3.3:1 → nicht für Kleintext)
+- ⚠️ Vaelia = nur Display/Wortmarke, NIEMALS für Fließtext oder Überschriften
+
+---
+
 _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
@@ -261,6 +342,91 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-05-30 — Session 3: Erstes Design-Update aus Claude Design
+
+**Ziel:** Designsystem von Claude Design in die Produktions-Website übertragen.
+**Design-Bundle:** `api.anthropic.com/v1/design/h/fOkqvcLocp3TDlWw_YuvhA`
+
+**Durchgeführt:**
+- Hero: Eyebrow-Text, Subline, CTA-Buttons überarbeitet (`Projekt anfragen`, `Meinen Ansatz verstehen`)
+- Painpoints: Überschrift und Texte auf Kernbotschaft geschärft
+- Angebotskarten: `--cardc` CSS-Variable für farbige Akzente pro Karte, neue Texte
+- Offer `.more`-Button: grün hinterlegt statt grau-sand
+- Offer `.acc`-Leiste: entfernt, statt dessen `.offer::before` Radial-Gradient
+- Ansatz-Fragen: von Pill-Buttons zu einfacher Bullet-Liste (ruhiger)
+- Über-mich Überschrift und Texte überarbeitet
+- Prinzipien 3 & 4 getauscht (Reihenfolge: Umsetzung → Energie)
+- Das große Ganze: Texte geschärft, SVG-Gradient und u-tag aktualisiert
+- style.css: `text-wrap:balance/pretty`, Hero-Blur-Animation entfernt, neue Offer-Styles, Ansatz-Background-Gradient
+- Voices-Swipe-Slider bewusst entfernt (Design-Entscheidung, nicht mehr benötigt)
+
+---
+
+### 2026-05-30 — Session 4: Echte Bilder + Vaelia-Font + Logo
+
+**Ziel:** Platzhalter durch echte Assets ersetzen.
+**Design-Bundle:** `api.anthropic.com/v1/design/h/Ze6RHdpJqagJdrt_eJAJOQ`
+
+**Durchgeführt:**
+- Bilder eingebunden: `hero-visual.png`, `about-workspace.png`, `zitat-weg.png`, `footer-weg.png`
+- Vaelia-Font lokal eingebunden (`fonts/Vaelia.woff2` / `.woff`)
+- Logo: Wortmarke „innerline" in Vaelia (Text-Logo, ohne SVG-Icon in Nav)
+- Hero/About Hover-Zoom: `.hero-portrait img{transition:transform 1.5s…}` + `scale(1.06)`
+- Zitat-Band: Ken-Burns-Drift-Animation (`qbDrift` 24s)
+- Footer: Hintergrundbild mit 18% Opacity + Gradient-Overlay
+- Footer Brand: auf 21px korrigiert
+- `@media (prefers-reduced-motion:reduce)` für alle Animationen
+- Commit `c0eb09a` gepusht
+
+---
+
+### 2026-05-31 — Session 5: Mobile-Fixes
+
+**Ziel:** Zwei konkrete mobile Probleme beheben.
+
+**Problem 1 — Hero-Bild nicht sichtbar auf Mobile:**
+- Ursache: `.hero-portrait` hatte keine explizite Höhe bei ≤560px → Container kollabierte
+- Lösung: `display:block; min-height:260px` in `@media (max-width:560px)`
+- Commit `57c1aed`
+
+**Problem 2 — Mobile-Menü-Button falsch gestylt:**
+- Ursache: `.mobile-menu a` (Spezifität 0,1,1) überschrieb `.mobile-menu .btn` (0,2,0) für `font-size` und `padding`, da background/color nicht explizit gesetzt waren
+- Lösung: Vollständige Deklaration in `.mobile-menu .btn` (background:var(--ink), color:var(--chalk), font-size:16px, padding:15px 36px)
+- Das gleiche Problem trat schon in `67dfce9` (2026-05-29) auf und wurde wieder raus-refactored — jetzt dauerhaft fixiert
+
+---
+
+### 2026-05-31 — Session 6: Vollständiger Handoff — Logo-System, Über-mich-Redesign, Timeline
+
+**Ziel:** Großes Design-Update aus neuem Claude Design Handoff-Bundle vollständig implementieren.
+**Design-Bundle:** `api.anthropic.com/v1/design/h/5weQGsqcFmKAqMbCX3Bl1A`
+**Besonderheit:** Dieses Bundle enthält erstmals einen `handoff/`-Ordner mit produktionsfertigen Dateien + `PROTOKOLL.md`.
+
+**Durchgeführt:**
+1. **Logo-System komplett neu** — Vaelia-Wortmarke „innerline" mit NN-Ligatur:
+   - Markup: `<span class="bl-up">inn</span><span class="bl-tail">erline</span>` (DOM-Text bleibt `innerline`)
+   - NN-Ligatur: `text-transform:uppercase` + `font-feature-settings:"dlig" 1` auf `.bl-up`
+   - Linie hinter dem Wort: `.bl-word::before` (Nav: `#B9ED72`, Footer: `#BC7B4C`)
+   - Kein SVG-Icon mehr in Nav/Footer
+2. **KI-Icon vereinheitlicht** → Sparkle (4-Punkt-Stern) in Painpoints, Angeboten, Das große Ganze
+3. **Über-mich komplett neu gestaltet:**
+   - Editoriale 2-Bild-Komposition: `.am-main` (Hauptbild) + `.am-sub` (versetztes kleineres Bild `about-weg.png`)
+   - Hover-Zoom auf beiden Bildern
+   - Neuer Text (gekürzt, aktiver): Claim-Statement, aktiver Abschlusssatz
+   - `.about-sign` Byline mit Clay-Strich: „Veronika Heidrich · Brand- & Website-Strategin"
+   - Alte `.about-skills`-Grid entfernt
+4. **Roter-Faden-Timeline** (`.faden`) mit 7 Stationen: Floristik → Mediendesign → Marketing → Webdesign → Branding → KI-Workflows → Bewegung
+   - Horizontal mit Clay-Verbindungslinie bei ≥900px
+   - 2-spaltig bei 900px
+   - Vertikal mit vertikaler Clay-Linie bei ≤560px
+5. **Mobile Hero-Bild** via `order:-1` als Banner über der Headline (sauberer als min-height-Hack)
+6. **PROTOKOLL.md** + **Designsystem.html** ins Repo aufgenommen
+7. **Neues Bild** `images/about-weg.png` hinzugefügt
+8. Produktionswerte beibehalten: form-note mit mailto, `info@veronika-heidrich.de`
+9. Commit `76f0bd4` gepusht
+
+---
+
 ## 7. Learnings & Retrospektiven
 
 > Das Herzstück der Wissensdatenbank. Hier wächst das "wie wir arbeiten" über Zeit.
@@ -295,6 +461,30 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### Retrospektive 2 — 2026-05-30/31 (Sessions 3–6)
+
+#### ✅ Was gut funktioniert hat
+
+- **Claude Design → Claude Code Workflow** — Export-Bundle enthält alle Assets inkl. Fonts/Bilder; 1:1-Copy-Paste aus `handoff/` funktioniert zuverlässig
+- **PROTOKOLL.md als Regressions-Schutz** — die Invarianten-Liste verhindert, dass bereits gefixter Code versehentlich wieder rausfällt. Hero-Motion und Mobile-Button sind explizit dokumentiert
+- **Selektives git add** — nur die in CLAUDE.md gelisteten Dateien committen; Font-Zips und Uploads-Ordner bleiben draußen
+- **CSS-Variablen `--cardc`** — ermöglichen farbige Akzente pro Angebotskarte ohne Code-Duplikation
+
+#### ❌ Was nicht funktioniert hat / Stolpersteine
+
+- **Claude Design Share-URL vs. Export-URL** — `claude.ai/design/p/[UUID]` braucht Auth und ist NICHT nutzbar. Nur `api.anthropic.com/v1/design/h/[HASH]` (frischer Export) funktioniert
+- **Export-URL läuft ab** — Erste URL (`fOkqvcLocp3TDlWw_YuvhA`) war beim zweiten Versuch abgelaufen → immer neu exportieren
+- **Spezifitätsproblem `.mobile-menu a` vs `.btn`** — ist zweimal aufgetreten (Sessions 2 und 5). Dauerhaft gelöst durch vollständige Deklaration in `.mobile-menu .btn`
+- **Hero-Bild mobil nicht sichtbar** — `position:absolute` + `inset:0` braucht definierten Container. `min-height` fehlte bei ≤560px → explizit gesetzt
+- **Curly Quotes in Editoren** — beim Kopieren von Design-Inhalten gelegentlich `"` statt `"` eingefügt → HTML-Attribute kaputtgemacht
+
+#### 💡 Erkenntnisse & Einsichten
+
+- **`order:-1` > `display:block` für Hero-Bild mobil** — Order-Lösung bewegt das Bild tatsächlich über den Text, ohne Layout-Hacks
+- **Vaelia nur als Display-Font** — organische Versalien wirken auf Überschriften „unruhig"; funktioniert ausschließlich als Wortmarke
+- **NN-Ligatur via `font-feature-settings:"dlig" 1`** — DOM-Text bleibt lesbar für Screenreader; visuelle Ligatur nur via CSS
+- **Zwei Protokoll-Dokumente** — `PROJECT.md` (technisch/strategisch, Claude Code) und `PROTOKOLL.md` (Design-Invarianten, Claude Design) ergänzen sich
+
 _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Meilensteins hinzugefügt._
 
 ---
@@ -303,24 +493,32 @@ _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Me
 
 > Dinge die noch nicht entschieden sind, aber durchdacht werden müssen. Mit allen Denkrichtungen.
 
-| # | Frage                              | Denkrichtungen / Optionen                           | Priorität | Status    |
-|---|------------------------------------|-----------------------------------------------------|-----------|-----------|
-| 1 | Was ist das Projektziel?           | Personal-Website Yoga-Lehrerin Veronika Heidrich    | 🔴 Hoch   | ✅ Geklärt |
-| 2 | Welches Framework?                 | Plain HTML/CSS/JS — → ADR-002                       | 🔴 Hoch   | ✅ Geklärt |
-| 3 | Deployment-Ziel?                   | GitHub Pages (Branch `gh-pages`)                   | 🟡 Mittel | ✅ Geklärt |
-| 4 | Design-Richtung?                   | Ruhig, professionell, warm — passend zu Yoga/Coaching | 🟡 Mittel | ✅ Umgesetzt |
-| 5 | Brauchen wir ein CMS?              | Nein — statisch, direkt im HTML pflegbar            | 🟢 Niedrig | ✅ Geklärt |
-| 6 | SEO-Meta-Tags vollständig?         | title, description, og:* Tags prüfen               | 🟡 Mittel | ⏳ Offen  |
+| # | Frage                                    | Denkrichtungen / Optionen                              | Priorität | Status      |
+|---|------------------------------------------|-------------------------------------------------------|-----------|-------------|
+| 1 | Was ist das Projektziel?                 | Personal-Website Brand-Strategin Veronika Heidrich    | 🔴 Hoch   | ✅ Geklärt  |
+| 2 | Welches Framework?                       | Plain HTML/CSS/JS → ADR-002                           | 🔴 Hoch   | ✅ Geklärt  |
+| 3 | Deployment-Ziel?                         | GitHub Pages (Branch `gh-pages`)                      | 🟡 Mittel | ✅ Geklärt  |
+| 4 | Design-Richtung?                         | Fresh Organic Hybrid → ADR-005                        | 🟡 Mittel | ✅ Umgesetzt|
+| 5 | Brauchen wir ein CMS?                    | Nein — statisch, direkt im HTML pflegbar              | 🟢 Niedrig| ✅ Geklärt  |
+| 6 | SEO-Meta-Tags vollständig?               | title, description, og:* Tags fehlen noch             | 🟡 Mittel | ⏳ Offen   |
+| 7 | Über-mich-Unterseite nötig?              | Ja — CTA „Mehr über mich" erst verlinken wenn existiert| 🟡 Mittel | ⏳ Offen   |
+| 8 | FAQ-Section für SEO?                     | Accordion-Style wie „Mein Ansatz" — gut für GEO       | 🟡 Mittel | ⏳ Offen   |
+| 9 | Voices: echte Kundenstimmen?             | Aktuell Platzhalter — Vroni muss echte liefern        | 🟡 Mittel | ⏳ Offen   |
+| 10| A11y-Audit nötig (BFSG)?                | WCAG 2.1 AA verpflichtend seit 28.06.2025             | 🔴 Hoch   | ⏳ Offen   |
 
 ---
 
 ## 9. Bekannte Probleme & Lösungen
 
-| # | Problem                          | Ursache                         | Lösung                                                    | Status    | Datum      |
-|---|----------------------------------|---------------------------------|-----------------------------------------------------------|-----------|------------|
-| 1 | `npx: command not found`         | Node.js nicht installiert       | nvm + Node.js v24.16.0 installiert                        | ✅ Behoben | 2026-05-29 |
-| 2 | nvm warnt: kein Profil gefunden  | `.zshrc` nicht vorhanden        | `.zshrc` angelegt, nvm-Export eingetragen                 | ✅ Behoben | 2026-05-29 |
-| 3 | nvm nach Install nicht aktiv     | Shell neu starten nötig         | `export NVM_DIR...` manuell ausführen oder Terminal neu  | ✅ Behoben | 2026-05-29 |
+| # | Problem                               | Ursache                                          | Lösung                                                                | Status     | Datum      |
+|---|---------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------|------------|------------|
+| 1 | `npx: command not found`              | Node.js nicht installiert                        | nvm + Node.js v24.16.0 installiert                                    | ✅ Behoben | 2026-05-29 |
+| 2 | nvm warnt: kein Profil gefunden       | `.zshrc` nicht vorhanden                         | `.zshrc` angelegt, nvm-Export eingetragen                             | ✅ Behoben | 2026-05-29 |
+| 3 | nvm nach Install nicht aktiv          | Shell neu starten nötig                          | `export NVM_DIR...` manuell ausführen oder Terminal neu               | ✅ Behoben | 2026-05-29 |
+| 4 | Mobile-Menü-Button falsch gestylt     | `.mobile-menu a` überschrieb `.btn` (Spezifität) | Volldeklaration in `.mobile-menu .btn` (ink bg, weiß, 16px)           | ✅ Behoben | 2026-05-31 |
+| 5 | Hero-Bild mobil nicht sichtbar        | `.hero-portrait` ohne Höhe bei ≤560px kollabiert | `display:block; min-height:260px` in 560px-Block → jetzt `order:-1`   | ✅ Behoben | 2026-05-31 |
+| 6 | Claude Design Share-URL funktioniert nicht | Share-URL braucht Auth-Cookie                | Nur API-Export-URL `api.anthropic.com/v1/design/h/[HASH]` verwenden  | ✅ Bekannt | 2026-05-31 |
+| 7 | Design-Bundle URL abgelaufen          | Export-URLs haben TTL                            | Neu aus Claude Design exportieren → neue Hash-URL                     | ✅ Bekannt | 2026-05-31 |
 
 ---
 
@@ -353,6 +551,31 @@ _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Me
 - Bei Problemen: Lösung in Sektion 9 dokumentieren
 - Bei Erkenntnissen: Retrospektive in Sektion 7 ergänzen
 
+### Claude Design ↔ Claude Code Workflow
+
+```
+Claude Design (Iteration)
+    ↓  Export → "Hand off to Claude Code"
+    ↓  URL: https://api.anthropic.com/v1/design/h/[HASH]
+Claude Code (Implementierung)
+    ↓  curl → tar → handoff/ Ordner
+    ↓  nur CLAUDE.md-Dateien übernehmen
+    ↓  git add selektiv (keine Uploads/, Font-Zips)
+    ↓  git push origin gh-pages
+GitHub Pages (Deployment, ~1-2 min)
+```
+
+**Wichtig:** Export-URL neu generieren bei jeder Session. Share-URL (`/design/p/[UUID]`) NICHT verwenden.
+
+### Invarianten (PROTOKOLL.md)
+
+Diese Dinge nie vergessen (vollständige Liste in `PROTOKOLL.md`):
+- Logo: `innerline` in Vaelia, NN-Ligatur, Linie dahinter (Nav grün, Footer Clay)
+- Hero-Hover-Zoom: `.hero-portrait img{transition:transform 1.5s…}`
+- Mobile-Burger-Button: `background:var(--ink);color:var(--chalk)` explizit
+- Hero-Bild mobil: `.hero-visual{order:-1}` (Banner über Headline)
+- Icons: Welle=Marke, Monitor=Web, Sparkle=KI, Herz=Yoga/Körper
+
 ---
 
 ## 11. Referenzen & Ressourcen
@@ -381,4 +604,4 @@ _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Me
 
 _Dieses Dokument ist lebendig — es wächst mit dem Projekt._
 _Jede Session hinterlässt Spuren. Jede Entscheidung wird begründet. Jedes Learning wird gesichert._
-_Letzte Aktualisierung: 2026-05-30_
+_Letzte Aktualisierung: 2026-05-31_
