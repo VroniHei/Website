@@ -598,9 +598,11 @@ img{max-width:100%;display:block;}
 /* Bottom */
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:24px;
   border-top:1px solid rgba(168,232,79,.12);font-size:12.5px;color:#9aa589;flex-wrap:wrap;gap:18px;}
+.footer-bottom .footer-mark{display:inline-flex;flex-direction:column;align-items:flex-start;gap:4px;}
 .footer-bottom .footer-brand{font-family:var(--ff-display);font-size:20px;color:var(--chalk);line-height:1;letter-spacing:.015em;font-weight:400;}
 .footer-bottom .footer-brand .bl-up{text-transform:uppercase;font-feature-settings:"dlig" 1;}
 .footer-bottom .footer-brand .bl-tail{text-transform:lowercase;}
+.footer-bottom .footer-meaning{font-size:11.5px;font-style:italic;color:rgba(154,165,137,.85);letter-spacing:.01em;line-height:1.3;}
 .footer-bottom a{color:#9aa589;}
 .footer-bottom a:hover{color:var(--green);}
 .footer-bottom .legal{display:flex;gap:22px;}
@@ -673,14 +675,14 @@ img{max-width:100%;display:block;}
   .pain-item .pi-body{padding-top:2px;}
   .pain-item .pi-cat{font-size:10px;}
   .pain-item .pi-text{font-size:14.5px;line-height:1.45;}
-  /* INVARIANTE Mobile/Tablet: Big-Nodes als horizontale Liste, Icon links */
+  /* INVARIANTE Mobile/Tablet: Big-Nodes als horizontale Liste, Icon links – Titel + Text rechts gestapelt */
   .big-nodes{grid-template-columns:1fr;gap:14px;margin-top:18px;}
-  .big-node{flex-direction:row;text-align:left;align-items:flex-start;gap:16px;background:rgba(255,255,255,.7);border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:18px 20px;position:relative;}
-  .big-node .bn-ic{width:48px;height:48px;border-radius:13px;margin-bottom:0;flex:0 0 auto;}
+  .big-node{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"icon title" "icon desc";column-gap:16px;row-gap:4px;text-align:left;align-items:start;background:rgba(255,255,255,.7);border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:18px 20px;position:relative;}
+  .big-node .bn-ic{grid-area:icon;width:48px;height:48px;border-radius:13px;margin-bottom:0;flex:0 0 auto;align-self:start;}
   .big-node .bn-ic svg{width:22px;height:22px;}
   .big-node .bn-num{position:absolute;top:14px;right:18px;margin:0;}
-  .big-node h4{font-size:16px;margin:0 0 5px;}
-  .big-node p{font-size:14.5px;max-width:none;line-height:1.5;}
+  .big-node h4{grid-area:title;font-size:16px;margin:0;}
+  .big-node p{grid-area:desc;font-size:14.5px;max-width:none;line-height:1.5;margin:0;}
   .big-flowline{display:none;}
   /* Kundenstimmen-Slider: horizontal scroll-snap auf Mobile/Tablet */
   .voices-grid{display:flex;grid-template-columns:none;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;
