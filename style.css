@@ -461,7 +461,7 @@ img{max-width:100%;display:block;}
   .pain-grid,.ansatz-grid,.yoga-grid,.contact-grid{grid-template-columns:1fr;gap:42px;}
   .about-grid{grid-template-columns:1fr;gap:clamp(48px,8vw,64px);}
   .about{max-width:none;order:-1;}
-  .about-media{max-width:460px;margin:0 auto 60px;}
+  .about-media{max-width:460px;margin:0 auto 18px;}
   .about-media .am-main{height:clamp(320px,70vw,520px);}
   .faden-rail{grid-template-columns:1fr 1fr;gap:38px 26px;}
   .faden-station{padding:50px 14px 0 0;}
@@ -469,20 +469,31 @@ img{max-width:100%;display:block;}
   .shead--split{grid-template-columns:1fr;gap:16px;align-items:start;}
   .offers{grid-template-columns:1fr;}
   .hero-visual{width:100%;order:-1;}
-  .hero-portrait{border-radius:28px;min-height:clamp(280px,52vw,360px);height:clamp(280px,52vw,360px);flex:none;}
+  .hero-portrait{border-radius:28px;min-height:clamp(280px,52vw,360px);flex:none;width:100%;}
   .hero-chip.c1{left:0;}.hero-chip.c2{left:auto;right:0;}
   .about-portrait{border-radius:28px;min-height:320px;}
   .about-media .am-sub{left:auto;right:14px;bottom:-26px;width:42%;border-width:6px;}
   .steps{grid-template-columns:1fr 1fr;gap:36px 26px;}
   .steps-line{display:none;}
-  .big-nodes{grid-template-columns:1fr 1fr;gap:34px 22px;}
+  /* INVARIANTE Mobile/Tablet: Pain-Items als horizontale Liste, Icon links */
+  .pain-list{grid-template-columns:1fr;gap:10px;}
+  .pain-item{flex-direction:row;align-items:flex-start;gap:14px;padding:16px 18px;}
+  .pain-item .ic{width:36px;height:36px;border-radius:10px;}
+  .pain-item .ic svg{width:18px;height:18px;}
+  .pain-item .t{padding-top:8px;font-size:15px;line-height:1.45;}
+  /* INVARIANTE Mobile/Tablet: Big-Nodes als horizontale Liste, Icon links */
+  .big-nodes{grid-template-columns:1fr;gap:14px;}
+  .big-node{flex-direction:row;text-align:left;align-items:flex-start;gap:16px;background:rgba(255,255,255,.7);border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:18px 20px;}
+  .big-node .bn-ic{width:48px;height:48px;border-radius:13px;margin-bottom:0;flex:0 0 auto;}
+  .big-node .bn-ic svg{width:22px;height:22px;}
+  .big-node h4{font-size:16px;margin:0 0 5px;}
+  .big-node p{font-size:14.5px;max-width:none;line-height:1.5;}
   .big-flowline{display:none;}
   .voices-grid{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr 1fr;gap:36px;}
 }
 @media (max-width:560px){
   .voices-grid{grid-template-columns:1fr;}
-  .big-nodes{grid-template-columns:1fr;}
   .quote-band q{font-size:26px;}
   .form-row{grid-template-columns:1fr;}
   .steps{grid-template-columns:1fr;}
@@ -498,7 +509,6 @@ img{max-width:100%;display:block;}
   .hero-chip{display:none;}
   .brand{font-size:17px;gap:5px;}
   .brand svg{width:26px;height:auto;}
-  .pain-list{grid-template-columns:1fr;}
   .hero{padding:110px 0 48px;}
   .yoga-card{padding:26px 24px;}
   .big-panel{padding:32px 22px 28px;}
