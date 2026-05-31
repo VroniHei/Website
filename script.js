@@ -16,11 +16,16 @@
   /* ---- Mobile menu ---- */
   var burger = document.getElementById('burger');
   var menu = document.getElementById('mobileMenu');
-  function closeMenu() { nav.classList.remove('open'); menu.classList.remove('open'); document.body.style.overflow = ''; }
+  function closeMenu() {
+    nav.classList.remove('open'); menu.classList.remove('open');
+    document.body.style.overflow = '';
+    if (burger) { burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Menü öffnen'); }
+  }
   function toggleMenu() {
     var open = menu.classList.toggle('open');
     nav.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    if (burger) { burger.setAttribute('aria-expanded', open ? 'true' : 'false'); burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen'); }
   }
   if (burger) burger.addEventListener('click', toggleMenu);
   menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
@@ -86,17 +91,31 @@
   var sendBtn = document.getElementById('sendBtn');
   var form = document.getElementById('contactForm');
   if (sendBtn && form) {
+    function setFieldError(fieldId, hasError) {
+      var field = document.getElementById(fieldId);
+      if (!field) return;
+      if (hasError) field.classList.add('error'); else field.classList.remove('error');
+    }
+    // Clear error on input
+    ['f-mail', 'f-msg'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', function() { setFieldError('field-' + id.replace('f-', ''), false); });
+    });
     sendBtn.addEventListener('click', function () {
-      var name = document.getElementById('f-name').value.trim();
-      var email = document.getElementById('f-mail').value.trim();
-      var topic = document.getElementById('f-topic').value.trim();
+      var name    = document.getElementById('f-name').value.trim();
+      var email   = document.getElementById('f-mail').value.trim();
+      var topic   = document.getElementById('f-topic').value.trim();
       var message = document.getElementById('f-msg').value.trim();
-      var to = 'info@veronika-heidrich.de';
+      var valid = true;
+      if (!email) { setFieldError('field-mail', true); valid = false; }
+      if (!message) { setFieldError('field-msg', true); valid = false; }
+      if (!valid) return;
+      var to      = 'info@veronika-heidrich.de';
       var subject = 'Kontaktanfrage von ' + (name || 'Interessent:in');
-      var body = 'Name: ' + (name || '–') + '\n';
+      var body    = 'Name: ' + (name || '–') + '\n';
       body += 'E-Mail: ' + (email || '–') + '\n';
       body += 'Thema: ' + (topic || '–') + '\n\n';
-      body += 'Nachricht:\n' + (message || '–');
+      body += 'Nachricht:\n' + message;
       var href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       window.location.href = href;
     });

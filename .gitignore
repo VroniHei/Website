@@ -38,3 +38,7 @@ pnpm-debug.log*
 # Font-Quellpakete (nur .woff/.woff2 ins Repo, keine Zips/OTF/TTF)
 fonts/*.zip
 fonts/vaelia-organic-font-*/
+
+# Atelier-Rohmaterial (Uploads, Explorations — nicht ins Repo)
+pics/
+uploads/
