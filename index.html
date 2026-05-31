@@ -95,7 +95,7 @@
           <span>Yoga &amp; Bewegung</span>
         </div>
         <div class="hero-cta reveal d3">
-          <a href="#kontakt" class="btn btn--pri btn--lg">Projekt anfragen</a>
+          <a href="#kontakt" class="btn btn--pri btn--lg" data-topic="mischung">Projekt anfragen</a>
           <a href="#ansatz" class="btn btn--sec btn--lg">Meinen Ansatz verstehen</a>
         </div>
         <button class="hero-scroll reveal d4" id="scrollDown" type="button">
@@ -197,7 +197,7 @@
         <p class="offer-for">Für Selbstständige, Coaches und kreative Unternehmer:innen mit vielen Ideen, aber ohne klare Linie nach außen.</p>
         <p class="desc">Ich sortiere Persönlichkeit, Zielgruppe, Angebote, Sprache und visuelle Richtung, damit deine Marke klarer wird und sich trotzdem nach dir anfühlt.</p>
         <div class="tags"><span class="tag">Positionierung</span><span class="tag">Brand Voice</span><span class="tag">roter Faden</span><span class="tag">Angebotsstruktur</span></div>
-        <a href="#kontakt" class="more">Personal Branding anfragen <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#kontakt" class="more" data-topic="personal-branding">Personal Branding anfragen <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
       <article class="offer reveal d2" style="--cardc:var(--sage)">
         <span class="acc" style="background:var(--sage)"></span>
@@ -207,7 +207,7 @@
         <p class="offer-for">Für Menschen und kleine Unternehmen, die eine Website brauchen, die nicht nur hübsch aussieht, sondern verständlich macht, was sie anbieten.</p>
         <p class="desc">Dafür sorge ich mit klarer Struktur, guten Texten, sauberer Nutzerführung und einem Design, das zu deiner Marke passt. Auf Wunsch mit WordPress, Elementor und SEO-Basics.</p>
         <div class="tags"><span class="tag">Website-Konzept</span><span class="tag">UX</span><span class="tag">WordPress</span><span class="tag">Elementor</span><span class="tag">Texte</span><span class="tag">SEO Basics</span></div>
-        <a href="#kontakt" class="more">Website anfragen <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#kontakt" class="more" data-topic="webdesign-wordpress">Website anfragen <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
       <article class="offer reveal d1" style="--cardc:var(--clay)">
         <span class="acc" style="background:var(--clay)"></span>
@@ -217,7 +217,7 @@
         <p class="offer-for">Für Selbstständige, Kreative und Teams, die KI sinnvoll nutzen wollen — ohne die eigene Stimme ans Tool abzugeben. Wäre ja auch schade drum.</p>
         <p class="desc">Ich zeige dir, wie du KI für Content, Texte, Branding, Recherche und Designideen einsetzt — nicht nur Prompts kopieren, sondern die Tools wirklich bedienen.</p>
         <div class="tags"><span class="tag">KI-Schulung</span><span class="tag">Prompting</span><span class="tag">Content-Ideen</span><span class="tag">Canva</span><span class="tag">Marketing-Prozesse</span></div>
-        <a href="#kontakt" class="more">KI-Workflow anfragen <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#kontakt" class="more" data-topic="ki-workflows">KI-Workflow anfragen <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
       <article class="offer reveal d2" style="--cardc:var(--forest)">
         <span class="acc" style="background:var(--forest)"></span>
@@ -436,7 +436,7 @@
             <p class="yp-desc">Bewegung, Atem und Stressregulation für Teams, die wieder mehr Ruhe und Fokus in den Arbeitsalltag bringen wollen.</p>
           </div>
         </div>
-        <div class="yoga-cta"><a href="#kontakt" class="btn btn--pri">Yoga &amp; Bewegung anfragen</a></div>
+        <div class="yoga-cta"><a href="#kontakt" class="btn btn--pri" data-topic="yoga-bewegung">Yoga &amp; Bewegung anfragen</a></div>
       </div>
     </div>
   </div>
@@ -694,13 +694,15 @@
           </div>
           <div class="field"><label for="f-topic">Worum geht's?</label>
             <select id="f-topic">
-              <option>Personal Branding</option>
-              <option>Webdesign &amp; WordPress</option>
-              <option>KI &amp; Workflows</option>
-              <option>Yoga &amp; Bewegung</option>
-              <option>Eine Mischung</option>
-              <option>Etwas anderes</option>
+              <option value="">Bitte Thema wählen</option>
+              <option value="personal-branding">Personal Branding</option>
+              <option value="webdesign-wordpress">Webdesign &amp; WordPress</option>
+              <option value="ki-workflows">KI &amp; Workflows</option>
+              <option value="yoga-bewegung">Yoga &amp; Bewegung</option>
+              <option value="mischung">Mischung aus mehreren Themen</option>
+              <option value="anderes">Etwas anderes</option>
             </select>
+            <div id="form-topic-status" class="sr-only" aria-live="polite"></div>
           </div>
           <div class="field" id="field-msg"><label for="f-msg">Nachricht <span class="req" aria-hidden="true">*</span></label><textarea id="f-msg" placeholder="Erzähl mir kurz, wo du gerade stehst. Ein paar Sätze reichen." required aria-required="true" aria-describedby="err-msg"></textarea><span class="field-error" id="err-msg" role="alert">Magst du mir noch kurz schreiben, worum es geht?</span></div>
           <button class="btn btn--pri" id="sendBtn" type="button">Nachricht abschicken</button>

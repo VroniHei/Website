@@ -107,7 +107,8 @@
     sendBtn.addEventListener('click', function () {
       var name    = document.getElementById('f-name').value.trim();
       var email   = document.getElementById('f-mail').value.trim();
-      var topic   = document.getElementById('f-topic').value.trim();
+      var topicEl = document.getElementById('f-topic');
+      var topic   = topicEl ? topicEl.options[topicEl.selectedIndex].text.trim() : '';
       var message = document.getElementById('f-msg').value.trim();
       var valid = true;
       if (!email) { setFieldError('field-mail', true); valid = false; }
@@ -179,5 +180,58 @@
     window.addEventListener('resize', activeFromScroll);
     activeFromScroll();
   }
+
+
+  /* ---- Form topic pre-selection ---- */
+  function setFormTopic(value) {
+    var select = document.getElementById('f-topic');
+    var status = document.getElementById('form-topic-status');
+    if (!select || !value) return false;
+    var opts = select.options;
+    for (var i = 0; i < opts.length; i++) {
+      if (opts[i].value === value) {
+        select.selectedIndex = i;
+        if (status) {
+          status.textContent = '';
+          (function(label) {
+            setTimeout(function() { status.textContent = 'Thema wurde vorausgewählt: ' + label + '.'; }, 80);
+          })(opts[i].text);
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
+  document.querySelectorAll('a[data-topic][href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function() {
+      var topic = a.getAttribute('data-topic');
+      setFormTopic(topic);
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setTimeout(function() {
+        var select = document.getElementById('f-topic');
+        if (select) select.focus();
+      }, prefersReduced ? 80 : 640);
+    });
+  });
+
+  /* ---- URL parameter: ?thema=ki-workflows → pre-select dropdown ---- */
+  (function() {
+    var search = window.location.search;
+    if (!search) return;
+    var match = search.match(/[?&]thema=([^&#]*)/);
+    if (!match) return;
+    var value = decodeURIComponent(match[1]);
+    if (!setFormTopic(value)) return;
+    var kontakt = document.getElementById('kontakt');
+    if (!kontakt) return;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var y = kontakt.getBoundingClientRect().top + window.scrollY - 92;
+    window.scrollTo({ top: y, behavior: prefersReduced ? 'auto' : 'smooth' });
+    setTimeout(function() {
+      var select = document.getElementById('f-topic');
+      if (select) select.focus();
+    }, prefersReduced ? 80 : 640);
+  })();
 
 })();

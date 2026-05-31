@@ -18,7 +18,7 @@ Trotzdem wird barrierearme Umsetzung angestrebt — sowohl als gute Praxis als a
 
 ## Datum der letzten Prüfung
 
-2026-05-31
+2026-05-31 (Formular-Vorauswahl via data-topic + URL-Parameter)
 
 ---
 
@@ -123,6 +123,11 @@ Bewertung: ✅ Korrekte Hierarchie, keine Lücken, keine Headings nur aus Design
 - [x] Fehler-CSS: `.field.error` visuell + semantisch
 - [x] Datenschutz-Hinweis sichtbar im Formular
 - [x] Formular-Validierung vor mailto (JS)
+- [x] Dropdown `value`-Attribute + leere Standardoption „Bitte Thema wählen"
+- [x] `data-topic` auf topic-spezifischen CTAs (Personal Branding, Webdesign, KI, Yoga, Mischung)
+- [x] Screenreader-Statuselement `#form-topic-status` (`aria-live="polite"`, `.sr-only`)
+- [x] URL-Parameter `?thema=...` setzt Dropdown und scrollt zu #kontakt
+- [x] Fokus nach Scroll auf #f-topic-Select (mit `prefers-reduced-motion`-Timing)
 
 ### FAQ / Accordion
 - [x] `<details>/<summary>` (nativ zugänglich, Browser verwaltet `aria-expanded`)
