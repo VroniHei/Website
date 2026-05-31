@@ -731,13 +731,17 @@ img{max-width:100%;display:block;}
 .skip-link:focus{top:0;outline:3px solid var(--green);outline-offset:2px;}
 @media (prefers-reduced-motion:reduce){.skip-link{transition:none;}}
 
+/* ===== SCROLL-MARGIN — Sticky-Nav überdeckt keine Anker-Ziele ===== */
+/* gilt für direkte URL-Navigation (#hash) und Links von anderen Seiten */
+section[id],header[id],#top,#main{scroll-margin-top:96px;}
+@media (max-width:900px){section[id],header[id],#top,#main{scroll-margin-top:80px;}}
+
 /* ===== FOCUS VISIBLE — BFSG/WCAG 2.1 AA ===== */
 :focus{outline:none;}
 :focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:4px;}
+a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:4px;}
 .btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px;}
-.nav-links a:focus-visible,.mobile-menu a:focus-visible,.footer-col a:focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:4px;}
-.principle:focus-visible{outline:3px solid var(--green);outline-offset:2px;}
-.faq-item summary:focus-visible{outline:3px solid var(--green-deep);outline-offset:-3px;border-radius:var(--r-md);}
+.faq-item summary:focus-visible{outline:3px solid var(--green-text);outline-offset:-3px;border-radius:var(--r-md);}
 .field input:focus,.field textarea:focus,.field select:focus{outline:none;}
 
 /* ===== FORM ERROR STATES ===== */
