@@ -122,4 +122,40 @@
     });
   }
 
+  /* ---- Voices slider (mobile/tablet horizontal scroll-snap) ---- */
+  var voicesGrid = document.querySelector('.voices-grid');
+  var voiceCards = voicesGrid ? voicesGrid.querySelectorAll('.voice') : [];
+  var voiceDots  = document.querySelectorAll('.voices-dots .vd');
+  if (voicesGrid && voiceCards.length && voiceDots.length) {
+    function setActiveDot(idx) {
+      voiceDots.forEach(function (d, i) {
+        if (i === idx) d.classList.add('on'); else d.classList.remove('on');
+      });
+    }
+    function activeFromScroll() {
+      // only when grid is in scroll-snap mode (mobile/tablet)
+      if (voicesGrid.scrollWidth <= voicesGrid.clientWidth + 4) return;
+      var center = voicesGrid.scrollLeft + voicesGrid.clientWidth / 2;
+      var best = 0, bestDist = Infinity;
+      voiceCards.forEach(function (card, i) {
+        var cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        var d = Math.abs(cardCenter - center);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      setActiveDot(best);
+    }
+    voicesGrid.addEventListener('scroll', function () {
+      window.requestAnimationFrame(activeFromScroll);
+    });
+    voiceDots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () {
+        var card = voiceCards[i]; if (!card) return;
+        var target = card.offsetLeft - (voicesGrid.clientWidth - card.offsetWidth) / 2;
+        voicesGrid.scrollTo({ left: target, behavior: 'smooth' });
+      });
+    });
+    window.addEventListener('resize', activeFromScroll);
+    activeFromScroll();
+  }
+
 })();
