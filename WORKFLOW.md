@@ -128,10 +128,22 @@ Auf **jedem Pull Request** (und Push auf `main`) läuft GitHub Actions (`.github
 |-------|--------------|-----------|
 | **HTML-Validierung** (`html-validate`) | Valides, sauberes HTML | rot bei Fehlern |
 | **Link-Check** (`lychee --offline`) | Keine kaputten internen Links / Asset-Pfade | rot bei Fehlern |
-| **Lighthouse** (`@lhci/cli`) | Barrierefreiheit, SEO, Best Practices, Performance | A11y < 0.9 = rot; Rest = Warnung |
+| **Lighthouse** (`@lhci/cli`) | Barrierefreiheit, SEO, Best Practices, Performance | s. Gate-Strategie unten |
 
-- **Barrierefreiheit ist hartes Kriterium** (≥ 0.9) — passt zur BFSG/WCAG-Pflicht.
-- **Performance** ist vorerst nur Warnung (Bilder noch nicht optimiert → Issue für `og:image`/WebP).
-- Die Checks werden zunächst nur **angezeigt**. Wenn du sie zur **Merge-Pflicht** machen willst:
-  Branch-Protection → „Require status checks to pass" → CI-Jobs auswählen.
+**Gate-Strategie (bewusst seniormäßig, nicht „100 % um jeden Preis"):**
+
+| Kriterium | Schwelle | Verhalten | Warum |
+|-----------|----------|-----------|-------|
+| Barrierefreiheit (Kategorie) | ≥ 0.9 | **hart (rot)** | BFSG/WCAG; deterministisch |
+| Best Practices (Kategorie) | ≥ 0.9 | **hart (rot)** | deterministisch |
+| Wichtige A11y-Audits (`heading-order`, `html-has-lang`, `document-title`, `image-alt`, `link-name`, `button-name`) | bestanden | **hart (rot)** | „Must-never-break"-Fundamente, deterministisch |
+| SEO (Kategorie) | ≥ 0.9 | Warnung | Rechtsseiten sind absichtlich `noindex` → würden 100 fälschlich sprengen |
+| Performance (Kategorie) | ≥ 0.8 | Warnung | Lab-Performance in CI schwankt → kein verlässliches Hart-Gate |
+
+- **Warum nicht alles auf 100 hart?** Performance-Werte in CI sind nicht deterministisch (Fehlalarme),
+  und die `noindex`-Rechtsseiten drücken SEO bewusst. Hart sind daher nur die **deterministischen,
+  inhaltlich wichtigen** Dinge. Reale Performance/SEO prüfen wir über PageSpeed/Search Console.
+- **`color-contrast`** wird später als hartes Kriterium ergänzt, sobald die gemeldeten Elemente gefixt sind.
+- Die Checks werden zunächst nur **angezeigt**. Zur **Merge-Pflicht** machen: Branch-Protection →
+  „Require status checks to pass" → CI-Jobs auswählen.
 - Bei rotem Check: Claude Code diagnostiziert und bessert auf demselben Branch nach, bis grün.

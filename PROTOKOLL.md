@@ -164,6 +164,20 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-01 — A11y: Überschriften-Hierarchie (Branch `a11y/ueberschriften-hierarchie`)
+- **Was:** PageSpeed/Lighthouse meldete „Überschriften nicht in fortlaufend absteigender Reihenfolge".
+- **Warum:** Zwei Abschnitte sprangen von `<h2>` direkt auf `<h4>` (übersprungen: `<h3>`):
+  „Warum das alles zusammengehört" (4 Big-Nodes) und der Prozess-Steps-Block (4 Schritte).
+- **Wie:** Alle 8 `<h4>` → `<h3>` in `index.html`; CSS-Selektoren `.step h4`/`.big-node h4` (inkl. Mobile)
+  → `h3`. Optik unverändert (Styling lief schon über Klassen). Plus `heading-order` als hartes
+  Lighthouse-Kriterium in `lighthouserc.json` (Dauer-Schutz gegen Rückfall).
+- **Learning:** Reine Stil-Klassen entkoppeln Optik von der Semantik → Heading-Level korrigierbar ohne Design-Risiko.
+- **CI-Gate seniormäßig geschärft** (`lighthouserc.json`): hart = A11y- & Best-Practices-Kategorie (≥ 0.9)
+  + deterministische Schlüssel-Audits (`heading-order`, `html-has-lang`, `document-title`, `image-alt`,
+  `link-name`, `button-name`); Warnung = SEO (Rechtsseiten `noindex`) + Performance (CI-Lab schwankt).
+  Bewusst **nicht** alles hart auf 100 → keine Fehlalarme. `color-contrast` folgt nach dem Kontrast-Fix.
+- **Konsequenz:** Überschriften-Regressionen lassen künftig die CI rot werden. Kontrast-Punkt noch offen (separat).
+
 ### 2026-06-01 — Tier 2: CI-Qualitäts-Gates (Branch `ci/quality-gates`)
 - **Was:** Automatische Checks auf jedem PR via GitHub Actions.
 - **Warum:** Merge = sofort live → braucht ein automatisches Netz, v. a. für Barrierefreiheit (BFSG).
