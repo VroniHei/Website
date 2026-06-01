@@ -359,6 +359,37 @@ aus `CLAUDE.md`, `.github/copilot-instructions.md` und `PROTOKOLL.md`.
 
 ---
 
+### ADR-008 — Automatische Qualitäts-Gates via GitHub Actions (CI)
+
+**Status:** `Accepted` — 2026-06-01
+
+**Kontext:**
+Merge nach `main` = sofort live. Es fehlte ein automatischer Schutz gegen kaputtes HTML, tote
+Links und — besonders relevant wegen BFSG/WCAG-Pflicht — Barrierefreiheits-Regressionen.
+
+**Betrachtete Optionen:**
+
+| Option | Pro | Contra |
+|--------|-----|--------|
+| Kein CI (manuell prüfen) | Null Setup | Fehleranfällig, A11y-Regressionen gehen live |
+| Schwergewichtiges CI (viele Tools, E2E) | Maximale Abdeckung | Langsam, flaky, Overkill für statische Site |
+| **Schlanke GitHub-Actions-CI** (gewählt) | HTML + interne Links + Lighthouse(A11y/SEO/Perf) auf jedem PR; zuverlässig | A11y-Schwelle muss gepflegt werden |
+
+**Entscheidung:**
+`.github/workflows/ci.yml` mit drei Jobs: `html-validate`, `lychee --offline` (interne Links/Asset-Pfade),
+`@lhci/cli` (Lighthouse). **Barrierefreiheit ist hartes Kriterium** (Score ≥ 0.9 = Fehler), SEO/Best-
+Practices/Performance vorerst Warnungen (Bilder noch unoptimiert → Issue #3). Checks laufen auf jedem PR;
+„Require status checks" kann später in der Branch-Protection scharf geschaltet werden.
+
+**Konsequenzen:**
+- ✅ A11y-Regressionen werden vor dem Livegang sichtbar (BFSG-Absicherung)
+- ✅ Kaputtes HTML / tote interne Links blockieren den grünen Status
+- ✅ PR-Template (`.github/pull_request_template.md`) erzwingt Checkliste (PROTOKOLL, A11y, Invarianten)
+- ⚠️ Performance noch nur Warnung, bis Bild-Optimierung (Issue #3) erledigt ist
+- ⚠️ Erste CI-Läufe können auf Bestandscode rot sein → iterativ nachschärfen
+
+---
+
 _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
@@ -366,6 +397,21 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 ## 6. Projektverlauf & Changelog
 
 > Chronologisches Log aller relevanten Ereignisse. Append-only — nichts wird gelöscht.
+
+---
+
+### 2026-06-01 — Tier 2: Automatische Qualitäts-Gates (CI)
+
+**Ziel:** Nichts Kaputtes oder Unzugängliches soll mehr ungeprüft live gehen.
+
+**Durchgeführt:**
+1. **GitHub-Actions-CI** (`.github/workflows/ci.yml`): HTML-Validierung, interner Link-Check
+   (`lychee --offline`), Lighthouse (`@lhci/cli`) für A11y/SEO/Best-Practices/Performance.
+2. **Barrierefreiheit als hartes Gate** (≥ 0.9); Performance vorerst nur Warnung (Issue #3).
+3. **PR-Template** mit Checkliste (PROTOKOLL, Invarianten, A11y, Brand Voice).
+4. **ADR-008** + `WORKFLOW.md` Abschnitt 8 (CI dokumentiert) + Solo-Caveat „0 approvals".
+
+**Hinweis:** Erste CI-Läufe können auf Bestandscode rot sein → wird auf dem Branch iterativ grün gezogen.
 
 ---
 

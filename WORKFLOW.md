@@ -84,9 +84,17 @@ Repo-Settings → **Branches** → Branch-Protection-Rule für `main`:
 - ✅ **Block force pushes**
 - ✅ **Restrict deletions** (Branch kann nicht gelöscht werden)
 - (optional) **Require linear history** (sauberer Verlauf)
+- (später möglich) **Require status checks to pass** → CI-Checks (s. Abschnitt 8) zur Merge-Pflicht machen
+
+> ⚠️ **Solo-Caveat:** **„Require approvals" auf 0 lassen** (nicht erhöhen). GitHub lässt nicht zu,
+> den eigenen PR zu genehmigen — bei „1 approval" würdest du dich selbst aussperren. Mit „0" läuft
+> trotzdem alles über PRs, aber du kannst deine eigenen PRs mergen.
 
 Das ist das Sicherheitsnetz: Die Historie kann nicht überschrieben werden, und jede Änderung
 muss durch einen PR.
+
+> **Tipp:** In den Repo-Settings → „General" die Option **„Automatically delete head branches"**
+> aktivieren — dann werden gemergte Feature-Branches automatisch aufgeräumt.
 
 ---
 
@@ -109,3 +117,21 @@ einen Branch/PR nach `main`.
   exakt wiederherstellbar.
 - **Rückgängig machen:** einen gemergten PR über „Revert" zurücknehmen (erzeugt sauberen
   Gegen-Commit, Historie bleibt intakt).
+
+---
+
+## 8. Automatische Qualitäts-Gates (CI)
+
+Auf **jedem Pull Request** (und Push auf `main`) läuft GitHub Actions (`.github/workflows/ci.yml`):
+
+| Check | Was er prüft | Verhalten |
+|-------|--------------|-----------|
+| **HTML-Validierung** (`html-validate`) | Valides, sauberes HTML | rot bei Fehlern |
+| **Link-Check** (`lychee --offline`) | Keine kaputten internen Links / Asset-Pfade | rot bei Fehlern |
+| **Lighthouse** (`@lhci/cli`) | Barrierefreiheit, SEO, Best Practices, Performance | A11y < 0.9 = rot; Rest = Warnung |
+
+- **Barrierefreiheit ist hartes Kriterium** (≥ 0.9) — passt zur BFSG/WCAG-Pflicht.
+- **Performance** ist vorerst nur Warnung (Bilder noch nicht optimiert → Issue für `og:image`/WebP).
+- Die Checks werden zunächst nur **angezeigt**. Wenn du sie zur **Merge-Pflicht** machen willst:
+  Branch-Protection → „Require status checks to pass" → CI-Jobs auswählen.
+- Bei rotem Check: Claude Code diagnostiziert und bessert auf demselben Branch nach, bis grün.
