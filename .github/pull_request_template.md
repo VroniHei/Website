@@ -13,6 +13,7 @@
 - [ ] Invarianten aus `PROTOKOLL.md` Abschnitt 1 geprüft (nichts versehentlich rausgefallen)
 - [ ] Barrierefreiheit beachtet (Kontrast, Fokus, `alt`-Texte, Touch-Targets ≥ 44px)
 - [ ] Brand Voice eingehalten (siehe `CLAUDE.md`)
+- [ ] Recht/Datenschutz: Falls neue Datenverarbeitung/externe Ressource/Tool/Formular/Hosting → `impressum.html`/`datenschutz.html` geprüft & angepasst (s. `CLAUDE.md`)
 - [ ] CI-Checks grün
 - [ ] Diff selbst geprüft
 

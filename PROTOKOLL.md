@@ -130,10 +130,14 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **CI grün halten**: `.github/workflows/ci.yml` (HTML, interne Links, Lighthouse-A11y ≥ 0.9). Nicht abschwächen, um „durchzukommen".
 - [ ] **Neue Seiten**: `robots: noindex` bis Inhalte final und rechtsgeprüft; in `sitemap.xml` + `robots.txt` berücksichtigen.
 
-### Rechtliche Seiten (Platzhalter, noch nicht rechtskonform)
-- [ ] `impressum.html` existiert — **[PLATZHALTER]-Felder** müssen noch ausgefüllt werden (Adresse, USt-IdNr).
-- [ ] `datenschutz.html` existiert — vor Livegang rechtlich prüfen oder Generator nutzen (e-recht24.de).
-- [ ] Beide Seiten haben aktuell `<meta name="robots" content="noindex, nofollow">` — entfernen sobald fertig.
+### Rechtliche Seiten (Impressum / Datenschutz)
+- [ ] **Rechtsstand: DDG** (nicht TMG), **TDDDG** (nicht TTDSG). Bei neuen Texten beachten.
+- [ ] `impressum.html`: Adresse **Seeweg 8, 83126 Flintsbach am Inn**; Kleinunternehmer (§ 19 UStG) → **keine USt-IdNr**; **keine Kammer** (kein reglementierter Beruf); **Telefon bewusst NICHT** sichtbar (E-Mail genügt).
+- [ ] **KI-Transparenz-Hinweis** im Impressum behalten (Bilder/Texte KI-gestützt, redaktionell verantwortet; Art. 50 KI-VO ab 02.08.2026). **Nicht** in die Datenschutzerklärung (kein Besucherdaten-Thema).
+- [ ] `datenschutz.html`: spiegelt den **realen** Stand — keine Cookies/Tracking, `mailto`-Kontakt, Schrift via jsDelivr (CDN), Hosting GitHub Pages. Bei Hostinger-Umzug Abschnitt 2 anpassen.
+- [ ] **Bei jeder datenverarbeitungs-/Dritt-Dienst-relevanten Änderung** Rechtstexte im selben PR anpassen (s. `CLAUDE.md`).
+- [ ] Vor Livegang final mit **eRecht24-Generator** gegenprüfen.
+- [ ] Beide Seiten haben aktuell `<meta name="robots" content="noindex, nofollow">` — entfernen, sobald final.
 
 ---
 
@@ -163,6 +167,19 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ---
 
 ## 3. VERLAUF (neueste zuerst)
+
+### 2026-06-01 — Rechtstexte finalisiert + Recht/Datenschutz-Update-Regel (Branch `legal/impressum-datenschutz`)
+- **Was:** Impressum & Datenschutz an die echte neue Seite angepasst; Prozessregel zum Aktuell-Halten ergänzt.
+- **Warum:** Platzhalter raus (Abmahnrisiko); alter Text listete viel Nicht-Zutreffendes (reCAPTCHA, Newsletter, Kommentare, Font Awesome, Strato-Hosting).
+- **Wie:**
+  - **Impressum:** neue Adresse (Seeweg 8, 83126 Flintsbach am Inn), Firmierung „Veronika Heidrich Media Design",
+    **§ 5 / §§ 7–10 DDG** (statt TMG), E-Mail-only (kein Telefon), EU-OS-Plattform, Verbraucherstreitbeilegung,
+    Haftung Inhalte/Links, Urheberrecht. **USt- und Kammer-Abschnitt entfernt** (Kleinunternehmer, kein reglem. Beruf).
+  - **KI-Transparenz-Hinweis** im Impressum ergänzt (Bilder/Texte KI-gestützt, redaktionell verantwortet; Art. 50 KI-VO ab 02.08.2026).
+  - **Datenschutz:** Adresse ergänzt; Inhalt war bereits realitätsnah (keine Cookies, mailto, jsDelivr, GitHub Pages). Hosting-Umzug-Marker gesetzt.
+  - **Update-Regel** in `CLAUDE.md` (+ PR-Template-Punkt + Invariante): datenverarbeitungs-/Dritt-Dienst-relevante Änderungen ziehen Rechtstext-Anpassung im selben PR nach sich.
+- **Recherche/Learning:** KI-Kennzeichnung ist **2026 noch nicht** Pflicht (Art. 50 KI-VO ab 02.08.2026; Text-Ausnahme bei redaktioneller Verantwortung) → freiwilliger Transparenz-Hinweis, gehört ins **Impressum**, nicht in den Datenschutz. TMG→**DDG** seit 14.05.2024, TTDSG→**TDDDG**. Telefon laut EuGH nicht zwingend, wenn schnelle E-Mail-Kontaktaufnahme besteht.
+- **Konsequenz:** Finale rechtliche Verbindlichkeit weiterhin via **eRecht24** gegenprüfen. Bei Hostinger-Umzug Hosting-Abschnitt anpassen. Optional: CI-„Privacy-Guard" für neue externe Hosts.
 
 ### 2026-06-01 — A11y: Überschriften-Hierarchie (Branch `a11y/ueberschriften-hierarchie`)
 - **Was:** PageSpeed/Lighthouse meldete „Überschriften nicht in fortlaufend absteigender Reihenfolge".
