@@ -40,5 +40,6 @@ fonts/*.zip
 fonts/vaelia-organic-font-*/
 
 # Atelier-Rohmaterial (Uploads, Explorations — nicht ins Repo)
+# Echte Brand-Assets (Logos etc.) liegen versioniert in brand/ — NICHT hier.
 pics/
 uploads/
