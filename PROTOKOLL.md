@@ -6,6 +6,23 @@
 
 ---
 
+## 0. DOKUMENTATIONSPFLICHT — gilt IMMER, egal von wo bearbeitet wird
+
+**Diese Regel gilt überall: Claude Code, VS Code (GitHub Copilot) und Claude Design.**
+Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
+
+- **Nach JEDER Änderung** wird dieses Protokoll aktualisiert — bevor die Arbeit als erledigt gilt
+  (Claude Code: vor dem Commit/Push · Claude Design: vor dem Handoff · VS Code: vor dem Commit).
+- Jeder Eintrag dokumentiert **voll einsehbar alle Arbeitsschritte**: **Was**, **Warum**, **Wie**,
+  welche **Alternativen/Abwägungen**, welche **Learnings** und welche **Konsequenzen** daraus folgen.
+- **Ziel:** Jederzeit und von überall auf dem aktuellen Stand weiterarbeiten können — und der
+  Verlauf so lückenlos halten, dass sich der Stand bei Bedarf auf einen **bestimmten Moment
+  zurückführen** lässt.
+- **Append-only:** Nichts wird gelöscht; bestehende Einträge bleiben als Historie erhalten.
+- **Ablauf:** Invarianten prüfen → Änderung → Verlauf (+ ggf. Invarianten/Learnings) ergänzen → committen/pushen bzw. Handoff.
+
+---
+
 ## 1. INVARIANTEN — „Das darf nicht (wieder) rausfallen"
 
 ### Logo / Wortmarke
@@ -142,6 +159,25 @@
 ---
 
 ## 3. VERLAUF (neueste zuerst)
+
+### 2026-06-01 — Dokumentationspflicht werkzeugübergreifend verankert
+- **Was:** Die Regel „nach jeder Änderung das Protokoll führen" gilt jetzt verbindlich überall,
+  nicht nur in VS Code.
+- **Warum:** Bisher war die Regel nur in der persönlichen VS-Code-Konfiguration hinterlegt → galt
+  nicht repo-weit und nicht in Claude Code / Claude Design. Ziel: ein einziger, lückenloser,
+  voll einsehbarer Arbeitsverlauf, von überall nutzbar und auf jeden Moment zurückführbar.
+- **Wie:** Kanonische Regel an drei Stellen verankert, die das jeweilige Werkzeug automatisch liest:
+  `CLAUDE.md` (neuer Abschnitt „Dokumentationspflicht", Claude Code), `PROTOKOLL.md` (neuer
+  Abschnitt 0, Basis für Claude Design) und `.github/copilot-instructions.md` (neu, GitHub Copilot
+  in VS Code, repo-weit statt nur lokal).
+- **Alternativen/Abwägung:** Erwogen: Claude-Code-Hook (settings.json), der nach Edits erinnert —
+  verworfen, weil ein Shell-Hook keine inhaltliche Doku schreiben kann und bei reinen Lese-/Frage-Runden
+  nur nervt. Instruktionsdateien sind das robuste, werkzeugübergreifende Mittel. (Hook kann auf Wunsch
+  als zusätzlicher Reminder nachgerüstet werden.)
+- **Learning:** „Über VS Code hinterlegte" Regeln liegen meist in der User-Config, nicht im Repo →
+  reisen nicht mit. Regeln gehören ins Repo (`CLAUDE.md`, `.github/copilot-instructions.md`, `PROTOKOLL.md`).
+- **Konsequenz:** Jede künftige Bearbeitung — egal von wo — ist verpflichtet, hier einen Eintrag
+  mit Was/Warum/Wie/Alternativen/Learnings/Konsequenzen zu hinterlassen (append-only).
 
 ### 2026-05-31 — Formular-Vorauswahl + SR-Status (Branch `gh-pages`)
 - **`data-topic`** auf topic-spezifischen CTAs: `personal-branding`, `webdesign-wordpress`, `ki-workflows`, `yoga-bewegung`, `mischung` (Hero CTA).

@@ -1,5 +1,21 @@
 # Projekt: Vroni Website
 
+## Dokumentationspflicht / Protokollpflicht (gilt IMMER — egal von wo)
+> Diese Regel gilt **überall und für jede Bearbeitung**: Claude Code, VS Code (GitHub Copilot)
+> und Claude Design. Sie ist nicht optional und an kein einzelnes Werkzeug gebunden.
+
+- **Nach JEDER Änderung** wird `PROTOKOLL.md` aktualisiert — bevor die Arbeit als erledigt gilt
+  (Claude Code: vor dem Commit/Push; Claude Design: vor dem Handoff; VS Code: vor dem Commit).
+- Jeder Eintrag muss eine **voll einsehbare Dokumentation aller Arbeitsschritte** sein:
+  **Was** geändert wurde, **Warum**, **Wie**, welche **Alternativen/Abwägungen** es gab,
+  welche **Learnings** entstanden sind und welche **Konsequenzen** daraus folgen.
+- **Ziel:** Man kann jederzeit und von überall auf dem aktuellen Stand weiterarbeiten, und der
+  Verlauf ist so lückenlos, dass das Projekt bei Bedarf gedanklich auf einen **bestimmten Moment
+  zurückgestellt** werden kann.
+- **Ablauf bei jeder Runde:** Invarianten in `PROTOKOLL.md` prüfen → Änderung umsetzen →
+  Verlauf (und ggf. Invarianten/Learnings) in `PROTOKOLL.md` ergänzen → committen/pushen bzw. Handoff.
+- Nichts wird gelöscht — `PROTOKOLL.md` ist **append-only** (Historie bleibt nachvollziehbar).
+
 ## Arbeitsweise / Sync (WICHTIG)
 - Live-Quelle der Wahrheit = GitHub-Repo `vronihei/Website` (veröffentlicht via Claude Code).
 - Dieses Projekt = Design-Atelier. Dateinamen sind deckungsgleich mit dem Repo:
