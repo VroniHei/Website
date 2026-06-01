@@ -102,7 +102,7 @@ Maßstab ist EN 301 549 → faktisch **WCAG 2.1 Level AA**. Bei JEDER Sektion pr
 
 **Auslöser, die ein Anpassen der Rechtstexte erzwingen (im selben PR mitdenken):**
 - Neue **externe Ressource** (Schrift-/Skript-/Bild-CDN, Embed, iFrame, Map) → Datenschutz: Dienst + Rechtsgrundlage + ggf. Drittland.
-- **Analytics/Tracking/Cookies** jeglicher Art → Datenschutz + ggf. Cookie-/Consent-Banner (sonst aktuell bewusst: **keine** → kein Banner nötig).
+- **Analytics/Tracking/Cookies** jeglicher Art → Datenschutz + ggf. Cookie-/Consent-Banner. Aktueller Stand: **cookielose Reichweitenmessung (GoatCounter, `count.js` lokal)** → **kein Banner**. Würde man auf cookie-/US-basiertes Tracking (z. B. GA4) wechseln, wäre ein Consent-Banner zwingend.
 - **Formular-Änderung** (z. B. weg von `mailto` hin zu serverseitigem Versand/Formspatz) → Datenschutz „Kontakt".
 - **Hosting-/Domain-Wechsel** (z. B. GitHub Pages → Hostinger) → Datenschutz „Hosting" + Impressum-Kontaktdaten/URLs.
 - **KI-Tool, das Besucherdaten verarbeitet** (z. B. Chatbot) → Datenschutz. (Reiner KI-Einsatz beim *Bauen* der Seite = nur Transparenz-Hinweis im Impressum, kein Datenschutz-Thema.)
