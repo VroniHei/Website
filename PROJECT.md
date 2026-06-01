@@ -97,7 +97,7 @@ Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Pl
 | Package Mgr     | npm                   | 11.13.0    | Adopt    | Standard, mit Node.js mitgeliefert      |
 | Framework       | Plain HTML/CSS/JS     | —          | Adopt    | Kein Framework nötig → ADR-002          |
 | Styling         | Plain CSS             | —          | Adopt    | Volle Kontrolle, keine Build-Pipeline   |
-| Deployment      | GitHub Pages          | —          | Adopt    | Kostenlos, Branch `gh-pages`            |
+| Deployment      | GitHub Pages          | —          | Adopt    | Kostenlos, direkt aus Branch `main`     |
 | Kontakt         | mailto-Link           | —          | Adopt    | Serverlos, öffnet Mail-Client           |
 | Schrift (Text)  | Open Sauce Sans       | via CDN    | Adopt    | Humanistisch-rund, ruhige Wirkung       |
 | Schrift (Logo)  | Vaelia (lokal)        | —          | Adopt    | Organische Versalien, NN-Ligatur, nur Display |
@@ -287,6 +287,33 @@ Fresh Organic Hybrid — hell, frisch, organisch, strategisch.
 
 ---
 
+### ADR-006 — Branch-Konsolidierung: `main` als einzige Quelle der Wahrheit
+
+**Status:** `Accepted` — 2026-06-01
+
+**Kontext:**
+Bisher liefen mehrere Branches parallel: Produktion auf `gh-pages`, Features auf eigenen Branches (`technical-polish`, `accessibility` u. a.). Das erzeugte Sync-Aufwand, Risiko für Divergenz und Unklarheit, welcher Stand „der echte" ist. GitHub Pages publizierte aus `gh-pages`, was einen zusätzlichen Merge-Schritt erforderte.
+
+**Betrachtete Optionen:**
+
+| Option                          | Pro                                              | Contra                                       |
+|---------------------------------|--------------------------------------------------|----------------------------------------------|
+| **`main` als einzige Quelle** (gewählt) | Ein Stand, kein Merge-Overhead, Pages direkt aus `main` | Direkter Push auf `main` braucht Disziplin   |
+| `gh-pages` als Produktion behalten | Trennung Quelle/Veröffentlichung               | Doppelte Pflege, ständiger Sync, Divergenzrisiko |
+| GitHub Actions Build-Workflow   | Automatisierbar, Checks vor Deploy               | Over-Engineering für reine statische Dateien |
+
+**Entscheidung:**
+Alle Branches in `main` konsolidiert. `main` enthält den kompletten aktuellen Website-Stand und ist die einzige Quelle der Wahrheit. GitHub Pages publiziert **direkt aus `main`** (Settings: Branch `main`, Ordner `/root`). Der `gh-pages`-Branch und der separate Deploy-/Build-Workflow entfallen.
+
+**Konsequenzen:**
+- ✅ Ein einziger maßgeblicher Stand — kein „welcher Branch gilt?" mehr
+- ✅ Push auf `main` = automatisches Deployment (~1–2 min), kein Merge-Schritt
+- ✅ Kein `gh-pages`-Branch, keine Build-Pipeline zu warten
+- ⚠️ Änderungen landen direkt live — vor jedem Push Invarianten (`PROTOKOLL.md`) prüfen
+- ⚠️ Supersedes die frühere Annahme „Produktion = `gh-pages`" (ADR-003-Kontext, ADR-002-Konsequenzen)
+
+---
+
 _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
@@ -294,6 +321,19 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 ## 6. Projektverlauf & Changelog
 
 > Chronologisches Log aller relevanten Ereignisse. Append-only — nichts wird gelöscht.
+
+---
+
+### 2026-06-01 — Branch-Konsolidierung & Doku-Aufräumen
+
+**Ziel:** Branch-Wildwuchs beenden, einen klaren Produktionsstand etablieren.
+
+**Durchgeführt:**
+1. Alle Branches in `main` konsolidiert — `main` ist jetzt die einzige Quelle der Wahrheit mit dem kompletten aktuellen Website-Stand.
+2. GitHub Pages auf **Deployment direkt aus `main`** umgestellt; `gh-pages`-Branch und separater Deploy-Workflow entfallen.
+3. **ADR-006** angelegt (Branch-Konsolidierung dokumentiert).
+4. `README.md` und `PROJECT.md` bereinigt: alle `gh-pages`-Referenzen auf `main` aktualisiert, neue Branch-/Deployment-Beschreibung.
+5. `PROTOKOLL.md`: Git-/Deployment-Regeln auf den `main`-only-Workflow angepasst.
 
 ---
 
@@ -497,7 +537,7 @@ _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Me
 |---|------------------------------------------|-------------------------------------------------------|-----------|-------------|
 | 1 | Was ist das Projektziel?                 | Personal-Website Brand-Strategin Veronika Heidrich    | 🔴 Hoch   | ✅ Geklärt  |
 | 2 | Welches Framework?                       | Plain HTML/CSS/JS → ADR-002                           | 🔴 Hoch   | ✅ Geklärt  |
-| 3 | Deployment-Ziel?                         | GitHub Pages (Branch `gh-pages`)                      | 🟡 Mittel | ✅ Geklärt  |
+| 3 | Deployment-Ziel?                         | GitHub Pages (direkt aus `main`)                      | 🟡 Mittel | ✅ Geklärt  |
 | 4 | Design-Richtung?                         | Fresh Organic Hybrid → ADR-005                        | 🟡 Mittel | ✅ Umgesetzt|
 | 5 | Brauchen wir ein CMS?                    | Nein — statisch, direkt im HTML pflegbar              | 🟢 Niedrig| ✅ Geklärt  |
 | 6 | SEO-Meta-Tags vollständig?               | title, description, og:* Tags fehlen noch             | 🟡 Mittel | ⏳ Offen   |
@@ -561,8 +601,8 @@ Claude Code (Implementierung)
     ↓  curl → tar → handoff/ Ordner
     ↓  nur CLAUDE.md-Dateien übernehmen
     ↓  git add selektiv (keine Uploads/, Font-Zips)
-    ↓  git push origin gh-pages
-GitHub Pages (Deployment, ~1-2 min)
+    ↓  git push origin main
+GitHub Pages (Deployment direkt aus main, ~1-2 min)
 ```
 
 **Wichtig:** Export-URL neu generieren bei jeder Session. Share-URL (`/design/p/[UUID]`) NICHT verwenden.
@@ -604,4 +644,4 @@ Diese Dinge nie vergessen (vollständige Liste in `PROTOKOLL.md`):
 
 _Dieses Dokument ist lebendig — es wächst mit dem Projekt._
 _Jede Session hinterlässt Spuren. Jede Entscheidung wird begründet. Jedes Learning wird gesichert._
-_Letzte Aktualisierung: 2026-05-31_
+_Letzte Aktualisierung: 2026-06-01_

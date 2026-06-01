@@ -104,8 +104,8 @@
 - [ ] `.fq-chev` = nur Pfeil, kein Kreis — konsistent mit Ansatz-Accordion.
 
 ### Git / Deployment
-- [ ] **Branch für Produktion**: `gh-pages` (GitHub Pages publiziert von hier).
-- [ ] **Neue Features**: auf Feature-Branch entwickeln (z. B. `technical-polish`), dann in `gh-pages` mergen.
+- [ ] **Branch für Produktion**: `main` — einzige Quelle der Wahrheit. GitHub Pages publiziert direkt aus `main` (kein `gh-pages`-Branch, kein Build-Workflow).
+- [ ] **Push auf `main` = Livegang** (~1–2 min). Vor jedem Push Invarianten prüfen.
 - [ ] **`pics/` und `uploads/`**: immer in `.gitignore` — Atelier-Rohmaterial gehört nie ins Repo.
 - [ ] **Neue Seiten**: `robots: noindex` bis Inhalte final und rechtsgeprüft.
 
@@ -235,7 +235,7 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 2. **Immer ersetzen**: `<img>` → `<picture>` mit WebP; fehlende `width`/`height` ergänzen.
 3. **Immer prüfen**: Hat jedes neue Bild eine `.webp`-Variante? Ist es im Assets-Abschnitt dokumentiert?
 4. **Produktions-E-Mail**: immer `info@veronika-heidrich.de`.
-5. **Branch**: Feature-Branch anlegen, nicht direkt auf `gh-pages` arbeiten.
+5. **Branch**: direkt auf `main` arbeiten — `main` ist der einzige Branch und die Produktionsquelle.
 6. **Protokoll**: nach jeder Runde Verlauf + Invarianten aktualisieren.
 7. **Zitat-Anführungszeichen**: `&ldquo;` (nicht ASCII `"`).
 8. **Jahr**: `© 2026` beibehalten bis Jahreswechsel.

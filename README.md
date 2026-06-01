@@ -39,9 +39,18 @@ python3 -m http.server 8000
 ```
 Öffne dann `http://localhost:8000`.
 
+## Branches
+
+- **`main`** ist die einzige Quelle der Wahrheit und enthält den kompletten, aktuellen Website-Stand.
+- Es gibt **keinen `gh-pages`-Branch** und keinen separaten Build-/Deploy-Workflow mehr.
+
 ## Deployment
 
-Dieses Projekt ist für statische Hosts optimiert und kann direkt über GitHub Pages, Netlify, Vercel oder einen anderen Static-Hosting-Service veröffentlicht werden.
+Das Deployment läuft über **GitHub Pages direkt aus dem `main`-Branch**. Jeder Push auf `main` aktualisiert automatisch die Live-Seite (typisch nach ~1–2 Minuten) — kein separater `gh-pages`-Branch, kein Build-Step, keine Pipeline.
+
+GitHub Pages ist dafür in den Repo-Settings auf **Branch `main` / Ordner `/ (root)`** konfiguriert. Da das Projekt aus reinen statischen Dateien besteht, ist keine zusätzliche Build-Pipeline nötig.
+
+Alternativ ist das Projekt auch für andere statische Hosts (Netlify, Vercel) geeignet, falls ein Wechsel gewünscht ist.
 
 ## Projektstruktur
 
