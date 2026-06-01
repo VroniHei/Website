@@ -400,6 +400,19 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-06-01 — A11y: Überschriften-Hierarchie korrigiert
+
+**Ziel:** Lighthouse-Befund „heading-order" beheben (Schritt Richtung 100 % Barrierefreiheit).
+
+**Durchgeführt:**
+1. 8× `<h4>` → `<h3>` in `index.html` (Big-Nodes + Prozess-Steps; hatten `<h2>`→`<h4>` übersprungen).
+2. CSS-Selektoren `.step`/`.big-node` von `h4` auf `h3` umgestellt — Optik unverändert.
+3. `heading-order` als hartes Kriterium in `lighthouserc.json` (Dauer-Schutz).
+
+**Offen:** Kontrast-Punkt (separat) + geplantes Anheben des Gates auf 100 % (s. nächster Eintrag/ADR).
+
+---
+
 ### 2026-06-01 — Tier 2: Automatische Qualitäts-Gates (CI)
 
 **Ziel:** Nichts Kaputtes oder Unzugängliches soll mehr ungeprüft live gehen.
