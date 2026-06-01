@@ -173,6 +173,28 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-01 — Design-Feinschliff: Typo-System, Hero, Sektionen (Branch `main`)
+
+**Typografie-System (alle Änderungen in `style.css`):**
+- **Globale Heading-Regeln** als einzige Quelle der Wahrheit (Prinzip jetzt etabliert):
+  - `h1,h2`: `font-weight:650`, `font-size:clamp(32px,3.9vw,48px)`, `letter-spacing:-.025em`, `line-height:1.07`
+  - `h3,h4`: `font-weight:650`
+  - Section-spezifische `font-weight`/`font-size`/`letter-spacing`/`line-height` aus allen H2/H3-Regeln entfernt
+- **Display-Texte**: `quote-band q`, `cb-claim`, `footer-quote .fq-text` → `font-weight:650` (war 800)
+- **Eyebrow `.lbl`**: Uppercase + 11px — bewusst beibehalten (Mixed-Case-Versuch war falsch und wurde revertiert)
+- **Ansatz-Prinzipien**: `.principle .pn` → 700/14.5px, `.pt` → 18px, `.pbody .ptxt` → 17px, `.body p` → 17px
+
+**Hero v4 Bento — Korrekturen:**
+- Grid: `.9fr 1.1fr` → `1fr 1fr` (symmetrische Spalten)
+- `padding-top`: 148px → 176px (optischer Nav-Ausgleich)
+- Text linksbündig (`.hb-copy` kein `text-align:center`)
+- Mobile: `.s-brand` + `.s-journal` ausgeblendet, `.s-main` auf `aspect-ratio:4/3` erhöht
+
+**Sektions-Fixes:**
+- **Über mich**: `.as-line{display:none}` (Strich vor Name weg), `.as-brand{margin-left:0}` (Logo linksbündig ohne Einrückung)
+- **Zitat-Band**: `blockquote{max-width:520px}` → 2–3-zeiliger Umbruch
+- **H2 Ansatz**: Section-Regel bereinigt, globale Regel greift
+
 ### 2026-06-01 — Hero v4 Bento + Figtree/Newsreader (Branch `main`)
 - **Hero v4 Bento**: altes `hero-grid`-Layout ersetzt durch `hero--bento` mit animiertem Blob-BG + 3-Bild-Soft-Grid (`.hb-soft`).
 - **Neue Bilder**: `hero-branding.png/webp` + `hero-journaling.png/webp` von Desktop in `images/` übernommen.
