@@ -400,6 +400,15 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-06-01 — Font-Regel „immer lokal" verbindlich gemacht
+
+**Ziel:** Sicherstellen, dass auch künftige Schriften (z. B. aus Claude-Design-Handoffs) nie über eine externe CDN laden.
+
+**Durchgeführt:** Regel in `CLAUDE.md` (eigene Sektion), `.github/copilot-instructions.md`, `PROTOKOLL.md`
+(Handoff-Checkliste) und `WORKFLOW.md` (Handoff-Abschnitt) verankert — gilt für Claude Code, VS Code & Claude Design.
+
+---
+
 ### 2026-06-01 — Schriften lokal hosten (Datenschutz)
 
 **Ziel:** Externe Schrift-CDN (jsDelivr) eliminieren → keine IP-Übertragung an Dritte (wie Google-Fonts-Problematik).
