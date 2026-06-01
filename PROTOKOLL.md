@@ -168,6 +168,14 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-01 — Roadmap & Editor-Idee dokumentiert (Branch `docs/roadmap-launch-und-ideen`)
+- **Was:** Das gebündelte **Launch-Vorhaben** (Hosting→Hostinger, Domain, Search Console, GoatCounter-Analytics,
+  noindex entfernen, v1.0) als TODO-Gruppe in Abschnitt 4 festgehalten; veraltete TODOs (Favicon) abgehakt.
+- **Außerdem:** Veronikas Vision eines **KI-Admin-Editors** (Region markieren → beschreiben → KI setzt um) als
+  offene Frage 11 in `PROJECT.md` mit ehrlicher Einschätzung/Optionen dokumentiert.
+- **Warum:** Sessions/Container sind vergänglich — die **Doku ist das Gedächtnis**. So nimmt jede künftige
+  Session den Faden hier zuverlässig wieder auf, wenn Veronika Zeit hat.
+
 ### 2026-06-01 — Font-Regel „immer lokal" werkzeugübergreifend verankert (Branch `docs/font-regel-lokal`)
 - **Was:** Verbindliche Regel etabliert: Schriften werden IMMER lokal gehostet, nie über externe Font-CDN.
 - **Warum:** Damit künftige neue Schriften (z. B. aus einem Claude-Design-Handoff) nicht versehentlich
@@ -366,8 +374,18 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Über-mich-Seite** (eigene Unterseite mit ausführlicher Story) + CTA auf Startseite verlinken.
 - [ ] **Lighthouse-Audit** im echten Browser (Chrome DevTools) durchführen — Performance-Score auf Mobile prüfen.
 - [ ] **Echten Domain-Canonical** setzen sobald Custom Domain steht (aktuell `vronihei.github.io/Website/`).
-- [ ] **Favicon** fehlt noch (aktuell Browser-Default).
+- [x] **Favicon** — erledigt (`favicon.svg`, lokal).
 - [ ] **Strukturierte Daten** (Schema.org: Person, LocalBusiness, FAQPage) optional für GEO-Optimierung.
+
+### Launch-Bündel (wenn Veronika Zeit hat — bewusst in EINEM Rutsch, in dieser Reihenfolge)
+- [ ] **Hosting-Umzug** → **Hostinger**; danach Datenschutz „Hosting" + Impressum-URLs anpassen.
+- [ ] **Eigene Domain `veronika-heidrich.de`** + HTTPS; danach alle `canonical`/OG-/`sitemap.xml`/`robots.txt`-URLs umstellen.
+- [ ] **Google Search Console**: Property anlegen → Verifizierungs-Meta-Tag einbauen → Sitemap einreichen (kein Tracking/Banner).
+- [ ] **GoatCounter** (cookieloses, kostenloses EU-Analytics): Skript einbauen + Datenschutz-Abschnitt „Reichweitenmessung". **Kein Consent-Banner, kein Borlabs nötig.**
+- [ ] **`noindex` entfernen** (Rechtsseiten) → eRecht24-Endcheck → final live → Stand als `v1.0` taggen.
+
+### Ideen / größere Vorhaben (eigenes Projekt, später sauber scopen)
+- [ ] **KI-Admin-Editor**: eigener Login-Bereich, in dem man einen Bereich der Seite markiert, die Änderung in Worten beschreibt und die KI sie umsetzt (kein Drag&Drop). Auch für Kundenseiten gedacht. Braucht Backend/Auth + LLM-API + sichere Persistenz (Git-Commit + Preview). Details als offene Frage in `PROJECT.md`.
 
 ---
 
