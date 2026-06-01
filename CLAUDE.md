@@ -95,3 +95,17 @@ Maßstab ist EN 301 549 → faktisch **WCAG 2.1 Level AA**. Bei JEDER Sektion pr
 - **Semantik:** saubere H1→H2→H3-Hierarchie, Buttons vs. Links korrekt, `alt`-Texte für Bilder,
   `aria-label` für Icon-Buttons, ausreichende Touch-Targets (≥44px).
 - Vorgehen: laufend grob mitprüfen, am Ende ein dedizierter **A11y-Audit** über die fertige Seite.
+
+## Recht & Datenschutz aktuell halten (verpflichtend bei jeder Änderung)
+> `impressum.html` und `datenschutz.html` müssen den **tatsächlichen** technischen Stand der Seite widerspiegeln.
+> Bei JEDER Änderung prüfen: Verändert sie, **welche Daten verarbeitet** werden oder **welche Dritt-Dienste** eingebunden sind?
+
+**Auslöser, die ein Anpassen der Rechtstexte erzwingen (im selben PR mitdenken):**
+- Neue **externe Ressource** (Schrift-/Skript-/Bild-CDN, Embed, iFrame, Map) → Datenschutz: Dienst + Rechtsgrundlage + ggf. Drittland.
+- **Analytics/Tracking/Cookies** jeglicher Art → Datenschutz + ggf. Cookie-/Consent-Banner (sonst aktuell bewusst: **keine** → kein Banner nötig).
+- **Formular-Änderung** (z. B. weg von `mailto` hin zu serverseitigem Versand/Formspatz) → Datenschutz „Kontakt".
+- **Hosting-/Domain-Wechsel** (z. B. GitHub Pages → Hostinger) → Datenschutz „Hosting" + Impressum-Kontaktdaten/URLs.
+- **KI-Tool, das Besucherdaten verarbeitet** (z. B. Chatbot) → Datenschutz. (Reiner KI-Einsatz beim *Bauen* der Seite = nur Transparenz-Hinweis im Impressum, kein Datenschutz-Thema.)
+- **Adress-/Rechtsform-/USt-Änderung** → Impressum.
+
+**Regel:** Solche Änderungen und die Anpassung der Rechtstexte gehören in **denselben PR**. Rechtsstand: **DDG** (nicht mehr TMG), **TDDDG** (nicht mehr TTDSG). Im Zweifel mit dem **eRecht24-Generator** gegenprüfen. (Halb-Automatisierung als Option: CI-„Privacy-Guard", der neue externe Hosts meldet.)

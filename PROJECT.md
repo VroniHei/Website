@@ -400,6 +400,24 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-06-01 — Rechtstexte finalisiert (Impressum/Datenschutz) + Update-Regel
+
+**Ziel:** Rechtssichere, zur realen Seite passende Impressum/Datenschutz-Texte + Prozess zum Aktuell-Halten.
+
+**Durchgeführt:**
+1. **Impressum:** neue Adresse (Seeweg 8, 83126 Flintsbach am Inn), „Veronika Heidrich Media Design",
+   Rechtsgrundlagen auf **DDG** aktualisiert (statt TMG), Telefon weggelassen (E-Mail genügt),
+   USt-/Kammer-Abschnitt entfernt (Kleinunternehmer, kein reglementierter Beruf), EU-OS + Haftung + Urheberrecht.
+2. **KI-Transparenz-Hinweis** im Impressum (Bilder/Texte KI-gestützt, redaktionell verantwortet) — Art. 50 KI-VO ab 02.08.2026.
+3. **Datenschutz:** Adresse ergänzt; Inhalt war bereits realitätsnah (keine Cookies, mailto, jsDelivr, GitHub Pages).
+4. **Update-Regel** (CLAUDE.md + PR-Template + PROTOKOLL-Invariante): datenverarbeitungs-/Dritt-Dienst-relevante
+   Änderungen ziehen eine Rechtstext-Anpassung im selben PR nach sich.
+
+**Recherche:** KI-Kennzeichnung 2026 noch nicht Pflicht (Art. 50 KI-VO ab 02.08.2026); gehört ins Impressum, nicht Datenschutz.
+TMG→DDG (14.05.2024), TTDSG→TDDDG. **Offen:** finale eRecht24-Prüfung; Hostinger-Umzug; optional CI-Privacy-Guard.
+
+---
+
 ### 2026-06-01 — A11y: Überschriften-Hierarchie korrigiert
 
 **Ziel:** Lighthouse-Befund „heading-order" beheben (Schritt Richtung 100 % Barrierefreiheit).
