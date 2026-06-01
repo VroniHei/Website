@@ -1,0 +1,18 @@
+{
+  "name": "InnerLine · Veronika Heidrich",
+  "short_name": "InnerLine",
+  "description": "Personal Branding, Webdesign, KI-Workflows und Bewegung für Selbstständige mit vielen Ideen.",
+  "lang": "de",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F8F5EE",
+  "theme_color": "#2C3522",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

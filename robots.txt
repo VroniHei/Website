@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Internes Komponenten-Board nicht indexieren
+Disallow: /Designsystem.html
+
+Sitemap: https://vronihei.github.io/Website/sitemap.xml

@@ -129,7 +129,16 @@ Website/
 ├── fonts/
 │   ├── Vaelia.woff2                    ← Wortmarke-Font (primär)
 │   └── Vaelia.woff                     ← Wortmarke-Font (Fallback)
+├── brand/
+│   └── logos/                          ← Echte Brand-Logos (versioniert; SVG/PNG/PDF)
+├── favicon.svg                         ← Favicon (SVG, Brand-Linie)
+├── site.webmanifest                    ← Web-App-Manifest (Name, Farben, Icon)
+├── robots.txt                          ← Crawler-Steuerung + Sitemap-Verweis
+├── sitemap.xml                         ← Sitemap (öffentliche Seiten)
+├── .nojekyll                           ← GitHub Pages: kein Jekyll-Processing
+├── .editorconfig                       ← Einheitliche Formatierung über alle Editoren
 ├── Screenshots Arbeitsdateien/         ← Design-Referenzmaterial
+│   (pics/, uploads/ = Atelier-Rohmaterial, via .gitignore NICHT im Repo)
 ├── .agents/
 │   └── skills/
 │       └── frontend-design/            ← Frontend-Design-Skill (Anthropic)
@@ -357,6 +366,26 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 ## 6. Projektverlauf & Changelog
 
 > Chronologisches Log aller relevanten Ereignisse. Append-only — nichts wird gelöscht.
+
+---
+
+### 2026-06-01 — Tier 1: Fundament & Hygiene
+
+**Ziel:** Stabileres, professionelleres Fundament.
+
+**Durchgeführt:**
+1. **Repo-Hygiene:** `pics/` enttrackt (15 Roh-PNGs, ~30 MB; bleiben lokal, sind gitignored) —
+   behebt Verletzung der eigenen Invariante. Echte **Brand-Logos** nach `brand/logos/` verschoben.
+2. **GitHub Pages:** `.nojekyll` ergänzt (kein Jekyll-Processing).
+3. **SEO:** `robots.txt` + `sitemap.xml` ergänzt.
+4. **Profi-Polish:** `favicon.svg` (Brand-Linie) + `site.webmanifest`; in alle 4 öffentlichen Seiten
+   verlinkt (`theme-color` gesetzt). `.editorconfig` für einheitliche Formatierung.
+
+**Bewusst verschoben (braucht Bild-Tooling):** PNG→optimierte Web-Größen, dediziertes `og:image`
+(1200×630). Vorgemerkt für Tier 2 / lokale Umsetzung mit `cwebp`/ImageMagick.
+
+**Learning:** Logos sind echte Assets (gehören versioniert in `brand/`), Explorations sind Rohmaterial.
+History-Rewrite zum echten Schrumpfen der `.git`-Größe bewusst nicht gemacht (destruktiv) — Untracking genügt.
 
 ---
 
