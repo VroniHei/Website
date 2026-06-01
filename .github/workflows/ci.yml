@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  html-validate:
+    name: HTML-Validierung
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: HTML validieren
+        run: npx --yes html-validate@8 index.html impressum.html datenschutz.html barrierefreiheit.html
+
+  links:
+    name: Link-Check (intern)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Interne Links & Asset-Pfade prüfen
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: "--offline --no-progress index.html impressum.html datenschutz.html barrierefreiheit.html"
+          fail: true
+
+  lighthouse:
+    name: Lighthouse (A11y / SEO / Performance)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.14.x
+          lhci autorun
