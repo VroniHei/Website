@@ -168,6 +168,13 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-01 — Quick Wins: 404-Seite + Dependabot (Branch `chore/404-dependabot`)
+- **Was:** Eigene `404.html` im Markenlook + Dependabot für die GitHub-Actions.
+- **Warum:** Polierter Fehlerfall statt GitHub-Standard; CI-Actions automatisch aktuell/sicher halten.
+- **Wie:** `404.html` (Nav/Footer wie Rechtsseiten, Brand-Voice-Text, `noindex`); `.github/dependabot.yml`
+  (`github-actions`, wöchentlich); `404.html` zusätzlich in die HTML-Validierung der CI aufgenommen.
+- **Konsequenz:** Dependabot wird künftig PRs für Action-Updates öffnen (Label `dependencies`).
+
 ### 2026-06-01 — Rechtstexte finalisiert + Recht/Datenschutz-Update-Regel (Branch `legal/impressum-datenschutz`)
 - **Was:** Impressum & Datenschutz an die echte neue Seite angepasst; Prozessregel zum Aktuell-Halten ergänzt.
 - **Warum:** Platzhalter raus (Abmahnrisiko); alter Text listete viel Nicht-Zutreffendes (reCAPTCHA, Newsletter, Kommentare, Font Awesome, Strato-Hosting).
