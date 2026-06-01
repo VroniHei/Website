@@ -125,7 +125,7 @@ img{max-width:100%;display:block;}
 .hero{padding:120px 0 56px;position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;}
 .hero-grid{display:grid;grid-template-columns:1fr clamp(360px,42vw,580px);gap:clamp(36px,5vw,72px);align-items:center;padding-left:var(--mx);width:100%;}
 .hero-copy{max-width:600px;}
-.hero h1{font-weight:650;font-size:clamp(38px,4.4vw,60px);letter-spacing:-.035em;margin:18px 0 0;}
+.hero h1{font-size:clamp(38px,4.4vw,60px);letter-spacing:-.035em;margin:18px 0 0;}
 .hero h1 .u{position:relative;white-space:nowrap;}
 .hero h1 .u svg{position:absolute;left:-2%;right:-2%;width:104%;bottom:-.16em;height:.2em;}
 .hero .sub{font-size:clamp(16px,1.4vw,19px);font-weight:400;color:#3a362e;max-width:500px;margin:22px 0 0;line-height:1.55;}
@@ -202,7 +202,7 @@ img{max-width:100%;display:block;}
 
 /* section heading block */
 .shead{max-width:760px;}
-.shead h2{font-weight:650;font-size:clamp(28px,3.2vw,40px);margin:14px 0 0;}
+.shead h2{font-size:clamp(28px,3.2vw,40px);margin:14px 0 0;}
 .shead p{font-size:17px;color:var(--ink-soft);margin:18px 0 0;line-height:1.6;max-width:760px;}
 .shead--center{margin:0 auto;text-align:center;}
 .shead--center p{margin-left:auto;margin-right:auto;}
@@ -222,7 +222,7 @@ img{max-width:100%;display:block;}
   background:radial-gradient(circle,rgba(205,138,91,.16),transparent 70%);bottom:-140px;left:-100px;pointer-events:none;}
 .pain-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center;position:relative;z-index:1;}
 .pain-intro{position:relative;}
-.pain h2{font-weight:650;font-size:clamp(28px,3.2vw,40px);max-width:14ch;line-height:1.06;margin-top:16px;}
+.pain h2{font-size:clamp(28px,3.2vw,40px);max-width:14ch;line-height:1.06;margin-top:16px;}
 .pain h2 .hl{color:var(--green-deep);}
 .pain .lead{font-size:16px;color:#3a362e;margin:20px 0 0;line-height:1.65;max-width:44ch;}
 .pain .setze{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-weight:700;font-size:17px;color:var(--ink);letter-spacing:-.01em;}
@@ -274,7 +274,7 @@ img{max-width:100%;display:block;}
 .ansatz .eyebrow .dot{background:var(--green);}
 .ansatz .lbl{color:#9aa589;}
 .ansatz-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;}
-.ansatz h2{font-weight:650;font-size:clamp(28px,3.2vw,40px);color:var(--chalk);margin:16px 0 0;}
+.ansatz h2{font-size:clamp(28px,3.2vw,40px);color:var(--chalk);margin:16px 0 0;}
 /* .ansatz h2 .g — Farbe via globaler .g-Override-Regel oben */
 .ansatz .body p{color:#cdd2c4;font-size:16px;line-height:1.7;margin:0 0 16px;}
 .ansatz .body strong{color:var(--chalk);font-weight:700;}
@@ -304,7 +304,7 @@ img{max-width:100%;display:block;}
 #ueber{position:relative;}
 .about-grid{display:grid;grid-template-columns:1.15fr .95fr;gap:clamp(36px,4.5vw,68px);align-items:start;}
 .about{max-width:680px;display:flex;flex-direction:column;justify-content:center;}
-.about h2{font-weight:650;font-size:clamp(28px,3.2vw,40px);margin:16px 0 24px;max-width:20ch;line-height:1.08;letter-spacing:-.02em;}
+.about h2{font-size:clamp(28px,3.2vw,40px);margin:16px 0 24px;max-width:20ch;line-height:1.08;letter-spacing:-.02em;}
 /* .about h2 .g — erbt jetzt Textfarbe via globalem .g (Newsreader italic) */
 .about .body p{font-size:16px;color:#3a362e;line-height:1.72;margin:0 0 16px;max-width:54ch;}
 .about .body p.about-claim{font-size:clamp(17.5px,1.7vw,20px);color:var(--ink);font-weight:600;line-height:1.45;letter-spacing:-.01em;margin:20px 0;max-width:34ch;}
@@ -348,7 +348,7 @@ img{max-width:100%;display:block;}
   background:radial-gradient(circle,rgba(155,163,131,.22),transparent 70%);top:-160px;left:-120px;pointer-events:none;}
 .yoga-intro{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(40px,5vw,72px);align-items:end;margin:0 0 56px;}
 .yoga-intro .yi-left{}
-.yoga-intro h2{font-weight:650;font-size:clamp(28px,3.2vw,40px);margin:14px 0 0;max-width:18ch;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;}
+.yoga-intro h2{font-size:clamp(28px,3.2vw,40px);margin:14px 0 0;max-width:18ch;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;}
 /* .yoga-intro h2 .g — erbt Textfarbe via globalem .g */
 .yoga-intro .yi-right{padding-bottom:6px;}
 .yoga-intro .yoga-lead{font-size:16.5px;color:#3a362e;margin:0;line-height:1.65;max-width:50ch;text-wrap:pretty;}
@@ -453,7 +453,7 @@ img{max-width:100%;display:block;}
 #arbeitsweise::after{content:"";position:absolute;width:460px;height:460px;border-radius:50%;
   background:radial-gradient(circle,rgba(205,138,91,.14),transparent 65%);bottom:-160px;right:-140px;pointer-events:none;filter:blur(12px);}
 .steps-head{text-align:center;max-width:740px;margin:0 auto;position:relative;z-index:1;}
-.steps-head h2{font-weight:650;font-size:clamp(28px,3.2vw,40px);margin:14px 0 0;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;}
+.steps-head h2{font-size:clamp(28px,3.2vw,40px);margin:14px 0 0;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;}
 .steps-head p{font-size:16.5px;color:var(--ink-soft);margin:18px auto 0;line-height:1.65;max-width:680px;text-wrap:pretty;}
 .steps-wrap{position:relative;margin-top:56px;z-index:1;}
 .steps-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0;filter:blur(4px);opacity:.9;}
@@ -500,7 +500,7 @@ img{max-width:100%;display:block;}
 .contact-privacy{position:absolute;left:0;right:0;bottom:0;font-size:10.5px;color:rgba(154,165,137,.7);text-align:left;line-height:1.55;letter-spacing:.04em;margin:0;}
 .contact-privacy a{color:rgba(189,195,173,.85);border-bottom:1px solid rgba(189,195,173,.22);padding-bottom:1px;transition:color .2s ease,border-color .2s ease;}
 .contact-privacy a:hover{color:var(--green);border-bottom-color:rgba(168,232,79,.5);}
-.contact h2{font-weight:650;font-size:clamp(28px,3.2vw,40px);color:var(--chalk);margin:16px 0 0;max-width:18ch;line-height:1.06;}
+.contact h2{font-size:clamp(28px,3.2vw,40px);color:var(--chalk);margin:16px 0 0;max-width:18ch;line-height:1.06;}
 /* .contact h2 .g — grün via globalem Override */
 .contact .body{color:#cdd2c4;font-size:16.5px;line-height:1.7;margin:22px 0 0;max-width:440px;}
 .contact .body strong{color:var(--chalk);font-weight:600;}
