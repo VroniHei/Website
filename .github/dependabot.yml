@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Hält die GitHub-Actions in .github/workflows/ aktuell (Sicherheits-/Versions-Updates)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 5

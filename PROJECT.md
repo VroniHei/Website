@@ -400,6 +400,15 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-06-01 — Quick Wins: 404-Seite + Dependabot
+
+**Durchgeführt:**
+1. **`404.html`** im Markenlook (Nav/Footer wie die Rechtsseiten, Brand-Voice-Text, `noindex`) — GitHub Pages
+   liefert sie automatisch bei unbekannten Pfaden aus. Zusätzlich in die HTML-Validierung der CI aufgenommen.
+2. **`.github/dependabot.yml`** für das Ökosystem `github-actions` (wöchentlich) — hält die CI-Bausteine aktuell.
+
+---
+
 ### 2026-06-01 — Rechtstexte finalisiert (Impressum/Datenschutz) + Update-Regel
 
 **Ziel:** Rechtssichere, zur realen Seite passende Impressum/Datenschutz-Texte + Prozess zum Aktuell-Halten.
