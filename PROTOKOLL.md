@@ -120,9 +120,10 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] Alle 7 Fragen geschlossen beim Start (kein `open`-Attribut).
 - [ ] `.fq-chev` = nur Pfeil, kein Kreis — konsistent mit Ansatz-Accordion.
 
-### Git / Deployment
+### Git / Deployment (Workflow-Details: `WORKFLOW.md`)
 - [ ] **Branch für Produktion**: `main` — einzige Quelle der Wahrheit. GitHub Pages publiziert direkt aus `main` (kein `gh-pages`-Branch, kein Build-Workflow).
-- [ ] **Push auf `main` = Livegang** (~1–2 min). Vor jedem Push Invarianten prüfen.
+- [ ] **Kein Direkt-Push auf `main`** — jede Änderung über kurzlebigen Branch + Pull Request, Squash-Merge. `main` ist per Branch-Protection geschützt.
+- [ ] **Merge nach `main` = Livegang** (~1–2 min). Vor jedem PR Invarianten prüfen.
 - [ ] **`pics/` und `uploads/`**: immer in `.gitignore` — Atelier-Rohmaterial gehört nie ins Repo.
 - [ ] **Neue Seiten**: `robots: noindex` bis Inhalte final und rechtsgeprüft.
 
@@ -159,6 +160,19 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ---
 
 ## 3. VERLAUF (neueste zuerst)
+
+### 2026-06-01 — Zusammenarbeits-Workflow (Branch + PR) etabliert
+- **Was:** Verbindliche Arbeitsweise für Claude Code + VS Code + Claude Design definiert.
+- **Warum:** Sicheres, nachvollziehbares, reproduzierbares Arbeiten; kein versehentliches
+  Überschreiben/Löschen; sauberer Sync. Push auf `main` = sofort live → braucht ein Diff-Gate.
+- **Wie:** `WORKFLOW.md` als kanonische Quelle erstellt; Kurzfassung in `CLAUDE.md` und
+  `.github/copilot-instructions.md`; ADR-007 in `PROJECT.md`. Kern: jede Änderung über
+  kurzlebigen Branch + Pull Request, Squash-Merge in `main`, `main` per Branch-Protection geschützt.
+- **Alternativen:** Direkt-Commits auf `main` (zu riskant, kein Gate) und GitFlow (Overkill) verworfen;
+  Trunk-Based ist der moderne Standard für kleine Teams/Solo.
+- **Learning:** Git-Aufwand trägt Claude Code; Nutzerin prüft nur den PR-Diff und merged.
+- **Konsequenz:** Künftig **kein Direkt-Push auf `main`** mehr — alles über Branch + PR.
+  Branch-Protection muss Veronika einmalig in den GitHub-Settings aktivieren.
 
 ### 2026-06-01 — Dokumentationspflicht werkzeugübergreifend verankert
 - **Was:** Die Regel „nach jeder Änderung das Protokoll führen" gilt jetzt verbindlich überall,

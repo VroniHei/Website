@@ -37,7 +37,17 @@ zurückführen** lässt.
 Bei Texten immer die **Brand Voice** aus `CLAUDE.md` beachten. Bei jeder Sektion die
 **Barrierefreiheit** (Kontrast, Fokus, Semantik, Touch-Targets) mitdenken.
 
+## Zusammenarbeit & Workflow (verbindlich — Details in `WORKFLOW.md`)
+
+- **`main`** = einzige dauerhafte Quelle der Wahrheit + Deployment-Ziel. **Claude Design steht
+  außerhalb von Git** und ist nie der Live-Stand.
+- **Immer nur an einer Stelle gleichzeitig** dieselbe Datei bearbeiten. **Vor dem Arbeiten Pull**,
+  danach zeitnah über Branch/PR nach `main`.
+- **Jede inhaltliche Änderung läuft über einen kurzlebigen Branch + Pull Request** (nicht direkt
+  auf `main`): Branch → ändern → `PROTOKOLL.md` ergänzen → commit/push → PR (Diff prüfen) →
+  Squash-Merge → Branch löschen. Branch-Namen: `feat/`, `fix/`, `design/`, `docs/`, `a11y/`.
+
 ## Deployment
 
 `main` ist die einzige Quelle der Wahrheit. GitHub Pages publiziert direkt aus `main`
-(kein `gh-pages`-Branch, kein Build-Workflow). Jeder Push auf `main` geht live.
+(kein `gh-pages`-Branch, kein Build-Workflow). Jeder gemergte PR geht live.

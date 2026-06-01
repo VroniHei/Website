@@ -314,6 +314,42 @@ Alle Branches in `main` konsolidiert. `main` enthält den kompletten aktuellen W
 
 ---
 
+### ADR-007 — Trunk-Based-Workflow mit kurzlebigen Branches & Pull Requests
+
+**Status:** `Accepted` — 2026-06-01
+
+**Kontext:**
+Drei Bearbeitungswege (Claude Code, VS Code/Copilot, Claude Design) greifen auf dieselben
+Dateien zu. Push auf `main` = sofort live (GitHub Pages). Veronika arbeitet primär nicht-technisch
+und wünscht maximale Sicherheit, Nachvollziehbarkeit und Reproduzierbarkeit, ohne selbst Git-Mechanik
+beherrschen zu müssen. Risiken: gegenseitiges Überschreiben, veralteter Stand, still überschriebene
+Code-Fixes durch Design-Handoffs, versehentlicher Force-Push auf `main`.
+
+**Betrachtete Optionen:**
+
+| Option | Pro | Contra |
+|--------|-----|--------|
+| Direkt-Commits auf `main` (bisher) | Maximal einfach, kein Overhead | Push = ungeprüft live; kein Diff-Gate; kein einfacher Revert; Force-Push-Risiko |
+| **Trunk-Based + kurzlebige Branches + PRs** (gewählt) | Diff-Vorschau vor Live, 1-Klick-Revert, PR = dokumentierte Einheit, `main` schützbar; Git-Aufwand trägt Claude Code | Minimal mehr Schritte (von Claude automatisiert) |
+| GitFlow (develop/release/hotfix) | Sehr strukturiert | Schwergewichtig, Overkill für Solo + statische Site |
+
+**Entscheidung:**
+Leichtgewichtiger **Trunk-Based-Workflow**: `main` bleibt die einzige dauerhafte Quelle der
+Wahrheit (ADR-006), aber jede inhaltliche Änderung läuft über einen **kurzlebigen Branch + Pull
+Request** und wird per Squash-Merge in `main` integriert. `main` wird auf GitHub geschützt
+(PR-Pflicht, kein Force-Push, keine Löschung). Prozess kanonisch in **`WORKFLOW.md`**, referenziert
+aus `CLAUDE.md`, `.github/copilot-instructions.md` und `PROTOKOLL.md`.
+
+**Konsequenzen:**
+- ✅ Jede Änderung ist vor dem Livegang als Diff sichtbar → kein stilles Überschreiben/Löschen
+- ✅ Atomare, reversible Einheiten (Revert je PR); lückenlose Nachvollziehbarkeit (PR + `PROTOKOLL.md`)
+- ✅ Git-Komplexität liegt bei Claude Code; Veronikas Part = PR prüfen + mergen
+- ✅ Design-Handoffs laufen über `design/*`-Branch → Handoff-Checkliste schützt Code-Fixes
+- ⚠️ Branch-Protection muss einmalig in den GitHub-Repo-Settings aktiviert werden (manueller Schritt)
+- ⚠️ Verfeinert ADR-006 (Single-`main`), widerspricht ihm nicht: Feature-Branches sind temporär
+
+---
+
 _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
@@ -321,6 +357,22 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 ## 6. Projektverlauf & Changelog
 
 > Chronologisches Log aller relevanten Ereignisse. Append-only — nichts wird gelöscht.
+
+---
+
+### 2026-06-01 — Professioneller Zusammenarbeits-Workflow etabliert
+
+**Ziel:** Sicheres, reproduzierbares Arbeiten über Claude Code, VS Code und Claude Design.
+
+**Durchgeführt:**
+1. **ADR-007** angelegt: Trunk-Based-Workflow mit kurzlebigen Branches + Pull Requests.
+2. **`WORKFLOW.md`** als kanonische Prozess-Quelle erstellt (Grundprinzip, goldene Regeln,
+   Branch→PR→Merge-Ablauf, Design-Handoff, `main`-Schutz, VS-Code-Setup, Reproduzierbarkeit).
+3. Kurzfassung + Verweis in `CLAUDE.md` und `.github/copilot-instructions.md` verankert.
+4. Empfehlung an Veronika: GitHub-Branch-Protection für `main` aktivieren (manueller Schritt).
+
+**Learning:** Bei „Push = sofort live" ist ein PR-Diff-Gate der entscheidende Sicherheitsgewinn —
+der Git-Mehraufwand liegt bei Claude Code, nicht bei der nicht-technischen Nutzerin.
 
 ---
 

@@ -16,6 +16,16 @@
   Verlauf (und ggf. Invarianten/Learnings) in `PROTOKOLL.md` ergänzen → committen/pushen bzw. Handoff.
 - Nichts wird gelöscht — `PROTOKOLL.md` ist **append-only** (Historie bleibt nachvollziehbar).
 
+## Zusammenarbeit & Sync-Workflow (verbindlich — Details in `WORKFLOW.md`)
+> Vollständiger Prozess: **`WORKFLOW.md`** (kanonische Quelle). Kurzfassung:
+- **`main`** = einzige dauerhafte Quelle der Wahrheit + Deployment-Ziel. Git ist das Rückgrat;
+  **Claude Design steht außerhalb von Git** und ist nie der Live-Stand (erst via Handoff → Code → `main` real).
+- **Immer nur an einer Stelle gleichzeitig** dieselbe Datei bearbeiten. **Vor dem Start `git pull`**, danach zeitnah pushen.
+- **Jede inhaltliche Änderung läuft über einen kurzlebigen Branch + Pull Request** (nicht direkt auf `main`):
+  `git pull` → `git switch -c <feat|fix|design|docs|a11y>/<name>` → ändern → `PROTOKOLL.md` ergänzen →
+  commit/push → PR (Diff prüfen) → Squash-Merge → Branch löschen → Auto-Deploy.
+- `main` ist auf GitHub geschützt (kein Force-Push/Löschen, PR-Pflicht).
+
 ## Arbeitsweise / Sync (WICHTIG)
 - Live-Quelle der Wahrheit = GitHub-Repo `vronihei/Website` (veröffentlicht via Claude Code).
 - Dieses Projekt = Design-Atelier. Dateinamen sind deckungsgleich mit dem Repo:
