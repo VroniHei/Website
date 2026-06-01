@@ -49,7 +49,7 @@ img{max-width:100%;display:block;}
 /* Dunkle / grüne Sektionen: .g bleibt Newsreader-Kursiv, bekommt aber grüne Farbe */
 .quote-band q .g,.cb-claim .g,.ansatz h2 .g,.contact h2 .g,.footer-quote .fq-text .g{color:var(--green) !important;}
 
-.lbl{font-weight:600;font-size:12px;letter-spacing:.2em;color:var(--ink-soft);}
+.lbl{font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);}
 
 /* layout helpers */
 .wrap{max-width:1240px;margin:0 auto;padding:0 28px;}
@@ -171,14 +171,14 @@ img{max-width:100%;display:block;}
 @keyframes hbF2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(94px,-56px) scale(1.16)}}
 @keyframes hbF3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(74px,52px) scale(1.22)}}
 .hb-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,60px);align-items:stretch;width:100%;}
-.hb-copy{max-width:540px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;text-align:center;}
+.hb-copy{max-width:540px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;}
 .hb-bottom{max-width:46ch;}
 .hb-bottom .hb-lede{margin:0 0 26px;}
 .hero--bento .hb-h1{font-family:var(--ff);font-weight:650;font-size:clamp(40px,4.8vw,66px);line-height:1.05;
   letter-spacing:-.025em;margin:18px 0 0;color:var(--ink);text-wrap:balance;}
 .hero--bento .hb-h1 em{font-family:'Newsreader',Georgia,serif;font-weight:500;font-style:italic;letter-spacing:-.01em;font-size:1.12em;color:var(--ink);}
 .hb-lede{font-size:clamp(18px,1.35vw,21px);font-weight:450;line-height:1.55;color:#3a362e;max-width:46ch;margin:24px 0 0;text-wrap:pretty;}
-.hero--bento .hero-cta{display:flex;gap:12px;flex-wrap:nowrap;margin:30px 0 0;justify-content:center;}
+.hero--bento .hero-cta{display:flex;gap:12px;flex-wrap:nowrap;margin:30px 0 0;}
 .hero--bento .hero-cta .btn{padding:13px 22px;font-size:15px;white-space:nowrap;}
 /* Bento Soft-Grid: 2 Bilder links gestapelt, großes Bild rechts */
 .hb-soft{display:grid;grid-template-columns:.82fr 1.18fr;grid-template-rows:1.3fr .7fr;gap:16px;min-height:clamp(440px,58vh,560px);}
@@ -310,9 +310,9 @@ img{max-width:100%;display:block;}
 .about .body p.about-claim{font-size:clamp(17.5px,1.7vw,20px);color:var(--ink);font-weight:600;line-height:1.45;letter-spacing:-.01em;margin:20px 0;max-width:34ch;}
 .about-sign{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin:24px 0 0;}
 .about-sign .as-name-row{display:inline-flex;align-items:center;gap:11px;color:var(--green-text);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;}
-.about-sign .as-line{width:26px;height:2px;background:var(--green-text);border-radius:2px;flex:0 0 auto;}
+.about-sign .as-line{display:none;}
 .about-sign .as-name{color:var(--ink);font-weight:600;letter-spacing:.2em;}
-.about-sign .as-brand{font-family:var(--ff-display);font-weight:400;font-size:18px;letter-spacing:.015em;text-transform:uppercase;color:var(--ink);font-style:normal;position:relative;line-height:1;display:inline-block;margin-left:37px;}
+.about-sign .as-brand{font-family:var(--ff-display);font-weight:400;font-size:18px;letter-spacing:.015em;text-transform:uppercase;color:var(--ink);font-style:normal;position:relative;line-height:1;display:inline-block;margin-left:0;align-self:flex-start;}
 .about-sign .as-up{text-transform:uppercase;font-feature-settings:"dlig" 1;}
 .about-sign .as-brand::before{content:"";position:absolute;left:-3px;right:-3px;top:46%;height:2.5px;border-radius:3px;background:var(--green);transform:translateY(-50%);z-index:-1;}
 .about-cta{margin-top:26px;}
@@ -583,7 +583,7 @@ img{max-width:100%;display:block;}
 .quote-band .qb-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(100deg,rgba(28,33,22,.86),rgba(28,33,22,.62) 60%,rgba(28,33,22,.42));}
 .quote-band .wrap{position:relative;z-index:2;}
-.quote-band blockquote{margin:0;max-width:680px;}
+.quote-band blockquote{margin:0;max-width:520px;}
 .quote-band .qmark{font-size:110px;line-height:.5;color:var(--green);font-weight:800;display:block;height:38px;}
 .quote-band q{font-weight:650;font-size:clamp(28px,3.8vw,48px);line-height:1.1;letter-spacing:-.025em;color:var(--chalk);quotes:none;display:block;margin-top:2px;text-wrap:balance;}
 /* .quote-band q .g — grün via globalem Override */
