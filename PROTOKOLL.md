@@ -43,7 +43,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ### Schrift-System
 - [ ] **Vaelia = nur Display/Wortmarke** (Logo + `about-sign .as-brand`). NIEMALS für Fließtext.
 - [ ] Überschriften = **Open Sauce Sans 800**. Fließtext Open Sauce Sans 400.
-- [ ] **Kein Google Fonts Link** (`<link href="fonts.googleapis.com/...">`) im `<head>` — nie einfügen. Open Sauce Sans kommt von jsDelivr (CDN-Fontsource).
+- [ ] **Alle Schriften lokal in `fonts/`** (Open Sauce Sans 400 = `.woff`, 500–800 = `.woff2`; Vaelia). **Keine externe Font-CDN** (kein Google Fonts, kein jsDelivr/Fontsource) — datenschutzrechtlich (IP-Übertragung) tabu.
 - [ ] **Kein `image-slot.js`** in der Produktionsdatei — stammt aus dem Design-Atelier, hat in Produktion nichts verloren.
 
 ### Bilder / Performance ⚠️ neu seit Design-Update V
@@ -53,7 +53,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Dekorative Bilder** (Hintergründe): `alt=""` (zitat-weg, claim-weg, footer-weg).
 - [ ] **`loading="eager"` nur beim Hero-Bild** (above fold), alles andere `loading="lazy"`.
 - [ ] **Preload im `<head>`**: Vaelia-Font + Hero-WebP, da above-fold und render-kritisch.
-- [ ] **Preconnect/dns-prefetch**: jsDelivr für Open Sauce Sans.
+- [ ] **Preload (lokal)**: `open-sauce-sans-latin-400-normal.woff` zusätzlich zu Vaelia/Hero. **Kein Preconnect/dns-prefetch zu Dritt-CDNs** (Schriften sind lokal).
 
 ### Mobile — Bild-Anzeige ⚠️ mehrfach repariert
 - [ ] **hero-portrait braucht `width:100%`** im 900px-Breakpoint (flex:none allein → Kollaps, da Inhalt absolut positioniert).
@@ -134,7 +134,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Rechtsstand: DDG** (nicht TMG), **TDDDG** (nicht TTDSG). Bei neuen Texten beachten.
 - [ ] `impressum.html`: Adresse **Seeweg 8, 83126 Flintsbach am Inn**; Kleinunternehmer (§ 19 UStG) → **keine USt-IdNr**; **keine Kammer** (kein reglementierter Beruf); **Telefon bewusst NICHT** sichtbar (E-Mail genügt).
 - [ ] **KI-Transparenz-Hinweis** im Impressum behalten (Bilder/Texte KI-gestützt, redaktionell verantwortet; Art. 50 KI-VO ab 02.08.2026). **Nicht** in die Datenschutzerklärung (kein Besucherdaten-Thema).
-- [ ] `datenschutz.html`: spiegelt den **realen** Stand — keine Cookies/Tracking, `mailto`-Kontakt, Schrift via jsDelivr (CDN), Hosting GitHub Pages. Bei Hostinger-Umzug Abschnitt 2 anpassen.
+- [ ] `datenschutz.html`: spiegelt den **realen** Stand — keine Cookies/Tracking, `mailto`-Kontakt, **Schriften lokal gehostet (keine Font-CDN)**, Hosting GitHub Pages. Bei Hostinger-Umzug Abschnitt 2 anpassen.
 - [ ] **Bei jeder datenverarbeitungs-/Dritt-Dienst-relevanten Änderung** Rechtstexte im selben PR anpassen (s. `CLAUDE.md`).
 - [ ] Vor Livegang final mit **eRecht24-Generator** gegenprüfen.
 - [ ] Beide Seiten haben aktuell `<meta name="robots" content="noindex, nofollow">` — entfernen, sobald final.
@@ -167,6 +167,20 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ---
 
 ## 3. VERLAUF (neueste zuerst)
+
+### 2026-06-01 — Schriften lokal hosten (Branch `privacy/fonts-lokal`)
+- **Was:** Open Sauce Sans nicht mehr von jsDelivr (CDN), sondern lokal aus `fonts/`.
+- **Warum:** Eine externe Schrift-CDN überträgt die Besucher-IP an den Anbieter (hier jsDelivr/ProspectOne, Polen)
+  — datenschutzrechtlich dasselbe Risiko wie Google Fonts (LG-München-Urteil). Lokal = keine Dritt-Verbindung.
+- **Wie:** 5 Schnitte heruntergeladen (400 = `.woff`, 500–800 = `.woff2`) nach `fonts/`; `@font-face` in
+  `style.css` auf lokale Pfade; jsDelivr-`preconnect`/`dns-prefetch` aus `index.html` entfernt + 400er-Font
+  preloaded; `datenschutz.html` Abschnitt 4 umgeschrieben (Schriften lokal, keine externen Ressourcen).
+- **Alternativen/Abwägung:** CDN behalten + im Datenschutz nennen (rechtlich riskanter, Banner-Diskussion)
+  verworfen. Quelle der woff2: `fontsource/font-files` (GitHub raw), da jsDelivr/npm in der Build-Umgebung
+  geblockt waren. **Learning:** Das fontsource-„other"-Paket hatte eine fehlerhafte 400-`.woff2` (war Type-1)
+  → für 400 die valide `.woff` genommen.
+- **Konsequenz:** Seite lädt **keine** externen Ressourcen mehr → kein Cookie-/Consent-Thema durch Schriften.
+  Neue Invariante: Schriften bleiben lokal (s. Abschnitt 1).
 
 ### 2026-06-01 — Quick Wins: 404-Seite + Dependabot (Branch `chore/404-dependabot`)
 - **Was:** Eigene `404.html` im Markenlook + Dependabot für die GitHub-Actions.
@@ -280,7 +294,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - **SEO-Description** finalisiert: `Personal Branding, Webdesign, KI-Workflows und Bewegung für Selbstständige mit vielen Ideen. Vroni hilft dir, Klarheit zu finden und stimmig sichtbar zu werden.`
 - **OG-Title + Twitter-Title** synchronisiert.
 - **Preload** für `Vaelia.woff2` und `hero-visual.webp` im `<head>` ergänzt.
-- **Preconnect/dns-prefetch** für jsDelivr (Open Sauce Sans CDN).
+- **Schriften lokal** in `fonts/` (Open Sauce Sans 400 woff + 500–800 woff2, Vaelia) — keine externe Font-CDN.
 - **`:focus-visible`** CSS-Styles für alle interaktiven Elemente (BFSG/WCAG 2.1 AA).
 - **Burger-Button**: `aria-expanded`, `aria-controls`, `aria-label`-Toggle in script.js.
 - **Mobile-Menü**: `role="dialog"` + `aria-label`.

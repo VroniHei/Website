@@ -400,6 +400,20 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-06-01 — Schriften lokal hosten (Datenschutz)
+
+**Ziel:** Externe Schrift-CDN (jsDelivr) eliminieren → keine IP-Übertragung an Dritte (wie Google-Fonts-Problematik).
+
+**Durchgeführt:**
+1. Open Sauce Sans (5 Schnitte) lokal nach `fonts/` (400 = `.woff`, 500–800 = `.woff2`).
+2. `@font-face` in `style.css` auf lokale Pfade; jsDelivr-`preconnect`/`dns-prefetch` entfernt; 400er preloaded.
+3. `datenschutz.html` Abschnitt 4 umgeschrieben: Schriften lokal, **keine externen Ressourcen** mehr.
+4. Veraltete jsDelivr-Invarianten in `PROTOKOLL.md` korrigiert; neue Invariante „Schriften bleiben lokal".
+
+**Konsequenz:** Die Seite lädt **keine** Dritt-Ressourcen → durch Schriften entsteht kein Cookie-/Consent-Bedarf.
+
+---
+
 ### 2026-06-01 — Quick Wins: 404-Seite + Dependabot
 
 **Durchgeführt:**
