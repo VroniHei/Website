@@ -144,7 +144,9 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ## 2. ASSETS (müssen ins Repo committet sein!)
 
 ### Bilder (`images/`) — alle als PNG + WebP
-- `images/hero-visual.png` + `.webp` — Hero (900×1200)
+- `images/hero-visual.png` + `.webp` — Hero Hauptbild (900×1200)
+- `images/hero-branding.png` + `.webp` — Hero Bento links oben (1672×941)
+- `images/hero-journaling.png` + `.webp` — Hero Bento links unten (1662×946)
 - `images/about-workspace.png` + `.webp` — Über mich, Hauptbild (1200×1500)
 - `images/about-weg.png` + `.webp` — Über mich, versetztes Bild (900×1200)
 - `images/yoga.png` + `.webp` — Yoga-Section (1200×900)
@@ -158,6 +160,9 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ### Fonts (`fonts/`)
 - `fonts/Vaelia.woff2`, `fonts/Vaelia.woff` — Wortmarke/Display
+- `fonts/figtree-latin-400-800.woff2` — Hauptschrift Figtree (variable font, 300–900)
+- `fonts/newsreader-latin-italic.woff2` — Newsreader kursiv (400–600), für `.g`-Akzente
+- `fonts/newsreader-latin-500.woff2` — Newsreader aufrecht 500, für `.g` in normaler Schriftlage
 
 ### Seiten (Root)
 - `index.html`, `style.css`, `script.js` — Startseite
@@ -167,6 +172,16 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ---
 
 ## 3. VERLAUF (neueste zuerst)
+
+### 2026-06-01 — Hero v4 Bento + Figtree/Newsreader (Branch `main`)
+- **Hero v4 Bento**: altes `hero-grid`-Layout ersetzt durch `hero--bento` mit animiertem Blob-BG + 3-Bild-Soft-Grid (`.hb-soft`).
+- **Neue Bilder**: `hero-branding.png/webp` + `hero-journaling.png/webp` von Desktop in `images/` übernommen.
+- **Neue Fonts lokal gehostet**: `figtree-latin-400-800.woff2` (variable), `newsreader-latin-italic.woff2`, `newsreader-latin-500.woff2`.
+- **`--ff` auf Figtree** umgestellt (Open Sauce Sans bleibt als Fallback in `@font-face`).
+- **`.g` global**: jetzt `Newsreader italic` (nicht mehr reine Farbe). Dunkle Sektionen (quote-band, cb-claim, ansatz h2, contact h2, footer-quote) behalten `color:var(--green)` via globalem Override.
+- **Pain-Section**: `.hl` → `.g` (Newsreader italic statt grün-deep).
+- **`data-topic="mischung"`** auf Hero-CTA erhalten.
+- **Kein Google Fonts CDN**, kein `image-slot.js`, korrekte Rechtseiten-Links.
 
 ### 2026-06-01 — Roadmap & Editor-Idee dokumentiert (Branch `docs/roadmap-launch-und-ideen`)
 - **Was:** Das gebündelte **Launch-Vorhaben** (Hosting→Hostinger, Domain, Search Console, GoatCounter-Analytics,

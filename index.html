@@ -22,7 +22,7 @@
 <meta name="twitter:description" content="Personal Branding, Webdesign, KI-Workflows und Bewegung für Selbstständige mit vielen Ideen. Klarheit finden und stimmig sichtbar werden.">
 <meta name="twitter:image" content="https://vronihei.github.io/Website/images/hero-visual.png">
 <!-- Performance: Preload (alle Schriften lokal gehostet) -->
-<link rel="preload" href="fonts/open-sauce-sans-latin-400-normal.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/figtree-latin-400-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Vaelia.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="images/hero-visual.webp" as="image" type="image/webp">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -83,42 +83,43 @@
 
 <main id="main">
 
-<!-- ===================== HERO ===================== -->
-<header class="hero">
-    <div class="hero-grid">
-      <div class="hero-copy">
+<!-- ===================== HERO v4 · BENTO ===================== -->
+<header class="hero hero--bento" id="hero-main">
+  <div class="hb-bg" aria-hidden="true">
+    <span class="hb-blob b1"></span><span class="hb-blob b2"></span><span class="hb-blob b3"></span><span class="hb-blob b4"></span>
+  </div>
+  <div class="wrap hb-grid">
+    <div class="hb-copy">
+      <div class="hb-top">
         <span class="eyebrow reveal"><span class="dot"></span><span class="lbl">Brand- &amp; Website-Strategin · mit KI als Werkzeug</span></span>
-        <h1 class="reveal d1">Sichtbar werden,<br>ohne dich zu verbiegen.</h1>
-        <p class="sub reveal d2">Ich helfe Selbstständigen und kreativen Unternehmer:innen, Marke, Website und Workflows klar zu sortieren. Mit Strategie, Webdesign und KI als Werkzeug, nicht als Ersatzhirn.</p>
-        <div class="hero-tags reveal d2">
-          <span>Personal Branding</span>
-          <span>Webdesign &amp; WordPress</span>
-          <span>KI-Workflows</span>
-          <span>Yoga &amp; Bewegung</span>
-        </div>
-        <div class="hero-cta reveal d3">
+        <h1 class="hb-h1 reveal d1">Sichtbar werden,<br>ohne dich zu <em>verbiegen.</em></h1>
+      </div>
+      <div class="hb-bottom reveal d2">
+        <p class="hb-lede">Ich helfe Selbstständigen und kreativen Unternehmer:innen, Marke, Website und Workflows klar zu sortieren. Mit Strategie, Webdesign und KI als Werkzeug, nicht als Ersatzhirn.</p>
+        <div class="hero-cta">
           <a href="#kontakt" class="btn btn--pri btn--lg" data-topic="mischung">Projekt anfragen</a>
           <a href="#ansatz" class="btn btn--sec btn--lg">Meinen Ansatz verstehen</a>
         </div>
-        <button class="hero-scroll reveal d4" id="scrollDown" type="button">
-          <span class="sc-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="sc-text">Viele Themen. Ein roter Faden.</span>
-        </button>
       </div>
-      <div class="hero-visual reveal d2">
-        <div class="hero-portrait">
-          <picture><source srcset="images/hero-visual.webp" type="image/webp"><img src="images/hero-visual.png" width="900" height="1200" loading="eager" decoding="async" alt="Arbeitsplatz im Naturlicht: Notizbuch mit Skizzen, Wasserflasche, zusammengerollte Yogamatte und Laptop vor einem Fenster mit Waldblick"></picture>
+    </div>
+    <div class="hb-visual reveal d2">
+      <div class="hb-soft">
+        <div class="s-img s-brand">
+          <picture><source srcset="images/hero-branding.webp" type="image/webp"><img src="images/hero-branding.png" width="1672" height="941" loading="eager" decoding="async" alt="Branding-Stillleben: aufgeschlagenes Moodboard mit Materialkarten und Farbflächen im warmen Licht"></picture>
         </div>
-        <div class="hero-chip c1">
-          <span class="ic" style="background:var(--green)"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16 C8 16 9 7 12 7 C15 7 16 17 20 11" stroke="#23221A" stroke-width="2.4" stroke-linecap="round"/></svg></span>
-          <span><span class="t1">Strategie &amp; Design</span><span class="t2">Marke · Web · KI</span></span>
+        <div class="s-img s-journal">
+          <picture><source srcset="images/hero-journaling.webp" type="image/webp"><img src="images/hero-journaling.png" width="1662" height="946" loading="lazy" decoding="async" alt="Frau schreibt im Naturlicht in ihr Notizbuch, daneben Kaffee und Laptop — Gedanken sortieren"></picture>
         </div>
-        <div class="hero-chip c2">
-          <span class="ic" style="background:var(--clay)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z" stroke="#fff" stroke-width="2.1" stroke-linejoin="round"/></svg></span>
-          <span><span class="t1">Yoga &amp; Bewegung</span><span class="t2">Kraft · Ruhe · Energie</span></span>
+        <div class="s-img s-main">
+          <picture><source srcset="images/hero-visual.webp" type="image/webp"><img src="images/hero-visual.png" width="900" height="1200" loading="eager" decoding="async" alt="Arbeitsplatz im Naturlicht: Notizbuch, Yogamatte und Laptop vor einem Fenster mit Waldblick"></picture>
+          <div class="s-card">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16 C8 16 9 7 12 7 C15 7 16 17 20 11" stroke="#23221A" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <span><span class="t1">Ein roter Faden</span><span class="t2">Branding · Webdesign · KI · Bewegung</span></span>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 </header>
 
 <!-- ===================== PAINPOINTS ===================== -->
@@ -127,7 +128,7 @@
     <div class="pain-grid">
       <div class="pain-intro reveal">
         <span class="eyebrow"><span class="dot"></span><span class="lbl">Kommt dir bekannt vor?</span></span>
-        <h2 style="max-width:560px">Nicht deine Vielseitigkeit ist das Problem. Sondern der fehlende <span class="hl">rote Faden.</span></h2>
+        <h2 style="max-width:560px">Nicht deine Vielseitigkeit ist das Problem. Sondern der fehlende <span class="g">rote Faden.</span></h2>
         <p class="lead">Vielleicht hast du viele Ideen, mehrere Themen oder ein Angebot, das gut ist, aber nach außen noch nicht greifbar wird.</p>
         <p class="lead">Vielleicht steht deine Website schon, fühlt sich aber nicht mehr nach dir an. Vielleicht willst du KI nutzen, weißt aber nicht, wo du sinnvoll anfängst. Vielleicht leistest du viel, merkst aber, dass dein System nicht endlos mitzieht.</p>
         <div class="setze">Und genau da fange ich an zu sortieren.</div>
