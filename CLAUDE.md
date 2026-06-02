@@ -141,3 +141,6 @@ Maßstab ist EN 301 549 → faktisch **WCAG 2.1 Level AA**. Bei JEDER Sektion pr
 - **Abgebildete Personen:** kennzeichnen, ob reales Foto (→ Einwilligung / Recht am eigenen Bild beachten) oder
   **KI-generierte Darstellung**. Bei echten Fotos vor Upload **EXIF/Standortdaten entfernen**.
 - **Nicht-KI-Assets** (Stock, Fotograf:in, CC): Lizenz + Urheber:in + Attributionspflicht zwingend dokumentieren.
+- **Durchsetzung (CI):** Der Job **`Medien-Register-Check`** in `.github/workflows/ci.yml` lässt einen PR scheitern,
+  wenn `images/` geändert wurde, ohne dass `MEDIEN.md` im selben PR aktualisiert wird. Die Regel ist damit erzwungen, nicht nur Vorsatz.
+- **Bildwelt/Prompts:** Reproduktions-Referenz für neue Bilder = `brand/bildwelt-und-prompts.md` (Stil + Prompts).

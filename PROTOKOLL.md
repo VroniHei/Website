@@ -174,6 +174,16 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — CI „Media-Guard": Medienregister erzwingen (Branch `ci/medien-guard`)
+- **Was:** Neuer Job `medien-guard` in `.github/workflows/ci.yml` (nur bei Pull Requests). Schlägt fehl, wenn im PR
+  `images/` geändert wurde, ohne dass `MEDIEN.md` im selben PR aktualisiert wird. Hinweis darauf in `CLAUDE.md` ergänzt.
+- **Warum:** Macht die Medien-Dokumentationspflicht **erzwingbar** statt „guter Vorsatz" — Antwort auf Empfehlung
+  „CI-Media-Guard" und auf Vronis Wunsch, die Datenstruktur dauerhaft sauber/lückenlos zu halten.
+- **Wie:** `git diff --name-only base...head` ermittelt die PR-Änderungen; greift nur, wenn `^images/` betroffen ist.
+  Kljuge Fehlermeldung verweist auf die Regel. YAML gegen Parser validiert.
+- **Alternativen:** Separates Workflow-File — verworfen zugunsten eines Jobs in der bestehenden `ci.yml` (weniger Dateien, übersichtlicher).
+- **Konsequenz:** Reiner CI-Guard, keine Live-Änderung. Ab jetzt erzwingt die Pipeline die Medien-Doku.
+
 ### 2026-06-02 — Bildwelt-/Prompt-Guide gesichert + Versionierungs-Konvention (Branch `docs/bildwelt-prompts`)
 - **Was:** Von Vroni gelieferten Reproduktionsguide als `brand/bildwelt-und-prompts.md` ins Repo aufgenommen
   (Masterprompt, 17 Motiv-Prompts, Negativ-Prompts, Stilformel, Kurzbriefing). In `MEDIEN.md` verlinkt;
