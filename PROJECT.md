@@ -50,8 +50,8 @@ Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Pl
 
 ## 2. Aktueller Status
 
-**Phase:** `Aktive Entwicklung / Iterativer Feinschliff via Claude Design`
-**Gesamtfortschritt:** ▓▓▓▓▓▓▓▓░░ 82%
+**Phase:** `Iterativer Feinschliff — Kernseiten fertig, Launch-Vorbereitung offen`
+**Gesamtfortschritt:** ▓▓▓▓▓▓▓▓▓░ 91%
 
 | Meilenstein                           | Status        | Datum      |
 |---------------------------------------|---------------|------------|
@@ -65,21 +65,30 @@ Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Pl
 | Design-System (Fresh Organic Hybrid)  | ✅ Fertig     | 2026-05-30 |
 | Echte Bilder & Vaelia-Font eingebunden| ✅ Fertig     | 2026-05-30 |
 | Logo-System (Vaelia + NN-Ligatur)     | ✅ Fertig     | 2026-05-31 |
-| Über-mich-Redesign + Timeline         | ✅ Fertig     | 2026-05-31 |
+| Über-mich-Redesign + Timeline (Startseite) | ✅ Fertig | 2026-05-31 |
 | Mobile-Optimierung (order:-1, Burger) | ✅ Fertig     | 2026-05-31 |
 | PROTOKOLL.md (Regressions-Schutz)     | ✅ Fertig     | 2026-05-31 |
 | Deployment auf GitHub Pages           | ✅ Fertig     | laufend    |
-| FAQ-Section (SEO/GEO)                 | ⏳ Ausstehend | —          |
-| Eigene Über-mich-Unterseite           | ⏳ Ausstehend | —          |
-| SEO-Meta-Tags (og:*, description)     | ⏳ Ausstehend | —          |
-| A11y-Audit (WCAG 2.1 AA)              | ⏳ Ausstehend | —          |
+| FAQ-Section (SEO/GEO)                 | ✅ Fertig     | 2026-05-31 |
+| SEO-Meta-Tags (og:*, description)     | ✅ Fertig     | 2026-05-31 |
+| Analytics (GoatCounter, cookielos)    | ✅ Fertig     | 2026-06-01 |
+| Rechtstexte (DDG/TDDDG)              | ✅ Fertig     | 2026-06-01 |
+| CI-Gates (HTML, Links, Lighthouse)    | ✅ Fertig     | 2026-06-01 |
+| Strukturierte Daten (JSON-LD)         | ✅ Fertig     | 2026-06-02 |
+| Responsive Bilder (srcset 960px)      | ✅ Fertig     | 2026-06-02 |
+| Schriften lokal (Figtree/Newsreader)  | ✅ Fertig     | 2026-06-02 |
+| Über-mich-Unterseite (ueber-mich.html)| ✅ Fertig     | 2026-06-02 |
+| Medienregister + CI-Guard             | ✅ Fertig     | 2026-06-02 |
+| A11y-Audit (WCAG 2.1 AA, vollständig) | ⏳ Ausstehend | —          |
+| Nav „Über mich" → ueber-mich.html     | ⏳ Ausstehend | —          |
+| Echte Kundenstimmen                   | ⏳ Ausstehend | —          |
 
-### Aktuelle Sprint-Aufgaben
+### Aktuelle Prioritäten
 
-- [ ] FAQ-Section (Accordion, gut für SEO/GEO)
-- [ ] SEO-Meta-Tags prüfen (title, description, og:*)
-- [ ] A11y-Audit: Kontraste, Fokus, Touch-Targets ≥44px
-- [ ] Über-mich-Unterseite ausbauen (ausführliche Story)
+- [ ] Nav-Link „Über mich" auf index.html von `#ueber` auf `ueber-mich.html` umstellen
+- [ ] Core Web Vitals auf Live-URL messen (PageSpeed Insights / Lighthouse im Browser)
+- [ ] Vollständigen A11y-Audit auf ueber-mich.html durchführen
+- [ ] Launch-Vorbereitung: Hosting-Umzug → Domain → noindex entfernen → v1.0
 
 ---
 
@@ -99,8 +108,10 @@ Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Pl
 | Styling         | Plain CSS             | —          | Adopt    | Volle Kontrolle, keine Build-Pipeline   |
 | Deployment      | GitHub Pages          | —          | Adopt    | Kostenlos, direkt aus Branch `main`     |
 | Kontakt         | mailto-Link           | —          | Adopt    | Serverlos, öffnet Mail-Client           |
-| Schrift (Text)  | Open Sauce Sans       | via CDN    | Adopt    | Humanistisch-rund, ruhige Wirkung       |
-| Schrift (Logo)  | Vaelia (lokal)        | —          | Adopt    | Organische Versalien, NN-Ligatur, nur Display |
+| Schrift (Text/Heading) | Figtree (variable, lokal) | 300–900 | Adopt | Klar, modern, lokal → kein Font-CDN-Risiko |
+| Schrift (Akzent) | Newsreader italic (lokal) | —      | Adopt    | `.g`-Klasse für kursive Hervorhebungen  |
+| Schrift (Logo)  | Vaelia (lokal)        | —          | Adopt    | Organische Versalien, NN-Ligatur, nur Display/Logo |
+| Schrift (Fallback) | Open Sauce Sans (lokal) | —     | Hold     | In `fonts/` vorhanden, nicht mehr primär eingesetzt |
 | Design-Atelier  | Claude Design         | —          | Adopt    | Visuelle Iterationen, Export via Handoff → ADR-004 |
 | Design-System   | Fresh Organic Hybrid  | —          | Adopt    | Chalk/Sand/Green/Sage/Clay Palette → ADR-005 |
 
@@ -110,44 +121,64 @@ Kein Online-Shop, kein CMS, keine Backend-Logik — bewusst schlank gehalten (Pl
 
 ```
 Website/
-├── index.html                          ← One-Page-Website (Haupt-Deliverable)
-├── style.css                           ← Alle Styles inkl. Mobile/Responsive
-├── script.js                           ← Interaktivität (Menü, Scroll-Reveal, mailto)
-├── image-slot.js                       ← Bild-Slot-Verwaltung (Claude Design Kompatibilität)
-├── Designsystem.html                   ← Lebendiges Komponenten-Board (aus Claude Design)
-├── PROJECT.md                          ← Diese Wissensdatenbank (Claude Code)
-├── PROTOKOLL.md                        ← Regressions-Schutz & Änderungsprotokoll (Claude Design)
-├── CLAUDE.md                           ← Arbeitsregeln für Claude (Brand Voice, A11y, Sync)
-├── README.md                           ← Projektbeschreibung
-├── skills-lock.json                    ← Installierte Skills (versioniert)
-├── images/
-│   ├── hero-visual.png                 ← Hero-Bild (Arbeitsplatz/Naturlicht)
-│   ├── about-workspace.png             ← Über-mich Hauptbild
-│   ├── about-weg.png                   ← Über-mich versetztes Bild (Bergweg)
-│   ├── zitat-weg.png                   ← Zitat-Band Hintergrund
-│   └── footer-weg.png                  ← Footer-Hintergrund
-├── fonts/
-│   ├── Vaelia.woff2                    ← Wortmarke-Font (primär)
-│   └── Vaelia.woff                     ← Wortmarke-Font (Fallback)
+├── index.html                  ← Startseite / One-Pager (Haupt-Deliverable)
+├── style.css                   ← Globale Styles (alle Sektionen, Mobile, Animationen)
+├── script.js                   ← Interaktivität (Burger, Scroll-Reveal, mailto, Accordion)
+├── ueber-mich.html             ← Über-mich-Unterseite (eigene Seite, .au-Klassen)
+├── ueber-mich.css              ← Seitenspezifische Styles für Über-mich (.au-Präfix)
+├── image-slot.js               ← Nur für Claude Design Atelier (nie in Produktion laden)
+├── Designsystem.html           ← Komponenten-Board für Claude Design (robots.txt: noindex)
+├── impressum.html              ← Impressum (DDG, noindex bis final)
+├── datenschutz.html            ← Datenschutzerklärung (TDDDG, noindex bis final)
+├── barrierefreiheit.html       ← Barrierefreiheits-Erklärung (noindex bis final)
+├── 404.html                    ← Fehlerseite im Markenlook (noindex)
+├── count.js                    ← GoatCounter lokal (cookieloses Analytics)
+├── PROJECT.md                  ← Diese Wissensdatenbank
+├── PROTOKOLL.md                ← Invarianten + Änderungshistorie (Regressions-Schutz)
+├── MEDIEN.md                   ← Bild-/Medienregister (Herkunft, Rechte, Varianten)
+├── WISSEN.md                   ← Schnell-Überblick & Doku-Landkarte
+├── WORKFLOW.md                 ← Branch-/PR-/Sync-Prozess (kanonisch)
+├── CLAUDE.md                   ← Verbindliche Regeln für alle KI-Werkzeuge
+├── ACCESSIBILITY_NOTES.md      ← A11y-Notizen und offene Punkte
+├── README.md                   ← Projektbeschreibung (GitHub)
+├── images/                     ← Optimierte Bilder (PNG-Fallback + WebP + -960.webp)
+│   ├── hero-visual.{png,webp,-960.webp}
+│   ├── hero-branding.{png,webp,-960.webp}
+│   ├── yoga.{png,webp,-960.webp}       ← Hero-Bento + Yoga-Sektion
+│   ├── about-workspace.{png,webp,-960.webp}
+│   ├── about-weg.{png,webp,-960.webp}
+│   ├── trust-*.{png,webp,-960.webp}    ← 4 Trust-Cards
+│   ├── zitat-weg.{png,webp,-960.webp}
+│   ├── claim-weg.{png,webp,-960.webp}
+│   ├── footer-weg.{png,webp,-960.webp}
+│   └── about-*.{png,webp}              ← 8 Bilder für ueber-mich.html
+├── fonts/                      ← Alle Schriften lokal (keine CDN)
+│   ├── figtree-latin-400-800.woff2     ← Hauptschrift (variable, 300–900)
+│   ├── newsreader-latin-italic.woff2   ← .g-Akzent kursiv
+│   ├── newsreader-latin-500.woff2      ← .g-Akzent aufrecht
+│   ├── Vaelia.{woff2,woff}             ← Wortmarke/Logo
+│   └── open-sauce-sans-latin-*.woff*   ← CSS-Fallback (nicht mehr primär)
 ├── brand/
-│   └── logos/                          ← Echte Brand-Logos (versioniert; SVG/PNG/PDF)
-├── favicon.svg                         ← Favicon (SVG, Brand-Linie)
-├── site.webmanifest                    ← Web-App-Manifest (Name, Farben, Icon)
-├── robots.txt                          ← Crawler-Steuerung + Sitemap-Verweis
-├── sitemap.xml                         ← Sitemap (öffentliche Seiten)
-├── .nojekyll                           ← GitHub Pages: kein Jekyll-Processing
-├── .editorconfig                       ← Einheitliche Formatierung über alle Editoren
-├── Screenshots Arbeitsdateien/         ← Design-Referenzmaterial
-│   (pics/, uploads/ = Atelier-Rohmaterial, via .gitignore NICHT im Repo)
-├── .agents/
-│   └── skills/
-│       └── frontend-design/            ← Frontend-Design-Skill (Anthropic)
-└── .claude/
-    └── skills/
-        └── ui-ux-pro-max/              ← UI/UX Pro Max Skill
+│   ├── logos/                          ← Brand-Logos (SVG/PNG/PDF, versioniert)
+│   └── bildwelt-und-prompts.md         ← Bildwelt-Guide + Prompts für neue KI-Bilder
+├── .github/
+│   ├── workflows/ci.yml                ← CI: HTML, Links, Lighthouse, Medien-Guard
+│   ├── pull_request_template.md
+│   ├── dependabot.yml
+│   └── lh-diagnose.cjs
+├── favicon.svg                 ← Favicon (SVG)
+├── site.webmanifest
+├── robots.txt                  ← Crawler-Steuerung (Designsystem.html: Disallow)
+├── sitemap.xml                 ← Sitemap (öffentliche Seiten)
+├── lighthouserc.json / lighthouserc.mobile.json
+├── .nojekyll                   ← GitHub Pages: kein Jekyll-Processing
+├── .editorconfig
+├── .gitignore                  ← pics/, uploads/, fonts/Zips, Tooling-Caches ignoriert
+└── .claude/skills/             ← Lokale Claude-Skills (gitignoriert)
+    (pics/, uploads/ = Atelier-Rohmaterial — NICHT im Repo, via .gitignore ignoriert)
 ```
 
-_Wird bei jeder Strukturänderung aktualisiert._
+_Stand: 2026-06-02._
 
 ---
 
@@ -746,11 +777,11 @@ _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Me
 | 3 | Deployment-Ziel?                         | GitHub Pages (direkt aus `main`)                      | 🟡 Mittel | ✅ Geklärt  |
 | 4 | Design-Richtung?                         | Fresh Organic Hybrid → ADR-005                        | 🟡 Mittel | ✅ Umgesetzt|
 | 5 | Brauchen wir ein CMS?                    | Nein — statisch, direkt im HTML pflegbar              | 🟢 Niedrig| ✅ Geklärt  |
-| 6 | SEO-Meta-Tags vollständig?               | title, description, og:* Tags fehlen noch             | 🟡 Mittel | ⏳ Offen   |
-| 7 | Über-mich-Unterseite nötig?              | Ja — CTA „Mehr über mich" erst verlinken wenn existiert| 🟡 Mittel | ⏳ Offen   |
-| 8 | FAQ-Section für SEO?                     | Accordion-Style wie „Mein Ansatz" — gut für GEO       | 🟡 Mittel | ⏳ Offen   |
-| 9 | Voices: echte Kundenstimmen?             | Aktuell Platzhalter — Vroni muss echte liefern        | 🟡 Mittel | ⏳ Offen   |
-| 10| A11y-Audit nötig (BFSG)?                | WCAG 2.1 AA verpflichtend seit 28.06.2025             | 🔴 Hoch   | ⏳ Offen   |
+| 6 | SEO-Meta-Tags vollständig?               | title, description, og:*, JSON-LD — alles erledigt   | 🟡 Mittel | ✅ Erledigt |
+| 7 | Über-mich-Unterseite nötig?              | Ja — `ueber-mich.html` live seit PR #34, 2026-06-02  | 🟡 Mittel | ✅ Erledigt |
+| 8 | FAQ-Section für SEO?                     | `<details><summary>` auf Startseite                  | 🟡 Mittel | ✅ Erledigt |
+| 9 | Voices: echte Kundenstimmen?             | Aktuell auskommentiert — Vroni muss echte liefern     | 🟡 Mittel | ⏳ Offen   |
+| 10| A11y-Audit nötig (BFSG)?                | WCAG 2.1 AA verpflichtend seit 28.06.2025; Grundlagen da, Vollaudit ausstehend | 🔴 Hoch | ⏳ Offen   |
 | 11| KI-Admin-Editor auf der Seite?           | Login-Bereich: Region markieren → in Worten beschreiben → KI setzt um. Auch für Kundenseiten. | 🟢 Idee | 💭 Zu scopen |
 
 ### Offene Frage 11 — KI-gestützter Admin-Editor (Vision von Veronika)
@@ -870,4 +901,4 @@ Diese Dinge nie vergessen (vollständige Liste in `PROTOKOLL.md`):
 
 _Dieses Dokument ist lebendig — es wächst mit dem Projekt._
 _Jede Session hinterlässt Spuren. Jede Entscheidung wird begründet. Jedes Learning wird gesichert._
-_Letzte Aktualisierung: 2026-06-01_
+_Letzte Aktualisierung: 2026-06-02_

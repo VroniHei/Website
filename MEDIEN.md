@@ -65,10 +65,10 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 |---|---|---|---|---|
 | hero-visual | 1848 KB → 96 KB | 900×1200 | index (Hero, OG-Image) | nein |
 | hero-branding | 2170 KB → 128 KB | 1672×941 | index (Hero-Bento) | nein |
-| hero-journaling | 1909 KB → 97 KB | 1662×946 | index (Hero-Bento) | nein |
-| about-workspace | 1866 KB → 84 KB | 1200×1500 | index (Über mich) | nein |
-| about-weg | 2522 KB → 249 KB | 900×1200 | index (Über mich) | nein |
-| yoga | 2149 KB → 153 KB | 1200×900 | index (Yoga) | nein |
+| ~~hero-journaling~~ | ~~1909 KB → 97 KB~~ | ~~1662×946~~ | ~~index (Hero-Bento)~~ — **entfernt 2026-06-02**, ersetzt durch `yoga` | — |
+| yoga | 2149 KB → 153 KB | 1200×900 | index (Hero-Bento + Yoga-Sektion) | nein |
+| about-workspace | 1866 KB → 84 KB | 1200×1500 | index (Über-mich-Sektion) | nein |
+| about-weg | 2522 KB → 249 KB | 900×1200 | index (Über-mich-Sektion) | nein |
 | trust-ehrliche-einschaetzung | 1885 KB → 99 KB | 1448×1086 | index (Werte) | nein |
 | trust-direkter-kontakt | 1820 KB → 75 KB | 1448×1086 | index (Werte) | nein |
 | trust-sortieren-vor-gestalten | 2237 KB → 130 KB | 1448×1086 | index (Werte) | nein |
@@ -76,6 +76,14 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 | zitat-weg | 1992 KB → 140 KB | 1600×900 | index (Zitat-Band, BG) | **ja** (`alt=""`) |
 | claim-weg | 1928 KB → 111 KB | 1500×1000 | index (Claim-Band, BG) | **ja** (`alt=""`) |
 | footer-weg | 2388 KB → 132 KB | 1600×1000 | index (Footer, BG) | **ja** (`alt=""`) |
+| about-panorama-bailey | 1800 KB → 81 KB | 1448×1086 | ueber-mich (Hero) | nein |
+| about-arbeiten | 1900 KB → 97 KB | 1122×1402 | ueber-mich (Hero Sub-Bild) | nein |
+| about-journal-mat | 1700 KB → 74 KB | 1122×1402 | ueber-mich (Gefühl + Kontakt-Avatar) | nein |
+| about-brand-essence | 1900 KB → 102 KB | 1402×1122 | ueber-mich (Wie ich arbeite, Bild 1) | nein |
+| about-wireframe | 2100 KB → 100 KB | 1536×1024 | ueber-mich (Wie ich arbeite, Bild 2) | nein |
+| about-bewegung-berge | 1800 KB → 64 KB | 1448×1086 | ueber-mich (Bewegung) | nein |
+| about-claim-see | 1600 KB → 87 KB | 1916×821 | ueber-mich (Claim-Band, BG) | **ja** (`alt=""`) |
+| about-persoenlich | 2000 KB → 97 KB | 1672×941 | ueber-mich (Persönlich) | nein |
 
 > ⚠️ **Performance-Notiz:** Ausgeliefert wird WebP (Desktop: volle `.webp`, Mobil: `-960.webp` via `srcset`/`sizes`).
 > Die PNG-Originale (~25,9 MB) dienen nur als Fallback und werden real kaum geladen (WebP-Support universell) —
@@ -107,16 +115,14 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Rechte:** siehe Abschnitt 1
 - **Änderungen:** `2026-06-02` — Ersterfassung.
 
-### hero-journaling
-- **Dateien:** `images/hero-journaling.png` (1909 KB) · `images/hero-journaling.webp` (97 KB)
-- **Maße:** 1662×946 px
-- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** — offen — · **Prompt:** — offen —
-- **Verwendung:** `index.html` (Hero-Bento, Soft-Grid)
-- **Alt-Text:** „Frau schreibt im Naturlicht in ihr Notizbuch, daneben Kaffee und Laptop — Gedanken sortieren"
-- **Dekorativ:** nein
-- **Rechte:** siehe Abschnitt 1
-- **Beachten:** Zeigt eine **KI-generierte Person** (kein reales Foto) — Transparenz bei späterer Verwendung beachten.
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+### ~~hero-journaling~~ — ENTFERNT
+
+- **Status:** ⛔ **Entfernt aus Repo am 2026-06-02** — Datei war verwaist (nicht mehr in HTML referenziert).
+- **Ursprüngliche Dateien:** `images/hero-journaling.png` · `images/hero-journaling.webp` · `images/hero-journaling-960.webp`
+- **Maße:** 1662×946 px · **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich
+- **War Verwendung:** `index.html` (Hero-Bento, Slot `.s-journal`) — ersetzt durch `yoga` (PR #32, 2026-06-02)
+- **Alt-Text war:** „Frau schreibt im Naturlicht in ihr Notizbuch, daneben Kaffee und Laptop — Gedanken sortieren"
+- **Änderungen:** `2026-06-02` — Ersterfassung. `2026-06-02` — Aus Repo entfernt (Cleanup PR, verwaist nach yoga-Ersatz).
 
 ### about-workspace
 - **Dateien:** `images/about-workspace.png` (1866 KB) · `images/about-workspace.webp` (84 KB)

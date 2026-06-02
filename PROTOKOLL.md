@@ -42,8 +42,9 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ### Schrift-System
 - [ ] **Vaelia = nur Display/Wortmarke** (Logo + `about-sign .as-brand`). NIEMALS für Fließtext.
-- [ ] Überschriften = **Open Sauce Sans 800**. Fließtext Open Sauce Sans 400.
-- [ ] **Alle Schriften lokal in `fonts/`** (Open Sauce Sans 400 = `.woff`, 500–800 = `.woff2`; Vaelia). **Keine externe Font-CDN** (kein Google Fonts, kein jsDelivr/Fontsource) — datenschutzrechtlich (IP-Übertragung) tabu.
+- [ ] Überschriften + Fließtext = **Figtree** (variable font 300–900, lokal in `fonts/figtree-latin-400-800.woff2`). Open Sauce Sans bleibt in `fonts/` als CSS-Fallback, wird aber nicht mehr primär eingesetzt.
+- [ ] **`.g`-Akzente** = Newsreader italic (`fonts/newsreader-latin-italic.woff2`). Für dieselbe Klasse aufrecht: `newsreader-latin-500.woff2`.
+- [ ] **Alle Schriften lokal in `fonts/`** (Figtree, Newsreader, Open Sauce Sans, Vaelia). **Keine externe Font-CDN** (kein Google Fonts, kein jsDelivr/Fontsource) — datenschutzrechtlich (IP-Übertragung) tabu.
 - [ ] **Kein `image-slot.js`** in der Produktionsdatei — stammt aus dem Design-Atelier, hat in Produktion nichts verloren.
 
 ### Bilder / Performance ⚠️ neu seit Design-Update V
@@ -144,35 +145,72 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 2. ASSETS (müssen ins Repo committet sein!)
 
-### Bilder (`images/`) — alle als PNG + WebP
-- `images/hero-visual.png` + `.webp` — Hero Hauptbild (900×1200)
-- `images/hero-branding.png` + `.webp` — Hero Bento links oben (1672×941)
-- `images/hero-journaling.png` + `.webp` — Hero Bento links unten (1662×946)
-- `images/about-workspace.png` + `.webp` — Über mich, Hauptbild (1200×1500)
-- `images/about-weg.png` + `.webp` — Über mich, versetztes Bild (900×1200)
-- `images/yoga.png` + `.webp` — Yoga-Section (1200×900)
-- `images/claim-weg.png` + `.webp` — Claim-Band (See/Wasser, goldene Stunde, 1500×1000)
-- `images/zitat-weg.png` + `.webp` — Zitat-Band Hintergrund (1600×900)
-- `images/footer-weg.png` + `.webp` — Footer Bild-Block (1600×1000)
-- `images/trust-ehrliche-einschaetzung.png` + `.webp` — Trust-Card 1 (1448×1086)
-- `images/trust-direkter-kontakt.png` + `.webp` — Trust-Card 2 (1448×1086)
-- `images/trust-sortieren-vor-gestalten.png` + `.webp` — Trust-Card 3 (1448×1086)
-- `images/trust-ki-werkzeug.png` + `.webp` — Trust-Card 4 (1448×1086)
+### Bilder (`images/`) — alle als PNG + WebP (+ optionale `-960.webp` Responsive-Variante)
+
+**Startseite (`index.html`):**
+- `images/hero-visual.png/.webp/-960.webp` — Hero Hauptbild (900×1200)
+- `images/hero-branding.png/.webp/-960.webp` — Hero Bento oben (1672×941)
+- `images/yoga.png/.webp/-960.webp` — Hero Bento unten + Yoga-Section (1200×900) *(ersetzt hero-journaling seit 2026-06-02)*
+- `images/about-workspace.png/.webp/-960.webp` — Über-mich-Sektion Startseite, Hauptbild (1200×1500)
+- `images/about-weg.png/.webp/-960.webp` — Über-mich-Sektion Startseite, versetztes Bild (900×1200)
+- `images/claim-weg.png/.webp/-960.webp` — Claim-Band Hintergrund (1500×1000)
+- `images/zitat-weg.png/.webp/-960.webp` — Zitat-Band Hintergrund (1600×900)
+- `images/footer-weg.png/.webp/-960.webp` — Footer Bild-Block (1600×1000)
+- `images/trust-ehrliche-einschaetzung.png/.webp/-960.webp` — Trust-Card 1 (1448×1086)
+- `images/trust-direkter-kontakt.png/.webp/-960.webp` — Trust-Card 2 (1448×1086)
+- `images/trust-sortieren-vor-gestalten.png/.webp/-960.webp` — Trust-Card 3 (1448×1086)
+- `images/trust-ki-werkzeug.png/.webp/-960.webp` — Trust-Card 4 (1448×1086)
+
+**Über-mich-Seite (`ueber-mich.html`):**
+- `images/about-panorama-bailey.png/.webp` — Hero Hauptbild (1448×1086)
+- `images/about-arbeiten.png/.webp` — Hero Sub-Bild (1122×1402)
+- `images/about-journal-mat.png/.webp` — Gefühl-Sektion + Kontakt-Avatar (1122×1402)
+- `images/about-brand-essence.png/.webp` — Wie ich arbeite, Bild 1 (1402×1122)
+- `images/about-wireframe.png/.webp` — Wie ich arbeite, Bild 2 (1536×1024)
+- `images/about-bewegung-berge.png/.webp` — Bewegung-Sektion (1448×1086)
+- `images/about-claim-see.png/.webp` — Claim-Band Hintergrund (1916×821)
+- `images/about-persoenlich.png/.webp` — Persönlich-Sektion (1672×941)
+
+> ⚠️ `hero-journaling.png/.webp/-960.webp` wurde 2026-06-02 entfernt — war durch `yoga` ersetzt und nicht mehr referenziert. Eintrag in `MEDIEN.md` als entfernt markiert.
 
 ### Fonts (`fonts/`)
-- `fonts/Vaelia.woff2`, `fonts/Vaelia.woff` — Wortmarke/Display
-- `fonts/figtree-latin-400-800.woff2` — Hauptschrift Figtree (variable font, 300–900)
+- `fonts/Vaelia.woff2`, `fonts/Vaelia.woff` — Wortmarke/Display (nur Logo)
+- `fonts/figtree-latin-400-800.woff2` — **Hauptschrift Figtree** (variable font, 300–900) — Überschriften + Fließtext
 - `fonts/newsreader-latin-italic.woff2` — Newsreader kursiv (400–600), für `.g`-Akzente
 - `fonts/newsreader-latin-500.woff2` — Newsreader aufrecht 500, für `.g` in normaler Schriftlage
+- `fonts/open-sauce-sans-latin-400-normal.woff` + `fonts/open-sauce-sans-latin-{500,600,700,800}-normal.woff2` — **CSS-Fallback** (bleibt in `@font-face`, wird nicht mehr primär geladen)
 
 ### Seiten (Root)
-- `index.html`, `style.css`, `script.js` — Startseite
-- `impressum.html` — Impressum (Platzhalter)
-- `datenschutz.html` — Datenschutzerklärung (Platzhalter)
+- `index.html`, `style.css`, `script.js` — Startseite (One-Pager)
+- `ueber-mich.html`, `ueber-mich.css` — Über-mich-Unterseite (`.au-`-Klassen, eigene CSS-Datei)
+- `impressum.html`, `datenschutz.html`, `barrierefreiheit.html`, `404.html` — Rechts-/Hilfsseiten
 
 ---
 
 ## 3. VERLAUF (neueste zuerst)
+
+### 2026-06-02 — Vollständige Hygiene-Runde: Datenmüll, Doku-Sync, Cleanup-Regel (Claude Code)
+
+**Was:**
+1. **`images/hero-journaling.{png,webp,-960.webp}` entfernt** — 3 Dateien waren vollständig verwaist (kein HTML referenziert sie mehr, seit `yoga` den Slot `.s-journal` im Hero-Bento ersetzt hat). MEDIEN.md-Eintrag als „entfernt" markiert.
+2. **`PROTOKOLL.md` Invarianten (Section 1) korrigiert:**
+   - Schrift-Invariante: „Open Sauce Sans 800" → **Figtree** als Hauptschrift (war seit der Hero-v4-Session überholt, aber in den Invarianten nicht nachgezogen worden).
+   - Fonts-Preload-Invariante: ergänzt um Figtree als render-kritischen Preload.
+3. **`PROTOKOLL.md` Section 2 ASSETS** vollständig aktualisiert:
+   - Fonts: Open Sauce Sans nun klar als „CSS-Fallback, nicht mehr primär"; Figtree, Newsreader ergänzt.
+   - Bilder: Startseiten-Bilder mit `-960.webp`-Varianten; `hero-journaling` als entfernt dokumentiert; 8 neue Über-mich-Bilder eingetragen; Seiten `ueber-mich.html` + `ueber-mich.css` ergänzt.
+4. **`PROTOKOLL.md` Section 4 TODOs** auf aktuellen Stand gebracht: Über-mich-Seite ✅, Strukturierte Daten ✅, GoatCounter ✅; neues TODO: Nav-Link `#ueber` → `ueber-mich.html`.
+5. **`PROTOKOLL.md` Section 5 Handoff-Checkliste Punkt 5** korrigiert: stand fälschlicherweise „direkt auf `main` arbeiten" — jetzt korrekt: „kurzlebiger Branch + PR".
+6. **`MEDIEN.md` Schnelltabelle** (Section 2): 8 neue about-*-Bilder eingetragen; hero-journaling als entfernt markiert; yoga-Verwendung präzisiert (Hero-Bento + Yoga-Sektion).
+7. **`WISSEN.md`** aktualisiert: ueber-mich.html + ueber-mich.css in Tech-Stack; Meilensteine + Offene Punkte aktuell.
+8. **`PROJECT.md`** auf aktuellen Stand gebracht: Status-Tabelle (91 % Fortschritt), Projektstruktur vollständig neu (alle echten Dateien), Offene Fragen (#6/#7/#8 erledigt), Font-Tabelle korrigiert (Figtree/Newsreader/Open-Sauce-Fallback/Vaelia), `_Letzte Aktualisierung_` auf 2026-06-02.
+9. **`sitemap.xml`**: `ueber-mich.html` mit `lastmod:2026-06-02` + priority 0.8 ergänzt; `index.html` lastmod auf 2026-06-02 gesetzt.
+10. **`CLAUDE.md`**: Neue Sektion **„Hygiene-Checkliste — nach jeder größeren Session (Definition of Done)"** eingefügt — strukturierte Checkliste für Datenmüll, Dokumentations-Sync und Code-Korrektheit, als feste Regel verankert.
+
+- **Warum:** Vronis Wunsch: „nichts in den Daten, das nicht gebraucht wird" + vollständige, widerspruchsfreie Dokumentation. Typischer Effekt mehrerer Handoff-/Implementierungs-Runden: Doku bleibt an einzelnen Stellen hinter dem Code zurück; ein dedizierter Hygiene-PR schließt diese Lücken.
+- **Wie:** Systematische Durchsicht aller Dokus (PROTOKOLL, MEDIEN, WISSEN, PROJECT), Abgleich mit tatsächlichem Repo-Stand (`git ls-files`, HTML-Grep), gezielter Edit pro Fundstelle.
+- **Abwägungen:** `hero-journaling`-Bilder gelöscht statt nur als „ungenutzt" markiert — User-Vorgabe war explizit „nichts Unnötiges". Die Bilder sind KI-generiert und können bei Bedarf über `brand/bildwelt-und-prompts.md` reproduziert werden.
+- **Konsequenz:** Repo ist jetzt konsistent: Dateien, MEDIEN.md, PROTOKOLL.md Invarianten und alle Wissensdokumente stimmen überein. Die neue Hygiene-Checkliste in `CLAUDE.md` stellt sicher, dass dieser Sync-Aufwand künftig nach jeder größeren Session anfällt — nicht erst wenn er sich angehäuft hat. Keine Änderung an der Live-Seite, keine neuen Dritt-Dienste.
 
 ### 2026-06-02 — Accordion-Fix + Über-mich-Seite v2 mit neuen Bildern (Claude Code)
 **Was:**
@@ -570,20 +608,21 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 4. OFFENE TODOS
 
-- [ ] **Echte Kundenstimmen** — Voices-Section auskommentiert, wartet auf echte Texte.
-- [ ] **Impressum + Datenschutz finalisieren** — Platzhalter-Seiten existieren; rechtlich prüfen/vervollständigen; dann `noindex` entfernen.
-- [ ] **Über-mich-Seite** (eigene Unterseite mit ausführlicher Story) + CTA auf Startseite verlinken.
-- [ ] **Lighthouse-Audit** im echten Browser (Chrome DevTools) durchführen — Performance-Score auf Mobile prüfen.
+- [ ] **Echte Kundenstimmen** — Voices-Section auskommentiert, wartet auf echte Texte von Vroni.
+- [ ] **Impressum + Datenschutz finalisieren** — Inhalt existiert; finaler eRecht24-Endcheck; dann `noindex` entfernen.
+- [x] **Über-mich-Seite** (eigene Unterseite mit ausführlicher Story) — ✅ erledigt PR #34 (2026-06-02, `.au-`-Version). Hinweis: Nav-Link auf `index.html` zeigt noch auf `#ueber` (Startseiten-Sektion) statt auf `ueber-mich.html` — separates TODO.
+- [ ] **Nav „Über mich" auf index.html** auf `ueber-mich.html` umstellen (statt `#ueber`).
+- [ ] **Lighthouse-Audit** im echten Browser (Chrome DevTools) — Performance-Score auf Mobile; Core Web Vitals auf Live-URL.
 - [ ] **Echten Domain-Canonical** setzen sobald Custom Domain steht (aktuell `vronihei.github.io/Website/`).
 - [x] **Favicon** — erledigt (`favicon.svg`, lokal).
-- [ ] **Strukturierte Daten** (Schema.org: Person, LocalBusiness, FAQPage) optional für GEO-Optimierung.
+- [x] **Strukturierte Daten** (Schema.org: Person, ProfessionalService, WebSite, FAQPage) — ✅ erledigt PR #21 (2026-06-02).
+- [x] **GoatCounter** — ✅ erledigt (cookielos, `count.js` lokal, kein Banner).
 
 ### Launch-Bündel (wenn Veronika Zeit hat — bewusst in EINEM Rutsch, in dieser Reihenfolge)
 - [ ] **Hosting-Umzug** → **Hostinger**; danach Datenschutz „Hosting" + Impressum-URLs anpassen.
 - [ ] **Eigene Domain `veronika-heidrich.de`** + HTTPS; danach alle `canonical`/OG-/`sitemap.xml`/`robots.txt`-URLs umstellen.
 - [ ] **Google Search Console**: Property anlegen → Verifizierungs-Meta-Tag einbauen → Sitemap einreichen (kein Tracking/Banner).
-- [ ] **GoatCounter** (cookieloses, kostenloses EU-Analytics): Skript einbauen + Datenschutz-Abschnitt „Reichweitenmessung". **Kein Consent-Banner, kein Borlabs nötig.**
-- [ ] **`noindex` entfernen** (Rechtsseiten) → eRecht24-Endcheck → final live → Stand als `v1.0` taggen.
+- [ ] **`noindex` entfernen** (Rechts- und Über-mich-Seiten) → eRecht24-Endcheck → final live → Stand als `v1.0` taggen.
 
 ### Ideen / größere Vorhaben (eigenes Projekt, später sauber scopen)
 - [ ] **KI-Admin-Editor**: eigener Login-Bereich, in dem man einen Bereich der Seite markiert, die Änderung in Worten beschreibt und die KI sie umsetzt (kein Drag&Drop). Auch für Kundenseiten gedacht. Braucht Backend/Auth + LLM-API + sichere Persistenz (Git-Commit + Preview). Details als offene Frage in `PROJECT.md`.
@@ -599,7 +638,7 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 2. **Immer ersetzen**: `<img>` → `<picture>` mit WebP; fehlende `width`/`height` ergänzen.
 3. **Immer prüfen**: Hat jedes neue Bild eine `.webp`-Variante? Ist es im Assets-Abschnitt dokumentiert?
 4. **Produktions-E-Mail**: immer `info@veronika-heidrich.de`.
-5. **Branch**: direkt auf `main` arbeiten — `main` ist der einzige Branch und die Produktionsquelle.
+5. **Branch**: **immer über kurzlebigen Branch + Pull Request** arbeiten, nie direkt auf `main` pushen. Namensschema: `feat/`, `fix/`, `design/`, `docs/`, `a11y/`. Squash-Merge nach Diff-Prüfung.
 6. **Protokoll**: nach jeder Runde Verlauf + Invarianten aktualisieren.
 7. **Zitat-Anführungszeichen**: `&ldquo;` (nicht ASCII `"`).
 8. **Jahr**: `© 2026` beibehalten bis Jahreswechsel.

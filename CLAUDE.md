@@ -16,6 +16,36 @@
   Verlauf (und ggf. Invarianten/Learnings) in `PROTOKOLL.md` ergänzen → committen/pushen bzw. Handoff.
 - Nichts wird gelöscht — `PROTOKOLL.md` ist **append-only** (Historie bleibt nachvollziehbar).
 
+## Hygiene-Checkliste — nach jeder größeren Session (Definition of Done)
+> Inspiriert von „Boy Scout Rule" (Code sauberer verlassen als vorgefunden) und „Definition of Done" aus Scrum.
+> Diese Checkliste läuft **nach jeder Session mit ≥ 1 Bild- oder Seitenänderung**, spätestens am PR-Ende.
+> Ziel: kein schleichender Datenmüll, keine veraltete Doku, keine Widersprüche zwischen Dateien.
+
+### Datenmüll / Verwaiste Assets
+- [ ] **Bilder in `images/`**: Ist jede Datei in mindestens einer HTML-Datei referenziert? (`grep -r "images/" --include="*.html"` + manueller Abgleich mit `ls images/`)
+- [ ] **CSS-Klassen**: Gibt es Klassen in einer `*.css`, die nirgends in HTML vorkommen? (bei großen Änderungen)
+- [ ] **Fonts in `fonts/`**: Ist jede Schriftdatei in `@font-face` in `style.css` oder `ueber-mich.css` referenziert?
+
+### Dokumentations-Sync (vier Dateien müssen konsistent sein)
+- [ ] **`MEDIEN.md` Schnelltabelle**: Enthält alle aktuell in Produktion genutzten Bilder; entfernte Bilder als „entfernt" markiert.
+- [ ] **`PROTOKOLL.md` Section 2 ASSETS**: Stimmt mit den tatsächlichen Dateien im Repo überein (Seiten, Bilder, Fonts)?
+- [ ] **`PROTOKOLL.md` Section 1 Invarianten**: Sind alle Invarianten noch korrekt und aktuell (keine veralteten Font- oder Layout-Angaben)?
+- [ ] **`PROTOKOLL.md` Section 4 TODOs**: Erledigte Items mit ✅ markieren; neue TODOs ergänzen.
+- [ ] **`WISSEN.md`**: Tech-Stack (Seiten, Schriften), Meilensteine und Offene Punkte aktuell?
+- [ ] **`PROJECT.md`**: Status-Tabelle (Meilensteine), Projektstruktur (Section 4), Offene Fragen-Tabelle (Section 8) aktuell?
+- [ ] **`sitemap.xml`**: Alle Content-Seiten mit korrektem `lastmod` eingetragen?
+
+### Code-Korrektheit
+- [ ] **Keine externe Font-CDN** (kein `googleapis`, `jsdelivr`, `fontsource` in HTML/CSS)?
+- [ ] **Kein `image-slot.js`** in Produktions-HTML-Dateien (`grep -r "image-slot" --include="*.html"`)?
+- [ ] **`<picture>` + WebP-Fallback** für alle Bilder?
+- [ ] **CI grün**: HTML-Validierung, interne Links, Lighthouse A11y ≥ 0.9?
+
+> **Wann pflichtmäßig, wann optional?**
+> - **Pflicht** (immer): Doku-Sync (MEDIEN, PROTOKOLL, WISSEN) + Datenmüll-Check bei Bild-/Seitenänderungen.
+> - **Optional** (bei Bedarf): CSS-Klassen-Audit, vollständiger Projektstruktur-Check.
+> Diese Checkliste ersetzt kein A11y-Audit — das ist ein eigener dedizierter Schritt.
+
 ## Zusammenarbeit & Sync-Workflow (verbindlich — Details in `WORKFLOW.md`)
 > Vollständiger Prozess: **`WORKFLOW.md`** (kanonische Quelle). Kurzfassung:
 - **`main`** = einzige dauerhafte Quelle der Wahrheit + Deployment-Ziel. Git ist das Rückgrat;
