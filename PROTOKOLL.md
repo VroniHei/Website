@@ -174,6 +174,16 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — Fix: CLS auf Rechtsseiten (Font-Preload) (Branch `fix/legal-cls-fontpreload`)
+- **Was:** Auf `datenschutz.html`, `impressum.html`, `barrierefreiheit.html`, `404.html` die zwei Font-Preloads
+  (`figtree-latin-400-800.woff2`, `Vaelia.woff2`) im `<head>` ergänzt — analog zur Startseite.
+- **Warum:** Mobile-Diagnose zeigte CLS 0,137 auf `datenschutz.html` (Ziel ≤0,1). Ursache (lokal verifiziert):
+  Rechtsseiten preloadeten die Schrift **nicht** → langer Textblock rendert erst in Fallback und rückt beim
+  Figtree-Swap nach. Startseite (mit Preload) hatte CLS 0,001.
+- **Wie:** Preload lädt die Schrift früh → Wechsel passiert vor dem ersten Zeichnen → kein Nachrücken.
+  **Optik bleibt 1:1 gleich** (kein Designeingriff, nur Stabilität beim Laden). HTML validiert (exit 0), Font-Dateien existieren.
+- **Konsequenz:** CLS auf allen Rechtsseiten stabilisiert; rein technischer, unsichtbarer Fix. Schließt die Performance-Runde ab.
+
 ### 2026-06-02 — CI: Performance-Diagnose (Main-Thread + CLS) (Branch `ci/perf-diagnostics`)
 - **Was:** Mobile-Lighthouse-Job um eine Diagnose-Ausgabe erweitert (`.github/lh-diagnose.cjs`): liest die
   `.lighthouseci/`-Reports und druckt pro Seite Performance, TBT, **JS-Ausführung (bootup-time)**, die
