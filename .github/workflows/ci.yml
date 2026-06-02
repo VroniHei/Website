@@ -47,3 +47,28 @@ jobs:
         run: |
           npm install -g @lhci/cli@0.14.x
           lhci autorun
+
+  medien-guard:
+    name: Medien-Register-Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Bild-Änderung erzwingt MEDIEN.md-Update
+        run: |
+          base='${{ github.event.pull_request.base.sha }}'
+          head='${{ github.event.pull_request.head.sha }}'
+          changed="$(git diff --name-only "$base...$head")"
+          echo "Geänderte Dateien im PR:"; echo "$changed"
+          if echo "$changed" | grep -qE '^images/'; then
+            if echo "$changed" | grep -qx 'MEDIEN.md'; then
+              echo "✓ images/ geändert und MEDIEN.md im selben PR aktualisiert."
+            else
+              echo "::error::Es wurden Bilder unter images/ geändert, aber MEDIEN.md nicht. Bitte den Medien-Eintrag im selben PR aktualisieren (siehe CLAUDE.md → Medien-Dokumentationspflicht)."
+              exit 1
+            fi
+          else
+            echo "✓ Keine Änderung unter images/ — nichts zu prüfen."
+          fi
