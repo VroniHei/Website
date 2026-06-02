@@ -592,3 +592,55 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 6. **Protokoll**: nach jeder Runde Verlauf + Invarianten aktualisieren.
 7. **Zitat-Anführungszeichen**: `&ldquo;` (nicht ASCII `"`).
 8. **Jahr**: `© 2026` beibehalten bis Jahreswechsel.
+
+---
+
+## VERLAUF — Session 2026-06-02 (Teil 2)
+
+### Handoff-Merge: Figtree-Feintuning-Block + `.hb-meta` + Yoga-Bild + Über-mich-Seite
+
+**Quellen:**
+- `HANDOFF-V7-HERO-FIGTREE.md` aus `Vroni Website (2)` Ordner — vollständiges Handoff-Dokument für Claude Code
+- `ueber-mich.html` aus `Vroni Website (2)` Ordner
+
+**Was:** Vollständige Implementierung des Handoff-Dokuments (was beim ersten Merge-Versuch noch fehlte):
+
+1. **`style.css` — `.hb-meta` Block (neu):**
+   - `.hb-meta`: flex, gap, padding-top, border-top-Trennlinie
+   - `.hb-meta span`: gedämpfte Keyword-Farbe (`rgba(35,34,26,.24)`), Punkt-Separator via `::after`
+
+2. **`style.css` — Figtree-Feintuning-Block (neu, ca. 60 Zeilen):**
+   - Seitenweite H2-Vereinheitlichung via `!important`
+   - Subline-Größen: `.pain .lead`, `.shead p`, `.contact .body` etc. → 18px/1.6
+   - „Das große Ganze"-Subline: `clamp(19px,1.85vw,22px)` / 600 / 1.5
+   - Display-Texte: `.cb-claim`, `.quote-band q`, `.footer-quote .fq-text` → `font-weight:650!important`
+   - Quote-Breite: `max-width:560px!important`
+   - Angebote, Big-Nodes, Trust-Cards, Yoga, Ansatz, Über-mich, Steps, Pain-Items, Footer — je mit design-spezifischen Werten
+   - Faden-Zeitstrahl: `fl` 650/15px, `fd` 13.5px
+   - Über-mich-Signatur: `.as-line{display:none!important}`, `.as-brand{margin-left:0!important}`
+
+3. **`style.css` — `@media (min-width:1600px)` (neu):**
+   - Hero H1: `clamp(60px,3.4vw,68px)`; `.hb-lede`: 21px
+
+4. **`index.html` — `.hb-meta` Keywords im Hero:**
+   - 4 Spans: Personal Branding · Webdesign & WordPress · KI-Workflows · Yoga & Bewegung
+   - Visuell als gedämpfte Punkt-getrennte Liste unter den CTAs
+
+5. **`index.html` + `ueber-mich.html` — Yoga-Bild im Bento:**
+   - `s-journal`: hero-journaling → yoga (srcset, src, Dimensionen, alt)
+
+6. **`ueber-mich.html` — neue Unterseite (vollständig):**
+   - Vorlage aus Claude Design, produktionsbereit
+   - noindex, Preloads, Favicon, Twitter-Meta
+   - font-weight:800 aus allen h1/h2/h3/h4-Regeln entfernt
+   - picture/960w-Srcset für alle Bilder
+   - image-slot.js entfernt, © 2026, echte Legal-Links
+
+**Warum:** HANDOFF-V7-HERO-FIGTREE.md (Section 3+4 u.a.) war beim ersten Merge (PR #31) noch nicht implementiert.
+
+**Abwägungen:**
+- `.lbl`-Eyebrow: Handoff sagt 12px, aber User hat in der letzten Session explizit 11px bestätigt → 11px beibehalten (User-Feedback > Handoff-Spec)
+- `h3,h4` global: Handoff sagt 700, aber User hat 650 explizit bestätigt → 650 bleibt global; feine Overrides (`.step h3`, `.big-node h4`) auf 600/700 per `!important` im Feintuning-Block
+- Display-Texte: Handoff sagt 700, aber User hat 650 nach langer Iteration bestätigt → 650!important
+
+**Dieser PR ersetzt PR #31** (falls noch offen) — schließ #31, merge diesen.

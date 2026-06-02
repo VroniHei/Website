@@ -200,6 +200,11 @@ img{max-width:100%;display:block;}
 .hb-soft .s-card .t1{display:block;font-weight:700;font-size:14px;color:var(--ink);line-height:1.15;}
 .hb-soft .s-card .t2{display:block;font-size:11.5px;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em;}
 
+/* Trust-Keywords unter den Hero-CTAs */
+.hb-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;margin:40px 0 0;padding-top:22px;border-top:1px solid rgba(35,34,26,.1);}
+.hb-meta span{position:relative;font-size:clamp(14px,1.2vw,17px);font-weight:700;letter-spacing:-.01em;color:rgba(35,34,26,.24);}
+.hb-meta span:not(:last-child)::after{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:rgba(35,34,26,.18);margin-left:28px;vertical-align:middle;}
+
 /* section heading block */
 .shead{max-width:760px;}
 .shead h2{margin:14px 0 0;}
@@ -680,6 +685,90 @@ img{max-width:100%;display:block;}
 .reveal.d3{transition-delay:.24s;}.reveal.d4{transition-delay:.32s;}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
 
+/* === Figtree-Feintuning seitenweit ============================================
+   Figtree wirkt optisch ca. 1–2px kleiner als Open Sauce Sans → kompensieren wir
+   mit etwas mehr Gewicht und +1–2px in Detailtexten. Line-Heights kürzer.
+   ============================================================================ */
+
+/* H2-Größe seitenweite Vereinheitlichung */
+.shead h2,.pain h2,.ansatz h2,.about h2,.yoga-intro h2,.steps-head h2,.contact h2{
+  font-size:clamp(32px,3.9vw,48px)!important;letter-spacing:-.025em;line-height:1.07!important;}
+
+/* Sublines */
+.pain .lead{font-size:18px!important;line-height:1.6!important;}
+.shead p,.steps-head p,.contact .body,.faq-intro p,.lead-sub{font-size:18px!important;line-height:1.6!important;}
+
+/* „Das große Ganze" Subline */
+.big .shead--center .lead-sub{
+  font-size:clamp(19px,1.85vw,22px)!important;line-height:1.5!important;
+  font-weight:600!important;color:var(--ink)!important;
+  letter-spacing:-.01em;max-width:42ch;margin-top:18px!important;}
+.big .shead--center .lead-body{font-size:16px!important;line-height:1.6!important;margin-top:14px!important;}
+
+/* Closer-Text über dem System-Block */
+.big-foot{font-size:16px!important;line-height:1.6!important;margin-top:38px!important;}
+
+/* Zitate + dunkle Sektionen: Gewicht hoch */
+.cb-claim,.quote-band q,.footer-quote .fq-text{font-weight:650!important;}
+.big-umbrella .u-tag{font-weight:700!important;}
+
+/* Quote-Breite */
+.quote-band blockquote{max-width:560px!important;}
+
+/* Angebote */
+.offer h3{font-weight:700!important;font-size:26px!important;}
+.offer .offer-for{font-size:17px!important;font-weight:600!important;color:var(--ink)!important;line-height:1.55!important;}
+.offer .desc,.offer p{font-size:16px!important;line-height:1.62!important;}
+
+/* „Ein roter Faden"-Box */
+.big-umbrella .u-tag{font-size:15.5px!important;letter-spacing:.18em!important;}
+.big-umbrella .u-sub{font-size:15.5px!important;line-height:1.55!important;font-weight:500!important;color:var(--ink-soft)!important;margin-top:12px!important;max-width:50ch!important;letter-spacing:0!important;}
+
+/* Big-Nodes */
+.big-node .bn-num{font-size:12px!important;font-weight:700!important;letter-spacing:.2em!important;margin-bottom:10px!important;}
+.big-node h4{font-weight:700!important;font-size:19px!important;letter-spacing:-.01em;margin:2px 0 8px!important;}
+.big-node p{font-size:15.5px!important;line-height:1.6!important;}
+
+/* Trust-Cards */
+.trust-card h3{font-weight:600!important;font-size:clamp(17px,1.5vw,19px)!important;line-height:1.3!important;letter-spacing:-.005em!important;}
+.trust-card p{font-size:15.5px!important;line-height:1.62!important;}
+
+/* Yoga */
+.yp-title{font-size:18px!important;font-weight:700!important;}
+.yp-desc{font-size:15.5px!important;line-height:1.6!important;}
+
+/* Ansatz + Über-mich-Body */
+.ansatz .body p,.about .body p{font-size:17px!important;line-height:1.6!important;}
+.about .body p.about-claim{font-size:clamp(19px,1.85vw,22px)!important;font-weight:600!important;line-height:1.45!important;letter-spacing:-.01em;}
+
+/* Über-mich-Signatur */
+.about-sign .as-line{display:none!important;}
+.about-sign .as-name-row{font-size:12px!important;gap:0!important;}
+.about-sign .as-brand{margin-left:0!important;align-self:flex-start!important;}
+
+/* Ansatz-Prinzipien */
+.principle .pt{font-size:18px!important;font-weight:600!important;}
+.principle .pbody .ptxt,.principle .pbody p{font-size:17px!important;line-height:1.6!important;}
+.principle .pn{font-size:14.5px!important;font-weight:700!important;}
+
+/* Faden-Zeitstrahl */
+.faden .eyebrow{margin-bottom:32px!important;}
+.faden .fl{font-size:15px!important;font-weight:650!important;letter-spacing:-.008em!important;margin-bottom:5px!important;}
+.faden .fd{font-size:13.5px!important;line-height:1.5!important;color:var(--ink-soft)!important;}
+
+/* Arbeitsweise-Steps */
+.step .slbl{font-size:11.5px!important;font-weight:700!important;letter-spacing:.22em!important;}
+.step h3,.step h4{font-weight:600!important;font-size:clamp(18px,1.6vw,20px)!important;line-height:1.25!important;margin:0 0 12px!important;letter-spacing:-.01em;}
+.step p{font-size:15.5px!important;line-height:1.55!important;}
+.step .snum{font-weight:700!important;}
+
+/* Pain-Items */
+.pain .pi-text{font-size:17px!important;line-height:1.55!important;color:var(--ink)!important;font-weight:500!important;}
+.pain .pi-cat{font-size:11.5px!important;font-weight:700!important;letter-spacing:.18em!important;}
+
+/* Footer „Über"-Spalte */
+.footer-col--about .fc-about{font-size:14.5px!important;line-height:1.6!important;}
+
 /* ===== responsive ===== */
 @media (max-width:1080px){
   .nav-links{display:none;}
@@ -847,4 +936,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   .quote-band .qb-img{animation:none;}
   .claim-band .cb-img{animation:none;}
   .steps-orb-a,.steps-orb-b{animation:none;}
+}
+
+@media (min-width:1600px){
+  .hero--bento .hb-h1{font-size:clamp(60px,3.4vw,68px);}
+  .hb-lede{font-size:21px;}
 }
