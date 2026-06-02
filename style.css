@@ -320,7 +320,7 @@ img{max-width:100%;display:block;}
 .about-sign .as-brand{font-family:var(--ff-display);font-weight:400;font-size:18px;letter-spacing:.015em;text-transform:uppercase;color:var(--ink);font-style:normal;position:relative;line-height:1;display:inline-block;margin-left:0;align-self:flex-start;}
 .about-sign .as-up{text-transform:uppercase;font-feature-settings:"dlig" 1;}
 .about-sign .as-brand::before{content:"";position:absolute;left:-3px;right:-3px;top:46%;height:2.5px;border-radius:3px;background:var(--green);transform:translateY(-50%);z-index:-1;}
-.about-cta{margin-top:26px;}
+.about-cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;}
 /* editorial 2-Bild-Komposition */
 .about-media{position:relative;}
 .about-media .am-main{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/5;
