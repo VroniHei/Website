@@ -178,10 +178,14 @@ img{max-width:100%;display:block;}
   letter-spacing:-.025em;margin:18px 0 0;color:var(--ink);text-wrap:balance;}
 .hero--bento .hb-h1 em{font-family:'Newsreader',Georgia,serif;font-weight:500;font-style:italic;letter-spacing:-.01em;font-size:1.12em;color:var(--ink);}
 .hb-lede{font-size:clamp(18px,1.35vw,21px);font-weight:450;line-height:1.55;color:#3a362e;max-width:46ch;margin:24px 0 0;text-wrap:pretty;}
+.hb-lede--2{margin-top:14px;font-size:clamp(16px,1.15vw,18px);color:#4a463c;}
 .hero--bento .hero-cta{display:flex;gap:12px;flex-wrap:nowrap;margin:30px 0 0;}
 .hero--bento .hero-cta .btn{padding:13px 22px;font-size:15px;white-space:nowrap;}
-/* Bento Soft-Grid: 2 Bilder links gestapelt, großes Bild rechts */
-.hb-soft{display:grid;grid-template-columns:.82fr 1.18fr;grid-template-rows:1.3fr .7fr;gap:16px;min-height:clamp(440px,58vh,560px);}
+/* Bento Soft-Grid: 2 Bilder links gestapelt, großes Bild rechts.
+   Höhe folgt der linken Copy-Spalte (Grid align-items:stretch + height:100%),
+   damit Bilder und Content visuell auf gleicher Linie enden. */
+.hb-visual{display:flex;flex-direction:column;height:100%;}
+.hb-soft{display:grid;grid-template-columns:.82fr 1.18fr;grid-template-rows:1.3fr .7fr;gap:16px;flex:1 1 auto;height:100%;min-height:480px;}
 .hb-soft .s-img{position:relative;overflow:hidden;border-radius:24px;box-shadow:0 20px 48px rgba(35,34,26,.14);
   animation:hbDrift 9s ease-in-out infinite;}
 .hb-soft .s-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
@@ -225,29 +229,37 @@ img{max-width:100%;display:block;}
   background:radial-gradient(circle,rgba(155,163,131,.28),transparent 70%);top:-170px;right:-150px;pointer-events:none;}
 .pain::after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;
   background:radial-gradient(circle,rgba(205,138,91,.16),transparent 70%);bottom:-140px;left:-100px;pointer-events:none;}
-.pain-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center;position:relative;z-index:1;}
-.pain-intro{position:relative;}
-.pain h2{max-width:14ch;margin-top:16px;}
+.pain-grid{display:block;position:relative;z-index:1;}
+.pain-intro--split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:start;}
+.pain-intro--split .pi-head{position:relative;}
+.pain-intro--split .eyebrow{display:inline-flex;}
+.pain h2{max-width:14ch;margin:16px 0 0;text-wrap:balance;}
 .pain h2 .hl{color:var(--green-deep);}
-.pain .lead{font-size:16px;color:#3a362e;margin:20px 0 0;line-height:1.65;max-width:44ch;}
+.pain-intro--split .pi-leads{display:flex;flex-direction:column;gap:14px;padding-top:6px;}
+.pain .lead{font-size:16px;color:#3a362e;margin:0;line-height:1.65;max-width:54ch;}
 .pain .setze{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-weight:700;font-size:17px;color:var(--ink);letter-spacing:-.01em;}
 .pain .setze::before{content:"";width:26px;height:2.5px;border-radius:2px;background:var(--green);}
-.pain-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.pain-item{background:rgba(255,255,255,.78);border:1px solid var(--white);border-radius:var(--r-md);
-  padding:22px 22px 24px;display:flex;flex-direction:column;gap:14px;
-  box-shadow:0 4px 16px rgba(35,34,26,.05);transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;}
-.pain-item:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(35,34,26,.10);border-color:var(--hair-soft);}
-.pain-item .ic{width:40px;height:40px;border-radius:12px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:#fff;}
-.pain-item .ic svg{width:20px;height:20px;}
+/* Pain-List Desktop: editoriales Haarlinien-Raster 2×3, kein Card-Chrome. */
+.pain-list{display:grid;grid-template-columns:repeat(2,1fr);margin-top:56px;
+  border-top:1px solid rgba(35,34,26,.09);}
+.pain-item{background:transparent;border:none;border-radius:0;box-shadow:none;
+  border-bottom:1px solid rgba(35,34,26,.09);
+  padding:26px 28px;display:flex;flex-direction:row;align-items:flex-start;gap:18px;min-height:0;
+  transition:background .28s ease;}
+.pain-item:nth-child(odd){border-right:1px solid rgba(35,34,26,.09);}
+.pain-item:hover{background:rgba(255,255,255,.55);transform:none;box-shadow:none;border-color:rgba(35,34,26,.09);}
+.pain-item .ic{width:42px;height:42px;border-radius:12px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:#fff;}
+.pain-item .ic svg{width:21px;height:21px;}
 .pain-item:nth-child(1) .ic{background:var(--green);color:var(--ink);}
 .pain-item:nth-child(2) .ic{background:var(--sage);}
 .pain-item:nth-child(3) .ic{background:var(--clay);}
 .pain-item:nth-child(4) .ic{background:var(--green-deep);}
 .pain-item:nth-child(5) .ic{background:var(--olive);}
 .pain-item:nth-child(6) .ic{background:var(--forest);}
-.pain-item .pi-body{display:flex;flex-direction:column;gap:6px;}
-.pain-item .pi-cat{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);}
-.pain-item .pi-text{font-size:15px;font-weight:500;line-height:1.5;color:var(--ink);margin:0;text-wrap:pretty;}
+.pain-item .pi-body{display:flex;flex-direction:column;gap:7px;padding-top:4px;min-width:0;}
+.pain-item .pi-cat{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);}
+.pain-item .pi-title{font-family:var(--ff);font-size:clamp(17px,1.5vw,19px);font-weight:600;line-height:1.3;letter-spacing:-.005em;color:var(--ink);margin:3px 0 0;text-wrap:balance;}
+.pain-item .pi-text{font-size:15.5px;font-weight:450;line-height:1.62;color:var(--ink-soft);margin:0;text-wrap:pretty;max-width:46ch;}
 
 /* ===== ANGEBOTE ===== */
 .offers{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:54px;}
@@ -762,9 +774,10 @@ img{max-width:100%;display:block;}
 .step p{font-size:15.5px!important;line-height:1.55!important;}
 .step .snum{font-weight:700!important;}
 
-/* Pain-Items */
-.pain .pi-text{font-size:17px!important;line-height:1.55!important;color:var(--ink)!important;font-weight:500!important;}
-.pain .pi-cat{font-size:11.5px!important;font-weight:700!important;letter-spacing:.18em!important;}
+/* Pain-Items (an Trust-Card-Standard angeglichen: Titel clamp(17,1.5vw,19)/600/-.005em, Text 15.5/1.62, Eyebrow 11/600/.2em wie .lbl) */
+.pain .pi-text{font-size:15.5px!important;line-height:1.62!important;color:var(--ink-soft)!important;font-weight:450!important;}
+.pain .pi-cat{font-size:11px!important;font-weight:600!important;letter-spacing:.2em!important;}
+.pain .pi-title{font-size:clamp(17px,1.5vw,19px)!important;line-height:1.3!important;font-weight:600!important;letter-spacing:-.005em!important;}
 
 /* Footer „Über"-Spalte */
 .footer-col--about .fc-about{font-size:14.5px!important;line-height:1.6!important;}
@@ -821,14 +834,20 @@ img{max-width:100%;display:block;}
   .steps-orb-b{bottom:-30px;right:6%;width:150px;height:150px;}
   /* INVARIANTE: am-main braucht explizite Höhe damit absolut positioniertes Bild sichtbar wird */
   .about-media .am-main{height:clamp(320px,70vw,520px);}
-  /* INVARIANTE Mobile/Tablet: Pain-Items als horizontale Liste, Icon links */
-  .pain-list{grid-template-columns:1fr;gap:10px;}
-  .pain-item{flex-direction:row;align-items:flex-start;gap:14px;padding:16px 18px;}
+  /* INVARIANTE Mobile/Tablet: Pain-Intro stack, Items als Card-Chrome (Hairline-Raster nur Desktop) */
+  .pain-intro--split{grid-template-columns:1fr;gap:18px;}
+  .pain-intro--split .pi-leads{padding-top:0;gap:12px;}
+  .pain-list{grid-template-columns:1fr;gap:10px;margin-top:32px;border-top:none;}
+  .pain-item{flex-direction:row;align-items:flex-start;gap:14px;padding:16px 18px;
+    background:rgba(255,255,255,.78);border:1px solid var(--white);border-radius:var(--r-md);
+    border-bottom:1px solid var(--white);box-shadow:0 4px 16px rgba(35,34,26,.05);}
+  .pain-item:nth-child(odd),.pain-item:nth-child(even){padding:16px 18px;border-right:none;}
   .pain-item .ic{width:38px;height:38px;border-radius:11px;}
   .pain-item .ic svg{width:20px;height:20px;}
-  .pain-item .pi-body{padding-top:2px;}
-  .pain-item .pi-cat{font-size:10px;}
-  .pain-item .pi-text{font-size:14.5px;line-height:1.45;}
+  .pain-item .pi-body{padding-top:2px;gap:5px;}
+  .pain-item .pi-cat{font-size:11px;}
+  .pain-item .pi-title{font-size:17px;line-height:1.3;}
+  .pain-item .pi-text{font-size:15.5px;line-height:1.55;}
   /* INVARIANTE Mobile/Tablet: Big-Nodes als horizontale Liste, Icon links – Titel + Text rechts gestapelt */
   .big-nodes{grid-template-columns:1fr;gap:14px;margin-top:18px;}
   .big-node{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"icon title" "icon desc";column-gap:16px;row-gap:4px;text-align:left;align-items:start;background:rgba(255,255,255,.7);border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:18px 20px;position:relative;}
@@ -854,9 +873,9 @@ img{max-width:100%;display:block;}
   /* Bento-Hero Mobile */
   .hero--bento{padding:110px 0 70px;}
   .hb-grid{grid-template-columns:1fr;gap:40px;}
-  .hb-visual{order:-1;}
+  .hb-visual{order:-1;height:auto;}
   .hb-copy{max-width:none;justify-content:flex-start;gap:0;}
-  .hb-soft{min-height:0;display:block;max-width:520px;margin:0 auto;}
+  .hb-soft{min-height:0;height:auto;display:block;max-width:520px;margin:0 auto;}
   .hb-soft .s-main{aspect-ratio:4/3;border-radius:24px;}
   .hb-soft .s-brand,.hb-soft .s-journal{display:none;}
 }
