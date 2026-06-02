@@ -174,6 +174,22 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — Hygiene-Runde 1: Repo entschlacken (Branch `chore/hygiene-cleanup`)
+- **Was:** Eindeutig sichere Ballast-/Tooling-Dateien aus dem Repo entfernt und per `.gitignore` dauerhaft ausgeschlossen:
+  `Screenshots Arbeitsdateien/` (~15,5 MB Arbeits-Screenshots), `skills/` (Dublette von `.claude/skills/`),
+  `skills-lock.json`, `.claude/skills/`, `.agents/skills/` (Claude-Tooling-Caches, kein Website-Inhalt).
+- **Warum:** Baseline-Audit (2026-06-02) zeigte ~42 MB von 44,8 MB Repo als Ballast. Ziel: „schlank & sauber",
+  und mit `.nojekyll` wurde all das bisher auch noch **öffentlich mitdeployed**.
+- **Wie:** `git rm -r` der Kandidaten + neue `.gitignore`-Abschnitte (Screenshots, Tooling-Skill-Caches).
+  Alle entfernten Pfade vorher geprüft: **nirgends** in HTML/CSS/JS referenziert.
+- **Bewusst NICHT angefasst (Grenzfälle / Invarianten):**
+  - `brand/` — laut `.gitignore`-Kommentar **absichtlich versioniert** (Quelle der Wahrheit für Logos).
+  - `images/*.png` — sind die **Pflicht-WebP-Fallbacks** (Invariante „Bilder/Performance"); Optimierung = eigener Performance-Schritt, kein Löschen.
+  - `image-slot.js`, `Designsystem.html` — in `CLAUDE.md` als Projektdateien gelistet → zur Klärung an Vroni offen.
+- **Alternativen:** PNG-Fallbacks gleich mit-optimieren — verworfen, gehört in den dedizierten Performance-PR (Trennung sauber halten).
+- **Learning:** `.gitignore` dokumentierte bereits die Absicht zu `brand/` — vor dem Löschen lohnt der Blick in vorhandene Regeln.
+- **Konsequenz:** Repo deutlich schlanker; keine Funktions-/Designänderung an der Live-Seite. Rechtstexte unberührt (kein Dritt-Dienst/Datenfluss verändert).
+
 ### 2026-06-01 — Design-Feinschliff: Typo-System, Hero, Sektionen (Branch `main`)
 
 **Typografie-System (alle Änderungen in `style.css`):**

@@ -43,3 +43,12 @@ fonts/vaelia-organic-font-*/
 # Echte Brand-Assets (Logos etc.) liegen versioniert in brand/ — NICHT hier.
 pics/
 uploads/
+
+# Arbeits-Screenshots (Dev-Material, nicht ins Live-Repo)
+Screenshots Arbeitsdateien/
+
+# Claude-Tooling / Skill-Caches (kein Website-Inhalt, werden lokal vorgehalten)
+.claude/skills/
+.agents/skills/
+skills/
+skills-lock.json
