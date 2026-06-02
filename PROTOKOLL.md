@@ -174,6 +174,19 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — Performance: Hintergrund auf Mobil statisch (Branch `perf/mobile-static-bg`)
+- **Was:** `@media (max-width:900px)`-Block in `style.css`, der die dekorativen Hintergrund-Animationen abschaltet
+  (`.hb-blob`, `.hb-soft .s-img`, `.quote-band .qb-img`, `.claim-band .cb-img`, `.steps-orb-*`). **Desktop bleibt animiert.**
+- **Warum:** Mobile-Lighthouse (#27) zeigte TBT 436 ms (Ziel ≤200). Die 4 großen `filter:blur(70px)`-Blobs sind teuer,
+  weil der Weichzeichner pro Animations-Frame neu gerastert wird. Auf schwacher Mobil-GPU (4×-Drossel) kostet das spürbar.
+  Vronis Idee: am Desktop animiert, mobil statisch — Akku/Flüssigkeit schonen.
+- **Wie:** Animationen mobil auf `none` (statisch = einmal zeichnen). Look/Blur bleibt erhalten, nur ohne Bewegung.
+  `prefers-reduced-motion`-Block bleibt zusätzlich bestehen (additive Ergänzung, keine Invariante verletzt).
+- **Ehrlichkeit/Messung:** TBT kommt teils aus diesem Render-Aufwand, teils evtl. aus `script.js`. Ob diese Änderung
+  allein 82→90+ schiebt, zeigt der Mobile-CI-Lauf — falls nicht, ist der nächste Hebel `script.js`. (Daten/Netzwerk
+  unberührt — CSS-Animation kostet CPU/GPU, keine Bytes.)
+- **Konsequenz:** Desktop-Erlebnis unverändert; Mobil weniger GPU/Akku-Last. Reine CSS-Änderung.
+
 ### 2026-06-02 — CI: Mobile-Lighthouse (informativ) (Branch `ci/lighthouse-mobile`)
 - **Was:** Neuer CI-Job `lighthouse-mobile` + `lighthouserc.mobile.json`. Fährt Lighthouse mit **mobiler Emulation**
   (lhci-Default: Moto G4 / Slow-4G, kein `preset:desktop`). Zusätzliche `largest-contentful-paint`/`cumulative-layout-shift`/
