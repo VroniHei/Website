@@ -592,3 +592,46 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 6. **Protokoll**: nach jeder Runde Verlauf + Invarianten aktualisieren.
 7. **Zitat-Anführungszeichen**: `&ldquo;` (nicht ASCII `"`).
 8. **Jahr**: `© 2026` beibehalten bis Jahreswechsel.
+
+---
+
+## VERLAUF — Session 2026-06-02
+
+### Handoff-Merge: Hero-Bento Yoga-Bild + neue Über-mich-Seite
+
+**Was:** Zwei Änderungen aus Claude Design Handoff übernommen:
+
+1. **Hero Bento: `s-journal` → Yoga-Bild** (`index.html`, Zeile ~161)
+   - Vorher: `hero-journaling.png/webp` (Frau schreibt ins Notizbuch)
+   - Nachher: `yoga.png/webp` (Yogaraum mit Matte, Block, Laufschuhen)
+   - Srcset aktualisiert: `yoga-960.webp 960w, yoga.webp 1122w`
+   - Dimensionen angepasst: `1200×900` (war 1662×946)
+   - Das Yoga-Bild war bereits in `images/` vorhanden (aus früherer Session)
+
+2. **Neue Seite `ueber-mich.html`** — vollständige „Über mich"-Unterseite
+   - Vorlage: Claude Design `ueber-mich.html` aus `Vroni Website (2)` Handoff
+   - Produktionsanpassungen gegenüber Design-Datei:
+     - `image-slot.js` entfernt (nur Atelier-Tool)
+     - `© 2025` → `© 2026`
+     - `href="#"` bei Legal-Links → echte Seiten (`impressum.html`, `datenschutz.html`, `barrierefreiheit.html`)
+     - `<meta name="robots" content="noindex">` ergänzt (bis Domain-Launch)
+     - Favicon, Manifest, Theme-Color, Twitter-Meta-Tags aus `index.html`-Muster ergänzt
+     - Preloads: Figtree + Vaelia + `about-workspace.webp` (Hero above-fold)
+     - Alle `font-weight:800/700` aus h1/h2/h3/h4-Regeln entfernt → globale 650-Regel aus `style.css` gilt
+     - `<picture>` + 960w-Srcset-Varianten für alle Bilder ergänzt: `about-workspace`, `about-weg`, `yoga`, `footer-weg`
+     - Kein Google Fonts / externe Font-CDN (war in Design-Vorlage nicht vorhanden — gut)
+   - Sektionen: Hero · Pain · Story/Werdegang · Roter-Faden-Statement · Methode/Prinzipien · Bewegung&Nervensystem · Für-wen · Erwartungen · Persönlich · Abschluss-CTA · Footer
+
+**Warum:** Vroni hat heute weitere Änderungen in Claude Design vorgenommen und die neue Über-mich-Seite erstellt. Der Merge-Auftrag war, die technischen Verbesserungen aus Claude Code (Fontregeln, Bild-Infrastruktur) zu erhalten und nur das neue Design oben drauf zu legen.
+
+**Abwägungen:**
+- Keine Änderung am Nav in `index.html` (`#ueber` → `ueber-mich.html`): User hat das nicht beauftragt, bestehende Anchor-Section bleibt als Quick-Preview auf der Startseite erhalten.
+- `um-method .shead` verwendet `.shead`-Klasse (geteilt mit anderen Sektionen in style.css) — Styles wurden als `.um-method .shead` scopet, kein Konflikt.
+- `script.js` auf ueber-mich.html: nav section-Spy gibt für Cross-Page-Links (`index.html#...`) null zurück, `if (s) spy.observe(s)` filtert diese sicher aus — kein JS-Fehler.
+
+**Assets:**
+- Keine neuen Assets: `yoga.png/webp`, `about-workspace.png/webp`, `about-weg.png/webp`, `footer-weg.png/webp` + je 960w-Variante bereits im Repo.
+
+**Nächste offene Punkte:**
+- Browser-Test der neuen Über-mich-Seite (Desktop + Mobile)
+- Nav-Link `index.html #ueber → ueber-mich.html` optional, wenn die Startseite-Teaser-Sektion aufgewertet oder entfernt wird

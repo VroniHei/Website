@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Über mich · Vroni · Veronika Heidrich</title>
+<meta name="description" content="Vroni Heidrich · Brand- und Website-Strategin mit KI als Werkzeug. Ihre Vielseitigkeit ist kein Durcheinander, sondern ein System: Floristik, Mediendesign, Marketing, Webdesign, Branding, KI, Yoga und Trailrunning — verbunden zu einer Arbeitsweise, die innere Klarheit in eine sichtbare Marke übersetzt.">
+<meta name="author" content="Veronika Heidrich">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://vronihei.github.io/Website/ueber-mich.html">
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Über mich · Vroni · Veronika Heidrich">
+<meta property="og:description" content="Mein Weg war nicht geradlinig, aber im Rückblick ziemlich logisch. Floristik, Design, Marketing, Webdesign, KI, Yoga und Trailrunning — verbunden zu einer Arbeitsweise.">
+<meta property="og:url" content="https://vronihei.github.io/Website/ueber-mich.html">
+<meta property="og:image" content="https://vronihei.github.io/Website/images/about-workspace.png">
+<meta property="og:site_name" content="InnerLine · Veronika Heidrich">
+<!-- Twitter/X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Über mich · Vroni · Veronika Heidrich">
+<meta name="twitter:description" content="Mein Weg war nicht geradlinig, aber im Rückblick ziemlich logisch. Floristik, Design, Marketing, Webdesign, KI, Yoga und Trailrunning — verbunden zu einer Arbeitsweise.">
+<meta name="twitter:image" content="https://vronihei.github.io/Website/images/about-workspace.png">
+<!-- Performance: Preload (alle Schriften lokal gehostet) -->
+<link rel="preload" href="fonts/figtree-latin-400-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Vaelia.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="images/about-workspace.webp" as="image" type="image/webp">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2C3522">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== ueber-mich · seitenspezifisch ===== */
+.um-hero{position:relative;padding:160px 0 96px;overflow:hidden;background:linear-gradient(180deg,var(--chalk) 0%,#F4EFE3 100%);}
+.um-hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(203,190,244,.22),transparent 65%);top:-160px;right:-140px;pointer-events:none;filter:blur(12px);}
+.um-hero::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.16),transparent 65%);bottom:-140px;left:-120px;pointer-events:none;filter:blur(12px);}
+.um-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .95fr;gap:clamp(36px,5vw,72px);align-items:center;}
+.um-hero-copy{max-width:600px;}
+.um-hero h1{font-size:clamp(38px,4.6vw,62px);letter-spacing:-.035em;line-height:1.04;margin:18px 0 0;text-wrap:balance;}
+.um-hero h1 .g{color:var(--green-deep);}
+.um-hero .sub{font-size:clamp(17px,1.7vw,19px);color:#3a362e;line-height:1.55;margin:24px 0 32px;max-width:54ch;text-wrap:pretty;}
+.um-hero .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.um-hero-img{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 70px rgba(35,34,26,.18);}
+.um-hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.5s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.um-hero-img:hover img{transform:scale(1.04);}
+
+/* Pain Einstieg */
+.um-pain{padding:96px 0;background:linear-gradient(180deg,#F4EFE3 0%,#EFEADD 100%);position:relative;overflow:hidden;}
+.um-pain .wrap{max-width:780px;margin:0 auto;text-align:center;}
+.um-pain h2{letter-spacing:-.02em;line-height:1.1;margin:14px 0 28px;text-wrap:balance;}
+.um-pain h2 .g{color:var(--green-deep);}
+.um-pain p{font-size:17px;line-height:1.7;color:#3a362e;margin:0 0 18px;text-wrap:pretty;}
+.um-pain p:last-child{margin-bottom:0;font-weight:600;color:var(--ink);}
+
+/* Story / Werdegang */
+.um-story{padding:104px 0;position:relative;background:var(--chalk);}
+.um-story-head{text-align:center;max-width:760px;margin:0 auto 64px;}
+.um-story-head h2{letter-spacing:-.02em;line-height:1.08;margin:14px 0 0;text-wrap:balance;}
+.um-story-head h2 .g{color:var(--green-deep);}
+.um-story-head p{font-size:16.5px;color:var(--ink-soft);margin:18px auto 0;line-height:1.65;max-width:620px;}
+.um-stations{position:relative;max-width:860px;margin:0 auto;}
+.um-stations::before{content:"";position:absolute;left:28px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,
+  color-mix(in srgb,var(--clay) 50%, transparent), color-mix(in srgb,var(--clay) 20%, transparent));}
+.um-station{position:relative;padding:0 0 36px 80px;}
+.um-station:last-child{padding-bottom:0;}
+.um-station .ums-num{position:absolute;left:0;top:0;width:58px;height:58px;border-radius:50%;
+  background:var(--white);border:2px solid var(--clay);display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:14px;color:var(--clay);letter-spacing:-.01em;
+  box-shadow:0 4px 14px rgba(35,34,26,.08);}
+.um-station h3{font-size:22px;letter-spacing:-.01em;margin:6px 0 8px;}
+.um-station h3 small{display:block;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);margin-bottom:4px;}
+.um-station p{font-size:15.5px;color:var(--ink-soft);line-height:1.65;margin:0;max-width:56ch;}
+
+/* Roter Faden — Editorial Statement */
+.um-claim{padding:104px 0;background:linear-gradient(180deg,#EFEADD 0%,#EAE3D4 100%);position:relative;overflow:hidden;}
+.um-claim::before{content:"";position:absolute;width:440px;height:440px;border-radius:50%;
+  background:radial-gradient(circle,rgba(203,190,244,.20),transparent 65%);top:-140px;left:-120px;pointer-events:none;filter:blur(12px);}
+.um-claim .wrap{max-width:880px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.um-claim h2{letter-spacing:-.025em;line-height:1.1;margin:18px 0 32px;text-wrap:balance;}
+.um-claim h2 .g{color:var(--green-deep);}
+.um-claim p{font-size:17px;line-height:1.7;color:#3a362e;margin:0 0 18px;max-width:64ch;margin-left:auto;margin-right:auto;text-wrap:pretty;}
+.um-claim .um-claim-anchor{display:inline-block;font-family:var(--ff-display);font-weight:400;font-size:clamp(22px,2.4vw,32px);text-transform:uppercase;font-feature-settings:"dlig" 1;letter-spacing:.012em;color:var(--ink);position:relative;margin-top:18px;}
+.um-claim .um-claim-anchor::before{content:"";position:absolute;left:-6px;right:-6px;top:46%;height:4px;border-radius:4px;background:var(--green);transform:translateY(-50%);z-index:-1;}
+
+/* Wie ich arbeite — Prinzipien */
+.um-method{padding:104px 0;background:var(--chalk);}
+.um-method .shead{max-width:760px;margin:0 auto 56px;text-align:center;}
+.um-method .shead h2{letter-spacing:-.02em;line-height:1.08;margin:14px 0 0;text-wrap:balance;}
+.um-method .shead p{font-size:16.5px;color:var(--ink-soft);margin:18px auto 0;line-height:1.65;max-width:600px;}
+.um-prin{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.um-prin-card{background:var(--white);border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:28px 30px;
+  box-shadow:0 4px 18px rgba(35,34,26,.05);transition:border-color .3s ease, transform .3s cubic-bezier(.2,.7,.15,1), box-shadow .3s ease;}
+.um-prin-card:hover{border-color:color-mix(in srgb,var(--green-deep) 35%, transparent);transform:translateY(-3px);box-shadow:0 18px 38px rgba(35,34,26,.08);}
+.um-prin-card .num{font-weight:800;font-size:32px;letter-spacing:-.02em;line-height:1;
+  color:color-mix(in srgb,var(--green) 55%, var(--chalk));margin-bottom:14px;}
+.um-prin-card h3{font-size:18px;margin:0 0 8px;letter-spacing:-.01em;line-height:1.3;}
+.um-prin-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin:0;text-wrap:pretty;}
+
+/* Bewegung & Nervensystem — Editorial Block */
+.um-energy{padding:104px 0;background:var(--forest);color:var(--chalk);position:relative;overflow:hidden;}
+.um-energy::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.13),transparent 68%);top:-160px;right:-140px;pointer-events:none;}
+.um-energy::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(203,190,244,.14),transparent 68%);bottom:-140px;left:-120px;pointer-events:none;}
+.um-energy-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,72px);align-items:center;position:relative;z-index:1;}
+.um-energy h2{color:var(--chalk);letter-spacing:-.02em;line-height:1.1;margin:14px 0 24px;text-wrap:balance;}
+.um-energy h2 .g{color:var(--green);}
+.um-energy p{font-size:16.5px;line-height:1.7;color:#cdd2c4;margin:0 0 16px;text-wrap:pretty;}
+.um-energy p:last-child{margin-bottom:0;}
+.um-energy .lbl{color:var(--green);}
+.um-energy-img{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;
+  box-shadow:0 30px 70px rgba(0,0,0,.4);}
+.um-energy-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.5s cubic-bezier(.2,.7,.15,1);}
+.um-energy-img:hover img{transform:scale(1.05);}
+
+/* Für wen — Match/No-Match */
+.um-match{padding:104px 0;background:linear-gradient(180deg,var(--chalk) 0%,#F4EFE3 100%);}
+.um-match-head{text-align:center;max-width:680px;margin:0 auto 56px;}
+.um-match-head h2{letter-spacing:-.02em;line-height:1.08;margin:14px 0 0;text-wrap:balance;}
+.um-match-head p{font-size:16.5px;color:var(--ink-soft);margin:18px auto 0;line-height:1.65;max-width:560px;}
+.um-match-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1040px;margin:0 auto;}
+.um-match-col{background:var(--white);border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:30px 32px;
+  box-shadow:0 4px 18px rgba(35,34,26,.04);}
+.um-match-col h3{font-size:18px;letter-spacing:-.01em;margin:0 0 18px;display:flex;align-items:center;gap:11px;}
+.um-match-col h3 .ic{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.um-match-col h3 .ic svg{width:16px;height:16px;}
+.um-match-col.match h3 .ic{background:var(--green);color:var(--ink);}
+.um-match-col.no h3 .ic{background:var(--sand);color:var(--clay);}
+.um-match-col ul{margin:0;padding:0;list-style:none;}
+.um-match-col li{font-size:15px;color:#3a362e;line-height:1.55;padding:10px 0 10px 26px;position:relative;border-bottom:1px solid var(--hair-soft);}
+.um-match-col li:last-child{border-bottom:none;}
+.um-match-col li::before{content:"";position:absolute;left:0;top:18px;width:13px;height:2px;background:var(--clay);border-radius:2px;}
+.um-match-col.match li::before{background:var(--green-deep);}
+
+/* Erwartungen — kompakte Card-Liste */
+.um-promise{padding:104px 0;background:var(--chalk);}
+.um-promise .shead{max-width:760px;margin:0 auto 56px;text-align:center;}
+.um-promise .shead h2{letter-spacing:-.02em;line-height:1.08;margin:14px 0 0;text-wrap:balance;}
+.um-promise .shead p{font-size:16.5px;color:var(--ink-soft);margin:18px auto 0;line-height:1.65;max-width:600px;}
+.um-promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.um-promise-card{background:var(--white);border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:24px 26px;
+  display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 18px rgba(35,34,26,.04);}
+.um-promise-card .lbl{color:var(--green-deep);font-size:10.5px;}
+.um-promise-card h4{font-size:15.5px;margin:0;line-height:1.35;letter-spacing:-.005em;}
+.um-promise-card p{font-size:14px;color:var(--ink-soft);line-height:1.55;margin:0;}
+
+/* Persönlich — Bailey + Berge */
+.um-personal{padding:104px 0;background:linear-gradient(180deg,#F4EFE3 0%,#EAE3D4 100%);position:relative;overflow:hidden;}
+.um-personal::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.14),transparent 65%);top:-160px;right:-140px;pointer-events:none;filter:blur(12px);}
+.um-personal-grid{display:grid;grid-template-columns:.95fr 1.15fr;gap:clamp(40px,5vw,72px);align-items:center;position:relative;z-index:1;}
+.um-personal h2{letter-spacing:-.02em;line-height:1.1;margin:14px 0 24px;text-wrap:balance;}
+.um-personal h2 .g{color:var(--green-deep);}
+.um-personal p{font-size:16.5px;line-height:1.7;color:#3a362e;margin:0 0 18px;text-wrap:pretty;}
+.um-personal p:last-child{margin-bottom:0;}
+.um-personal-img{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;
+  box-shadow:0 30px 70px rgba(35,34,26,.18);}
+.um-personal-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.5s cubic-bezier(.2,.7,.15,1);}
+.um-personal-img:hover img{transform:scale(1.05);}
+
+/* Abschluss-CTA */
+.um-final{padding:104px 0;background:var(--ink);color:var(--chalk);position:relative;overflow:hidden;}
+.um-final::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.14),transparent 68%);top:-160px;left:-140px;pointer-events:none;}
+.um-final::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(203,190,244,.14),transparent 68%);bottom:-140px;right:-120px;pointer-events:none;}
+.um-final .wrap{max-width:880px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.um-final h2{color:var(--chalk);letter-spacing:-.025em;line-height:1.1;margin:18px 0 24px;text-wrap:balance;}
+.um-final h2 .g{color:var(--green);}
+.um-final p{font-size:17px;line-height:1.7;color:#cdd2c4;margin:0 0 36px;max-width:60ch;margin-left:auto;margin-right:auto;text-wrap:pretty;}
+.um-final .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.um-final .btn--sec{color:var(--chalk);border-color:var(--chalk);}
+.um-final .btn--sec:hover{background:var(--chalk);color:var(--ink);}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .um-hero-img img,.um-energy-img img,.um-personal-img img{transition:none;}
+  .um-hero-img:hover img,.um-energy-img:hover img,.um-personal-img:hover img{transform:none;}
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .um-hero{padding:140px 0 64px;}
+  .um-hero-grid{grid-template-columns:1fr;gap:36px;}
+  .um-hero-img{order:-1;aspect-ratio:5/6;max-width:480px;margin:0 auto;}
+  .um-pain{padding:72px 0;}
+  .um-story,.um-claim,.um-method,.um-energy,.um-match,.um-promise,.um-personal,.um-final{padding:72px 0;}
+  .um-stations::before{left:22px;}
+  .um-station{padding-left:64px;}
+  .um-station .ums-num{width:46px;height:46px;font-size:13px;}
+  .um-prin{grid-template-columns:1fr;}
+  .um-energy-grid,.um-personal-grid{grid-template-columns:1fr;gap:36px;}
+  .um-energy-img,.um-personal-img{max-width:460px;margin:0 auto;order:-1;}
+  .um-match-grid{grid-template-columns:1fr;}
+  .um-promise-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#hero-main" class="skip-link">Zum Hauptinhalt springen</a>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html#top" class="brand brand--line" aria-label="INNERLINE — Brand- und Website-Strategie von Veronika Heidrich · Startseite">
+      <span class="bl-word"><span class="bl-up">inn</span><span class="bl-tail">erline</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#angebote">Angebote</a>
+      <a href="index.html#system">Ansatz</a>
+      <a href="ueber-mich.html" aria-current="page">Über mich</a>
+      <a href="index.html#yoga">Yoga</a>
+      <a href="index.html#trust">Werte</a>
+      <a href="index.html#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html#kontakt" class="btn btn--pri btn--sm">Lass uns reden</a>
+      <button class="nav-burger" id="burger" aria-label="Menü öffnen"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#angebote">Angebote</a>
+  <a href="index.html#system">Ansatz</a>
+  <a href="ueber-mich.html" aria-current="page">Über mich</a>
+  <a href="index.html#yoga">Yoga</a>
+  <a href="index.html#trust">Werte</a>
+  <a href="index.html#kontakt" class="btn btn--pri">Lass uns reden</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<header class="um-hero" id="hero-main">
+  <div class="wrap">
+    <div class="um-hero-grid">
+      <div class="um-hero-copy">
+        <span class="eyebrow"><span class="dot"></span><span class="lbl">Über mich</span></span>
+        <h1>Ich helfe dir, aus vielen Ideen einen <span class="g">klaren roten Faden</span> zu machen.</h1>
+        <p class="sub">Ich bin Vroni und ich arbeite mit Selbstständigen, Expert:innen und kreativen Unternehmer:innen, die viel zu sagen haben — aber das Gefühl, dass es noch nicht klar genug nach außen kommt. Mit Strategie, Design, KI und einem ziemlich guten Gespür dafür, wann etwas stimmig ist und wann es nur hübsch tut.</p>
+        <div class="hero-cta">
+          <a href="index.html#kontakt" class="btn btn--pri btn--lg">Projekt anfragen</a>
+          <a href="#method" class="btn btn--sec">Meine Arbeitsweise</a>
+        </div>
+      </div>
+      <div class="um-hero-img">
+        <picture><source type="image/webp" srcset="images/about-workspace-960.webp 960w, images/about-workspace.webp 1122w" sizes="(max-width: 768px) 100vw, 1122px"><img src="images/about-workspace.png" width="1122" height="1402" loading="eager" decoding="async" alt="Vroni am Laptop bei der Website-Strategie, daneben ein Notizbuch mit handschriftlichen Notizen"></picture>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== PAIN-EINSTIEG ===================== -->
+<section class="um-pain">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span><span class="lbl">Vielleicht kennst du das</span></span>
+    <h2>Du kannst viel. Vielleicht <span class="g">sogar zu viel</span>, wenn du es auf eine Bio bringen sollst.</h2>
+    <p>Da sind deine Erfahrungen, deine Ideen, deine Werte, deine Angebote und der Wunsch, endlich klar sichtbar zu werden, ohne dich dabei in eine Rolle zu pressen.</p>
+    <p>Vielleicht steht deine Website schon. Fühlt sich aber nicht mehr nach dir an. Vielleicht hast du das Gefühl, du machst zu viel — oder gleichzeitig noch zu wenig sichtbar.</p>
+    <p>Genau an diesem Punkt beginnt meine Arbeit.</p>
+  </div>
+</section>
+
+<!-- ===================== STORY / WERDEGANG ===================== -->
+<section class="um-story" id="weg">
+  <div class="wrap">
+    <div class="um-story-head">
+      <span class="eyebrow"><span class="dot"></span><span class="lbl">Mein Weg</span></span>
+      <h2>Mein Weg war nicht geradlinig. Aber im Rückblick <span class="g">ziemlich logisch.</span></h2>
+      <p>Sechs Stationen, sechs Werkzeuge, ein Thema: Ich habe immer Dinge in Form gebracht. Das ist die ehrliche Kurzfassung.</p>
+    </div>
+    <div class="um-stations">
+      <div class="um-station">
+        <span class="ums-num">01</span>
+        <h3><small>Floristik</small>Form, Farbe, Atmosphäre</h3>
+        <p>Mein erster Beruf hat mir beigebracht, mit Materialien, Licht und Komposition Stimmungen zu bauen. Wie man Unsichtbares — Gefühl, Anlass, Charakter — in etwas Sichtbares übersetzt. Das ist bis heute mein Werkzeugkasten.</p>
+      </div>
+      <div class="um-station">
+        <span class="ums-num">02</span>
+        <h3><small>Mediengestaltung</small>Visuelles Handwerk</h3>
+        <p>Layout, Typografie, Gestaltungsraster, Markenästhetik. Die Basis, mit der ich heute Marken sichtbar mache — präzise, sauber, und so, dass es nicht aussieht wie aus einem Template gefallen.</p>
+      </div>
+      <div class="um-station">
+        <span class="ums-num">03</span>
+        <h3><small>Marketing</small>Strategie + Zielgruppe</h3>
+        <p>Die Erkenntnis, dass schönes Design allein nichts bewirkt, wenn die Botschaft nicht klar ist. Strategie, Zielgruppen-Verständnis, Kampagnen-Logik. Hier habe ich gelernt, dass jede Designentscheidung eine Frage davor beantwortet.</p>
+      </div>
+      <div class="um-station">
+        <span class="ums-num">04</span>
+        <h3><small>Webdesign · WordPress · Elementor</small>Marken digital erlebbar machen</h3>
+        <p>Heute mein Hauptwerkzeug, um Marken in einen Raum zu bringen, in dem sie wirken: Struktur, UX, Content, Technik und Gestaltung in einem System zusammen denken. Mit WordPress, Elementor und sauberer SEO-Grundlage.</p>
+      </div>
+      <div class="um-station">
+        <span class="ums-num">05</span>
+        <h3><small>KI-gestützte Workflows</small>Sparringspartner, nicht Ersatz</h3>
+        <p>KI hat meine Art zu arbeiten beschleunigt — nicht abgenommen. Ich nutze sie als Sparringspartner für Struktur, Content, Website-Logik und kreative Prozesse. Ich komme schneller zu Klarheit, aber die Richtung kommt nach wie vor von mir und dir.</p>
+      </div>
+      <div class="um-station">
+        <span class="ums-num">06</span>
+        <h3><small>Yoga · Trailrunning · Nervensystem</small>Körper, Energie, Ausdauer</h3>
+        <p>Auf dem Trail und auf der Yogamatte habe ich verstanden, dass nachhaltige Leistung etwas anderes ist als Dauerstress. Diese Haltung trage ich in jedes Marken- und Website-Projekt: Klarheit braucht Raum. Sichtbarkeit braucht Energie, die du nicht jeden Morgen neu erfinden musst.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROTER FADEN STATEMENT ===================== -->
+<section class="um-claim">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span><span class="lbl">Der rote Faden</span></span>
+    <h2>Was sich durch alles zieht: <span class="g">Ich bringe Dinge in Form.</span></h2>
+    <p>Ob Blumenarrangement, Brand Design, Website-Struktur oder Yoga-Sequenz — im Kern ging es bei mir immer darum, etwas Unsichtbares in eine Form zu bringen, die man sehen, fühlen und verstehen kann. Eine Stimmung. Eine Idee. Eine Haltung. Einen roten Faden.</p>
+    <p>Heute nutze ich genau diese Fähigkeit für Marken und Websites: Ich sortiere, verdichte und übersetze das, was oft schon da ist, aber noch nicht klar sichtbar wird.</p>
+    <span class="um-claim-anchor">innerline</span>
+  </div>
+</section>
+
+<!-- ===================== METHODE ===================== -->
+<section class="um-method" id="method">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow"><span class="dot"></span><span class="lbl">Wie ich arbeite</span></span>
+      <h2>Klar, strategisch und <span class="g">ziemlich ehrlich.</span></h2>
+      <p>Fünf Prinzipien, an denen sich jede Zusammenarbeit mit mir orientiert. Kein heiliger Stein, aber ein verlässlicher Rahmen.</p>
+    </div>
+    <div class="um-prin">
+      <div class="um-prin-card">
+        <span class="num">01</span>
+        <h3>Erst Klarheit, dann Design.</h3>
+        <p>Design funktioniert besser, wenn vorher klar ist, was es ausdrücken soll. Sortieren ist der erste — und meistens wichtigste — Schritt.</p>
+      </div>
+      <div class="um-prin-card">
+        <span class="num">02</span>
+        <h3>Erst Struktur, dann schöne Oberfläche.</h3>
+        <p>Eine Website muss nicht nur hübsch aussehen. Sie soll Menschen führen und erklären, was du anbietest. Schön kommt aus richtig, nicht andersrum.</p>
+      </div>
+      <div class="um-prin-card">
+        <span class="num">03</span>
+        <h3>KI ist Sparringspartner, nicht Ersatz fürs Denken.</h3>
+        <p>Sie hilft beim Sortieren, Verdichten, Entwickeln. Aber Richtung, Stimme, Haltung und Entscheidungen kommen weiter aus dem Gespräch von Mensch zu Mensch.</p>
+      </div>
+      <div class="um-prin-card">
+        <span class="num">04</span>
+        <h3>Sichtbarkeit darf sich nach dir anfühlen.</h3>
+        <p>Nicht jede Marke muss laut, glatt oder permanent präsent sein. Manche wirken durch Klarheit und nicht durch Lautstärke.</p>
+      </div>
+      <div class="um-prin-card" style="grid-column:span 2;">
+        <span class="num">05</span>
+        <h3>Energie ist Teil der Strategie.</h3>
+        <p>Eine Marke sollte nicht nur gut aussehen, sondern langfristig tragbar sein. Was du nicht jeden Morgen aushältst, kannst du auch nicht jeden Morgen leben. Deshalb planen wir so, dass es zu deinem System passt — nicht gegen es.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BEWEGUNG & NERVENSYSTEM ===================== -->
+<section class="um-energy">
+  <div class="wrap">
+    <div class="um-energy-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span><span class="lbl">Warum Körper &amp; Branding zusammengehören</span></span>
+        <h2>Klarheit braucht ein <span class="g">reguliertes System.</span></h2>
+        <p>Ich glaube nicht, dass gute Marken entstehen, wenn Menschen dauerhaft im Stressmodus funktionieren. Klarheit braucht Raum. Gute Entscheidungen brauchen ein halbwegs reguliertes Nervensystem. Und Sichtbarkeit funktioniert langfristig nur, wenn sie nicht gegen dich arbeitet.</p>
+        <p>Genau deshalb denke ich Marken nicht nur als Designprojekt, sondern als System, das zu deinem Alltag, deiner Energie und deiner Art zu arbeiten passen muss. Yoga, Bewegung und Nervensystem-Regulation sind hier kein Wellness-Extra, sondern eine Haltung gegenüber Leistung.</p>
+        <p>Es geht nicht um esoterischen Anspruch. Es geht darum, dass deine Marke noch genauso aussieht und wirkt, wenn du sie in einem Jahr immer noch tragen musst.</p>
+      </div>
+      <div class="um-energy-img">
+        <picture><source type="image/webp" srcset="images/yoga-960.webp 960w, images/yoga.webp 1122w" sizes="(max-width: 768px) 100vw, 1122px"><img src="images/yoga.png" width="1200" height="900" loading="lazy" decoding="async" alt="Ruhiger Yogaraum im Naturlicht mit Matte, Block, Trinkflasche und Laufschuhen — Bewegung als Basis"></picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FÜR WEN / NICHT FÜR WEN ===================== -->
+<section class="um-match">
+  <div class="wrap">
+    <div class="um-match-head">
+      <span class="eyebrow"><span class="dot"></span><span class="lbl">Für wen meine Arbeit passt</span></span>
+      <h2>Damit du dir Zeit sparst, falls wir nicht zusammenpassen.</h2>
+      <p>Es macht beiden Seiten das Leben leichter, wenn das vorher klar ist. Also kurz und ehrlich:</p>
+    </div>
+    <div class="um-match-grid">
+      <div class="um-match-col match">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l3.5 3.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Passt besonders gut, wenn du …</h3>
+        <ul>
+          <li>viele Ideen hast und daraus einen klaren roten Faden entwickeln möchtest.</li>
+          <li>deine Website strategisch neu aufstellen willst, statt nur ein neues Theme zu suchen.</li>
+          <li>Branding, Content, SEO/GEO und Website zusammendenken willst.</li>
+          <li>KI sinnvoll in deine Prozesse integrieren möchtest, ohne deine Stimme zu verlieren.</li>
+          <li>professionell sichtbar werden willst, ohne künstlich zu wirken.</li>
+          <li>eine Marke willst, die fachlich klar und persönlich stimmig ist.</li>
+          <li>keine Lust auf generische Marketing-Schablonen hast.</li>
+        </ul>
+      </div>
+      <div class="um-match-col no">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>Passt eher nicht, wenn du …</h3>
+        <ul>
+          <li>nur schnell ein hübsches Logo ohne Strategie möchtest.</li>
+          <li>keine Lust hast, dich mit deiner Positionierung auseinanderzusetzen.</li>
+          <li>KI nur als billige Copy-Paste-Maschine nutzen willst.</li>
+          <li>eine 08/15-Website suchst, die einfach irgendwie online ist.</li>
+          <li>von mir erwartest, dass ich dir sage, was du sagen sollst — statt es mit dir herauszuarbeiten.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ERWARTUNGEN ===================== -->
+<section class="um-promise">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow"><span class="dot"></span><span class="lbl">Was du erwarten kannst</span></span>
+      <h2>Ein paar Dinge, auf die du dich <span class="g">verlassen kannst.</span></h2>
+      <p>Keine Versprechen über deinen Erfolg, aber sehr konkrete Versprechen über meine Arbeit.</p>
+    </div>
+    <div class="um-promise-grid">
+      <div class="um-promise-card"><span class="lbl">01 · Ehrlichkeit</span><h4>Klare Einschätzung, auch wenn sie unbequem ist.</h4><p>Ich sage dir, was sinnvoll ist — und was nicht. Auch wenn du eigentlich was anderes hören wolltest.</p></div>
+      <div class="um-promise-card"><span class="lbl">02 · Struktur</span><h4>Klarer Plan statt vager Magie.</h4><p>Du weißt immer, was als Nächstes kommt, warum, und was es bringen soll.</p></div>
+      <div class="um-promise-card"><span class="lbl">03 · Tiefe</span><h4>Strategie, die durchdacht ist.</h4><p>Wir arbeiten an dem Warum hinter dem Was — nicht nur an Oberfläche.</p></div>
+      <div class="um-promise-card"><span class="lbl">04 · Gestaltungsgefühl</span><h4>Ein Auge für stimmige Form.</h4><p>Sauber, ruhig, hochwertig — und so, dass es nach dir aussieht, nicht nach Vorlage.</p></div>
+      <div class="um-promise-card"><span class="lbl">05 · WordPress &amp; Elementor</span><h4>Technisches Verständnis statt Hochglanz-Versprechen.</h4><p>Ich kann erklären, was ich tue. Und du kannst die Seite danach selbst pflegen.</p></div>
+      <div class="um-promise-card"><span class="lbl">06 · KI-Workflows</span><h4>KI eingesetzt, wo sie Arbeit erleichtert.</h4><p>Nicht als Buzzword, sondern als Werkzeug — mit klarer Trennung zwischen Tempo und Tiefe.</p></div>
+      <div class="um-promise-card"><span class="lbl">07 · SEO &amp; GEO</span><h4>Sichtbarkeit, die auch KI-Suchen versteht.</h4><p>Saubere Struktur, gute Inhalte, sinnvolle Begriffe — ohne Keyword-Bingo.</p></div>
+      <div class="um-promise-card"><span class="lbl">08 · Klarheit in Worten</span><h4>Texte, die nach dir klingen.</h4><p>Verständlich, persönlich, ohne Marketing-Klatsch. Du sollst dich beim Lesen wiedererkennen.</p></div>
+      <div class="um-promise-card"><span class="lbl">09 · Machbarkeit</span><h4>Umsetzung, die dich nicht überfordert.</h4><p>Tempo und Tiefe so dosiert, dass du dranbleiben kannst — auch nach dem Launch.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PERSÖNLICH ===================== -->
+<section class="um-personal">
+  <div class="wrap">
+    <div class="um-personal-grid">
+      <div class="um-personal-img">
+        <picture><source type="image/webp" srcset="images/about-weg-960.webp 960w, images/about-weg.webp 1122w" sizes="(max-width: 768px) 100vw, 1122px"><img src="images/about-weg.png" width="1122" height="1402" loading="lazy" decoding="async" alt="Ein gewundener Bergpfad im Abendlicht — Sinnbild für Bewegung und Klarheit zwischen den Schritten"></picture>
+      </div>
+      <div>
+        <span class="eyebrow"><span class="dot"></span><span class="lbl">Wenn ich nicht am Rechner sitze</span></span>
+        <h2>Dann bin ich <span class="g">draußen.</span></h2>
+        <p>In den Bergen, auf irgendeinem Trail, mit Bailey an meiner Seite oder auf der Yogamatte. Bewegung ist für mich nicht nur Ausgleich, sondern oft der Ort, an dem Gedanken klarer werden.</p>
+        <p>Manche Ideen entstehen eben nicht am Schreibtisch, sondern irgendwo zwischen Bergluft, Hundepfoten und dem kurzen Moment, in dem der Kopf endlich mal nicht 37 Tabs offen hat.</p>
+        <p>Und falls es dich interessiert: Ja, ich mag gute Gestaltung, klare Worte und vermutlich zu viele Ideen auf einmal. Ich denke gerne tief — aber bitte ohne künstliches Pathos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSCHLUSS-CTA ===================== -->
+<section class="um-final" id="kontakt-cta">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span><span class="lbl">Nächster Schritt</span></span>
+    <h2>Wenn deine Marke gerade mehr kann, als sie nach außen zeigt — <span class="g">lass uns hinschauen.</span></h2>
+    <p>Nicht lauter. Nicht künstlicher. Sondern klarer. Wenn du aus deinen Ideen, Angeboten und Erfahrungen eine Marke und Website entwickeln möchtest, die wirklich zu dir passt, ist das ein guter nächster Schritt.</p>
+    <div class="btn-row">
+      <a href="index.html#kontakt" class="btn btn--pri btn--lg">Projekt anfragen</a>
+      <a href="index.html" class="btn btn--sec">Zurück zur Startseite</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-quote">
+        <picture><source type="image/webp" srcset="images/footer-weg-960.webp 960w, images/footer-weg.webp 1672w" sizes="(max-width: 768px) 100vw, 1672px"><img class="fq-img" src="images/footer-weg.png" width="1672" height="941" loading="lazy" decoding="async" alt=""></picture>
+        <div class="fq-overlay"></div>
+        <div class="fq-content">
+          <span class="fq-eyebrow">Mein Anspruch</span>
+          <p class="fq-text">Deine Marke sollte dich <span class="g">zeigen.</span><br>Nicht verkleiden.</p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <span class="fc-eyebrow">Navigation</span>
+        <a href="index.html#angebote">Angebote</a>
+        <a href="index.html#ansatz">Ansatz</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="index.html#yoga">Yoga &amp; Bewegung</a>
+        <a href="index.html#arbeitsweise">Ablauf</a>
+        <a href="index.html#faq">Häufige Fragen</a>
+      </div>
+      <div class="footer-col">
+        <span class="fc-eyebrow">Kontakt</span>
+        <a href="mailto:info@veronika-heidrich.de">info@veronika-heidrich.de</a>
+        <a href="https://instagram.com/vronihei" target="_blank" rel="noopener">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="index.html#kontakt">Anfrage senden</a>
+      </div>
+      <div class="footer-col footer-col--about">
+        <span class="fc-eyebrow">Veronika Heidrich</span>
+        <p class="fc-about">Brand- &amp; Website-Strategin mit KI als Werkzeug. Ich verbinde Branding, Webdesign, KI-Workflows und Bewegung zu einem stimmigen Ganzen.</p>
+        <span class="fc-tags"><span>Branding</span><span>Webdesign</span><span>KI</span><span>Bewegung</span></span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-mark">
+        <span class="footer-brand"><span class="bl-up">inn</span><span class="bl-tail">erline</span></span>
+        <span class="footer-meaning">Die innere Linie, die sich durch alles zieht.</span>
+      </span>
+      <span>© 2026 Veronika Heidrich · alle Rechte vorbehalten.</span>
+      <div class="legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="barrierefreiheit.html">Barrierefreiheit</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
