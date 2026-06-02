@@ -48,6 +48,19 @@ jobs:
           npm install -g @lhci/cli@0.14.x
           lhci autorun
 
+  lighthouse-mobile:
+    name: Lighthouse Mobil (informativ)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+      - name: Lighthouse CI (mobile Emulation, nicht blockierend)
+        run: |
+          npm install -g @lhci/cli@0.14.x
+          lhci autorun --config=lighthouserc.mobile.json
+
   medien-guard:
     name: Medien-Register-Check
     runs-on: ubuntu-latest

@@ -174,6 +174,17 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — CI: Mobile-Lighthouse (informativ) (Branch `ci/lighthouse-mobile`)
+- **Was:** Neuer CI-Job `lighthouse-mobile` + `lighthouserc.mobile.json`. Fährt Lighthouse mit **mobiler Emulation**
+  (lhci-Default: Moto G4 / Slow-4G, kein `preset:desktop`). Zusätzliche `largest-contentful-paint`/`cumulative-layout-shift`/
+  `total-blocking-time`-Asserts → die echten CWV-Zahlen erscheinen im Log.
+- **Warum:** Bisher maß die CI nur Desktop; der Mobil-Gewinn aus den responsiven Bildern (#26) war unsichtbar.
+  Jetzt dauerhaft messbar.
+- **Wie:** Bewusst **nicht blockierend** — alle Asserts auf `warn` (schwankende Mobil-Scores sollen `main` nicht rot machen).
+  Eigene Config-Datei, parallel zum bestehenden Desktop-Job.
+- **Alternativen:** Mobil als harte Gates (`error`) — verworfen (zu fragil); erst Baseline sammeln, später ggf. verschärfen.
+- **Konsequenz:** Reiner CI-/Mess-Zuwachs, keine Live-Änderung. Liefert ab jetzt echte mobile LCP/CLS/TBT-Werte.
+
 ### 2026-06-02 — Performance: Responsive Bilder (srcset) + Hero-fetchpriority (Branch `perf/responsive-images`)
 - **Was:** Für alle 13 Listenbilder eine `-960.webp`-Variante (max. 960 px) generiert und im `<picture><source>` per
   `srcset`/`sizes` eingebunden. `fetchpriority="high"` auf das Hero-LCP-Bild (`hero-visual`) gesetzt. `MEDIEN.md` aktualisiert.
