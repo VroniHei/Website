@@ -174,6 +174,17 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — SEO/GEO: Strukturierte Daten auf Startseite (Branch `feat/structured-data`)
+- **Was:** Zweiten JSON-LD-Block in `index.html` (`<head>`) ergänzt — ein `@graph` mit **Person** (Veronika Heidrich / „Vroni"), **ProfessionalService** („InnerLine · Veronika Heidrich") und **WebSite**. Der bestehende `FAQPage`-Block bleibt unverändert daneben.
+- **Warum:** Prio-6-Empfehlung der Markenrecherche. Echter GEO/SEO-Nutzen (Google Knowledge, KI-Antworten) — und zwar nur auf der **indexierbaren** Startseite (die Rechtsseiten sind bewusst `noindex`).
+- **Wie:** Daten 1:1 aus belastbaren Quellen gezogen — Adresse aus `impressum.html` (Seeweg 8, 83126 Flintsbach am Inn), Instagram `vronihei` als einziges `sameAs`, Leistungen aus Brand-Voice/CLAUDE.md. Verknüpfung via `@id` (Person `worksFor` → ProfessionalService; WebSite `publisher` → ProfessionalService). Beide JSON-LD-Blöcke gegen JSON-Parser validiert.
+- **Bewusst WEGGELASSEN (kein Cargo-Cult):**
+  - **BreadcrumbList** — für einen One-Pager ohne Hierarchie ohne Mehrwert (und potenziell als irreführend wertbar). Erst sinnvoll, wenn echte Unterseiten mit Struktur existieren.
+  - **Offer/Preise** — Vroni arbeitet bewusst ohne fixe Paketpreise; erfundene Preise im Schema wären falsch.
+  - **Korrektur zu „SEO-Baustelle Unterseiten" aus dem Baseline-Audit:** Die niedrigen SEO-Scores (58–66) von impressum/datenschutz/barrierefreiheit/404 sind **kein Mangel**, sondern Folge des gewollten `noindex` (Lighthouse-Audit „blocked from indexing"). Meta-Descriptions dort = Kennzahlen-Kosmetik ohne Realnutzen → bewusst nicht gemacht.
+- **Learning:** Nur Schema einsetzen, das die echte Seitenstruktur abbildet; keine Werte erfinden (Adresse/Links aus echten Quellen).
+- **Konsequenz:** Reine `<head>`-Ergänzung, **keine** sichtbare Änderung, kein neuer Dritt-Dienst/Datenfluss → Rechtstexte unberührt.
+
 ### 2026-06-02 — Hygiene-Runde 1: Repo entschlacken (Branch `chore/hygiene-cleanup`)
 - **Was:** Eindeutig sichere Ballast-/Tooling-Dateien aus dem Repo entfernt und per `.gitignore` dauerhaft ausgeschlossen:
   `Screenshots Arbeitsdateien/` (~15,5 MB Arbeits-Screenshots), `skills/` (Dublette von `.claude/skills/`),
