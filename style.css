@@ -303,7 +303,7 @@ img{max-width:100%;display:block;}
 .principle.is-open .chev{transform:rotate(180deg);}
 .principle .pbody{display:block;max-height:0;overflow:hidden;transition:max-height .32s ease, margin-top .32s ease;}
 .principle .pbody .ptxt{display:block;color:#c5cbb8;font-size:17px;line-height:1.6;margin:0;}
-.principle.is-open .pbody{max-height:280px;margin-top:11px;}
+.principle.is-open .pbody{max-height:500px;margin-top:11px;}
 
 /* ===== ÜBER MICH ===== */
 #ueber{position:relative;}
