@@ -43,6 +43,12 @@ unter „Änderungen":
 **Technik-Standard pro Bild:** Original als `.png` im Repo, ausgeliefert wird die komprimierte `.webp`-Variante
 (via `<picture>` mit PNG-Fallback). Maße = Intrinsic-Size im HTML (`width`/`height`, gegen Layout-Shift).
 
+**Responsive Varianten (seit 2026-06-02):** Jedes Listenbild hat zusätzlich eine **`-960.webp`** (max. 960 px breit)
+für kleine Screens. Im `<picture><source>` per `srcset`/`sizes` eingebunden, **desktop-sicher**
+(`sizes="(max-width: 768px) 100vw, <volle Breite>px"` → großer Screen erhält weiter die volle Auflösung,
+nur Mobil lädt die schlanke 960er). Mobile-Bildlast dadurch ~1,55 MB → ~0,7 MB. Bei neuen Bildern die `-960`-Variante
+mitgenerieren (oder Verzicht im Eintrag begründen).
+
 **Bildwelt & Prompts (Reproduktion):** Stilrahmen, Masterprompt, Motiv-Prompts und Negativ-Prompts liegen in
 **[`brand/bildwelt-und-prompts.md`](brand/bildwelt-und-prompts.md)** — die kanonische Referenz, um neue Bilder
 im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts nicht 1:1 rekonstruierbar**
@@ -71,8 +77,10 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 | claim-weg | 1928 KB → 111 KB | 1500×1000 | index (Claim-Band, BG) | **ja** (`alt=""`) |
 | footer-weg | 2388 KB → 132 KB | 1600×1000 | index (Footer, BG) | **ja** (`alt=""`) |
 
-> ⚠️ **Performance-Notiz:** Die PNG-Originale (zusammen ~25,9 MB) sind groß. Ausgeliefert wird WebP (schlank),
-> die PNGs dienen nur als Fallback. Optimierung ist als eigener **Performance-Schritt** vorgemerkt (nicht löschen — Invariante: WebP+PNG-Fallback).
+> ⚠️ **Performance-Notiz:** Ausgeliefert wird WebP (Desktop: volle `.webp`, Mobil: `-960.webp` via `srcset`/`sizes`).
+> Die PNG-Originale (~25,9 MB) dienen nur als Fallback und werden real kaum geladen (WebP-Support universell) —
+> **nicht löschen** (Invariante: WebP+PNG-Fallback). Verbleibendes Potenzial: PNG-Fallbacks sind groß (reines Repo-Gewicht),
+> und desktopseitig könnten mit präzisen `sizes` pro Layout noch Bytes gespart werden (bewusst konservativ gehalten).
 
 ---
 
