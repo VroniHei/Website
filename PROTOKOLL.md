@@ -307,6 +307,22 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - **Learning:** Nur Schema einsetzen, das die echte Seitenstruktur abbildet; keine Werte erfinden (Adresse/Links aus echten Quellen).
 - **Konsequenz:** Reine `<head>`-Ergänzung, **keine** sichtbare Änderung, kein neuer Dritt-Dienst/Datenfluss → Rechtstexte unberührt.
 
+### 2026-06-02 — Hero + Pain-Section: Vroni-Voice, Split-Intro, Hairline-Raster, Typo (Branch `feat/hero-pain-vroni-voice`)
+- **Was:**
+  - **Hero `.hb-bottom`** (`index.html`): Subline in zwei Absätze aufgeteilt — Problem-Spiegel + Lösungs-Versprechen. CTA-2-Label: „Mehr über meinen Ansatz" (vorher „Meinen Ansatz verstehen").
+  - **Pain-Intro** (`index.html`): `.pain-intro reveal` → `.pain-intro pain-intro--split reveal` mit Split-Layout (`.pi-head` links: Eyebrow + H2 / `.pi-leads` rechts: drei ausformulierte Leads in Vroni-Voice). `style="max-width:560px"` Inline-Hack am H2 entfernt. `.setze`-Schlusszeile raus (passt nicht zur ruhigen neuen Voice).
+  - **Pain-Cards** (`index.html`): 6 Karten neu sortiert (Klarheit · Website · KI · Sichtbarkeit · Angebot · Sparring), jede mit `.pi-cat` + `.pi-title` (`<h3>`) + `.pi-text`. Icons mitgewandert (Sparkle/Auge/Hexagon/Sprechblase).
+  - **Angebote shead-intro** (`index.html`): „…Marke, Website, KI und einem **gesunden, nachhaltigen Lebensstil**…" + „Aber sie **alle verfolgen** dasselbe Ziel…".
+  - **`style.css`** — Hero-Bento: `.hb-visual{display:flex;flex-direction:column;height:100%}`, `.hb-soft{flex:1 1 auto;height:100%;min-height:480px}` — Höhe folgt jetzt der linken Copy-Spalte; Mobile zurück auf `height:auto`. `.hb-lede--2` Modifier für zweiten Hero-Absatz.
+  - **`style.css`** — Pain-Section Desktop: `.pain-grid{display:block}`, `.pain-intro--split{grid-template-columns:1.05fr .95fr;gap:64px}`, `.pain-list` als 2×3-Hairline-Raster (`border-top` + `border-bottom` + `odd-border-right`, rgba(35,34,26,.09)), kein Card-Chrome. `.pain-item` padding symmetrisch 26px/28px, Hover = rgba-Weiß-Fade. Typo: `.pi-cat` 11px/600/.2em (wie `.lbl`), `.pi-title` clamp(17,1.5vw,19)/600/-.005em (wie `.trust-card h3`), `.pi-text` 15.5px/1.62/`var(--ink-soft)` (wie `.trust-card p`).
+  - **`style.css`** — Pain-Section Mobile (≤900px): Intro stack 1-Spalte, Karten zurück auf Card-Chrome (weißer Bg, Border, Schatten), pi-title 17px, pi-text 15.5px.
+  - **`style.css`** — Override-Block am Dateiende synchron auf neue Werte gesetzt (`.pi-text`, `.pi-cat`, `.pi-title`).
+- **Warum:** Claude Design Handoff (README.md, 2026-06-02). Hero-Subline war eine kompakte Verkaufszeile — neue Version trennt Problem-Spiegel und Lösungs-Versprechen. Pain-Intro hatte altes 2-Spalten-Grid mit Karten ohne Titel; neues Split-Layout gibt dem H2 linkes Gewicht, die Leads bekommen rechte Lese-Säule. Karten-Typo war nicht am Design-System ausgerichtet — jetzt identisch zu Trust-Card-Standard. „Bewegung" zu „gesunder, nachhaltiger Lebensstil" in shead-intro: vollständiger und markengerechter.
+- **Wie:** Gezielte `str_replace`-Edits auf `index.html` (4 Stellen) und `style.css` (5 Stellen). Keine neuen Drittdienste, keine neuen Bilder, keine Schriften geändert.
+- **Alternativen / Abwägungen:** Hairline-Raster nur Desktop (Mobile: Card-Chrome bleibt — auf schmalen Viewports braucht man visuelle Abgrenzung der Items). `.pi-title` als `<h3>` statt `<span>` für saubere Heading-Hierarchie (pain-items hängen unter h2). Override-Block statt Selektor-Hochzählung — bleibt konsistent mit bestehender Repo-Konvention.
+- **Learnings:** Wenn die Seite ein Design-System hat, neue Komponenten-Typo zahlenwert-identisch matchen statt neue Werte erfinden. `align-items:stretch` am Grid braucht `height:100%` in den Children, sonst greift die eigene min-height des Children und ignoriert den Stretch.
+- **Konsequenz:** Keine Auswirkung auf Recht/Datenschutz/Assets/Fonts. HTML validiert weiterhin (neue `<h3>`-Tags sind semantisch korrekt unter den Section-H2).
+
 ### 2026-06-02 — Hygiene-Runde 1: Repo entschlacken (Branch `chore/hygiene-cleanup`)
 - **Was:** Eindeutig sichere Ballast-/Tooling-Dateien aus dem Repo entfernt und per `.gitignore` dauerhaft ausgeschlossen:
   `Screenshots Arbeitsdateien/` (~15,5 MB Arbeits-Screenshots), `skills/` (Dublette von `.claude/skills/`),
