@@ -174,6 +174,16 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — Wissens-Index `WISSEN.md` angelegt (Branch `docs/wissen-uebersicht`)
+- **Was:** Neue Übersichtsdatei `WISSEN.md` — Steckbrief, Leistungen, Tech-Stack, Doku-Landkarte, Meilensteine,
+  Roadmap und „was einer KI anhängen" für Content-Generierung.
+- **Warum:** Vronis Wunsch nach einer abrufbaren Wissensbasis. Bewusst als **schlanker, versionierter „RAG-Ersatz"**
+  (kuratierte Markdown-Doku) statt eines echten RAG-Systems — passt zur Projektgröße und zum „schlank halten"-Ziel.
+- **Wie:** Verdichtet vorhandene Doku und verlinkt sie; kein Duplizieren von Details (die bleiben in den Quell-Dateien).
+- **Learning/Empfehlung:** RAG-Infrastruktur erst sinnvoll, wenn Wissensvolumen das KI-Kontextfenster sprengt
+  (viele Beiträge/Jahre Historie). Bis dahin: kuratierte Docs + diese Index-Datei.
+- **Konsequenz:** Reine Doku, keine Live-Änderung.
+
 ### 2026-06-02 — CI „Media-Guard": Medienregister erzwingen (Branch `ci/medien-guard`)
 - **Was:** Neuer Job `medien-guard` in `.github/workflows/ci.yml` (nur bei Pull Requests). Schlägt fehl, wenn im PR
   `images/` geändert wurde, ohne dass `MEDIEN.md` im selben PR aktualisiert wird. Hinweis darauf in `CLAUDE.md` ergänzt.
