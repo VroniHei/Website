@@ -174,6 +174,15 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — CI: Performance-Diagnose (Main-Thread + CLS) (Branch `ci/perf-diagnostics`)
+- **Was:** Mobile-Lighthouse-Job um eine Diagnose-Ausgabe erweitert (`.github/lh-diagnose.cjs`): liest die
+  `.lighthouseci/`-Reports und druckt pro Seite Performance, TBT, **JS-Ausführung (bootup-time)**, die
+  **Main-Thread-Aufschlüsselung** (Scripting vs. Rendering/Paint) sowie **CLS + verursachende Layout-Shift-Elemente**.
+- **Warum:** TBT lag mobil bei ~404 ms — unklar, ob das **`script.js`** oder das **Rendering der Blur-Effekte** treibt.
+  Vor dem Fix erst die Ursache messen (kein Blindflug). Liefert zugleich den CLS-Verursacher auf `datenschutz.html`.
+- **Wie:** `lhci autorun … || true` (nicht blockierend) + Node-Skript, das die LHR-JSONs auswertet. Reine Diagnose.
+- **Konsequenz:** Keine Live-Änderung. Nächster Schritt: gezielter Fix (TBT-Quelle + Datenschutz-CLS) auf Basis dieser Ausgabe.
+
 ### 2026-06-02 — Performance: Hintergrund auf Mobil statisch (Branch `perf/mobile-static-bg`)
 - **Was:** `@media (max-width:900px)`-Block in `style.css`, der die dekorativen Hintergrund-Animationen abschaltet
   (`.hb-blob`, `.hb-soft .s-img`, `.quote-band .qb-img`, `.claim-band .cb-img`, `.steps-orb-*`). **Desktop bleibt animiert.**
