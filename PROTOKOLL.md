@@ -174,6 +174,21 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — Bildwelt-/Prompt-Guide gesichert + Versionierungs-Konvention (Branch `docs/bildwelt-prompts`)
+- **Was:** Von Vroni gelieferten Reproduktionsguide als `brand/bildwelt-und-prompts.md` ins Repo aufgenommen
+  (Masterprompt, 17 Motiv-Prompts, Negativ-Prompts, Stilformel, Kurzbriefing). In `MEDIEN.md` verlinkt;
+  zusätzlich **Versionierungs-Konvention** bei Bild-Austausch und präzisierter Prompt-Hinweis ergänzt.
+- **Warum:** „Rezeptbuch" für konsistente neue Bilder dauerhaft sichern (lag bisher nur im ChatGPT-Verlauf →
+  Verlustrisiko). Antwort auf Empfehlung „Master-Originale & Prompts sichern".
+- **Wie:** Guide als eigene Brand-Referenz in `brand/` (statt Register zu überladen). `MEDIEN.md` bleibt das
+  schlanke Register und verweist auf den Guide.
+- **Wichtige Ehrlichkeit:** Exakte 1:1-Original-Prompts sind laut Quelle **nicht** rekonstruierbar; die Prompts im
+  Guide sind reproduzierbare Rekonstruktionen. Eine erzwungene Bild↔Prompt-Zuordnung wurde **bewusst vermieden**
+  (keine falsche Provenienz) — Zuordnung trägt Vroni je Bild nach.
+- **Rechtstexte:** Bewusst **nicht** geändert — siehe Learning unten (kein öffentliches Bildquellenverzeichnis nötig,
+  da alle Bilder Eigenerzeugung ohne Dritt-Lizenz/Attributionspflicht).
+- **Konsequenz:** Reine Doku/Brand-Referenz, keine Live-Änderung, keine neuen Dienste/Datenflüsse.
+
 ### 2026-06-02 — Medienregister `MEDIEN.md` + Dokumentationspflicht (Branch `docs/medien-doku`)
 - **Was:** Neues lebendes Register `MEDIEN.md` für alle Bilder/Medien angelegt (13 Bilder, je PNG-Original + WebP-Variante,
   mit Maßen, Verwendung, Alt-Text, Dekorativ-Flag, Rechten, Änderungs-Log). Neue **verbindliche Regel** in `CLAUDE.md`
