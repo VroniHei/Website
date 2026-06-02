@@ -43,7 +43,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ### Schrift-System
 - [ ] **Vaelia = nur Display/Wortmarke** (Logo + `about-sign .as-brand`). NIEMALS für Fließtext.
 - [ ] Überschriften = **Open Sauce Sans 800**. Fließtext Open Sauce Sans 400.
-- [ ] **Kein Google Fonts Link** (`<link href="fonts.googleapis.com/...">`) im `<head>` — nie einfügen. Open Sauce Sans kommt von jsDelivr (CDN-Fontsource).
+- [ ] **Alle Schriften lokal in `fonts/`** (Open Sauce Sans 400 = `.woff`, 500–800 = `.woff2`; Vaelia). **Keine externe Font-CDN** (kein Google Fonts, kein jsDelivr/Fontsource) — datenschutzrechtlich (IP-Übertragung) tabu.
 - [ ] **Kein `image-slot.js`** in der Produktionsdatei — stammt aus dem Design-Atelier, hat in Produktion nichts verloren.
 
 ### Bilder / Performance ⚠️ neu seit Design-Update V
@@ -53,7 +53,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Dekorative Bilder** (Hintergründe): `alt=""` (zitat-weg, claim-weg, footer-weg).
 - [ ] **`loading="eager"` nur beim Hero-Bild** (above fold), alles andere `loading="lazy"`.
 - [ ] **Preload im `<head>`**: Vaelia-Font + Hero-WebP, da above-fold und render-kritisch.
-- [ ] **Preconnect/dns-prefetch**: jsDelivr für Open Sauce Sans.
+- [ ] **Preload (lokal)**: `open-sauce-sans-latin-400-normal.woff` zusätzlich zu Vaelia/Hero. **Kein Preconnect/dns-prefetch zu Dritt-CDNs** (Schriften sind lokal).
 
 ### Mobile — Bild-Anzeige ⚠️ mehrfach repariert
 - [ ] **hero-portrait braucht `width:100%`** im 900px-Breakpoint (flex:none allein → Kollaps, da Inhalt absolut positioniert).
@@ -134,7 +134,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Rechtsstand: DDG** (nicht TMG), **TDDDG** (nicht TTDSG). Bei neuen Texten beachten.
 - [ ] `impressum.html`: Adresse **Seeweg 8, 83126 Flintsbach am Inn**; Kleinunternehmer (§ 19 UStG) → **keine USt-IdNr**; **keine Kammer** (kein reglementierter Beruf); **Telefon bewusst NICHT** sichtbar (E-Mail genügt).
 - [ ] **KI-Transparenz-Hinweis** im Impressum behalten (Bilder/Texte KI-gestützt, redaktionell verantwortet; Art. 50 KI-VO ab 02.08.2026). **Nicht** in die Datenschutzerklärung (kein Besucherdaten-Thema).
-- [ ] `datenschutz.html`: spiegelt den **realen** Stand — keine Cookies/Tracking, `mailto`-Kontakt, Schrift via jsDelivr (CDN), Hosting GitHub Pages. Bei Hostinger-Umzug Abschnitt 2 anpassen.
+- [ ] `datenschutz.html`: spiegelt den **realen** Stand — keine Cookies/Tracking, `mailto`-Kontakt, **Schriften lokal gehostet (keine Font-CDN)**, Hosting GitHub Pages. Bei Hostinger-Umzug Abschnitt 2 anpassen.
 - [ ] **Bei jeder datenverarbeitungs-/Dritt-Dienst-relevanten Änderung** Rechtstexte im selben PR anpassen (s. `CLAUDE.md`).
 - [ ] Vor Livegang final mit **eRecht24-Generator** gegenprüfen.
 - [ ] Beide Seiten haben aktuell `<meta name="robots" content="noindex, nofollow">` — entfernen, sobald final.
@@ -144,7 +144,9 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ## 2. ASSETS (müssen ins Repo committet sein!)
 
 ### Bilder (`images/`) — alle als PNG + WebP
-- `images/hero-visual.png` + `.webp` — Hero (900×1200)
+- `images/hero-visual.png` + `.webp` — Hero Hauptbild (900×1200)
+- `images/hero-branding.png` + `.webp` — Hero Bento links oben (1672×941)
+- `images/hero-journaling.png` + `.webp` — Hero Bento links unten (1662×946)
 - `images/about-workspace.png` + `.webp` — Über mich, Hauptbild (1200×1500)
 - `images/about-weg.png` + `.webp` — Über mich, versetztes Bild (900×1200)
 - `images/yoga.png` + `.webp` — Yoga-Section (1200×900)
@@ -158,6 +160,9 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ### Fonts (`fonts/`)
 - `fonts/Vaelia.woff2`, `fonts/Vaelia.woff` — Wortmarke/Display
+- `fonts/figtree-latin-400-800.woff2` — Hauptschrift Figtree (variable font, 300–900)
+- `fonts/newsreader-latin-italic.woff2` — Newsreader kursiv (400–600), für `.g`-Akzente
+- `fonts/newsreader-latin-500.woff2` — Newsreader aufrecht 500, für `.g` in normaler Schriftlage
 
 ### Seiten (Root)
 - `index.html`, `style.css`, `script.js` — Startseite
@@ -167,6 +172,68 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ---
 
 ## 3. VERLAUF (neueste zuerst)
+
+### 2026-06-01 — Design-Feinschliff: Typo-System, Hero, Sektionen (Branch `main`)
+
+**Typografie-System (alle Änderungen in `style.css`):**
+- **Globale Heading-Regeln** als einzige Quelle der Wahrheit (Prinzip jetzt etabliert):
+  - `h1,h2`: `font-weight:650`, `font-size:clamp(32px,3.9vw,48px)`, `letter-spacing:-.025em`, `line-height:1.07`
+  - `h3,h4`: `font-weight:650`
+  - Section-spezifische `font-weight`/`font-size`/`letter-spacing`/`line-height` aus allen H2/H3-Regeln entfernt
+- **Display-Texte**: `quote-band q`, `cb-claim`, `footer-quote .fq-text` → `font-weight:650` (war 800)
+- **Eyebrow `.lbl`**: Uppercase + 11px — bewusst beibehalten (Mixed-Case-Versuch war falsch und wurde revertiert)
+- **Ansatz-Prinzipien**: `.principle .pn` → 700/14.5px, `.pt` → 18px, `.pbody .ptxt` → 17px, `.body p` → 17px
+
+**Hero v4 Bento — Korrekturen:**
+- Grid: `.9fr 1.1fr` → `1fr 1fr` (symmetrische Spalten)
+- `padding-top`: 148px → 176px (optischer Nav-Ausgleich)
+- Text linksbündig (`.hb-copy` kein `text-align:center`)
+- Mobile: `.s-brand` + `.s-journal` ausgeblendet, `.s-main` auf `aspect-ratio:4/3` erhöht
+
+**Sektions-Fixes:**
+- **Über mich**: `.as-line{display:none}` (Strich vor Name weg), `.as-brand{margin-left:0}` (Logo linksbündig ohne Einrückung)
+- **Zitat-Band**: `blockquote{max-width:520px}` → 2–3-zeiliger Umbruch
+- **H2 Ansatz**: Section-Regel bereinigt, globale Regel greift
+
+### 2026-06-01 — Hero v4 Bento + Figtree/Newsreader (Branch `main`)
+- **Hero v4 Bento**: altes `hero-grid`-Layout ersetzt durch `hero--bento` mit animiertem Blob-BG + 3-Bild-Soft-Grid (`.hb-soft`).
+- **Neue Bilder**: `hero-branding.png/webp` + `hero-journaling.png/webp` von Desktop in `images/` übernommen.
+- **Neue Fonts lokal gehostet**: `figtree-latin-400-800.woff2` (variable), `newsreader-latin-italic.woff2`, `newsreader-latin-500.woff2`.
+- **`--ff` auf Figtree** umgestellt (Open Sauce Sans bleibt als Fallback in `@font-face`).
+- **`.g` global**: jetzt `Newsreader italic` (nicht mehr reine Farbe). Dunkle Sektionen (quote-band, cb-claim, ansatz h2, contact h2, footer-quote) behalten `color:var(--green)` via globalem Override.
+- **Pain-Section**: `.hl` → `.g` (Newsreader italic statt grün-deep).
+- **`data-topic="mischung"`** auf Hero-CTA erhalten.
+- **Kein Google Fonts CDN**, kein `image-slot.js`, korrekte Rechtseiten-Links.
+
+### 2026-06-01 — Roadmap & Editor-Idee dokumentiert (Branch `docs/roadmap-launch-und-ideen`)
+- **Was:** Das gebündelte **Launch-Vorhaben** (Hosting→Hostinger, Domain, Search Console, GoatCounter-Analytics,
+  noindex entfernen, v1.0) als TODO-Gruppe in Abschnitt 4 festgehalten; veraltete TODOs (Favicon) abgehakt.
+- **Außerdem:** Veronikas Vision eines **KI-Admin-Editors** (Region markieren → beschreiben → KI setzt um) als
+  offene Frage 11 in `PROJECT.md` mit ehrlicher Einschätzung/Optionen dokumentiert.
+- **Warum:** Sessions/Container sind vergänglich — die **Doku ist das Gedächtnis**. So nimmt jede künftige
+  Session den Faden hier zuverlässig wieder auf, wenn Veronika Zeit hat.
+
+### 2026-06-01 — Font-Regel „immer lokal" werkzeugübergreifend verankert (Branch `docs/font-regel-lokal`)
+- **Was:** Verbindliche Regel etabliert: Schriften werden IMMER lokal gehostet, nie über externe Font-CDN.
+- **Warum:** Damit künftige neue Schriften (z. B. aus einem Claude-Design-Handoff) nicht versehentlich
+  wieder eine externe CDN einschleppen und das IP-/Abmahnrisiko zurückbringen.
+- **Wie:** Neue Regel-Sektion in `CLAUDE.md`; Kurzfassung in `.github/copilot-instructions.md`; Handoff-
+  Checkliste (Abschnitt 5) erweitert; `WORKFLOW.md` Abschnitt 4 ergänzt. (Invariante in Abschnitt 1 existierte schon.)
+- **Konsequenz:** Gilt für Claude Code, VS Code und Claude Design gleichermaßen — wie die Dokumentationspflicht.
+
+### 2026-06-01 — Schriften lokal hosten (Branch `privacy/fonts-lokal`)
+- **Was:** Open Sauce Sans nicht mehr von jsDelivr (CDN), sondern lokal aus `fonts/`.
+- **Warum:** Eine externe Schrift-CDN überträgt die Besucher-IP an den Anbieter (hier jsDelivr/ProspectOne, Polen)
+  — datenschutzrechtlich dasselbe Risiko wie Google Fonts (LG-München-Urteil). Lokal = keine Dritt-Verbindung.
+- **Wie:** 5 Schnitte heruntergeladen (400 = `.woff`, 500–800 = `.woff2`) nach `fonts/`; `@font-face` in
+  `style.css` auf lokale Pfade; jsDelivr-`preconnect`/`dns-prefetch` aus `index.html` entfernt + 400er-Font
+  preloaded; `datenschutz.html` Abschnitt 4 umgeschrieben (Schriften lokal, keine externen Ressourcen).
+- **Alternativen/Abwägung:** CDN behalten + im Datenschutz nennen (rechtlich riskanter, Banner-Diskussion)
+  verworfen. Quelle der woff2: `fontsource/font-files` (GitHub raw), da jsDelivr/npm in der Build-Umgebung
+  geblockt waren. **Learning:** Das fontsource-„other"-Paket hatte eine fehlerhafte 400-`.woff2` (war Type-1)
+  → für 400 die valide `.woff` genommen.
+- **Konsequenz:** Seite lädt **keine** externen Ressourcen mehr → kein Cookie-/Consent-Thema durch Schriften.
+  Neue Invariante: Schriften bleiben lokal (s. Abschnitt 1).
 
 ### 2026-06-01 — Quick Wins: 404-Seite + Dependabot (Branch `chore/404-dependabot`)
 - **Was:** Eigene `404.html` im Markenlook + Dependabot für die GitHub-Actions.
@@ -280,7 +347,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - **SEO-Description** finalisiert: `Personal Branding, Webdesign, KI-Workflows und Bewegung für Selbstständige mit vielen Ideen. Vroni hilft dir, Klarheit zu finden und stimmig sichtbar zu werden.`
 - **OG-Title + Twitter-Title** synchronisiert.
 - **Preload** für `Vaelia.woff2` und `hero-visual.webp` im `<head>` ergänzt.
-- **Preconnect/dns-prefetch** für jsDelivr (Open Sauce Sans CDN).
+- **Schriften lokal** in `fonts/` (Open Sauce Sans 400 woff + 500–800 woff2, Vaelia) — keine externe Font-CDN.
 - **`:focus-visible`** CSS-Styles für alle interaktiven Elemente (BFSG/WCAG 2.1 AA).
 - **Burger-Button**: `aria-expanded`, `aria-controls`, `aria-label`-Toggle in script.js.
 - **Mobile-Menü**: `role="dialog"` + `aria-label`.
@@ -344,8 +411,18 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Über-mich-Seite** (eigene Unterseite mit ausführlicher Story) + CTA auf Startseite verlinken.
 - [ ] **Lighthouse-Audit** im echten Browser (Chrome DevTools) durchführen — Performance-Score auf Mobile prüfen.
 - [ ] **Echten Domain-Canonical** setzen sobald Custom Domain steht (aktuell `vronihei.github.io/Website/`).
-- [ ] **Favicon** fehlt noch (aktuell Browser-Default).
+- [x] **Favicon** — erledigt (`favicon.svg`, lokal).
 - [ ] **Strukturierte Daten** (Schema.org: Person, LocalBusiness, FAQPage) optional für GEO-Optimierung.
+
+### Launch-Bündel (wenn Veronika Zeit hat — bewusst in EINEM Rutsch, in dieser Reihenfolge)
+- [ ] **Hosting-Umzug** → **Hostinger**; danach Datenschutz „Hosting" + Impressum-URLs anpassen.
+- [ ] **Eigene Domain `veronika-heidrich.de`** + HTTPS; danach alle `canonical`/OG-/`sitemap.xml`/`robots.txt`-URLs umstellen.
+- [ ] **Google Search Console**: Property anlegen → Verifizierungs-Meta-Tag einbauen → Sitemap einreichen (kein Tracking/Banner).
+- [ ] **GoatCounter** (cookieloses, kostenloses EU-Analytics): Skript einbauen + Datenschutz-Abschnitt „Reichweitenmessung". **Kein Consent-Banner, kein Borlabs nötig.**
+- [ ] **`noindex` entfernen** (Rechtsseiten) → eRecht24-Endcheck → final live → Stand als `v1.0` taggen.
+
+### Ideen / größere Vorhaben (eigenes Projekt, später sauber scopen)
+- [ ] **KI-Admin-Editor**: eigener Login-Bereich, in dem man einen Bereich der Seite markiert, die Änderung in Worten beschreibt und die KI sie umsetzt (kein Drag&Drop). Auch für Kundenseiten gedacht. Braucht Backend/Auth + LLM-API + sichere Persistenz (Git-Commit + Preview). Details als offene Frage in `PROJECT.md`.
 
 ---
 
@@ -353,7 +430,8 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 
-1. **Nie übernehmen** aus Design-Bundle: Google Fonts `<link>`, `image-slot.js`, `© 2025`, Platzhalter-E-Mail `hallo@vronihei.de`.
+1. **Nie übernehmen** aus Design-Bundle: Google Fonts / externe Font-CDN (`<link>`/`@import`/`preconnect`), `image-slot.js`, `© 2025`, Platzhalter-E-Mail `hallo@vronihei.de`.
+   → **Neue Schriften IMMER lokalisieren:** Datei nach `fonts/`, `@font-face` auf lokalen Pfad, externe Referenz entfernen (s. `CLAUDE.md` „Schriften lokal hosten").
 2. **Immer ersetzen**: `<img>` → `<picture>` mit WebP; fehlende `width`/`height` ergänzen.
 3. **Immer prüfen**: Hat jedes neue Bild eine `.webp`-Variante? Ist es im Assets-Abschnitt dokumentiert?
 4. **Produktions-E-Mail**: immer `info@veronika-heidrich.de`.

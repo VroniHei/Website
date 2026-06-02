@@ -72,6 +72,7 @@ trotzdem ein Branch+PR (Konsistenz schlägt Bequemlichkeit).
 2. Export → frische Handoff-URL (`api.anthropic.com/v1/design/h/[HASH]`; Share-URL funktioniert nicht, läuft ab).
 3. Claude Code integriert in einen `design/*`-Branch und prüft **immer** die Handoff-Checkliste
    in `PROTOKOLL.md` Abschnitt 5 (z. B. kein `image-slot.js`, kein Google-Fonts-Link, Produktions-E-Mail).
+   **Neue Schriften IMMER lokal hosten** (nach `fonts/`, `@font-face` lokal, externe Font-CDN raus) — s. `CLAUDE.md`.
 4. PR-Diff prüfen — so kann ein Bundle keine bestehenden Code-/A11y-Fixes still überschreiben.
 5. Mergen → Deploy.
 

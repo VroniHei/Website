@@ -400,6 +400,29 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-06-01 — Font-Regel „immer lokal" verbindlich gemacht
+
+**Ziel:** Sicherstellen, dass auch künftige Schriften (z. B. aus Claude-Design-Handoffs) nie über eine externe CDN laden.
+
+**Durchgeführt:** Regel in `CLAUDE.md` (eigene Sektion), `.github/copilot-instructions.md`, `PROTOKOLL.md`
+(Handoff-Checkliste) und `WORKFLOW.md` (Handoff-Abschnitt) verankert — gilt für Claude Code, VS Code & Claude Design.
+
+---
+
+### 2026-06-01 — Schriften lokal hosten (Datenschutz)
+
+**Ziel:** Externe Schrift-CDN (jsDelivr) eliminieren → keine IP-Übertragung an Dritte (wie Google-Fonts-Problematik).
+
+**Durchgeführt:**
+1. Open Sauce Sans (5 Schnitte) lokal nach `fonts/` (400 = `.woff`, 500–800 = `.woff2`).
+2. `@font-face` in `style.css` auf lokale Pfade; jsDelivr-`preconnect`/`dns-prefetch` entfernt; 400er preloaded.
+3. `datenschutz.html` Abschnitt 4 umgeschrieben: Schriften lokal, **keine externen Ressourcen** mehr.
+4. Veraltete jsDelivr-Invarianten in `PROTOKOLL.md` korrigiert; neue Invariante „Schriften bleiben lokal".
+
+**Konsequenz:** Die Seite lädt **keine** Dritt-Ressourcen → durch Schriften entsteht kein Cookie-/Consent-Bedarf.
+
+---
+
 ### 2026-06-01 — Quick Wins: 404-Seite + Dependabot
 
 **Durchgeführt:**
@@ -715,6 +738,26 @@ _Neue Retrospektiven werden nach jeder bedeutenden Session oder am Ende eines Me
 | 8 | FAQ-Section für SEO?                     | Accordion-Style wie „Mein Ansatz" — gut für GEO       | 🟡 Mittel | ⏳ Offen   |
 | 9 | Voices: echte Kundenstimmen?             | Aktuell Platzhalter — Vroni muss echte liefern        | 🟡 Mittel | ⏳ Offen   |
 | 10| A11y-Audit nötig (BFSG)?                | WCAG 2.1 AA verpflichtend seit 28.06.2025             | 🔴 Hoch   | ⏳ Offen   |
+| 11| KI-Admin-Editor auf der Seite?           | Login-Bereich: Region markieren → in Worten beschreiben → KI setzt um. Auch für Kundenseiten. | 🟢 Idee | 💭 Zu scopen |
+
+### Offene Frage 11 — KI-gestützter Admin-Editor (Vision von Veronika)
+
+**Wunsch:** Ein Login-/Admin-Bereich auf der eigenen Seite (und später für Kundenseiten), in dem man
+einen Bereich der Seite markiert, in natürlicher Sprache beschreibt, was geändert werden soll, und die
+KI setzt es direkt um — also „What you see"-Bearbeitung per KI statt Drag&Drop (Elementor).
+
+**Einschätzung:** Technisch machbar, aber ein **eigenständiges Produkt/Projekt**, kein kleines Add-on.
+Es braucht Bausteine, die eine reine statische Seite (GitHub Pages) nicht hat:
+- **Backend/Serverless + Authentifizierung** (nur Veronika/Kund:in darf editieren). → hängt an der Hosting-Frage (Hostinger mit PHP/Node oder eine Serverless-Funktion ermöglicht das; GitHub Pages allein nicht).
+- **LLM-Anbindung** (z. B. Claude API / Agent SDK) für die eigentliche „beschreiben → umsetzen"-Logik. → laufende API-Kosten.
+- **Sichere Persistenz + Vorschau**: Änderungen sollten nicht ungeprüft live gehen → idealerweise Commit/PR + Preview (genau unser jetziger Workflow), damit die KI die Live-Seite nicht zerlegt.
+
+**Denkrichtungen / Optionen:**
+1. **Git-basiertes CMS** (Decap/Tina/Sveltia CMS): fertiger `/admin`-Login, der Inhalte editiert und in Git committet — schnell, günstig, aber **feld-/formularbasiert**, nicht frei „markieren + beschreiben".
+2. **Custom KI-Editor** (die echte Vision): Region-Auswahl + Freitext-Prompt + Claude-API, das einen Diff erzeugt → Preview → Commit. Das ist der spannende, aber aufwändige Eigenbau (Auth, Guardrails, Kosten).
+3. **Interim (heute schon real):** Genau dieser Claude-Code-Workflow IST der KI-Editor — beschreiben → Umsetzung → PR → live. Nur (noch) nicht als Self-Service-Oberfläche auf der Live-Seite.
+
+**Konsequenz/Empfehlung:** Als separates Projekt scopen, sobald Hosting/Domain stehen (Punkt 1 schafft die technische Grundlage). Business-Chance: als wiederverwendbares Tool für Kundenseiten interessant.
 
 ---
 

@@ -109,3 +109,16 @@ Maßstab ist EN 301 549 → faktisch **WCAG 2.1 Level AA**. Bei JEDER Sektion pr
 - **Adress-/Rechtsform-/USt-Änderung** → Impressum.
 
 **Regel:** Solche Änderungen und die Anpassung der Rechtstexte gehören in **denselben PR**. Rechtsstand: **DDG** (nicht mehr TMG), **TDDDG** (nicht mehr TTDSG). Im Zweifel mit dem **eRecht24-Generator** gegenprüfen. (Halb-Automatisierung als Option: CI-„Privacy-Guard", der neue externe Hosts meldet.)
+
+## Schriften (Fonts) — IMMER lokal hosten (verbindlich, egal von wo)
+> Gilt überall: Claude Code, VS Code, Claude Design. Eine externe Schrift-CDN überträgt die Besucher-IP
+> an Dritte → genau das Google-Fonts-/„LG-München"-Abmahnrisiko. Lokal = keine Dritt-Verbindung, consent-frei.
+
+- **Jede Schrift wird lokal aus `fonts/` geladen** (`@font-face` mit lokalem `url('fonts/…')`).
+- **NIEMALS** eine externe Font-CDN / Google Fonts einbinden: kein `fonts.googleapis.com`, kein
+  `jsdelivr`/`unpkg`/Fontsource-CDN, kein `<link>`/`@import`/`preconnect` auf Dritt-Hosts für Schriften.
+- **Neue Schrift (z. B. aus einem Claude-Design-Handoff):** vor dem Live-Gang die Font-Dateien
+  herunterladen → nach `fonts/` legen → `@font-face` auf lokale Pfade setzen → externe Referenz entfernen.
+  Alles **im selben PR**; Datei + Einbindung in `PROTOKOLL.md` (Assets) dokumentieren.
+- Formate: **`.woff2`** bevorzugt, `.woff` als Fallback. Render-kritische Schnitte ggf. `preload` (lokal).
+- Folge: Solange ausschließlich lokale Schriften genutzt werden, entsteht durch Fonts **kein** Cookie-/Consent-Bedarf.

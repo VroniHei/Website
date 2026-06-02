@@ -47,6 +47,15 @@ Bei Texten immer die **Brand Voice** aus `CLAUDE.md` beachten. Bei jeder Sektion
   auf `main`): Branch → ändern → `PROTOKOLL.md` ergänzen → commit/push → PR (Diff prüfen) →
   Squash-Merge → Branch löschen. Branch-Namen: `feat/`, `fix/`, `design/`, `docs/`, `a11y/`.
 
+## Schriften (Fonts) — IMMER lokal hosten
+
+- Jede Schrift wird **lokal aus `fonts/`** geladen (`@font-face` mit lokalem `url('fonts/…')`).
+- **Niemals** eine externe Font-CDN / Google Fonts einbinden (kein `fonts.googleapis.com`,
+  kein `jsdelivr`/`unpkg`/Fontsource, kein `<link>`/`@import`/`preconnect` auf Dritt-Hosts) —
+  sonst geht die Besucher-IP an Dritte (Abmahnrisiko).
+- **Neue Schrift** (z. B. aus Claude Design): Datei nach `fonts/`, `@font-face` lokal, externe
+  Referenz entfernen — alles im selben PR. Details in `CLAUDE.md`.
+
 ## Deployment
 
 `main` ist die einzige Quelle der Wahrheit. GitHub Pages publiziert direkt aus `main`
