@@ -1,0 +1,223 @@
+/* =========================================================
+   Vroni · Über mich — seitenspezifische Styles
+   Erweitert style.css (Designsystem). Keine Font-CDN, alles lokal.
+   Klassen-Präfix .au- (about / über-mich). Folgt der Farb- und
+   Sektions-Logik der Startseite (chalk / beige / dunkel im Wechsel).
+   ========================================================= */
+
+/* ---------- HERO ---------- */
+.au-hero{position:relative;overflow:hidden;padding:172px 0 104px;
+  background:linear-gradient(178deg,#FBF5EA 0%,#FDFBF6 58%,#FCF9F3 100%);}
+.au-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:170px;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(251,247,239,0),var(--chalk));}
+.au-hero .hb-bg{position:absolute;inset:-10%;z-index:0;pointer-events:none;}
+.au-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.04fr .96fr;
+  gap:clamp(40px,5vw,80px);align-items:center;}
+.au-hero-copy{max-width:560px;}
+.au-hero h1{font-family:var(--ff);font-size:clamp(40px,4.6vw,64px);line-height:1.04;
+  letter-spacing:-.03em;margin:20px 0 0;color:var(--ink);text-wrap:balance;}
+.au-hero h1 em{font-family:'Newsreader',Georgia,serif;font-weight:500;font-style:italic;
+  letter-spacing:-.01em;font-size:1.08em;}
+.au-hero .au-lede{font-size:clamp(17px,1.35vw,20px);font-weight:450;line-height:1.6;color:#3a362e;
+  max-width:48ch;margin:26px 0 0;text-wrap:pretty;}
+.au-hero .au-lede + .au-lede{margin-top:16px;font-size:clamp(15.5px,1.2vw,17px);color:var(--ink-soft);}
+.au-hero .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 0;}
+
+/* Hero-Bildkomposition: großes Hochformat + eingeschobenes Quadrat */
+.au-hero-media{position:relative;}
+.au-hm-main{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/5;
+  box-shadow:0 34px 78px rgba(35,34,26,.2);}
+.au-hm-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.au-hero-media:hover .au-hm-main img{transform:scale(1.04);}
+.au-hm-sub{position:absolute;left:-34px;bottom:-30px;width:42%;aspect-ratio:1/1;
+  border-radius:var(--r-md);overflow:hidden;border:7px solid var(--chalk);
+  box-shadow:0 26px 54px rgba(35,34,26,.24);}
+.au-hm-sub img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.5s cubic-bezier(.2,.7,.15,1);}
+.au-hero-media:hover .au-hm-sub img{transform:scale(1.05);}
+
+/* Schwebender "roter Faden"-Chip auf dem Hero-Bild */
+.au-chip{position:absolute;z-index:4;top:14px;right:14px;max-width:236px;
+  display:flex;align-items:center;gap:12px;background:var(--white);border-radius:16px;
+  padding:12px 16px 12px 12px;box-shadow:0 18px 44px rgba(35,34,26,.2);}
+.au-chip .ic{width:38px;height:38px;border-radius:12px;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;background:var(--green);}
+.au-chip .ic svg{width:20px;height:20px;display:block;}
+.au-chip .t1{display:block;font-weight:700;font-size:13.5px;line-height:1.15;color:var(--ink);letter-spacing:-.01em;}
+.au-chip .t2{display:block;font-size:11px;color:var(--ink-soft);line-height:1.25;margin-top:2px;}
+
+/* ---------- SECTION 2 · GEFÜHL (2-Spalten, ruhig · beige) ---------- */
+.au-feel{position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#F2EDE1,#EAE3D4);}
+.au-feel::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(205,138,91,.10),transparent 70%);top:-220px;left:-120px;pointer-events:none;}
+.au-feel .wrap{position:relative;z-index:1;}
+.au-feel-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(40px,5vw,72px);align-items:center;}
+.au-feel-copy h2{margin:16px 0 0;max-width:18ch;}
+.au-feel-copy .lead-strong{font-size:clamp(19px,2vw,26px);font-weight:600;letter-spacing:-.015em;
+  line-height:1.32;color:var(--ink);margin:24px 0 0;text-wrap:balance;}
+.au-feel-copy p{font-size:clamp(16px,1.35vw,17.5px);color:#3a362e;line-height:1.7;margin:18px 0 0;max-width:52ch;text-wrap:pretty;}
+.au-feel-copy p:last-child{font-weight:600;color:var(--green-text);}
+.au-feel-media{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/5;
+  box-shadow:0 28px 64px rgba(35,34,26,.18);}
+.au-feel-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.au-feel-media:hover img{transform:scale(1.05);}
+
+/* ---------- SECTION 3 · MEIN WEG (leichte Timeline, Stil der Startseite) ---------- */
+.au-stations{margin-top:50px;}
+.au-stations .faden-rail{grid-template-columns:repeat(6,1fr);}
+.au-stations .faden .fl{white-space:normal;}
+.au-st-kicker{display:block;font-size:10.5px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--clay);margin-bottom:5px;}
+
+/* ---------- SECTION 4 · ROTER FADEN (dunkles Centerpiece) ---------- */
+.au-thread-dark{background:linear-gradient(165deg,#323c27,#2C3522 55%,#262d1c);color:var(--chalk);
+  position:relative;overflow:hidden;}
+.au-thread-dark::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.14),transparent 68%);top:-220px;right:-150px;pointer-events:none;}
+.au-thread-dark::after{content:"";position:absolute;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(205,138,91,.14),transparent 70%);bottom:-220px;left:-150px;pointer-events:none;}
+.au-thread-dark .wrap{position:relative;z-index:1;}
+.au-td-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(40px,5vw,72px);align-items:start;}
+.au-td-grid .eyebrow .dot{background:var(--green);}
+.au-td-grid .lbl{color:#9aa589;}
+.au-td-grid h2{color:var(--chalk);margin:16px 0 0;max-width:15ch;}
+.au-td-grid h2 .g{color:var(--green) !important;}
+.au-td-body p{color:#c5cdb6;font-size:clamp(16px,1.3vw,17.5px);line-height:1.7;margin:0 0 18px;text-wrap:pretty;}
+.au-td-body p strong{color:var(--chalk);font-weight:600;}
+.au-td-flow{display:block;width:100%;max-width:420px;height:auto;margin:8px 0 24px;}
+.au-td-flow path{stroke:rgba(168,232,79,.85);stroke-linecap:round;}
+.au-td-chips{display:flex;flex-wrap:wrap;gap:10px;}
+.au-td-chips span{font-size:13px;font-weight:500;color:var(--chalk);letter-spacing:-.005em;
+  background:rgba(248,245,238,.08);border:1px solid rgba(248,245,238,.16);border-radius:100px;padding:8px 15px;}
+
+/* ---------- SECTION 5 · WIE ICH ARBEITE ---------- */
+.au-work-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:48px 0 32px;}
+.au-work-duo figure{position:relative;margin:0;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:3/2;
+  box-shadow:0 24px 54px rgba(35,34,26,.15);}
+.au-work-duo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.5s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.au-work-duo figure:hover img{transform:scale(1.04);}
+.au-work-duo figcaption{position:absolute;left:14px;bottom:14px;z-index:2;
+  background:rgba(248,245,238,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-radius:100px;padding:8px 15px;font-size:12.5px;font-weight:600;color:var(--ink);
+  letter-spacing:.01em;box-shadow:0 10px 26px rgba(35,34,26,.16);display:inline-flex;align-items:center;gap:8px;}
+.au-work-duo figcaption::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);flex:0 0 auto;}
+.au-principles{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.au-principles .au-principle:last-child:nth-child(odd){grid-column:1 / -1;}
+.au-principle{background:var(--white);border:1px solid var(--hair-soft);border-radius:var(--r-md);
+  padding:24px 26px;display:flex;gap:20px;align-items:flex-start;
+  box-shadow:0 2px 12px rgba(35,34,26,.04);transition:transform .25s cubic-bezier(.2,.7,.15,1),box-shadow .25s,border-color .25s;}
+.au-principle:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(35,34,26,.09);
+  border-color:color-mix(in srgb,var(--green-deep) 30%,transparent);}
+.au-principle .pn{font-weight:800;font-size:18px;letter-spacing:-.02em;color:var(--green-deep);
+  width:30px;flex:0 0 auto;line-height:1.3;}
+.au-principle .pbody{min-width:0;}
+.au-principle h3{font-size:18.5px;margin:0 0 7px;letter-spacing:-.01em;line-height:1.25;}
+.au-principle p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin:0;text-wrap:pretty;}
+
+/* ---------- SECTION 6 · BEWEGUNG & NERVENSYSTEM (beige) ---------- */
+.au-move{background:linear-gradient(180deg,#EEE8DA,#E7DECE);position:relative;overflow:hidden;}
+.au-move::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(155,163,131,.22),transparent 70%);top:-160px;right:-120px;pointer-events:none;}
+.au-move-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(40px,5vw,72px);align-items:center;}
+.au-move-media{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/3;
+  box-shadow:0 28px 64px rgba(35,34,26,.18);}
+.au-move-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;
+  transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.au-move-media:hover img{transform:scale(1.05);}
+.au-move-copy h2{margin:14px 0 0;max-width:16ch;}
+.au-move-copy p{font-size:16.5px;color:#3a362e;line-height:1.7;margin:20px 0 0;max-width:50ch;text-wrap:pretty;}
+.au-move-copy p.lead{font-weight:600;color:var(--ink);}
+
+/* ---------- SECTION 7 · FÜR WEN (chalk) ---------- */
+.au-fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:50px;}
+.au-fit-col{border-radius:var(--r-xl);padding:34px 34px 32px;border:1px solid var(--hair-soft);
+  box-shadow:0 6px 22px rgba(35,34,26,.05);}
+.au-fit-col.is-yes{background:var(--white);}
+.au-fit-col.is-no{background:rgba(255,255,255,.55);}
+.au-fit-head{display:flex;align-items:center;gap:13px;margin-bottom:22px;}
+.au-fit-head .fb{width:42px;height:42px;border-radius:13px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;}
+.au-fit-head .fb svg{width:21px;height:21px;}
+.is-yes .fb{background:var(--green);color:var(--ink);}
+.is-no .fb{background:var(--sand);color:var(--ink-soft);}
+.au-fit-head h3{font-size:19px;letter-spacing:-.01em;line-height:1.2;margin:0;}
+.au-fit-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;}
+.au-fit-list li{position:relative;padding-left:30px;font-size:15px;line-height:1.55;color:#3a362e;text-wrap:pretty;}
+.au-fit-list li::before{position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;}
+.is-yes .au-fit-list li::before{content:"✓";background:rgba(168,232,79,.22);color:var(--green-text);}
+.is-no .au-fit-list li::before{content:"–";background:rgba(35,34,26,.06);color:var(--ink-soft);}
+
+/* ---------- SECTION 8 · WAS DU ERWARTEN KANNST ---------- */
+.au-expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px;}
+.au-expect-card{background:var(--white);border:1px solid var(--hair-soft);border-radius:var(--r-md);
+  padding:26px 26px 24px;box-shadow:0 2px 12px rgba(35,34,26,.04);
+  transition:transform .25s cubic-bezier(.2,.7,.15,1),box-shadow .25s,border-color .25s;}
+.au-expect-card:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(35,34,26,.09);
+  border-color:color-mix(in srgb,var(--green-deep) 28%,transparent);}
+.au-expect-card .ec-ic{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;background:rgba(168,232,79,.16);color:var(--green-deep);}
+.au-expect-card .ec-ic svg{width:22px;height:22px;}
+.au-expect-card h3{font-size:17.5px;margin:0 0 8px;letter-spacing:-.01em;line-height:1.25;}
+.au-expect-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0;text-wrap:pretty;}
+
+/* ---------- SECTION 9 · PERSÖNLICH (chalk · Bild links) ---------- */
+.au-personal-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(40px,5vw,72px);align-items:center;}
+.au-personal-media{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:1/1;
+  box-shadow:0 28px 64px rgba(35,34,26,.18);}
+.au-personal-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.au-personal-media:hover img{transform:scale(1.05);}
+.au-personal-copy h2{margin:14px 0 0;max-width:16ch;}
+.au-personal-copy p{font-size:16.5px;color:#3a362e;line-height:1.72;margin:20px 0 0;max-width:52ch;text-wrap:pretty;}
+
+/* ---------- SECTION 10 · ABSCHLUSS / KONTAKT ----------
+   Übernimmt 1:1 das Kontakt-Layout der Startseite (.contact aus style.css).
+   About-spezifisch ist nur die persönliche Vertrauens-Zeile mit Avatar. */
+.au-sign-row{display:flex;align-items:center;gap:14px;margin:30px 0 0;}
+.au-sign-ava{width:54px;height:54px;border-radius:50%;overflow:hidden;flex:0 0 auto;
+  border:2px solid rgba(168,232,79,.55);box-shadow:0 8px 22px rgba(0,0,0,.3);}
+.au-sign-ava img{width:100%;height:100%;object-fit:cover;object-position:center 32%;}
+.au-sign-note{font-size:15.5px;font-weight:500;line-height:1.4;letter-spacing:-.01em;color:var(--chalk);}
+.au-sign-note strong{color:var(--green);font-weight:600;}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px){
+  .au-hero{padding:120px 0 68px;}
+  .au-hero-grid{grid-template-columns:1fr;gap:52px;}
+  .au-hero-media{order:-1;max-width:440px;margin:0 auto;width:100%;}
+  .au-hm-sub{left:auto;right:14px;bottom:-24px;width:40%;border-width:6px;}
+  .au-feel-grid{grid-template-columns:1fr;gap:36px;}
+  .au-feel-media{order:-1;max-width:460px;margin:0 auto;width:100%;}
+  .au-td-grid{grid-template-columns:1fr;gap:22px;}
+  .au-stations .faden-rail{grid-template-columns:repeat(3,1fr);row-gap:42px;}
+  .au-move-grid{grid-template-columns:1fr;gap:36px;}
+  .au-move-media{order:-1;}
+  .au-work-duo{grid-template-columns:1fr;}
+  .au-principles{grid-template-columns:1fr;}
+  .au-fit-grid{grid-template-columns:1fr;}
+  .au-expect-grid{grid-template-columns:1fr 1fr;}
+  .au-personal-grid{grid-template-columns:1fr;gap:36px;}
+  .au-personal-media{order:-1;max-width:440px;}
+}
+@media (max-width:560px){
+  .au-hero h1{font-size:clamp(32px,8.6vw,42px);}
+  .au-hero .hero-cta{flex-wrap:wrap;}
+  .au-hero .hero-cta .btn{flex:1 1 auto;justify-content:center;}
+  .au-expect-grid{grid-template-columns:1fr;}
+  .au-fit-col{padding:26px 24px;}
+  /* Stationen vertikal — identisch zum Startseiten-Verhalten der .faden */
+  .au-stations .faden-rail{grid-template-columns:1fr;gap:0;}
+  .au-stations .faden-station{padding:0 0 26px 54px;}
+  .au-stations .faden-station::before{display:block;content:"";position:absolute;left:18px;top:40px;bottom:-2px;
+    width:2px;height:auto;background:var(--clay);opacity:.32;}
+  .au-stations .faden-station:last-child::before{display:none;}
+  .au-stations .faden .fi{top:0;left:0;}
+}

@@ -220,6 +220,86 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Rechte:** siehe Abschnitt 1
 - **Änderungen:** `2026-06-02` — Ersterfassung.
 
+### about-panorama-bailey
+- **Dateien:** `images/about-panorama-bailey.png` (1800 KB) · `images/about-panorama-bailey.webp` (81 KB)
+- **Maße:** 1448×1086 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni sitzt mit Hund Bailey, Bergpanorama, Sonnenuntergang
+- **Verwendung:** `ueber-mich.html` (Hero, Hauptbild links)
+- **Alt-Text:** Vroni sitzt mit Bailey im warmen Sonnenlicht — Bewegung und Stille als Teil der Arbeitsweise
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-02` — Ersterfassung.
+
+### about-arbeiten
+- **Dateien:** `images/about-arbeiten.png` (1900 KB) · `images/about-arbeiten.webp` (97 KB)
+- **Maße:** 1122×1402 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni schreibt in Notizbuch am Fenster, Bailey liegt daneben
+- **Verwendung:** `ueber-mich.html` (Hero, Sub-Bild rechts unten)
+- **Alt-Text:** Vroni schreibt in ihr Notizbuch am Fenster, Bailey liegt entspannt daneben
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-02` — Ersterfassung.
+
+### about-journal-mat
+- **Dateien:** `images/about-journal-mat.png` (1700 KB) · `images/about-journal-mat.webp` (74 KB)
+- **Maße:** 1122×1402 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni in Yoga-Haltung auf Matte drinnen, schwarzer Labrador liegt daneben
+- **Verwendung:** `ueber-mich.html` (Sektion Gefühl + Avatar im Kontaktformular)
+- **Alt-Text:** Vroni auf der Yogamatte — Stille und Klarheit als Grundlage für gute Arbeit
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-02` — Ersterfassung.
+
+### about-brand-essence
+- **Dateien:** `images/about-brand-essence.png` (1900 KB) · `images/about-brand-essence.webp` (102 KB)
+- **Maße:** 1402×1122 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Brand Strategy Workspace, Laptop mit Moodboard und Notizbuch auf Tisch
+- **Verwendung:** `ueber-mich.html` (Sektion „Wie ich arbeite", Bild 1)
+- **Alt-Text:** Vroni sortiert den Markenkern — Vision, Werte, Zielgruppe — auf dem Schreibtisch mit Laptop und Moodboard
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-02` — Ersterfassung.
+
+### about-wireframe
+- **Dateien:** `images/about-wireframe.png` (2100 KB) · `images/about-wireframe.webp` (100 KB)
+- **Maße:** 1536×1024 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Website-Wireframe-Skizze auf Papier mit Laptop, Struktur-Notizen
+- **Verwendung:** `ueber-mich.html` (Sektion „Wie ich arbeite", Bild 2)
+- **Alt-Text:** Vroni skizziert die Website-Struktur als Wireframe auf Papier — Homepage, Über mich, Angebote und Blog
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Hände)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-02` — Ersterfassung.
+
+### about-bewegung-berge
+- **Dateien:** `images/about-bewegung-berge.png` (1800 KB) · `images/about-bewegung-berge.webp` (64 KB)
+- **Maße:** 1448×1086 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni in Yoga-Haltung auf Holzterrasse, Berge im Hintergrund, Bailey daneben
+- **Verwendung:** `ueber-mich.html` (Sektion Bewegung & Nervensystem)
+- **Alt-Text:** Vroni in einer ruhigen Yoga-Haltung auf einer Holzterrasse im Morgenlicht, mit Blick auf die Berge und Bailey daneben
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-02` — Ersterfassung.
+
+### about-claim-see
+- **Dateien:** `images/about-claim-see.png` (1600 KB) · `images/about-claim-see.webp` (87 KB)
+- **Maße:** 1916×821 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Stiller See bei Morgendämmerung, Holzsteg, Nebel
+- **Verwendung:** `ueber-mich.html` (Claim-Band, dekoratives Hintergrundbild)
+- **Alt-Text:** `alt=""` — **dekoratives Hintergrundbild**
+- **Dekorativ:** ja
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-02` — Ersterfassung.
+
+### about-persoenlich
+- **Dateien:** `images/about-persoenlich.png` (2000 KB) · `images/about-persoenlich.webp` (97 KB)
+- **Maße:** 1672×941 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni spaziert mit Bailey auf Waldpfad im Gegenlicht
+- **Verwendung:** `ueber-mich.html` (Sektion Persönlich)
+- **Alt-Text:** Vroni mit Bailey auf einem Trail im Wald — Bewegung als Ort, an dem Gedanken klarer werden
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-02` — Ersterfassung.
+
 ---
 
 ## 4. Weitere Medien (Nicht-Fotos)

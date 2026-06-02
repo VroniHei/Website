@@ -174,6 +174,17 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — Accordion-Fix + Über-mich-Seite v2 mit neuen Bildern (Claude Code)
+**Was:**
+1. **`style.css`**: `.principle.is-open .pbody{max-height:280px→500px}` — Mobile-Fix: Text in den Accordion-Boxen des grünen „Mein Ansatz"-Bereichs wurde unten abgeschnitten, da 280px auf schmalen Viewports (≤390px) für den umbrochenen Text bei 17px/1.6 nicht reicht.
+2. **Neue Bilder** (`images/about-*.png + .webp`, 8 neue Motive): Kopiert aus `pics/` (ChatGPT-generierte KI-Fotos vom 2026-06-02) und in `images/` mit den kanonischen `about-*`-Namen abgelegt; WebP via `sharp-cli` (Qualität 82) konvertiert. Zuordnung: `about-panorama-bailey` (Vroni + Bailey, Berge sitzend), `about-arbeiten` (Vroni schreibt am Fenster, Bailey), `about-journal-mat` (Yoga indoor, schwarzer Lab), `about-brand-essence` (Brand Strategy Workspace), `about-wireframe` (Website-Wireframe-Skizze), `about-bewegung-berge` (Yoga Terrasse, Berge, Hund), `about-claim-see` (See-Panorama, dekorativ), `about-persoenlich` (Spaziergang Wald, Hund).
+3. **`ueber-mich.css`** (neue Datei, 190 Zeilen): Seitenspezifische Styles mit `.au-`-Präfix aus Claude Design Handoff übernommen. Ersetzt das bisherige Inline-`<style>`-Block-Muster.
+4. **`ueber-mich.html`** (komplett neu): Von `.um-`-Klassen (Inline-Style) auf `.au-`-Klassen (externe `ueber-mich.css`) umgestellt. 10 Sektionen: Hero mit Bildkomposition (Haupt + Sub-Bild + Chip), Gefühl, Stationen-Timeline (6), Roter-Faden-Dark, Wie-ich-arbeite (Bild-Duo + 5 Prinzipien), Bewegung, Für-wen, Erwartungen (6 Cards), Claim-Band, Persönlich, Kontaktformular (gleiche IDs wie Startseite → script.js funktioniert ohne Anpassung; Dropdown auf „Mischung" vorbelegt). Produktion: `noindex`, Favicon, Manifest, Font-Preloads, GoatCounter, kein `image-slot.js`.
+- **Warum:** User-Request: neues Claude Design (`.au-`-Version) live bringen + Mobile-Accordion-Bug fixen. Neue Bilder aus KI-Session (2026-06-02) existierten im `pics/`-Ordner, waren aber noch nicht in `images/` überführt.
+- **Abwägungen:** max-height 500px (statt `none`) — ermöglicht CSS-Transition; 500px ist deutlich über dem realen Maximalinhalt (~200px). Bilder als PNG+WebP statt WebP+JPG — Quelle ist PNG (ChatGPT-Export), Konvertierung PNG→JPG→WebP wäre ein unnötiger Schritt ohne Qualitätsvorteil.
+- **Recht/Datenschutz/Fonts:** Neue Bilder sind KI-generiert (ChatGPT, Vroni als Auftraggeberin) — MEDIEN.md muss aktualisiert werden (separater Schritt, CI-Gate). Keine neuen externen Ressourcen, kein neuer Dritt-Dienst, keine CDN.
+- **Konsequenz:** MEDIEN.md: 8 neue Einträge anlegen (CI-Gate `Medien-Register-Check` wird PR ansonsten blockieren). Bilder im `pics/`-Ordner bleiben dort (gitignoriert), nur die optimierten Varianten in `images/` sind im Repo.
+
 ### 2026-06-02 — Fix: CLS auf Rechtsseiten (Font-Preload) (Branch `fix/legal-cls-fontpreload`)
 - **Was:** Auf `datenschutz.html`, `impressum.html`, `barrierefreiheit.html`, `404.html` die zwei Font-Preloads
   (`figtree-latin-400-800.woff2`, `Vaelia.woff2`) im `<head>` ergänzt — analog zur Startseite.
