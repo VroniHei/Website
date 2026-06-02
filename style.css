@@ -835,3 +835,16 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .mobile-menu a:hover{color:var(--green-deep);}
 .mobile-menu .btn{margin-top:24px;background:var(--ink);color:var(--chalk);font-size:16px;padding:15px 32px;}
 .mobile-menu .btn:hover{background:#000;color:#fff;transform:translateY(-2px);}
+
+/* ===== MOBILE: Hintergrund statisch (Perf/Akku auf schwächeren Geräten) =====
+   Desktop behält die animierten Blobs/Ken-Burns. Auf Mobil werden die
+   dekorativen Hintergrund-Animationen abgeschaltet — der teure Teil ist das
+   fortlaufende Neu-Rastern der großen blur(70px)-Blobs pro Frame. Statisch =
+   einmal zeichnen. Look bleibt erhalten, nur ohne Bewegung. */
+@media (max-width:900px){
+  .hb-blob{animation:none;}
+  .hb-soft .s-img{animation:none;}
+  .quote-band .qb-img{animation:none;}
+  .claim-band .cb-img{animation:none;}
+  .steps-orb-a,.steps-orb-b{animation:none;}
+}
