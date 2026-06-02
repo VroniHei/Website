@@ -19,6 +19,10 @@ unter „Änderungen":
 - **Mehrfachnutzung** (Bild wird auf weiterer Seite verwendet) → „Verwendung" ergänzen.
 - **Austausch/Optimierung/Entfernung** → Vermerk mit Datum und Grund.
 
+**Versionierung bei Bild-Austausch (Konvention):**
+- **Gleiches Motiv, nur optimiert** (kleinere WebP, Re-Export) → **Dateinamen behalten, überschreiben**. Git hält die Historie; im Eintrag genügt ein datierter „Änderungen"-Vermerk.
+- **Inhaltlich neues Bild** (anderes Motiv) → **neuer, sprechender Dateiname** + neuer Eintrag; alten Eintrag bei Entfernung mit Datum als „entfernt" markieren (nicht löschen).
+
 ---
 
 ## 1. Globale Herkunft & Rechte (gilt für ALLE aktuell gelisteten Bilder)
@@ -39,8 +43,13 @@ unter „Änderungen":
 **Technik-Standard pro Bild:** Original als `.png` im Repo, ausgeliefert wird die komprimierte `.webp`-Variante
 (via `<picture>` mit PNG-Fallback). Maße = Intrinsic-Size im HTML (`width`/`height`, gegen Layout-Shift).
 
-🟡 **TODO Vroni:** Erstellungsdatum und (optional) der verwendete Prompt sind je Bild mit `— offen —` markiert
-und können von dir ergänzt werden, sobald greifbar.
+**Bildwelt & Prompts (Reproduktion):** Stilrahmen, Masterprompt, Motiv-Prompts und Negativ-Prompts liegen in
+**[`brand/bildwelt-und-prompts.md`](brand/bildwelt-und-prompts.md)** — die kanonische Referenz, um neue Bilder
+im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts nicht 1:1 rekonstruierbar**
+(ChatGPT speichert den finalen System-Prompt nicht). Die Prompts dort sind reproduzierbare Rekonstruktionen.
+
+🟡 **TODO Vroni:** Pro Bild **Erstellungsdatum** und (wo sicher) die **Motiv-Zuordnung zum Guide** ergänzen
+(Felder unten mit `— offen —`).
 
 ---
 
