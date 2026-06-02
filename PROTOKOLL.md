@@ -174,6 +174,24 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — Medienregister `MEDIEN.md` + Dokumentationspflicht (Branch `docs/medien-doku`)
+- **Was:** Neues lebendes Register `MEDIEN.md` für alle Bilder/Medien angelegt (13 Bilder, je PNG-Original + WebP-Variante,
+  mit Maßen, Verwendung, Alt-Text, Dekorativ-Flag, Rechten, Änderungs-Log). Neue **verbindliche Regel** in `CLAUDE.md`
+  („Medien-Dokumentationspflicht"): jede Medien-Änderung aktualisiert den Eintrag im selben PR mit datiertem Vermerk.
+- **Warum:** Vronis Wunsch nach lückenloser Herkunft/Provenienz — gerade im KI-Zeitalter (woher kommt welcher Inhalt).
+  Verhindert „Datenwüste" und macht Varianten/Rechte jederzeit nachvollziehbar.
+- **Wie:** Dateinamen, Größen, Maße, Verwendung (welche Seiten) und Alt-Texte **automatisch aus Repo + HTML extrahiert**.
+  Erstellungsdatum & Prompt als „— offen —" markiert (ergänzt Vroni). Abgrenzung dokumentiert: `MEDIEN.md` = Register,
+  `PROTOKOLL.md` = Historie.
+- **Wichtige Provenienz-Befunde:** Alle Bilder KI-generiert (ChatGPT/DALL·E) von V. Heidrich → Nutzungsrechte bei ihr,
+  rein KI-Werke ohne eigenen Urheberschutz. Personen auf `about-workspace`/`hero-journaling` sind **KI-Darstellungen**,
+  keine realen Fotos → kein „Recht am eigenen Bild". Hinweise zu EXIF-Hygiene (echte Fotos) und C2PA als Ausblick ergänzt.
+- **Alternativen/Abwägungen:** Register in `PROTOKOLL.md` integrieren — verworfen (vermischt Historie mit Zustand).
+  Optionaler CI-„Media-Guard" (PR scheitert, wenn `images/` ohne `MEDIEN.md`-Update geändert wird) als spätere
+  Härtung vorgeschlagen, hier bewusst noch nicht gebaut (Scope/Workflow-Entscheidung).
+- **Learning:** Alt-Texte sind zugleich Content & A11y → gehören ins Register und müssen synchron zum HTML bleiben.
+- **Konsequenz:** Reine Doku — keine Änderung an der Live-Seite, keine neuen Dienste/Datenflüsse. Rechtstexte unberührt.
+
 ### 2026-06-02 — SEO/GEO: Strukturierte Daten auf Startseite (Branch `feat/structured-data`)
 - **Was:** Zweiten JSON-LD-Block in `index.html` (`<head>`) ergänzt — ein `@graph` mit **Person** (Veronika Heidrich / „Vroni"), **ProfessionalService** („InnerLine · Veronika Heidrich") und **WebSite**. Der bestehende `FAQPage`-Block bleibt unverändert daneben.
 - **Warum:** Prio-6-Empfehlung der Markenrecherche. Echter GEO/SEO-Nutzen (Google Knowledge, KI-Antworten) — und zwar nur auf der **indexierbaren** Startseite (die Rechtsseiten sind bewusst `noindex`).

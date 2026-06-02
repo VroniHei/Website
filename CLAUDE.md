@@ -122,3 +122,22 @@ Maßstab ist EN 301 549 → faktisch **WCAG 2.1 Level AA**. Bei JEDER Sektion pr
   Alles **im selben PR**; Datei + Einbindung in `PROTOKOLL.md` (Assets) dokumentieren.
 - Formate: **`.woff2`** bevorzugt, `.woff` als Fallback. Render-kritische Schnitte ggf. `preload` (lokal).
 - Folge: Solange ausschließlich lokale Schriften genutzt werden, entsteht durch Fonts **kein** Cookie-/Consent-Bedarf.
+
+## Medien-Dokumentationspflicht (`MEDIEN.md`) — verbindlich, egal von wo
+> Gilt überall: Claude Code, VS Code, Claude Design. Ziel: **lückenlose Herkunft & Provenienz** aller Bilder/Medien
+> — besonders wichtig im KI-Zeitalter. Kanonisches Register: **`MEDIEN.md`** (aktueller Zustand pro Medium).
+> Abgrenzung: `PROTOKOLL.md` = Historie/Begründung, `MEDIEN.md` = Register pro Medium.
+
+- **Jedes** in der Website verwendete Bild/Medium **muss** in `MEDIEN.md` erfasst sein.
+- Bei **JEDER** Medien-Änderung wird der Eintrag **im selben PR** aktualisiert — mit **datiertem Vermerk** unter „Änderungen":
+  - **Neues Bild/Medium** → neuer Eintrag (alle Felder).
+  - **Neue Variante/Größe/Format** (zusätzliche WebP, Thumbnail) → unter „Dateien/Varianten" ergänzen.
+  - **Alt-Text geändert** (z. B. A11y-Optimierung) → „Alt-Text" aktualisieren.
+  - **Mehrfachnutzung** (Verwendung auf weiterer Seite/Unterseite) → „Verwendung" ergänzen.
+  - **Austausch / Optimierung / Entfernung** → Vermerk mit Datum + Grund.
+- **Pflichtfelder je Eintrag:** Dateien/Varianten (+Größen), Maße, Herkunft (KI: Tool + Ersteller:in + optional Prompt;
+  Dritt-Asset: Quelle + Urheber:in + **Lizenz** + ggf. Attribution), Erstellt am, Verwendung, Alt-Text, Dekorativ (ja/nein),
+  Rechte, „Beachten", Änderungen (datiert).
+- **Abgebildete Personen:** kennzeichnen, ob reales Foto (→ Einwilligung / Recht am eigenen Bild beachten) oder
+  **KI-generierte Darstellung**. Bei echten Fotos vor Upload **EXIF/Standortdaten entfernen**.
+- **Nicht-KI-Assets** (Stock, Fotograf:in, CC): Lizenz + Urheber:in + Attributionspflicht zwingend dokumentieren.
