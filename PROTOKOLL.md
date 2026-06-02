@@ -174,6 +174,21 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-02 — Performance: Responsive Bilder (srcset) + Hero-fetchpriority (Branch `perf/responsive-images`)
+- **Was:** Für alle 13 Listenbilder eine `-960.webp`-Variante (max. 960 px) generiert und im `<picture><source>` per
+  `srcset`/`sizes` eingebunden. `fetchpriority="high"` auf das Hero-LCP-Bild (`hero-visual`) gesetzt. `MEDIEN.md` aktualisiert.
+- **Warum:** Datenbasierte Messung (sharp) zeigte: gleich-große WebP-Neukodierung bringt fast nichts (1,55→1,42 MB),
+  aber **responsive Größen sparen mobil ~57 %** (1,55 MB → ~0,7 MB). Klassische „properly size images"-Chance.
+- **Wie:** Varianten aus den PNG-Originalen (verlustfrei als Quelle, q78). Markup **desktop-sicher**:
+  `sizes="(max-width: 768px) 100vw, <volle Breite>px"` → großer Screen lädt weiter die volle `.webp` (keine Qualitätseinbuße),
+  nur Mobil die 960er. PNG-Fallback unverändert → **Invariante „WebP-Source + PNG-Fallback" bleibt erfüllt**.
+- **Messung/Grenzen:** Exakte Lighthouse-CWV ließen sich hier **nicht** abnehmen (kein lokales Chrome; PSI-API ohne Key = 429).
+  Byte-Ersparnis ist aber deterministisch gemessen. Verifikation der Live-Scores: PageSpeed Insights auf der Live-URL nach Deploy.
+- **Alternativen/Abwägungen:** (a) WebP gleich groß neu kodieren — verworfen (kaum Effekt, Qualitätsrisiko).
+  (b) Mehrere Breiten (480/960/1440) — vorerst nur 960er (ein File je Bild, klarer Gewinn, wenig Komplexität);
+  feinere Breiten + präzise `sizes` als spätere Optimierung offen. (c) PNG-Fallbacks verkleinern — separates Thema (Repo-Gewicht).
+- **Konsequenz:** Mobile Bildlast ~halbiert; Desktop unverändert. +916 KB Repo (13 Varianten). HTML lokal validiert.
+
 ### 2026-06-02 — Wissens-Index `WISSEN.md` angelegt (Branch `docs/wissen-uebersicht`)
 - **Was:** Neue Übersichtsdatei `WISSEN.md` — Steckbrief, Leistungen, Tech-Stack, Doku-Landkarte, Meilensteine,
   Roadmap und „was einer KI anhängen" für Content-Generierung.
