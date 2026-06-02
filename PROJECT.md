@@ -400,6 +400,19 @@ _Neue ADRs werden mit aufsteigender Nummer hinzugefügt._
 
 ---
 
+### 2026-06-01 — Analytics: GoatCounter (cookielos, datenschutzfreundlich)
+
+**Ziel:** Belastbare Besucherzahlen zur Optimierung — ohne Cookie-Banner.
+
+**Durchgeführt:**
+1. GoatCounter (`innerline.goatcounter.com`) auf allen 5 Seiten eingebunden; **`count.js` lokal gehostet**
+   (konsistent zur „Schriften/Skripte lokal"-Linie) → nur der anonyme Zählaufruf geht nach außen.
+2. `datenschutz.html`: neuer Abschnitt „Reichweitenmessung (GoatCounter)" + Cookies-Abschnitt präzisiert.
+3. Kein Consent-Banner nötig (cookielos, keine personenbezogene Speicherung). Kein Borlabs o. Ä. erforderlich.
+
+**Hinweis:** Läuft schon auf der `github.io`-URL; nach Domain-Umzug Domain in GoatCounter ergänzen.
+---
+
 ### 2026-06-01 — Font-Regel „immer lokal" verbindlich gemacht
 
 **Ziel:** Sicherstellen, dass auch künftige Schriften (z. B. aus Claude-Design-Handoffs) nie über eine externe CDN laden.

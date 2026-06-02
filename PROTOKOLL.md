@@ -134,7 +134,8 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Rechtsstand: DDG** (nicht TMG), **TDDDG** (nicht TTDSG). Bei neuen Texten beachten.
 - [ ] `impressum.html`: Adresse **Seeweg 8, 83126 Flintsbach am Inn**; Kleinunternehmer (§ 19 UStG) → **keine USt-IdNr**; **keine Kammer** (kein reglementierter Beruf); **Telefon bewusst NICHT** sichtbar (E-Mail genügt).
 - [ ] **KI-Transparenz-Hinweis** im Impressum behalten (Bilder/Texte KI-gestützt, redaktionell verantwortet; Art. 50 KI-VO ab 02.08.2026). **Nicht** in die Datenschutzerklärung (kein Besucherdaten-Thema).
-- [ ] `datenschutz.html`: spiegelt den **realen** Stand — keine Cookies/Tracking, `mailto`-Kontakt, **Schriften lokal gehostet (keine Font-CDN)**, Hosting GitHub Pages. Bei Hostinger-Umzug Abschnitt 2 anpassen.
+- [ ] `datenschutz.html`: spiegelt den **realen** Stand — **keine Cookies**, `mailto`-Kontakt, **Schriften lokal (keine Font-CDN)**, **cookielose Reichweitenmessung GoatCounter (count.js lokal)**, Hosting GitHub Pages. Bei Hostinger-Umzug Abschnitt 2 anpassen.
+- [ ] **Analytics = GoatCounter, cookielos, `count.js` LOKAL** (`data-goatcounter="https://innerline.goatcounter.com/count"`). Kein Cookie-Banner nötig. Datenschutz Abschnitt 6 muss dazu passen.
 - [ ] **Bei jeder datenverarbeitungs-/Dritt-Dienst-relevanten Änderung** Rechtstexte im selben PR anpassen (s. `CLAUDE.md`).
 - [ ] Vor Livegang final mit **eRecht24-Generator** gegenprüfen.
 - [ ] Beide Seiten haben aktuell `<meta name="robots" content="noindex, nofollow">` — entfernen, sobald final.
@@ -204,6 +205,20 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - **Pain-Section**: `.hl` → `.g` (Newsreader italic statt grün-deep).
 - **`data-topic="mischung"`** auf Hero-CTA erhalten.
 - **Kein Google Fonts CDN**, kein `image-slot.js`, korrekte Rechtseiten-Links.
+
+### 2026-06-01 — Analytics: GoatCounter (cookielos, count.js lokal) (Branch `feat/analytics-goatcounter`)
+- **Was:** Cookielose Reichweitenmessung via GoatCounter (`innerline.goatcounter.com`) auf allen 5 Seiten.
+- **Warum:** Veronika will belastbare Besucherzahlen zur Optimierung — ohne Cookie-Banner/DSGVO-Aufwand.
+- **Wie:** GoatCounter-Snippet vor `</body>` (index, impressum, datenschutz, barrierefreiheit, 404);
+  **`count.js` lokal gehostet** (aus GoatCounter-GitHub-Repo, ISC-Lizenz) → einzige externe Verbindung ist
+  der anonyme Zählaufruf. `datenschutz.html`: neuer Abschnitt 6 „Reichweitenmessung (GoatCounter)",
+  Abschnitt 5 (Cookies) präzisiert, Abschnitt 4 (Exception) ergänzt, „Deine Rechte" → 7.
+- **Alternativen:** GA4 verworfen (Cookie-Banner + US-Transfer); Plausible verworfen (9 €/Mo zu teuer);
+  externes `count.js` von `gc.zgo.at` zugunsten lokaler Auslieferung verworfen (konsistent zur Font-Regel).
+- **Learning:** `count.js` honoriert **kein** DNT automatisch (daher kein DNT-Versprechen im Datenschutz);
+  Opt-out via JS-Blockieren / `skipgc`-Flag. Funktioniert schon auf der `github.io`-URL, läuft nach
+  Domain-Umzug weiter (Domain dann in GoatCounter-Settings ergänzen).
+- **Konsequenz:** Kein Consent-Banner nötig; bei Wechsel auf cookie-/US-Tracking wäre einer Pflicht.
 
 ### 2026-06-01 — Roadmap & Editor-Idee dokumentiert (Branch `docs/roadmap-launch-und-ideen`)
 - **Was:** Das gebündelte **Launch-Vorhaben** (Hosting→Hostinger, Domain, Search Console, GoatCounter-Analytics,
