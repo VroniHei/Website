@@ -48,7 +48,10 @@
      (dokumentiert in PROTOKOLL.md). Siehe Designsystem.html §02.
      ------------------------------------------------------------
      Größen (clamp = responsive Display/Headline-Stufen) */
-  --fs-display: clamp(40px,4.8vw,66px); /* Hero-H1 */
+  --fs-display: clamp(40px,4.8vw,66px); /* Hero-H1 — entspricht der Live-Optik der Startseite */
+  --fs-display-sm: clamp(33px,8.6vw,42px); /* Hero-H1 ≤ 560px (Mobile) — engere clamp-Range für schmale Viewports */
+  --fs-display-lg: clamp(60px,3.4vw,68px); /* Hero-H1 ≥ 1600px (sehr breit) — Headroom auf großen Screens */
+  --ls-head-sm: -.02em;                   /* Headlines ≤ 560px — minimal lockerer als --ls-head (Lesbarkeit bei kleinerem Font) */
   --fs-h1:      clamp(33px,4.2vw,50px); /* Seiten-Titel (falls < Hero) */
   --fs-h2:      clamp(28px,3.3vw,42px); /* Section-Headline */
   --fs-h3:      clamp(20px,1.9vw,24px); /* Subsection / große Karte (Angebote) */
@@ -67,7 +70,7 @@
   --lh-body:  1.6;  /* Fließtext, Sublines, Karten-Text */
   --lh-prose: 1.72; /* lange Bio-/Erzähl-Copy (z. B. Über-mich) */
   /* Laufweiten */
-  --ls-head:  -.025em; /* Headlines */
+  --ls-head:  -.025em; /* Headlines (inkl. Hero-H1 / Display) */
   --ls-snug:  -.01em;  /* Kartentitel / Leads */
   --ls-label: .2em;    /* Labels / Eyebrows */
 

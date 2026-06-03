@@ -135,12 +135,15 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/about-weg.png` (2522 KB) · `images/about-weg.webp` (249 KB)
 - **Maße:** 900×1200 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** — offen — · **Prompt:** — offen —
-- **Verwendung:** `index.html` (Über mich)
+- **Verwendung:** `index.html` (Über mich) · `ueber-mich.html` (Hero-Sub-Inset `.au-hm-sub`, seit 2026-06-03)
 - **Alt-Text:** „Ein gewundener Bergpfad im Abendlicht, dem ein feiner roter Faden folgt — Sinnbild für Bewegung und den roten Faden"
 - **Dekorativ:** nein
 - **Rechte:** siehe Abschnitt 1
 - **Beachten:** Größte WebP-Variante (249 KB) — Optimierungskandidat im Performance-Schritt.
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Zusätzliche Verwendung als Hero-Sub-Inset auf `ueber-mich.html` (ersetzt `about-desk-detail`; Vroni-Inline-Kommentar: Hero-Inset soll Bewegung zeigen). Kein neues Asset, nur Wiederverwendung.
+  - `2026-06-03` — Im Hero-Bento von `ueber-mich.html` zur **Haupt-Kachel** `.au-hb-main` heraufgestuft (Vroni-Inline-Kommentar: Bento wie auf der Startseite, `about-weg` als Hauptbild).
 
 ### yoga
 - **Dateien:** `images/yoga.png` (2149 KB) · `images/yoga.webp` (153 KB)
@@ -226,12 +229,15 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/about-desk-detail.png` (664 KB) · `images/about-desk-detail.webp` (22 KB)
 - **Maße:** 700×560 px (5:4 Detail-Crop aus `about-hero-desk`)
 - **Herkunft:** abgeleitet aus `about-hero-desk` (KI, ChatGPT/DALL·E, V. Heidrich) · **Erstellt am:** 2026-06-03 · **Crop:** OffscreenCanvas im Atelier, Region `820,60 700×560` (rechte obere Bildhälfte, ohne Person/Hand), WebP-Quality 0.86
-- **Verwendung:** `ueber-mich.html` (Hero-Sub-Card · seit 2026-06-03; ersetzt `about-brand-essence`, das eine Person im Bild hatte und auf Vroni-Wunsch raus sollte)
+- **Verwendung:** `ueber-mich.html` (Hero-Bento Zitat-Kachel `.au-hb-quote`, seit 2026-06-03; unter Forest-Overlay, `alt=""` da dekorative Textur für den Marken-Anker)
 - **Alt-Text:** „Detail vom Arbeitsplatz: Laptop, Notizbuch, Vase mit Olivenzweig und Tasse im warmen Naturlicht"
 - **Dekorativ:** nein · **KI-Darstellung:** nein (zeigt nur Objekte aus dem Hero-Setup)
 - **Rechte:** siehe Abschnitt 1
 - **Beachten:** Crop wurde gezielt so gesetzt, dass keine Hand/kein Arm sichtbar bleibt. Wenn das Quellbild `about-hero-desk` jemals neu generiert wird, muss dieser Crop nachgezogen werden (Crop-Region steht oben).
-- **Änderungen:** `2026-06-03` — Ersterfassung (Vroni-Inline-Kommentar: „tausche das Bild gegen eins wo kein Mensch drauf ist").
+- **Änderungen:**
+  - `2026-06-03` — Ersterfassung (Vroni-Inline-Kommentar: „tausche das Bild gegen eins wo kein Mensch drauf ist").
+  - `2026-06-03` — Aus der Hero-Sub-Inset entfernt (ersetzt durch `about-weg`, Vroni wollte dort Bewegung); Asset bleibt im Repo, aktuell ungenutzt.
+  - `2026-06-03` — Wiederverwendung als Hintergrundbild der Hero-Bento Zitat-Kachel `.au-hb-quote` (Vroni-Inline-Kommentar: helles ruhiges Stillleben ohne Mensch statt Yoga-Bild). Unter Forest-Overlay, `alt=""`.
 
 ### about-notebook-still
 - **Dateien:** `images/about-notebook-still.png` (1678 KB) · `images/about-notebook-still.webp` (64 KB)
@@ -248,13 +254,14 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/about-hero-desk.png` (2814 KB) · `images/about-hero-desk.webp` (86 KB)
 - **Maße:** 1536×1024 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-03 · **Prompt:** Frau am Holzschreibtisch am Laptop, schreibt im Notizbuch; Vase mit Olivenzweig, Tasse, Buchstapel; warmes Naturlicht durchs Fenster; schwarzer Labrador (Bailey) liegt entspannt auf einem Kissen unter dem Tisch — editorial, ruhig, Arbeitsprozess
-- **Verwendung:** `ueber-mich.html` (Hero, Hauptbild · seit 2026-06-03) · OG/Twitter-Card der Über-mich-Seite
+- **Verwendung:** *(aktuell nicht eingebunden)* — war Hero-Hauptbild + OG/Twitter-Card der Über-mich-Seite; am 2026-06-03 durch das Bento-Redesign (`about-weg` als Haupt-Kachel) und später durch die Zitat-Kachel ersetzt. OG/Twitter zeigen jetzt ebenfalls auf `about-weg`. Asset bleibt im Repo.
 - **Alt-Text:** „Vroni arbeitet am Schreibtisch am Laptop und schreibt im Notizbuch — im warmen Naturlicht, Bailey liegt ruhig unter dem Tisch"
 - **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
 - **Rechte:** siehe Abschnitt 1
 - **Beachten:** Ersetzt im Hero das vorherige `about-panorama-bailey` (Briefing 2026-06-03: erster Eindruck soll nach Strategie/Arbeit/Klarheit wirken, Hund/Berge nur als kleines Detail). Auch als `og:image` referenziert — bei Austausch beide Stellen prüfen.
 - **Änderungen:**
   - `2026-06-03` — Ersterfassung. WebP im Atelier aus PNG erzeugt (OffscreenCanvas, quality 0.82).
+  - `2026-06-03` — Aus Hero (Hauptbild und Bento-Kachel) und OG/Twitter-Card von `ueber-mich.html` entfernt; alles auf `about-weg` umgestellt (Vroni-Inline-Kommentar: Bento + Zitat-Kachel).
 
 ### about-panorama-bailey
 - **Dateien:** `images/about-panorama-bailey.png` (1800 KB) · `images/about-panorama-bailey.webp` (81 KB)
@@ -273,15 +280,16 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/about-arbeiten.png` (1900 KB) · `images/about-arbeiten.webp` (97 KB)
 - **Maße:** 1122×1402 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni schreibt in Notizbuch am Fenster, Bailey liegt daneben
-- **Verwendung:** `index.html` (Hero-Bento, Soft-Grid `.s-brand`, seit 2026-06-02) · `ueber-mich.html` (Hero, Sub-Bild rechts unten)
+- **Verwendung:** `index.html` (Hero-Bento, Soft-Grid `.s-brand`, seit 2026-06-02) · `ueber-mich.html` (Kontakt-Avatar `.au-sign-ava` + Kurzprofil-Box `.au-profile-ava`, seit 2026-06-03)
 - **Alt-Text (Hero-Bento `.s-brand`):** „Vroni sitzt im Naturlicht am Fenster und schreibt in ihr Notizbuch, Bailey liegt entspannt neben ihr — konzentriertes Arbeiten mit Hund und Bergblick"
 - **Alt-Text (über-mich):** „Vroni schreibt in ihr Notizbuch am Fenster, Bailey liegt entspannt daneben"
 - **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
 - **Rechte:** siehe Abschnitt 1
-- **Beachten:** Wird jetzt an zwei Stellen verwendet — bei Änderungen am Bild beide Einbindungen prüfen. Langarm-Schnitt + Schreibhaltung verdecken den rechten Arm / das Tattoo (Vroni-Vorgabe für die Hero-Kachel).
+- **Beachten:** Wird jetzt an mehreren Stellen verwendet — bei Änderungen am Bild alle Einbindungen prüfen. Langarm-Schnitt + Schreibhaltung verdecken den rechten Arm / das Tattoo (Vroni-Vorgabe für die Hero-Kachel). Als Avatar rund beschnitten (`object-position:center 28–32%`).
 - **Änderungen:**
   - `2026-06-02` — Ersterfassung.
   - `2026-06-02` — Zusätzliche Verwendung in `index.html` Hero-Bento `.s-brand` (ersetzt das Querformat `hero-branding`; Vroni-Vorgabe: Bild mit Bailey und Langarm/verdecktem rechtem Arm).
+  - `2026-06-03` — Zusätzliche Verwendung als Avatar in der neuen Kurzprofil-Box (`.au-profile-ava`) auf `ueber-mich.html` (Über-mich-Optimierung; kein neues Asset, nur Wiederverwendung).
 
 ### about-journal-mat
 - **Dateien:** `images/about-journal-mat.png` (1700 KB) · `images/about-journal-mat.webp` (74 KB)
@@ -303,6 +311,30 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Rechte:** siehe Abschnitt 1
 - **Änderungen:** `2026-06-02` — Ersterfassung.
 
+### about-journal-mat
+- **Dateien:** `images/about-journal-mat.png` (1700 KB) · `images/about-journal-mat.webp` (74 KB)
+- **Maße:** 1122×1402 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni in Yoga-Haltung auf Matte drinnen, schwarzer Labrador liegt daneben
+- **Verwendung:** *(aktuell nicht eingebunden)* — bis 2026-06-03 in `ueber-mich.html` (Sektion Gefühl + Avatar im Kontaktformular); durch das Über-mich-Redesign 2026-06-03 durch `about-notebook-still` (Gefühl-Sektion) und `about-arbeiten` (Kontakt-Avatar) ersetzt. Datei bleibt im Repo.
+- **Alt-Text:** „Vroni auf der Yogamatte — Stille und Klarheit als Grundlage für gute Arbeit"
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Aus `ueber-mich.html` entfernt (Über-mich-Redesign; ersetzt durch `about-notebook-still` + `about-arbeiten`).
+
+### about-brand-essence
+- **Dateien:** `images/about-brand-essence.png` (1900 KB) · `images/about-brand-essence.webp` (102 KB)
+- **Maße:** 1402×1122 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Brand Strategy Workspace, Laptop mit Moodboard und Notizbuch auf Tisch
+- **Verwendung:** *(aktuell nicht eingebunden)* — bis 2026-06-03 in `ueber-mich.html` (Sektion „Wie ich arbeite", Bild 1); durch das Über-mich-Redesign 2026-06-03 entfernt (Sektion neu strukturiert). Datei bleibt im Repo.
+- **Alt-Text:** „Vroni sortiert den Markenkern — Vision, Werte, Zielgruppe — auf dem Schreibtisch mit Laptop und Moodboard"
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Aus `ueber-mich.html` entfernt (Über-mich-Redesign; Sektion durch Stationskarten + Fachlich-Band ersetzt).
+
 ### about-wireframe
 - **Dateien:** `images/about-wireframe.png` (2100 KB) · `images/about-wireframe.webp` (100 KB)
 - **Maße:** 1536×1024 px
@@ -321,7 +353,11 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Alt-Text:** Vroni in einer ruhigen Yoga-Haltung auf einer Holzterrasse im Morgenlicht, mit Blick auf die Berge und Bailey daneben
 - **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Beachten:** Reine Bewegung-Sektion-Verwendung.
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Zusätzliche Verwendung als Hero-Bento Zitat-Kachel auf `ueber-mich.html` (Forest-Overlay + Claim „Sichtbar werden, ohne dich zu verbiegen."; Vroni-Inline-Kommentar: 4. Bento-Kachel als Zitat im Footer-Stil). Kein neues Asset, nur Wiederverwendung.
+  - `2026-06-03` — Aus der Hero-Bento Zitat-Kachel wieder entfernt (Vroni-Inline-Kommentar: „kein zweiter Mensch im Hero, nimm ein helles ruhiges Stillleben oder Landschaft"); ersetzt durch `about-desk-detail`. Verwendung in Bewegung-Sektion bleibt.
 
 ### about-claim-see
 - **Dateien:** `images/about-claim-see.png` (1600 KB) · `images/about-claim-see.webp` (87 KB)
@@ -337,11 +373,14 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/about-persoenlich.png` (2000 KB) · `images/about-persoenlich.webp` (97 KB)
 - **Maße:** 1672×941 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni spaziert mit Bailey auf Waldpfad im Gegenlicht
-- **Verwendung:** `ueber-mich.html` (Sektion Persönlich)
+- **Verwendung:** `ueber-mich.html` (Sektion Persönlich · Hero-Bento Kachel B `.au-hb-b`, seit 2026-06-03)
 - **Alt-Text:** Vroni mit Bailey auf einem Trail im Wald — Bewegung als Ort, an dem Gedanken klarer werden
 - **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Zusätzliche Verwendung im Hero-Bento von `ueber-mich.html` (Kachel B `.au-hb-b`, Vroni-Inline-Kommentar: Bento mit 3 Bildern). Kein neues Asset, nur Wiederverwendung.
+  - `2026-06-03` — Innerhalb des Hero-Bentos von Kachel B auf Kachel A `.au-hb-a` getauscht (Vroni-Inline-Kommentar: rechte Kachel wird Zitat-Tile mit `about-bewegung-berge`).
 
 ---
 
