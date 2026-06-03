@@ -185,6 +185,12 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-03 — Hero-Bild Mobile/Tablet auf volle Inhaltsbreite (Branch `fix/hero-mobile-fullwidth`, Claude Code)
+- **Was:** `.hb-soft` auf ≤900px von `max-width:520px;margin:0 auto` auf `max-width:none;margin:0` umgestellt → das Hero-Bild nimmt jetzt die **volle Inhaltsbreite** ein statt schmal/zentriert.
+- **Warum:** Vroni: Bild ist sichtbar, war aber zu schmal. Der 520px-Deckel hatte das Einzelbild auf breiteren Screens (v. a. Tablet) zentriert verschmälert.
+- **Wie:** Ein `str_replace` im ≤900px-Block. guard 0, html-validate 0, Klammern 714/714.
+- **Konsequenz:** Reine CSS-Änderung. Hero-Bild full-width auf Mobile/Tablet.
+
 ### 2026-06-03 — Hero-Bild Mobile/Tablet: In-Flow-Block statt absolut positioniert (Branch `fix/hero-mobile-image-render`, Claude Code)
 - **Was:** Auf ≤900px wird das Hero-Bild (`.hb-soft .s-main img`) jetzt als normales **In-Flow-Block-Bild** gerendert (`position:static;width:100%;height:clamp(300px,72vw,430px);object-fit:cover`), statt absolut positioniert in einem Container mit fester Höhe.
 - **Warum:** Der vorige Höhen-Fix gab dem Container zwar Höhe (Vroni: „Weißraum, wo das Bild stehen würde"), aber das **absolut positionierte** `<img>` wurde auf Mobile nicht gemalt. Der Hero-**Text** war sichtbar → Reveal/Opacity ist NICHT die Ursache; es ist spezifisch das absolute Bild im resized Container. In-Flow-Rendering ist robust und zuverlässig sichtbar.

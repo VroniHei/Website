@@ -871,7 +871,8 @@ img{max-width:100%;display:block;}
   .hb-visual{order:-1;}
   .hb-copy{max-width:none;justify-content:flex-start;gap:0;}
   .hb-visual{height:auto;}
-  .hb-soft{min-height:0;height:auto;display:block;max-width:520px;margin:0 auto;}
+  /* Hero-Bild auf Mobile/Tablet über die volle Inhaltsbreite (kein 520px-Deckel mehr) */
+  .hb-soft{min-height:0;height:auto;display:block;max-width:none;margin:0;}
   /* Mobile/Tablet: Hero-Bild als normales IN-FLOW-Block-Bild rendern (nicht absolut positioniert).
      Das absolute Muster blieb auf Mobile leer (Container-Höhe da = Weißraum, aber Bild nicht gemalt).
      Statisch + feste Höhe + object-fit:cover ist hier zuverlässig sichtbar. */
