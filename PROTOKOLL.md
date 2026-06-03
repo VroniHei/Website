@@ -185,6 +185,42 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-03 — Über-mich Redesign v2: Texte, Layout-Verfeinerungen, Bewegung-Bento (Claude Design → Claude Code · feat/ueber-mich-v2-redesign)
+
+- **Was:** `ueber-mich.html` und `ueber-mich.css` auf den neuesten Atelier-Stand gebracht (Redesign v2, entstanden nach PR #44). Datei-Austausch 1:1 per Handoff-Bundle (Quelle: `HANDOFF-2026-06-03.md` MASTER + aktueller Atelier-Stand).
+  - **HTML (ueber-mich.html) — Änderungen gegenüber PR #44:**
+    1. **Meta/SEO:** Neue Meta-Description, OG-Description, Twitter-Description, JSON-LD-Person-Description — alle jetzt von Vroni inhaltlich frischer formuliert.
+    2. **Hero:** Neuer Eyebrow „Vroni · Brand- & Website-Strategin". Zwei neue Lede-Absätze (persönlicher, konkreter). CTAs geändert: „Mehr über meinen Weg" (→ `#weg`) + „Zusammenarbeit anfragen" (→ `#kontakt`).
+    3. **Kurzprofil (1b) entfernt:** Visitenkarten-Box `.au-profile` fällt weg; `about-arbeiten` nur noch als Kontakt-Avatar.
+    4. **Gefühl (2):** Neue H2 „…nicht so richtig in einen Satz zu passen". Längerer Lead (erklärender). Neue zweite Absatzzeile. `.au-feel-thoughts`-Liste entfernt. Insight-Text neu.
+    5. **Roter Faden (3):** `.au-td-intro` jetzt zwei `.au-td-col`-Karten (Früher / Heute) statt Freitext-Spalten. Neuer `.au-td-bridge`-Verbindungssatz vor Pull-Quote.
+    6. **Stationen (4):** `shead--split` mit `.au-weg-meta` (editorialem Zähl-Plakat „06 Stationen"). Texte aller 6 Stationen neu. Footer-Band-Label „Was davon bleibt" (statt „Für dich heute"). Aufbau: 01 Floristik, 02 Mediendesign, 03 Marketing, 04 Webdesign, 05 Branding, 06 KI & Workflows (Yoga separate Sektion).
+    7. **Fachliche Basis (4b):** Neuer Eyebrow, `shead--split` mit Intro-Absatz rechts. Ersetzt 5 Icon-Karten (`.au-cred-item`) durch 4 Skill-Gruppen (`.au-skill-group`) mit Tag-Chips (`.au-skill-tags`): Marke & Stimme / Website & Struktur / KI als Werkzeug / Körper & Nervensystem.
+    8. **Bridge (5):** Neuer Eyebrow „Heute", neue H2 „Heute ergibt genau diese Mischung Sinn.", neuer Fließtext.
+    9. **Wie ich arbeite (6):** Neuer erklärender Einleitungssatz. Alle 4 Schritte inhaltlich neu, H3 schritt 04 „Am Ende muss nicht mehr alles erklärt werden."
+    10. **Bewegung (7):** Bild-Bento statt Einzelbild: `.au-move-bento` mit zwei Kacheln (`.au-mb-main` = `about-claim-see` oben, `.au-mb-sub` = `about-bewegung-berge` unten). Neue H2 „Ein voller Kopf klingt nach außen selten klar." Alle Textabsätze neu.
+    11. **Für wen (8):** `shead--center` mit erklärendem Absatz. Neue H3-Texte und neue Listen-Items.
+    12. **Erwarten (9):** Neuer Eyebrow, neue H2 „Aus dem, was da ist, eine Form, mit der du weiterarbeiten kannst." Alle 6 Karten inhaltlich neu (Positionierung, Website, Sprache, Struktur, KI mit Haltung, Ruhe).
+    13. **Claim-Band:** Neue Formulierung „Manche Gedanken werden erst ~~unterwegs klar.~~" mit grünem `.g`-Akzent.
+    14. **Persönlich (10):** Bild geändert: `about-persoenlich` → `zitat-weg` (Landschaft statt Person). Alle 3 Absätze neu.
+    15. **Kontakt (11):** Neue H2 „…lass uns sortieren." Neuer Body-Text. Neuer `.au-contact-aside`-Kursiv-Absatz. Button-Text „Projekt anfragen".
+  - **CSS (ueber-mich.css) — Änderungen gegenüber PR #44:**
+    1. Lead-Satz `.au-move-copy p.lead`: von `--fs-lead` (19–22px/600) auf `--fs-subline` (18px/500) geändert (Vroni-Feedback: langer Lead wirkte zu erschlagend).
+    2. `.au-feel-copy .lead-strong{max-width:32ch}` entfernt (war für alte `--fs-lead`-Stufe, jetzt hinfällig).
+    3. `.au-td-intro`: engeres Grid (20–32px gap, max-width 880px, `align-items:stretch`). Neue Komponenten: `.au-td-col` (zentrierte Vergleichskarten), `.au-td-step`, `.au-td-intro p` mit `max-width:32ch`. Neues `.au-td-bridge`.
+    4. Stationen: Neues `.au-weg-meta` mit Sub-Elementen (`.awm-num`, `.awm-label`, `.awm-rule`, `.awm-text`) für das Zähl-Plakat.
+    5. Fachliche Basis: Ersetzt `.au-cred-grid/.au-cred-item/.au-cred-ic` durch `.au-skill-grid` (4 Spalten) / `.au-skill-group` / `.au-skill-num` / `.au-skill-title` / `.au-skill-desc` / `.au-skill-tags`. Section-Head jetzt `.au-cred-head` (statt `.au-cred .shead`).
+    6. Bewegung: `.au-move-grid` auf `.85fr/1.15fr` (Bild-Spalte schmaler, Text breiter). Neues `.au-move-bento`, `.au-mb-tile`, `.au-mb-main`, `.au-mb-sub` (2er-Bento-Komposition).
+    7. Für wen (`.au-fit-col`): vollständig überarbeitet — beide Karten jetzt als helle Flex-Column-Cards mit Hover, YES mit dezent-grünem Hintergrundverlauf, NO mit gestrichelter Border. YES-Bullet: runde grüne Pille mit Check. NO-Bullet: gedämpftes Minus.
+    8. Kontakt: `#kontakt.contact .body{max-width:500px}`. `.contact-privacy` aus absoluter Positionierung herausgeholt (`position:static;margin-top:32px`). Neues `.au-contact-aside`.
+    9. Mobile: `.au-move-bento` statt `.au-move-media` im 900px-Breakpoint; `.au-skill-grid` statt `.au-cred-grid`.
+- **Warum:** Design-Atelier hat nach PR #44 weitergearbeitet und signifikante Verbesserungen eingebracht (Texte frischer, Layout ruhiger, Bewegungs-Bento visuell ausgewogener, Kontakt-Block besser strukturiert). Vroni hat die Version per Design-Export als gültig markiert.
+- **Wie:** Design-Bundle (gzip-Archiv) extrahiert, Atelier-Dateien mit Live-Repo verglichen, `ueber-mich.html` + `ueber-mich.css` 1:1 ersetzt. Alle benötigten Bilder bereits im Repo. `tokens.css` + `style.css` + `index.html` unverändert (kein Delta zum Atelier-Stand).
+- **Alternativen/Abwägungen:** Chirurgisches Mergen (nur Diff übernehmen) wäre fehleranfälliger gewesen; Atelier-Stand enthält bereits alle SEO/JSON-LD/A11y-Inhalte → 1:1-Ersetzen ist sicherer und nachvollziehbarer.
+- **MEDIEN.md-Updates:** `about-claim-see` (Verwendung: Claim-Band → Bewegung-Bento, nicht mehr dekorativ), `about-bewegung-berge` (jetzt Sub-Kachel im Bento), `zitat-weg` (neue Verwendung in Persönlich-Sektion), `about-persoenlich` (nur noch Hero-Bento, nicht mehr Persönlich-Sektion), `about-arbeiten` (Kurzprofil entfernt, nur noch Kontakt-Avatar).
+- **Recht / Datenschutz:** Keine Änderung. Kein neuer Dritt-Dienst, keine neue CDN, kein neues Formular-Backend, kein Tracking-Wechsel. `impressum.html` und `datenschutz.html` unverändert.
+- **Konsequenz:** Live-Seite `ueber-mich.html` zeigt nach Merge den überarbeiteten Stand. Verifizieren: Hero-Bento 3 Kacheln, Bewegung-Bento 2 Kacheln, Skill-Gruppen mit Tag-Chips, Kontakt-Aside-Text, „Projekt anfragen"-Button.
+
 ### 2026-06-03 — Hero-H1 Breakpoint-Overrides ebenfalls tokenisiert + Über-mich Mobile-Override (Claude Design · Atelier · Vroni-Auftrag „komplett aufräumen")
 - **Was:**
   1. **Drei neue Tokens** in `tokens.css`: `--fs-display-sm: clamp(33px,8.6vw,42px)` (Mobile ≤ 560), `--fs-display-lg: clamp(60px,3.4vw,68px)` (Wide ≥ 1600), `--ls-head-sm: -.02em` (etwas lockerer für kleine Größen). Damit sind alle drei Breakpoint-Stufen der Hero-H1 tokenisiert.
