@@ -63,6 +63,17 @@ jobs:
       - name: Hauptthread-/CLS-Diagnose (informativ)
         run: node .github/lh-diagnose.cjs
 
+  design-guard:
+    name: Design-Hygiene (Tokens / Schriften / Em-Dash)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+      - name: Single Source of Truth erzwingen
+        run: node .github/design-hygiene.cjs
+
   medien-guard:
     name: Medien-Register-Check
     runs-on: ubuntu-latest

@@ -44,6 +44,13 @@ fonts/vaelia-organic-font-*/
 pics/
 uploads/
 
+# Atelier-Scratch: alles mit „_"-Präfix ist Arbeitsmaterial, NIE Live.
+# Verhindert, dass volle Kopien (z. B. _index-hero-neu4.html, _handoff/<snapshot>/index.html)
+# bei einer Übergabe versehentlich echte Dateien überschreiben. Der Design-Guard
+# überspringt „_"-Dateien bereits (.github/design-hygiene.cjs).
+_*
+_handoff/
+
 # Arbeits-Screenshots (Dev-Material, nicht ins Live-Repo)
 Screenshots Arbeitsdateien/
 

@@ -3,23 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vroni · Designsystem — Fresh Organic Hybrid</title>
+<title>InnerLine · Designsystem · Vroni</title>
+<link rel="stylesheet" href="tokens.css">
 <style>
-  /* ---- Open Sauce Sans ---- */
-  @font-face{font-family:'Open Sauce Sans';font-weight:400;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-400-normal.woff') format('woff');}
-  @font-face{font-family:'Open Sauce Sans';font-weight:500;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-500-normal.woff2') format('woff2');}
-  @font-face{font-family:'Open Sauce Sans';font-weight:600;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-600-normal.woff2') format('woff2');}
-  @font-face{font-family:'Open Sauce Sans';font-weight:700;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-700-normal.woff2') format('woff2');}
-  @font-face{font-family:'Open Sauce Sans';font-weight:800;font-style:normal;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans/files/open-sauce-sans-latin-800-normal.woff2') format('woff2');}
-
-  :root{
-    --chalk:#F8F5EE; --sand:#EFEADD; --ink:#23221A; --forest:#2C3522;
-    --green:#A8E84F; --green-deep:#6E9B2C; --sage:#9BA383; --olive:#6E7449;
-    --clay:#CD8A5B; --lilac:#CBBEF4; --ink-soft:#5d564a;
-    --hair:rgba(35,34,26,.12); --white:#FFFFFF;
-    --r-sm:12px; --r-md:18px; --r-lg:26px;
-    --ff:'Open Sauce Sans', sans-serif;
-  }
+  /* Nur Designsystem-Chrome (Layout dieser Doku-Seite). Tokens + Schriften
+     kommen ausschliesslich aus tokens.css = Single Source of Truth. */
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#ded8cd;font-family:var(--ff);color:var(--ink);}
   .board{width:1280px;margin:0 auto;background:var(--chalk);}
@@ -35,7 +23,7 @@
   .masthead{padding:72px 80px 60px;position:relative;}
   .eyebrow{display:flex;gap:12px;align-items:center;}
   .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--green);}
-  .mast-title{font-weight:800;font-size:64px;line-height:.96;letter-spacing:-.03em;margin:22px 0 0;}
+  .mast-title{font-weight:650;font-size:var(--fs-display);line-height:1.02;letter-spacing:-.03em;margin:22px 0 0;}
   .mast-title .em{color:var(--green-deep);}
   .mast-sub{font-size:18px;line-height:1.5;font-weight:400;color:#3a362e;max-width:640px;margin:18px 0 0;}
   .mast-wave{margin-top:36px;}
@@ -63,6 +51,9 @@
   .type-row .tag{flex:0 0 120px;font-size:12px;color:var(--ink-soft);}
   .type-row .tag b{display:block;color:var(--ink);font-size:12px;font-weight:600;margin-bottom:2px;}
   .type-row .demo{flex:1;letter-spacing:-.02em;line-height:1.05;}
+  .ds-motion{cursor:pointer;}
+  .ds-motion:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+  @media (prefers-reduced-motion:reduce){.ds-motion{transition:none!important;}.ds-motion:hover{transform:none;}}
 
   /* generic card grid */
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
@@ -187,65 +178,6 @@
   .ex-cap{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);padding:14px 22px;background:var(--sand);border-bottom:1px solid var(--hair);}
   .ex-body{padding:0;}
 
-  /* Hero example */
-  .hero{padding:40px 44px 46px;}
-  .hero .row{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch;}
-  .hero .copy{align-self:center;}
-  .hero .h{font-weight:800;font-size:54px;line-height:1.0;letter-spacing:-.03em;margin:14px 0 0;}
-  .hero .p{font-size:17px;line-height:1.55;color:#3a362e;margin:22px 0 26px;max-width:430px;}
-  .hero .htags{display:flex;flex-wrap:wrap;align-items:center;gap:7px 22px;margin:22px 0 0;}
-  .hero .htags span{position:relative;font-size:13px;font-weight:600;color:#9a9486;}
-  .hero .htags span:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--green);transform:translateY(-50%);}
-  .hero .vis{align-self:stretch;min-height:340px;margin:0 -44px 0 0;border-radius:26px 0 0 26px;
-    background:linear-gradient(150deg,#e4e7d9,#d2d7c3);color:#727860;display:flex;align-items:flex-end;
-    box-shadow:-22px 22px 60px rgba(35,34,26,.14);}
-  .hero .vis .pc{padding:14px 16px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#727860;}
-
-  /* About teaser */
-  .about{padding:0;display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center;background:var(--sand);overflow:hidden;}
-  .about .img{align-self:stretch;min-height:340px;margin:0;border-radius:0 26px 26px 0;
-    background:linear-gradient(150deg,#e7ded0,#dbcdbb);color:#857a67;display:flex;align-items:flex-end;
-    box-shadow:22px 0 60px rgba(35,34,26,.12);}
-  .about .img .pc{padding:14px 16px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#857a67;}
-  .about .atxt{padding:40px 44px 40px 0;}
-  .about h3{font-weight:700;font-size:34px;letter-spacing:-.02em;margin:0 0 16px;}
-  .about p{font-size:16px;line-height:1.6;color:#3a362e;margin:0 0 14px;max-width:460px;}
-  .about .sig{display:flex;align-items:center;gap:12px;margin-top:20px;}
-  .about .sig svg{width:70px;height:24px;}
-  .about .sig span{font-size:14px;color:var(--ink-soft);}
-
-  /* Course / Yoga hint (matches site) */
-  .course{padding:40px 44px;background:linear-gradient(180deg,#EEE8DA,#E7DECE);display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;}
-  .course .ytxt .lbl{color:var(--ink-soft);}
-  .course .badge-active{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--hair);border-radius:100px;padding:7px 15px 7px 9px;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:12px;box-shadow:0 4px 14px rgba(35,34,26,.05);}
-  .course .badge-active .pulse{width:20px;height:20px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;}
-  .course .badge-active .pulse svg{width:11px;height:11px;}
-  .course h3{font-weight:800;font-size:32px;letter-spacing:-.02em;margin:8px 0 14px;line-height:1.06;}
-  .course h3 .g{color:var(--green-deep);}
-  .course .ytxt p{font-size:15px;line-height:1.65;color:#3a362e;max-width:440px;margin:0;}
-  .ycard{background:var(--forest);color:var(--chalk);border-radius:var(--r-lg);padding:30px 32px;box-shadow:0 26px 60px rgba(35,34,26,.22);}
-  .ycard .lbl{color:#9aa589;}
-  .ycard .yh{font-weight:700;font-size:22px;margin:12px 0 0;}
-  .ycard .route{width:100%;height:56px;display:block;margin:18px 0;}
-  .ycard .days{display:flex;flex-direction:column;gap:11px;}
-  .ycard .yday{background:rgba(248,245,238,.07);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;}
-  .ycard .yday .dl{font-weight:700;font-size:15px;}
-  .ycard .yday .dr{font-size:12.5px;color:#9aa589;margin-top:2px;}
-  .ycard .yday .dtag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--green);color:var(--ink);padding:5px 10px;border-radius:100px;}
-  .ycard .ynote{font-size:12px;color:#9aa589;margin:14px 0 0;line-height:1.5;}
-  .ycard .ycta{margin-top:20px;}
-
-  /* Contact (matches site) */
-  .contact{padding:42px 44px;background:var(--forest);color:var(--chalk);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
-  .contact .lbl{color:var(--green);}
-  .contact h3{font-weight:800;font-size:38px;letter-spacing:-.025em;line-height:1.04;margin:12px 0 16px;color:var(--chalk);}
-  .contact h3 .g{color:var(--green);}
-  .contact p{font-size:15.5px;line-height:1.65;color:#c5cbb8;max-width:380px;margin:0;}
-  .contact .deco{margin-top:26px;width:220px;height:26px;display:block;}
-  .contact .cform{background:var(--chalk);border-radius:var(--r-lg);padding:30px 30px 28px;color:var(--ink);box-shadow:0 30px 70px rgba(0,0,0,.3);}
-  .contact .cform .ceyebrow{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);margin:0 0 16px;display:flex;align-items:center;gap:9px;}
-  .contact .cform .ceyebrow::before{content:"";width:16px;height:16px;border-radius:50%;background:var(--green);}
-
   .foot{padding:30px 80px 54px;display:flex;justify-content:space-between;color:var(--ink-soft);font-size:12px;border-top:1px solid var(--hair);}
 </style>
 </head>
@@ -254,9 +186,9 @@
 
   <!-- MASTHEAD -->
   <div class="masthead">
-    <div class="eyebrow"><span class="dot"></span><span class="lbl">Designsystem · Komponenten-Board · v2</span></div>
-    <h1 class="mast-title">Fresh Organic Hybrid<br><span class="em">Komponenten</span></h1>
-    <p class="mast-sub">Der Baukasten für deine Website: Tokens, Typo, Buttons, Karten, Navigation, Formulare, Bildstil, das Linienmotiv, ein Sektions-Baukasten — und fertige Beispiel-Komponenten. Hell, offen, organisch.</p>
+    <div class="eyebrow"><span class="dot"></span><span class="lbl">Quelle der Wahrheit · tokens.css + style.css</span></div>
+    <h1 class="mast-title">InnerLine<br><span class="em">Designsystem</span></h1>
+    <p class="mast-sub">Der Baukasten für deine Website: Tokens, Typo, Buttons, Karten, Navigation, Formulare, Bildstil, das Linienmotiv, ein Sektions-Baukasten, und eine Live-Vorschau der echten Seiten. Hell, offen, organisch.</p>
     <div class="mast-wave">
       <svg viewBox="0 0 1120 64" preserveAspectRatio="none" fill="none">
         <path d="M0,40 C120,40 150,14 260,14 C370,14 400,50 520,50 C640,50 660,20 780,20 C900,20 920,44 1040,44 C1100,44 1110,36 1120,35" stroke="#A8E84F" stroke-width="4" stroke-linecap="round"/>
@@ -301,7 +233,7 @@
       </div>
     </div>
     <div class="sub-h" style="margin-top:36px;font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;">Tiefe · Schatten &amp; Verläufe</div>
-    <p class="sec-sub" style="margin-bottom:22px;">Tiefe entsteht über weiche, weit gestreute Schatten und subtile organische Verlaufs-Hintergründe — nie über harte Linien oder graue Kästen. So bleibt alles hell und lebendig.</p>
+    <p class="sec-sub" style="margin-bottom:22px;">Tiefe entsteht über weiche, weit gestreute Schatten und subtile organische Verlaufs-Hintergründe, nie über harte Linien oder graue Kästen. So bleibt alles hell und lebendig.</p>
     <div class="grid-3" style="gap:18px;">
       <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 6px 22px rgba(35,34,26,.05);border:1px solid var(--hair);"><div style="font-weight:600;font-size:14px;">Karte · ruhig</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">0 6px 22px / .05</div></div>
       <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 20px 46px rgba(35,34,26,.11);border:1px solid var(--hair);"><div style="font-weight:600;font-size:14px;">Karte · Hover</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">0 20px 46px / .11</div></div>
@@ -312,19 +244,129 @@
   <!-- 02 TYPE SCALE -->
   <section>
     <div class="sec-h"><span class="no">02</span><h2>Typografie-Skala</h2></div>
-    <p class="sec-sub">Open Sauce Sans, eine Familie. Hierarchie über Schnitt und Größe — ruhig, rund, klar.</p>
-    <div class="type-row"><div class="tag"><b>Display</b>64 / 800 / -3%</div><div class="demo" style="font-size:64px;font-weight:800;">Klarheit in Bewegung</div></div>
-    <div class="type-row"><div class="tag"><b>H1</b>46 / 800</div><div class="demo" style="font-size:46px;font-weight:800;">Sichtbar werden</div></div>
-    <div class="type-row"><div class="tag"><b>H2</b>32 / 700</div><div class="demo" style="font-size:32px;font-weight:700;">Viele Themen, ein Faden</div></div>
-    <div class="type-row"><div class="tag"><b>H3</b>22 / 700</div><div class="demo" style="font-size:22px;font-weight:700;">Deine Marke zeigt dich</div></div>
-    <div class="type-row"><div class="tag"><b>Body L</b>18 / 400</div><div class="demo" style="font-size:18px;font-weight:400;letter-spacing:0;line-height:1.5;">Eine Website darf schön aussehen — und vor allem verständlich machen, warum man mit dir arbeiten sollte.</div></div>
-    <div class="type-row"><div class="tag"><b>Body</b>15 / 400</div><div class="demo" style="font-size:15px;font-weight:400;letter-spacing:0;line-height:1.6;color:var(--ink-soft)">Ruhig, humanistisch, gut lesbar. Trägt längere Texte, ohne sich vorzudrängen.</div></div>
-    <div class="type-row"><div class="tag"><b>Label</b>11 / 600 / +20%</div><div class="demo" style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)">Personal Branding · Webdesign · KI · Yoga</div></div>
+    <p class="sec-sub">Figtree (Hauptschrift), Newsreader-Kursiv nur als <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;">Akzent</span> (.g). Alle Größen sind <b>CSS-Tokens</b> (<code style="font-family:ui-monospace,monospace;font-size:12px;">--fs-*</code>) in <code style="font-family:ui-monospace,monospace;font-size:12px;">style.css</code>, jede Seite greift sie auf, nie eigene px-Werte pro Sektion. Display/H1/H2/H3 sind responsiv (clamp).</p>
+    <div class="type-row"><div class="tag"><b>Display</b>--fs-display · 40→66 / 650</div><div class="demo" style="font-size:var(--fs-display);font-weight:650;letter-spacing:-.025em;">Klarheit in Bewegung</div></div>
+    <div class="type-row"><div class="tag"><b>H1</b>--fs-h1 · 33→50 / 650</div><div class="demo" style="font-size:var(--fs-h1);font-weight:650;letter-spacing:-.025em;">Sichtbar werden</div></div>
+    <div class="type-row"><div class="tag"><b>H2</b>--fs-h2 · 28→42 / 650</div><div class="demo" style="font-size:var(--fs-h2);font-weight:650;letter-spacing:-.025em;">Viele Themen, ein Faden</div></div>
+    <div class="type-row"><div class="tag"><b>H3</b>--fs-h3 · 20→24 / 650</div><div class="demo" style="font-size:var(--fs-h3);font-weight:650;letter-spacing:-.01em;">Subsection &amp; große Karte</div></div>
+    <div class="type-row"><div class="tag"><b>H4 · Kartentitel</b>--fs-h4 · 17→18 / 600</div><div class="demo" style="font-size:var(--fs-h4); font-weight: 600; letter-spacing: -.01em">Titel in Trust-, Step- &amp; Pain-Karten</div></div>
+    <div class="type-row"><div class="tag"><b>Lead</b>--fs-lead · 19→22 / 600</div><div class="demo" style="font-size:var(--fs-lead);font-weight:600;letter-spacing:-.01em;line-height:1.5;">Emphatischer Einstiegssatz unter einer Headline.</div></div>
+    <div class="type-row"><div class="tag"><b>Subline · Body L</b>--fs-subline · 18 / 400</div><div class="demo" style="font-size:var(--fs-subline);font-weight:400;letter-spacing:0;line-height:1.6;">Section-Intro unter der H2. Ruhig, gut lesbar, führt in den Abschnitt.</div></div>
+    <div class="type-row"><div class="tag"><b>Body</b>--fs-body · 17 / 400</div><div class="demo" style="font-size:var(--fs-body);font-weight:400;letter-spacing:0;line-height:1.6;">Fließtext in Content-Sektionen, trägt längere Absätze, ohne sich vorzudrängen.</div></div>
+    <div class="type-row"><div class="tag"><b>Body S</b>--fs-body-sm · 16 / 400</div><div class="demo" style="font-size:var(--fs-body-sm);font-weight:400;letter-spacing:0;line-height:1.62;color:var(--ink-soft)">Karten-Text, Listen und dichte Bereiche. Eine Stufe unter dem Fließtext.</div></div>
+    <div class="type-row"><div class="tag"><b>Caption</b>--fs-caption · 13.5 / 500</div><div class="demo" style="font-size:var(--fs-caption);font-weight:500;letter-spacing:0;line-height:1.5;color:var(--ink-soft)">Meta, Bildunterzeile, Zeitstrahl-Text.</div></div>
+    <div class="type-row"><div class="tag"><b>Fine Print</b>--fs-fine · 12 / 400</div><div class="demo" style="font-size:var(--fs-fine);font-weight:400;letter-spacing:.04em;line-height:1.55;color:var(--ink-soft)">Rechtliche Microcopy: Pflichtfeld- und Datenschutz-Hinweise. A11y-Untergrenze, nie kleiner.</div></div>
+    <div class="type-row"><div class="tag"><b>Label</b>--fs-label · 11.5 / 600 / +20%</div><div class="demo" style="font-size:var(--fs-label);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)">Personal Branding · Webdesign · KI · Yoga</div></div>
   </section>
 
-  <!-- 03 BUTTONS -->
+  <!-- 03 SPACING -->
   <section>
-    <div class="sec-h"><span class="no">03</span><h2>Button-Stile</h2></div>
+    <div class="sec-h"><span class="no">03</span><h2>Spacing &amp; Raster</h2></div>
+    <p class="sec-sub">4px-Basis. Abstände kommen IMMER aus der Skala (<code style="font-family:ui-monospace,monospace;font-size:12px;">--space-*</code>), so atmet die Seite gleichmäßig. Karten nutzen feste semantische Abstände, damit Texte in jeder Kachel identisch sitzen.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:16px;"><span style="flex:0 0 190px;font-size:12px;color:var(--ink-soft);"><b style="color:var(--ink);">--space-3xs</b> · 4px</span><span style="height:16px;width:4px;background:var(--green);border-radius:3px;"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;"><span style="flex:0 0 190px;font-size:12px;color:var(--ink-soft);"><b style="color:var(--ink);">--space-2xs</b> · 8px</span><span style="height:16px;width:8px;background:var(--green);border-radius:3px;"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;"><span style="flex:0 0 190px;font-size:12px;color:var(--ink-soft);"><b style="color:var(--ink);">--space-xs</b> · 12px</span><span style="height:16px;width:12px;background:var(--green);border-radius:3px;"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;"><span style="flex:0 0 190px;font-size:12px;color:var(--ink-soft);"><b style="color:var(--ink);">--space-sm</b> · 16px</span><span style="height:16px;width:16px;background:var(--green);border-radius:3px;"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;"><span style="flex:0 0 190px;font-size:12px;color:var(--ink-soft);"><b style="color:var(--ink);">--space-md</b> · 22px</span><span style="height:16px;width:22px;background:var(--green);border-radius:3px;"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;"><span style="flex:0 0 190px;font-size:12px;color:var(--ink-soft);"><b style="color:var(--ink);">--space-lg</b> · 32px</span><span style="height:16px;width:32px;background:var(--green);border-radius:3px;"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;"><span style="flex:0 0 190px;font-size:12px;color:var(--ink-soft);"><b style="color:var(--ink);">--space-xl</b> · 48px</span><span style="height:16px;width:48px;background:var(--green);border-radius:3px;"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;"><span style="flex:0 0 190px;font-size:12px;color:var(--ink-soft);"><b style="color:var(--ink);">--space-2xl</b> · 64px</span><span style="height:16px;width:64px;background:var(--green);border-radius:3px;"></span></div>
+    </div>
+    <div class="sub-h" style="margin-top:32px;font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;">Semantische Komponenten-Abstände</div>
+    <div class="grid-3" style="gap:18px;margin-top:14px;">
+      <div class="panel" style="padding:22px 24px;"><div style="font-weight:600;font-size:14px;">Karte innen</div><div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">--pad-card · 30px</div></div>
+      <div class="panel" style="padding:22px 24px;"><div style="font-weight:600;font-size:14px;">Raster-Abstand</div><div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">--gap-grid · 18px</div></div>
+      <div class="panel" style="padding:22px 24px;"><div style="font-weight:600;font-size:14px;">Label→Titel→Text</div><div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">--gap-label 10 · --gap-title 12</div></div>
+      <div class="panel" style="padding:22px 24px;"><div style="font-weight:600;font-size:14px;">Section vertikal</div><div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">.sec · 104px (clamp mobil)</div></div>
+      <div class="panel" style="padding:22px 24px;"><div style="font-weight:600;font-size:14px;">Head→Raster</div><div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">--shead-gap · 48px</div></div>
+      <div class="panel" style="padding:22px 24px;"><div style="font-weight:600;font-size:14px;">Content-Breite</div><div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">.wrap · max 1240px · Maß 54ch</div></div>
+    </div>
+  </section>
+
+  <!-- 04 RADII -->
+  <section>
+    <div class="sec-h"><span class="no">04</span><h2>Radien &amp; Form</h2></div>
+    <p class="sec-sub">Weiche, organische Ecken, nie scharfkantig. Vier Stufen plus die voll gerundete Pill für Buttons/Tags.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:flex-end;">
+      <div style="text-align:center;"><div style="width:96px;height:72px;background:#fff;border:1px solid var(--hair);border-radius:12px;box-shadow:var(--shadow-sm);"></div><div style="font-size:12px;color:var(--ink-soft);margin-top:10px;"><b style="color:var(--ink);">--r-sm</b><br>12px</div></div>
+      <div style="text-align:center;"><div style="width:96px;height:72px;background:#fff;border:1px solid var(--hair);border-radius:18px;box-shadow:var(--shadow-sm);"></div><div style="font-size:12px;color:var(--ink-soft);margin-top:10px;"><b style="color:var(--ink);">--r-md</b><br>18px</div></div>
+      <div style="text-align:center;"><div style="width:96px;height:72px;background:#fff;border:1px solid var(--hair);border-radius:26px;box-shadow:var(--shadow-sm);"></div><div style="font-size:12px;color:var(--ink-soft);margin-top:10px;"><b style="color:var(--ink);">--r-lg</b><br>26px</div></div>
+      <div style="text-align:center;"><div style="width:96px;height:72px;background:#fff;border:1px solid var(--hair);border-radius:34px;box-shadow:var(--shadow-sm);"></div><div style="font-size:12px;color:var(--ink-soft);margin-top:10px;"><b style="color:var(--ink);">--r-xl</b><br>34px</div></div>
+      <div style="text-align:center;"><div style="width:96px;height:72px;background:#fff;border:1px solid var(--hair);border-radius:100px;box-shadow:var(--shadow-sm);"></div><div style="font-size:12px;color:var(--ink-soft);margin-top:10px;"><b style="color:var(--ink);">Pill</b><br>100px</div></div>
+    </div>
+  </section>
+
+  <!-- 05 ELEVATION -->
+  <section>
+    <div class="sec-h"><span class="no">05</span><h2>Elevation &amp; Schatten</h2></div>
+    <p class="sec-sub">Tiefe entsteht über weiche, weit gestreute Schatten, nie über harte Linien oder graue Kästen. Fünf Tokens (<code style="font-family:ui-monospace,monospace;font-size:12px;">--shadow-*</code>).</p>
+    <div class="grid-3" style="gap:24px;">
+      <div style="background:#fff;border-radius:18px;padding:24px;box-shadow:var(--shadow-sm);"><div style="font-weight:600;font-size:14px;">--shadow-sm</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">ruhende Karte</div></div>
+      <div style="background:#fff;border-radius:18px;padding:24px;box-shadow:var(--shadow-card);"><div style="font-weight:600;font-size:14px;">--shadow-card</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">Standard-Karte</div></div>
+      <div style="background:#fff;border-radius:18px;padding:24px;box-shadow:var(--shadow-md);"><div style="font-weight:600;font-size:14px;">--shadow-md</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">offen / angehoben</div></div>
+      <div style="background:#fff;border-radius:18px;padding:24px;box-shadow:var(--shadow-lg);"><div style="font-weight:600;font-size:14px;">--shadow-lg</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">Karten-Hover</div></div>
+      <div style="background:#fff;border-radius:18px;padding:24px;box-shadow:var(--shadow-xl);"><div style="font-weight:600;font-size:14px;">--shadow-xl</div><div style="font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:8px;">Bild / Hero-Medien</div></div>
+    </div>
+  </section>
+
+  <!-- 06 MOTION -->
+  <section>
+    <div class="sec-h"><span class="no">06</span><h2>Motion &amp; Transitions</h2></div>
+    <p class="sec-sub">Eine Eingangs-Kurve site-weit, gestufte Dauern. Bewegung ist ruhig und funktional, und respektiert <code style="font-family:ui-monospace,monospace;font-size:12px;">prefers-reduced-motion</code>. <b>Hover über die Karten</b> zeigt das Verhalten.</p>
+    <div class="grid-3" style="gap:18px;">
+      <div class="ds-motion" style="background:#fff;border:1px solid var(--hair);border-radius:18px;padding:24px;box-shadow:var(--shadow-sm);transition:transform var(--dur-1) var(--ease-out),box-shadow var(--dur-1) var(--ease-out);"><div style="font-weight:600;font-size:14px;">--dur-1 · .16s</div><div style="font-size:11.5px;color:var(--ink-soft);margin-top:8px;">Micro, Buttons, Hover-Farbe</div></div>
+      <div class="ds-motion" style="background:#fff;border:1px solid var(--hair);border-radius:18px;padding:24px;box-shadow:var(--shadow-sm);transition:transform var(--dur-2) var(--ease-out),box-shadow var(--dur-2) var(--ease-out);"><div style="font-weight:600;font-size:14px;">--dur-2 · .25s</div><div style="font-size:11.5px;color:var(--ink-soft);margin-top:8px;">UI-Standard, Border, Shadow</div></div>
+      <div class="ds-motion" style="background:#fff;border:1px solid var(--hair);border-radius:18px;padding:24px;box-shadow:var(--shadow-sm);transition:transform var(--dur-3) var(--ease-out),box-shadow var(--dur-3) var(--ease-out);"><div style="font-weight:600;font-size:14px;">--dur-3 · .35s</div><div style="font-size:11.5px;color:var(--ink-soft);margin-top:8px;">Karten-Lift, Akkordeon</div></div>
+    </div>
+    <p class="sec-sub" style="margin:18px 0 0;">Standard-Kurve <code style="font-family:ui-monospace,monospace;font-size:12px;">--ease-out</code> = cubic-bezier(.2,.7,.15,1) · Bild-Zoom <code style="font-family:ui-monospace,monospace;font-size:12px;">--dur-img</code> = 1.4s.</p>
+  </section>
+
+  <!-- 07 BREAKPOINTS -->
+  <section>
+    <div class="sec-h"><span class="no">07</span><h2>Breakpoints &amp; Responsives Verhalten</h2></div>
+    <p class="sec-sub">Mobile-first im Verhalten, drei Haupt-Schwellen. Inhalt bleibt bis 200% Zoom nutzbar (BFSG).</p>
+    <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:14px;overflow:hidden;">
+      <div style="display:flex;gap:18px;padding:16px 22px;background:#fff;"><span style="flex:0 0 130px;font-weight:700;font-size:14px;">≤ 1080px</span><span style="font-size:14px;color:var(--ink-soft);">Nav klappt zur Burger-Navigation, Desktop-CTA blendet aus.</span></div>
+      <div style="display:flex;gap:18px;padding:16px 22px;background:rgba(255,255,255,.55);border-top:1px solid var(--hair);"><span style="flex:0 0 130px;font-weight:700;font-size:14px;">≤ 900px</span><span style="font-size:14px;color:var(--ink-soft);">2-Spalten-Sektionen → 1 Spalte, Karten-Raster reduzieren (6→3, 4→2).</span></div>
+      <div style="display:flex;gap:18px;padding:16px 22px;background:#fff;border-top:1px solid var(--hair);"><span style="flex:0 0 130px;font-weight:700;font-size:14px;">≤ 560px</span><span style="font-size:14px;color:var(--ink-soft);">Mobil: alles 1-spaltig, kompakte Paddings, Zeitstrahl vertikal.</span></div>
+    </div>
+  </section>
+
+  <!-- 08 FOCUS / STATES / A11Y -->
+  <section>
+    <div class="sec-h"><span class="no">08</span><h2>Fokus, Zustände &amp; Barrierefreiheit</h2></div>
+    <p class="sec-sub">BFSG/EN 301 549 → WCAG 2.1 AA. Sichtbarer Fokus auf allem Interaktiven, Touch-Targets ≥ 44px, Kontraste geprüft. <b>Tab-Taste</b> zeigt den Fokus-Ring live.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <span class="lbl">Fokus &amp; Button-Zustände</span>
+        <div class="btn-row" style="margin-top:8px;">
+          <button class="btn btn--pri">Default</button>
+          <button class="btn btn--pri is-hover">Hover</button>
+          <button class="btn btn--pri is-disabled" disabled>Disabled</button>
+        </div>
+        <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <a href="#fokus" style="display:inline-block;padding:10px 16px;border-radius:10px;background:#fff;border:1px solid var(--hair);outline:3px solid var(--green);outline-offset:3px;font-size:14px;font-weight:600;">Fokus-Ring (Link)</a>
+          <button class="btn btn--sec" style="outline:3px solid var(--ink);outline-offset:3px;">Fokus-Ring (Button)</button>
+        </div>
+        <div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:16px;">:focus-visible → 3px solid · offset 3px<br>Buttons: Ring in --ink für Kontrast</div>
+      </div>
+      <div class="panel">
+        <span class="lbl">Kontrast-Paarungen (geprüft)</span>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+          <div style="display:flex;gap:12px;align-items:center;"><span style="background:var(--ink);color:var(--chalk);padding:8px 12px;border-radius:8px;font-size:13px;">Ink auf Chalk</span><span style="font-size:12px;color:var(--ink-soft);">14.8:1 · AAA</span></div>
+          <div style="display:flex;gap:12px;align-items:center;"><span style="background:var(--green-text);color:#fff;padding:8px 12px;border-radius:8px;font-size:13px;">Green-Text Links</span><span style="font-size:12px;color:var(--ink-soft);">5.1:1 · AA</span></div>
+          <div style="display:flex;gap:12px;align-items:center;"><span style="background:var(--green);color:var(--ink);padding:8px 12px;border-radius:8px;font-size:13px;">Ink auf Green</span><span style="font-size:12px;color:var(--ink-soft);">Button · AA</span></div>
+          <div style="display:flex;gap:12px;align-items:center;"><span style="background:var(--ink-soft);color:#fff;padding:8px 12px;border-radius:8px;font-size:13px;">Ink-Soft Sekundär</span><span style="font-size:12px;color:var(--ink-soft);">7:1 · AAA</span></div>
+        </div>
+        <div style="font-size:12px;color:var(--ink-soft);margin-top:16px;line-height:1.5;">Regel: Normaltext ≥ 4.5:1 · großer Text ≥ 3:1 · Touch-Target ≥ 44px · <code style="font-family:ui-monospace,monospace;">--green-deep</code> nur für Großschrift.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 BUTTONS -->
+  <section>
+    <div class="sec-h"><span class="no">09</span><h2>Button-Stile</h2></div>
     <p class="sec-sub">Voll gerundete Pills. Green = Hauptaktion, Outline = sekundär, Forest = auf hellem Grund für Kontrast, Ghost = textnah.</p>
     <div class="grid-2">
       <div class="panel">
@@ -354,8 +396,8 @@
 
   <!-- 04 PILLS -->
   <section>
-    <div class="sec-h"><span class="no">04</span><h2>Tag- / Pill-Stile</h2></div>
-    <p class="sec-sub">Für Kategorien und Filter. Farbcodierung pro Bereich — Lavender nur für kreative Spezialfälle.</p>
+    <div class="sec-h"><span class="no">10</span><h2>Tag- / Pill-Stile</h2></div>
+    <p class="sec-sub">Für Kategorien und Filter. Farbcodierung pro Bereich, Lavender nur für kreative Spezialfälle.</p>
     <div class="panel">
       <div class="pills-row">
         <span class="pill pill--green">Personal Branding</span>
@@ -376,7 +418,7 @@
 
   <!-- 05 CARDS -->
   <section>
-    <div class="sec-h"><span class="no">05</span><h2>Karten-Komponenten</h2></div>
+    <div class="sec-h"><span class="no">11</span><h2>Karten-Komponenten</h2></div>
     <p class="sec-sub">Weiche, helle Karten auf Sand; die dunkle Stat-/Bewegungskarte nutzt Forest und die Datenlinie.</p>
     <div class="grid-3">
       <div class="offer">
@@ -414,7 +456,7 @@
 
   <!-- 06 NAVIGATION -->
   <section>
-    <div class="sec-h"><span class="no">06</span><h2>Navigation</h2></div>
+    <div class="sec-h"><span class="no">12</span><h2>Navigation</h2></div>
     <p class="sec-sub">Schwebende Pill-Navigation auf hellem Grund. Logo links, Bereiche mittig, klare Haupt-Aktion rechts.</p>
     <div class="nav">
       <div class="wm"><svg viewBox="0 0 40 24" fill="none"><path d="M3,18 C9,18 11,6 18,6 C25,6 27,20 34,12" stroke="#A8E84F" stroke-width="3.5" stroke-linecap="round"/></svg>vroni</div>
@@ -433,7 +475,7 @@
 
   <!-- 07 FORMS -->
   <section>
-    <div class="sec-h"><span class="no">07</span><h2>Formularfelder</h2></div>
+    <div class="sec-h"><span class="no">13</span><h2>Formularfelder</h2></div>
     <p class="sec-sub">Weiche Felder auf Chalk, Hairline-Rahmen, Green-Fokus-Ring. Labels in gesperrten Großbuchstaben.</p>
     <div class="grid-2">
       <div class="panel">
@@ -449,17 +491,41 @@
     </div>
   </section>
 
+  <!-- 14 LINKS / INLINE / LISTS -->
+  <section>
+    <div class="sec-h"><span class="no">14</span><h2>Links, Inline-Text &amp; Listen</h2></div>
+    <p class="sec-sub">Inline-Elemente innerhalb von Fließtext, konsistent über alle Seiten. Links tragen Farbe + Unterstrich, der Newsreader-Kursiv-Akzent setzt einzelne Wörter in Szene.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <span class="lbl">Inline im Fließtext</span>
+        <p style="font-size:var(--fs-body);line-height:1.7;color:#3a362e;margin-top:12px;">Eine Marke darf <strong style="color:var(--ink);font-weight:600;">klar und ehrlich</strong> wirken. Mehr dazu auf <a href="#" style="color:var(--green-text);font-weight:600;border-bottom:1.5px solid color-mix(in srgb,var(--green-text) 35%,transparent);padding-bottom:1px;">der Angebotsseite</a>, oder du wirst einfach <span class="g" style="color:var(--green-deep);">sichtbar</span>, ohne dich zu verbiegen.</p>
+        <div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:16px;line-height:1.6;">Link: --green-text + 1.5px underline<br>strong: --ink / 600 · .g: Newsreader italic</div>
+      </div>
+      <div class="panel">
+        <span class="lbl">Listen</span>
+        <ul style="list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:11px;">
+          <li style="position:relative;padding-left:28px;font-size:var(--fs-body-sm);line-height:1.55;color:#3a362e;"><span style="position:absolute;left:0;top:1px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(168,232,79,.22);color:var(--green-text);font-size:11px;font-weight:800;">✓</span>Positiv-Punkt mit grünem Häkchen-Marker</li>
+          <li style="position:relative;padding-left:28px;font-size:var(--fs-body-sm);line-height:1.55;color:#3a362e;"><span style="position:absolute;left:0;top:1px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(168,232,79,.22);color:var(--green-text);font-size:11px;font-weight:800;">✓</span>Aufzählung trägt Body-S-Größe (15.5px)</li>
+        </ul>
+        <ol style="margin:18px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:9px;font-size:var(--fs-body-sm);line-height:1.55;color:#3a362e;">
+          <li>Nummerierte Schritte für Abläufe</li>
+          <li>Gleiche Größe &amp; Zeilenhöhe wie die Bullet-Liste</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
   <!-- 08 IMAGE STYLE -->
   <section>
-    <div class="sec-h"><span class="no">08</span><h2>Bildstil &amp; Bildmasken</h2></div>
-    <p class="sec-sub">Bewegung, Natur, echtes Licht — warme Töne, Persönlichkeit. <b>Primär-Pattern: randabfallende Bilder.</b> Große Bilder laufen zur Seitenkante aus und sind nur innen abgerundet — das gibt Halt und wirkt ruhiger als freie Blob-Formen.</p>
+    <div class="sec-h"><span class="no">15</span><h2>Bildstil &amp; Bildmasken</h2></div>
+    <p class="sec-sub">Bewegung, Natur, echtes Licht, warme Töne, Persönlichkeit. <b>Primär-Pattern: randabfallende Bilder.</b> Große Bilder laufen zur Seitenkante aus und sind nur innen abgerundet, das gibt Halt und wirkt ruhiger als freie Blob-Formen.</p>
     <div class="bleed-demo">
       <div class="bleed-card r">
-        <div class="txt"><div class="k">Randabfallend rechts</div><div class="v">Hero &amp; große Bildflächen — Bild läuft zur rechten Kante, links abgerundet.</div></div>
+        <div class="txt"><div class="k">Randabfallend rechts</div><div class="v">Hero &amp; große Bildflächen, Bild läuft zur rechten Kante, links abgerundet.</div></div>
         <div class="img"><div class="pc">Foto</div></div>
       </div>
       <div class="bleed-card l">
-        <div class="txt"><div class="k">Randabfallend links</div><div class="v">Über-mich &amp; Wechselsektionen — Bild läuft zur linken Kante, rechts abgerundet.</div></div>
+        <div class="txt"><div class="k">Randabfallend links</div><div class="v">Über-mich &amp; Wechselsektionen, Bild läuft zur linken Kante, rechts abgerundet.</div></div>
         <div class="img"><div class="pc">Foto</div></div>
       </div>
     </div>
@@ -474,8 +540,8 @@
 
   <!-- 09 LINE MOTIF -->
   <section>
-    <div class="sec-h"><span class="no">09</span><h2>Linienmotiv im Einsatz</h2></div>
-    <p class="sec-sub">Die fließende Linie als roter Faden — als Trenner, hinter Headlines, als Datenlinie und als grafischer Akzent.</p>
+    <div class="sec-h"><span class="no">16</span><h2>Linienmotiv im Einsatz</h2></div>
+    <p class="sec-sub">Die fließende Linie als roter Faden, als Trenner, hinter Headlines, als Datenlinie und als grafischer Akzent.</p>
     <div class="motif-uses">
       <div class="mu">
         <div class="cap">Als Abschnitts-Trenner</div>
@@ -498,7 +564,7 @@
 
   <!-- 10 SECTION KIT -->
   <section>
-    <div class="sec-h"><span class="no">10</span><h2>Sektions-Baukasten</h2></div>
+    <div class="sec-h"><span class="no">17</span><h2>Sektions-Baukasten</h2></div>
     <p class="sec-sub">Damit weitere Seiten wie aus einem Guss wirken: ein fester Hintergrund-Rhythmus und ein immer gleicher Sektions-Aufbau.</p>
     <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">Hintergrund-Rhythmus · im Wechsel</div>
     <div class="rhythm">
@@ -508,134 +574,58 @@
     </div>
     <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:30px 0 0;">Anatomie einer Sektion</div>
     <div class="anatomy">
-      <div class="arow"><span class="astep">Eyebrow</span><span class="aname">Label + Punkt</span><span class="adesc">Grüner Punkt + gesperrtes Label in Versalien — ordnet die Sektion ein.</span></div>
-      <div class="arow"><span class="astep">H2</span><span class="aname">Überschrift</span><span class="adesc">800er Open Sauce, ein Schlüsselwort optional in Grün hervorgehoben.</span></div>
+      <div class="arow"><span class="astep">Eyebrow</span><span class="aname">Label + Punkt</span><span class="adesc">Grüner Punkt + gesperrtes Label in Versalien, ordnet die Sektion ein.</span></div>
+      <div class="arow"><span class="astep">H2</span><span class="aname">Überschrift</span><span class="adesc">Figtree 650, ein Schlüsselwort optional in Grün hervorgehoben.</span></div>
       <div class="arow"><span class="astep">Lead</span><span class="aname">Einleitung</span><span class="adesc">1–2 ruhige Sätze. Zentriert (.shead--center) oder gesplittet (.shead--split: H2 links, Text rechts).</span></div>
-      <div class="arow"><span class="astep">Content</span><span class="aname">Karten / Raster</span><span class="adesc">Weiße Karten mit weichem Schatten, Pills, randabfallende Bilder — nach Pattern oben.</span></div>
+      <div class="arow"><span class="astep">Content</span><span class="aname">Karten / Raster</span><span class="adesc">Weiße Karten mit weichem Schatten, Pills, randabfallende Bilder, nach Pattern oben.</span></div>
       <div class="arow"><span class="astep">Faden</span><span class="aname">Linienmotiv</span><span class="adesc">Optionaler Verlaufs-Faden, der Bereiche oder Schritte verbindet.</span></div>
     </div>
   </section>
 
-  <!-- 11 EXAMPLE COMPONENTS -->
+  <!-- 18 Z-INDEX / ICONS -->
   <section>
-    <div class="sec-h"><span class="no">11</span><h2>Beispiel-Komponenten</h2></div>
-    <p class="sec-sub">So setzen sich die Bausteine zu echten Sektionen zusammen — die Vorschau auf deine Website.</p>
-
-    <!-- Hero -->
-    <div class="ex">
-      <div class="ex-cap">Hero</div>
-      <div class="ex-body">
-        <div class="hero">
-          <div class="nav" style="margin-bottom:34px;">
-            <div class="wm"><svg viewBox="0 0 40 24" fill="none"><path d="M3,18 C9,18 11,6 18,6 C25,6 27,20 34,12" stroke="#A8E84F" stroke-width="3.5" stroke-linecap="round"/></svg>vroni</div>
-            <div class="links"><a href="#" class="active">Branding</a><a href="#">Webdesign</a><a href="#">KI</a><a href="#">Yoga</a></div>
-            <div class="right"><button class="btn btn--pri btn--sm">Kennenlernen</button></div>
-          </div>
-          <div class="row">
-            <div class="copy">
-              <span class="lbl">Strategie · Web · KI · Bewegung</span>
-              <h2 class="h">Sichtbar werden,<br>ohne dich zu verbiegen.</h2>
-              <p class="p">Klarheit, Sichtbarkeit und gesunde Leistungsfähigkeit — für Menschen, die viel leisten, viel denken und ihren eigenen Weg gehen.</p>
-              <div class="htags"><span>Personal Branding</span><span>Webdesign &amp; WordPress</span><span>KI-Workflows</span><span>Yoga</span></div>
-              <div class="btn-row" style="margin-top:26px;"><button class="btn btn--pri btn--lg">Lass uns reden</button><button class="btn btn--sec">So arbeite ich</button></div>
-            </div>
-            <div class="vis"><div class="pc">Hero-Bild · randabfallend rechts</div></div>
-          </div>
+    <div class="sec-h"><span class="no">18</span><h2>Z-Index-Ebenen &amp; Iconografie</h2></div>
+    <p class="sec-sub">Feste Stapel-Ordnung statt ad-hoc Zahlen, und ein einheitlicher Linien-Icon-Stil.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <span class="lbl">Z-Index-Ebenen</span>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-top:12px;font-size:13.5px;">
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span>Inhalt / gehoben</span><span style="font-family:ui-monospace,monospace;color:var(--ink-soft);">--z-base 1 · --z-raised 3</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span>Sticky / Nav</span><span style="font-family:ui-monospace,monospace;color:var(--ink-soft);">--z-sticky 40 · --z-nav 60</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span>Overlay / Modal</span><span style="font-family:ui-monospace,monospace;color:var(--ink-soft);">--z-overlay 200 · --z-modal 1000</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span>Skip-Link (oberste)</span><span style="font-family:ui-monospace,monospace;color:var(--ink-soft);">--z-skip 9999</span></div>
         </div>
       </div>
-    </div>
-
-    <!-- Angebotskarte (row) -->
-    <div class="ex">
-      <div class="ex-cap">Angebotskarten</div>
-      <div class="ex-body" style="padding:36px 44px;">
-        <div class="grid-3">
-          <div class="offer">
-            <div class="mark" style="background:var(--green)"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16 C8 16 9 7 12 7 C15 7 16 17 20 11" stroke="#23221A" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-            <h4>Personal Branding</h4><p>Positionierung, Brand Voice und ein roter Faden, der zu dir passt.</p><span class="more">Mehr erfahren →</span>
-          </div>
-          <div class="offer">
-            <div class="mark" style="background:var(--sage)"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="12" rx="2.5" stroke="#fff" stroke-width="2.2"/><path d="M9 21h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
-            <h4>Webdesign</h4><p>Strategische, persönliche Websites in WordPress / Elementor.</p><span class="more">Mehr erfahren →</span>
-          </div>
-          <div class="offer">
-            <div class="mark" style="background:var(--clay)"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="2.2"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
-            <h4>KI &amp; Workflows</h4><p>KI sinnvoll integrieren — ohne generisch zu klingen.</p><span class="more">Mehr erfahren →</span>
-          </div>
+      <div class="panel">
+        <span class="lbl">Icon-Stil</span>
+        <div style="display:flex;gap:18px;align-items:center;margin-top:14px;color:var(--ink);">
+          <svg viewBox="0 0 24 24" fill="none" style="width:28px;height:28px;"><path d="M4 16 C8 16 9 7 12 7 C15 7 16 17 20 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" style="width:28px;height:28px;"><path d="M5 13l4 4 10-11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" style="width:28px;height:28px;"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" style="width:28px;height:28px;"><path d="M12 5v14m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
+        <div style="font-size:12px;color:var(--ink-soft);font-family:ui-monospace,monospace;margin-top:16px;line-height:1.6;">Linien-Icons · stroke 1.7–1.8 · round caps<br>currentColor · 15px (inline) bis 30px (Feature)</div>
       </div>
     </div>
+  </section>
 
-    <!-- About teaser -->
+  <!-- 19 LIVE-VORSCHAU (echte Seiten im iframe, kein Mock, kein Drift) -->
+  <section>
+    <div class="sec-h"><span class="no">19</span><h2>Live-Vorschau</h2></div>
+    <p class="sec-sub">Keine nachgebauten Beispiele mehr. Hier laufen die <b>echten Seiten</b> live im Frame, mit denselben Tokens und Komponenten wie oben. Damit ist die Vorschau <b>immer auf dem aktuellsten Stand</b>, ohne Drift.</p>
     <div class="ex">
-      <div class="ex-cap">Über-mich-Teaser</div>
-      <div class="ex-body">
-        <div class="about">
-          <div class="img"><div class="pc">Portrait · randabfallend links</div></div>
-          <div class="atxt">
-            <span class="lbl">Über mich</span>
-            <h3 style="margin-top:12px;">Kreative Strategin für Menschen &amp; Marken.</h3>
-            <p>Ich verbinde Strategie, Text, Design und Umsetzung — und denke Körper und Energie mit. Du musst noch nicht alles fertig sortiert haben. Genau dafür bin ich ja da.</p>
-            <p>Branding, Webdesign, KI und Yoga gehören bei mir zu einem stimmigen Ganzen.</p>
-            <div class="sig"><svg viewBox="0 0 80 24" fill="none"><path d="M4 18 C14 18 16 6 26 6 C36 6 38 20 48 12 C56 6 64 8 76 8" stroke="#A8E84F" stroke-width="3" stroke-linecap="round"/></svg><span>Vroni · Veronika Heidrich</span></div>
-          </div>
-        </div>
-      </div>
+      <div class="ex-cap">Startseite · index.html <a href="index.html" target="_blank" rel="noopener" style="float:right;color:var(--green-deep);font-weight:600;text-transform:none;letter-spacing:0;">in neuem Tab öffnen →</a></div>
+      <div class="ex-body"><iframe src="index.html" loading="lazy" title="Live-Vorschau Startseite" style="width:100%;height:700px;border:0;display:block;background:#fff;"></iframe></div>
     </div>
-
-    <!-- Course / Yoga hint -->
-    <div class="ex">
-      <div class="ex-cap">Kurs- / Yoga-Hinweis</div>
-      <div class="ex-body">
-        <div class="course">
-          <div class="ytxt">
-            <span class="badge-active"><span class="pulse"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h3l2-5 3 10 2-5h6" stroke="#23221A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Aktiver Bereich · Körper &amp; Energie</span>
-            <span class="lbl">Yoga · Bewegung · gesunde Leistungsfähigkeit</span>
-            <h3>Hohe Leistung braucht einen Körper, der <span class="g">mitkommt.</span></h3>
-            <p>Regelmäßige Kurse — kraftvoll, modern, regulierend. Für Menschen, die viel leisten und wieder mehr Kraft, Ruhe und Körpergefühl wollen.</p>
-          </div>
-          <div class="ycard">
-            <span class="lbl">Regelmäßige Kurse</span>
-            <div class="yh">Im Fluss bleiben</div>
-            <svg class="route" viewBox="0 0 420 56" preserveAspectRatio="none" fill="none"><path d="M0,40 C60,40 80,12 140,12 C202,12 222,46 292,38 C342,32 382,22 420,24" stroke="#A8E84F" stroke-width="3.2" stroke-linecap="round"/><circle cx="140" cy="12" r="4.5" fill="#CBBEF4"/><circle cx="292" cy="38" r="4.5" fill="#CD8A5B"/></svg>
-            <div class="days">
-              <div class="yday"><div><div class="dl">Mittwoch</div><div class="dr">Rücken Yoga · über die VHS</div></div><span class="dtag">Rücken</span></div>
-              <div class="yday"><div><div class="dl">Donnerstag</div><div class="dr">Power Yoga · über die VHS</div></div><span class="dtag">Power</span></div>
-            </div>
-            <p class="ynote">Beide Kurse laufen über die Volkshochschule — Anmeldung direkt bei der VHS.</p>
-            <div class="ycta"><button class="btn btn--pri">Yoga-Anfrage senden</button></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Contact -->
     <div class="ex" style="margin-bottom:0;">
-      <div class="ex-cap">Kontaktbereich</div>
-      <div class="ex-body">
-        <div class="contact">
-          <div>
-            <span class="lbl">Kontakt</span>
-            <h3>Lass uns <span class="g">reden.</span></h3>
-            <p>Schreib mir, wo du gerade stehst — egal ob Marke, Website, KI oder Bewegung. Wir sortieren das gemeinsam.</p>
-            <svg class="deco" viewBox="0 0 220 26" preserveAspectRatio="none" fill="none"><path d="M2,15 C40,15 58,6 100,6 C142,6 160,21 200,16 C212,14 216,12 218,12" stroke="#A8E84F" stroke-width="3.5" stroke-linecap="round"/><circle cx="100" cy="6" r="4.5" fill="#CD8A5B"/></svg>
-          </div>
-          <div class="cform">
-            <p class="ceyebrow">Schreib mir</p>
-            <div class="field"><label>Name</label><input type="text" placeholder="Dein Name"></div>
-            <div class="field"><label>E-Mail</label><input type="text" placeholder="hallo@…"></div>
-            <div class="field"><label>Nachricht</label><textarea placeholder="Worum geht’s?"></textarea></div>
-            <button class="btn btn--pri" style="width:100%;justify-content:center;">Nachricht senden</button>
-          </div>
-        </div>
-      </div>
+      <div class="ex-cap">Über mich · ueber-mich.html <a href="ueber-mich.html" target="_blank" rel="noopener" style="float:right;color:var(--green-deep);font-weight:600;text-transform:none;letter-spacing:0;">in neuem Tab öffnen →</a></div>
+      <div class="ex-body"><iframe src="ueber-mich.html" loading="lazy" title="Live-Vorschau Über mich" style="width:100%;height:700px;border:0;display:block;background:#fff;"></iframe></div>
     </div>
-
   </section>
 
   <div class="foot">
-    <span>Vroni · Veronika Heidrich — Designsystem „Fresh Organic Hybrid" · v2</span>
-    <span>Open Sauce Sans · Spring Green / Sage / Clay · helle Basis</span>
+    <span>Vroni · Veronika Heidrich · InnerLine Designsystem</span>
+    <span>Figtree (lokal) · Spring Green / Sage / Clay · helle Basis</span>
   </div>
 
 </div>
