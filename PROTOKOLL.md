@@ -185,6 +185,12 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-03 — Teil-Revert: nur Hero-Bild-Fix behalten, Pain + Yoga zurückgenommen (Branch `fix/revert-pain-yoga-keep-hero`, Claude Code)
+- **Was:** Aus dem vorherigen Merge (#38) die Pain- und Yoga-Mobile-Änderungen wieder zurückgenommen. **Behalten bleibt nur** der Hero-Bild-Fix (`.hb-soft .s-main` explizite Höhe ≤900px). `.pain-*` (≤900 und ≤560) und `.yoga-image` (≤900) sind exakt auf den Stand vor #38 zurückgesetzt. Verifiziert: `git diff 404adb0 -- style.css` zeigt nur noch den s-main-Hunk.
+- **Warum:** Vroni-Rückmeldung nach der Klärung der Vorschau-Verwechslung: „Geh nur vom Hero aus, das ist der einzige Bug" (bezogen auf das fehlende Hero-Bild). Die Pain-Stil-Angleichung und die Yoga-Höhe waren damit unnötig (die Pain-Mobile-Abweichung war vermutlich die Claude-Design-Vorschau, nicht die Live-Seite). Auswahl in Rückfrage: „Pain + Yoga zurücknehmen".
+- **Wie:** Drei Reverse-`str_replace`-Edits in `style.css` auf die Vor-#38-Originalwerte. Lokal: design-guard 0 Verstöße, html-validate (index + Rechtsseiten) 0 Fehler, Klammern balanciert (708/708).
+- **Konsequenz:** Live bleibt nur die echte Bugfix-Änderung (Hero-Bild auf Mobile/Tablet sichtbar). Pain-Mobile = wieder Card-Chrome wie zuvor, Yoga-Mobile = wieder `aspect-ratio:4/3`. Keine Inhalte/Bilder/Dienste betroffen.
+
 ### 2026-06-03 — Responsive-Parität Startseite: Hero-Bild + Pain-Sektion auf Tablet/Mobile (Branch `fix/mobile-parity-hero-pain`, Claude Code)
 - **Was:** Mobile/Tablet-Darstellung der Startseite an das Desktop-Design angeglichen. (1) **Hero-Bild** (`.hb-soft .s-main`) auf ≤900px wieder sichtbar: explizite `height:clamp(300px,70vw,440px)` statt nur `aspect-ratio` — sonst ist das absolut positionierte Bild höhenlos = unsichtbar. (2) **Pain-Sektion** auf ≤900px vom alten Card-Chrome zurück auf den **flachen Hairline-Stil des Desktops**: Tablet 2-spaltig mit Hairline-Trennern (border-top/-bottom, border-right auf odd), Phone (≤560px) 1-spaltig nur mit unterer Hairline. (3) **`.yoga-image`** auf ≤900px ebenfalls explizite Höhe (gleicher absolut-positioniert-Bug wie Hero).
 - **Warum:** Vroni-Auftrag: Desktop ist die Basis, kleinere Geräte müssen logisch angepasst sein; das war für Hero (Bild fehlte) und Pain (anderer Stil als Desktop) nicht der Fall. Wurzel: die bereits dokumentierte Invariante „absolut positioniertes Bild braucht explizite Höhe auf Mobile" (vgl. `.am-main`, style.css Z.830) war bei `s-main` und `.yoga-image` nicht angewandt.
