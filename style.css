@@ -831,6 +831,8 @@ img{max-width:100%;display:block;}
   /* Pain-Intro stack; Items im FLACHEN Hairline-Stil wie Desktop (Parität, kein Card-Chrome).
      Basis = Desktop, heruntergebrochen: Tablet = 2 Spalten, Phone (≤560) = 1 Spalte (s. u.). */
   .pain-intro--split{grid-template-columns:1fr;gap:18px;}
+  /* Gestapelt: H2 nicht mehr auf 14ch quetschen (sonst komische schmale Umbrüche), volle Breite nutzen */
+  .pain h2{max-width:none;}
   .pain-intro--split .pi-leads{padding-top:0;gap:12px;}
   .pain-list{grid-template-columns:repeat(2,1fr);gap:0;margin-top:36px;border-top:1px solid rgba(35,34,26,.09);}
   .pain-item{flex-direction:row;align-items:flex-start;gap:14px;padding:22px 20px;
