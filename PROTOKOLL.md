@@ -185,6 +185,12 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-03 — Pain-H2 auf Mobile: `max-width:14ch` aufheben (Branch `fix/pain-h2-mobile`, Claude Code)
+- **Was:** Auf ≤900px `.pain h2{max-width:none}` gesetzt. Die Headline „Nicht deine Vielseitigkeit ist das Problem …" war durch das Desktop-`max-width:14ch` im gestapelten Mobile-Layout in eine zu schmale Säule gequetscht → komische Umbrüche.
+- **Warum:** Vroni: H2 mobil komisch angeordnet. `14ch` ist für die schmale Desktop-Split-Spalte gedacht, im Mobile-Stack aber zu eng.
+- **Wie:** Ein Insert im ≤900px-Pain-Block. guard 0, html-validate 0, Klammern 715/715.
+- **Konsequenz:** Reine CSS-Änderung. H2 nutzt mobil die volle Breite.
+
 ### 2026-06-03 — Hero-Bild Mobile/Tablet auf volle Inhaltsbreite (Branch `fix/hero-mobile-fullwidth`, Claude Code)
 - **Was:** `.hb-soft` auf ≤900px von `max-width:520px;margin:0 auto` auf `max-width:none;margin:0` umgestellt → das Hero-Bild nimmt jetzt die **volle Inhaltsbreite** ein statt schmal/zentriert.
 - **Warum:** Vroni: Bild ist sichtbar, war aber zu schmal. Der 520px-Deckel hatte das Einzelbild auf breiteren Screens (v. a. Tablet) zentriert verschmälert.
