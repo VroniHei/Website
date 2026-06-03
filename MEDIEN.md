@@ -199,11 +199,14 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/zitat-weg.png` (1992 KB) · `images/zitat-weg.webp` (140 KB)
 - **Maße:** 1600×900 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** — offen — · **Prompt:** — offen —
-- **Verwendung:** `index.html` (Zitat-Band, Hintergrund)
-- **Alt-Text:** `alt=""` — **dekoratives Hintergrundbild** (bewusst leer, A11y-Invariante)
-- **Dekorativ:** **ja**
+- **Verwendung:** `index.html` (Zitat-Band, Hintergrund, dekorativ) · `ueber-mich.html` (Sektion Persönlich, Inhaltsbild, seit 2026-06-03)
+- **Alt-Text (index.html):** `alt=""` — dekorativ (Claim-Band trägt eigenen Overlay-Text)
+- **Alt-Text (ueber-mich.html):** Schmaler Trailpfad durch die Berge im Abendlicht. Bewegung in der Natur als Ort, an dem Gedanken sich sortieren
+- **Dekorativ:** Ja auf `index.html`, nein auf `ueber-mich.html`
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Redesign v2: Zusätzliche Verwendung auf `ueber-mich.html` (Sektion Persönlich als Inhaltsbild, ersetzt `about-persoenlich`); Alt-Text gepflegt. Auf `index.html` weiterhin dekorativ.
 
 ### claim-weg
 - **Dateien:** `images/claim-weg.png` (1928 KB) · `images/claim-weg.webp` (111 KB)
@@ -280,7 +283,7 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/about-arbeiten.png` (1900 KB) · `images/about-arbeiten.webp` (97 KB)
 - **Maße:** 1122×1402 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni schreibt in Notizbuch am Fenster, Bailey liegt daneben
-- **Verwendung:** `index.html` (Hero-Bento, Soft-Grid `.s-brand`, seit 2026-06-02) · `ueber-mich.html` (Kontakt-Avatar `.au-sign-ava` + Kurzprofil-Box `.au-profile-ava`, seit 2026-06-03)
+- **Verwendung:** `index.html` (Hero-Bento, Soft-Grid `.s-brand`, seit 2026-06-02) · `ueber-mich.html` (Kontakt-Avatar `.au-sign-ava`, seit 2026-06-03)
 - **Alt-Text (Hero-Bento `.s-brand`):** „Vroni sitzt im Naturlicht am Fenster und schreibt in ihr Notizbuch, Bailey liegt entspannt neben ihr — konzentriertes Arbeiten mit Hund und Bergblick"
 - **Alt-Text (über-mich):** „Vroni schreibt in ihr Notizbuch am Fenster, Bailey liegt entspannt daneben"
 - **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
@@ -290,6 +293,7 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
   - `2026-06-02` — Ersterfassung.
   - `2026-06-02` — Zusätzliche Verwendung in `index.html` Hero-Bento `.s-brand` (ersetzt das Querformat `hero-branding`; Vroni-Vorgabe: Bild mit Bailey und Langarm/verdecktem rechtem Arm).
   - `2026-06-03` — Zusätzliche Verwendung als Avatar in der neuen Kurzprofil-Box (`.au-profile-ava`) auf `ueber-mich.html` (Über-mich-Optimierung; kein neues Asset, nur Wiederverwendung).
+  - `2026-06-03` — Redesign v2: Kurzprofil-Sektion aus `ueber-mich.html` entfernt; `about-arbeiten` nicht mehr als `.au-profile-ava` verwendet. Weiterhin als Kontakt-Avatar (`.au-sign-ava`).
 
 ### about-journal-mat
 - **Dateien:** `images/about-journal-mat.png` (1700 KB) · `images/about-journal-mat.webp` (74 KB)
@@ -349,8 +353,8 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/about-bewegung-berge.png` (1800 KB) · `images/about-bewegung-berge.webp` (64 KB)
 - **Maße:** 1448×1086 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni in Yoga-Haltung auf Holzterrasse, Berge im Hintergrund, Bailey daneben
-- **Verwendung:** `ueber-mich.html` (Sektion Bewegung & Nervensystem)
-- **Alt-Text:** Vroni in einer ruhigen Yoga-Haltung auf einer Holzterrasse im Morgenlicht, mit Blick auf die Berge und Bailey daneben
+- **Verwendung:** `ueber-mich.html` (Sektion Bewegung & Nervensystem, Bento-Sub-Kachel `.au-mb-sub`)
+- **Alt-Text:** Vroni in einer ruhigen Yoga-Haltung auf einer Holzterrasse im Morgenlicht, mit Blick auf die Berge
 - **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
 - **Rechte:** siehe Abschnitt 1
 - **Beachten:** Reine Bewegung-Sektion-Verwendung.
@@ -358,29 +362,33 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
   - `2026-06-02` — Ersterfassung.
   - `2026-06-03` — Zusätzliche Verwendung als Hero-Bento Zitat-Kachel auf `ueber-mich.html` (Forest-Overlay + Claim „Sichtbar werden, ohne dich zu verbiegen."; Vroni-Inline-Kommentar: 4. Bento-Kachel als Zitat im Footer-Stil). Kein neues Asset, nur Wiederverwendung.
   - `2026-06-03` — Aus der Hero-Bento Zitat-Kachel wieder entfernt (Vroni-Inline-Kommentar: „kein zweiter Mensch im Hero, nimm ein helles ruhiges Stillleben oder Landschaft"); ersetzt durch `about-desk-detail`. Verwendung in Bewegung-Sektion bleibt.
+  - `2026-06-03` — Redesign v2: Einzelbild durch 2er-Bento in der Bewegung-Sektion ersetzt; jetzt untere Sub-Kachel `.au-mb-sub`, kombiniert mit `about-claim-see` als Bento-Paar.
 
 ### about-claim-see
 - **Dateien:** `images/about-claim-see.png` (1600 KB) · `images/about-claim-see.webp` (87 KB)
 - **Maße:** 1916×821 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Stiller See bei Morgendämmerung, Holzsteg, Nebel
-- **Verwendung:** `ueber-mich.html` (Claim-Band, dekoratives Hintergrundbild)
-- **Alt-Text:** `alt=""` — **dekoratives Hintergrundbild**
-- **Dekorativ:** ja
+- **Verwendung:** `ueber-mich.html` (Sektion Bewegung & Nervensystem, Bento-Hauptkachel `.au-mb-main`)
+- **Alt-Text:** Ruhiger Bergsee im Morgenlicht, klare Spiegelung im Wasser
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Landschaft)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Redesign v2: Nicht mehr im Claim-Band; jetzt Bewegung-Bento Hauptkachel (`.au-mb-main`) auf `ueber-mich.html`. Alt-Text hinzugefügt, Dekorativ-Status auf „nein" geändert.
 
 ### about-persoenlich
 - **Dateien:** `images/about-persoenlich.png` (2000 KB) · `images/about-persoenlich.webp` (97 KB)
 - **Maße:** 1672×941 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni spaziert mit Bailey auf Waldpfad im Gegenlicht
-- **Verwendung:** `ueber-mich.html` (Sektion Persönlich · Hero-Bento Kachel B `.au-hb-b`, seit 2026-06-03)
-- **Alt-Text:** Vroni mit Bailey auf einem Trail im Wald — Bewegung als Ort, an dem Gedanken klarer werden
+- **Verwendung:** `ueber-mich.html` (Hero-Bento Kachel A `.au-hb-a`)
+- **Alt-Text:** Vroni privat in Bewegung in der Natur, ruhiges Naturlicht
 - **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
 - **Rechte:** siehe Abschnitt 1
 - **Änderungen:**
   - `2026-06-02` — Ersterfassung.
   - `2026-06-03` — Zusätzliche Verwendung im Hero-Bento von `ueber-mich.html` (Kachel B `.au-hb-b`, Vroni-Inline-Kommentar: Bento mit 3 Bildern). Kein neues Asset, nur Wiederverwendung.
   - `2026-06-03` — Innerhalb des Hero-Bentos von Kachel B auf Kachel A `.au-hb-a` getauscht (Vroni-Inline-Kommentar: rechte Kachel wird Zitat-Tile mit `about-bewegung-berge`).
+  - `2026-06-03` — Redesign v2: Nicht mehr in Sektion Persönlich (ersetzt durch `zitat-weg`); nur noch Hero-Bento Kachel A `.au-hb-a`. MEDIEN-Eintrag korrigiert (war irrtümlich als Kachel B eingetragen, war aber immer Kachel A).
 
 ---
 
