@@ -828,14 +828,15 @@ img{max-width:100%;display:block;}
   .steps-orb-b{bottom:-30px;right:6%;width:150px;height:150px;}
   /* INVARIANTE: am-main braucht explizite Höhe damit absolut positioniertes Bild sichtbar wird */
   .about-media .am-main{height:clamp(320px,70vw,520px);}
-  /* INVARIANTE Mobile/Tablet: Pain-Intro stack, Items als Card-Chrome (Hairline-Raster nur Desktop) */
+  /* Pain-Intro stack; Items im FLACHEN Hairline-Stil wie Desktop (Parität, kein Card-Chrome).
+     Basis = Desktop, heruntergebrochen: Tablet = 2 Spalten, Phone (≤560) = 1 Spalte (s. u.). */
   .pain-intro--split{grid-template-columns:1fr;gap:18px;}
   .pain-intro--split .pi-leads{padding-top:0;gap:12px;}
-  .pain-list{grid-template-columns:1fr;gap:10px;margin-top:32px;border-top:none;}
-  .pain-item{flex-direction:row;align-items:flex-start;gap:14px;padding:16px 18px;
-    background:rgba(255,255,255,.78);border:1px solid var(--white);border-radius:var(--r-md);
-    border-bottom:1px solid var(--white);box-shadow:0 4px 16px rgba(35,34,26,.05);}
-  .pain-item:nth-child(odd),.pain-item:nth-child(even){padding:16px 18px;border-right:none;}
+  .pain-list{grid-template-columns:repeat(2,1fr);gap:0;margin-top:36px;border-top:1px solid rgba(35,34,26,.09);}
+  .pain-item{flex-direction:row;align-items:flex-start;gap:14px;padding:22px 20px;
+    background:transparent;border:none;border-bottom:1px solid rgba(35,34,26,.09);border-radius:0;box-shadow:none;}
+  .pain-item:nth-child(odd){border-right:1px solid rgba(35,34,26,.09);}
+  .pain-item:nth-child(even){border-right:none;}
   .pain-item .ic{width:38px;height:38px;border-radius:11px;}
   .pain-item .ic svg{width:20px;height:20px;}
   .pain-item .pi-body{padding-top:2px;gap:5px;}
@@ -878,6 +879,10 @@ img{max-width:100%;display:block;}
 }
 @media (max-width:560px){
   .cb-claim{font-size:clamp(24px,5.5vw,40px);}
+  /* Pain: auf dem Phone 1-spaltig, nur untere Hairline (kein Spalten-Trenner) */
+  .pain-list{grid-template-columns:1fr;}
+  .pain-item{padding:18px 2px;}
+  .pain-item:nth-child(odd){border-right:none;}
   .voice{flex:0 0 90%;}
   .quote-band q{font-size:26px;}
   .form-row{grid-template-columns:1fr;}

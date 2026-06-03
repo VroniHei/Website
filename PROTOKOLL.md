@@ -185,6 +185,12 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-03 — Pain-Sektion Mobile/Tablet-Parität (re-apply nach Klärung) (Branch `fix/pain-mobile-parity`, Claude Code)
+- **Was:** Pain-Sektion auf ≤900px (Tablet) und ≤560px (Phone) auf den **flachen Hairline-Stil des Desktops** gebracht (Parität): Tablet 2-spaltig mit Hairline-Trennern (border-top/-bottom, border-right auf odd), Phone 1-spaltig nur mit unterer Hairline. Card-Chrome (weiße Kacheln) entfällt. Hero-Bild-Fix (s-main Höhe) bleibt live. **Yoga unangetastet** (rendert korrekt mit `aspect-ratio:4/3`).
+- **Warum:** Klärung mit Vroni: Mobile/Tablet **müssen** zum überarbeiteten Desktop-Design passen; die Pain-Sektion tat das noch nicht (Card-Chrome statt flachem Raster). Der vorherige Teil-Revert (#39) hatte Pain irrtümlich mit zurückgenommen — „Yoga-Bild" war nur ein Verständnis-Missverständnis (= Foto in der Yoga-Sektion, wird ohnehin korrekt dargestellt).
+- **Wie:** Zwei `str_replace`-Edits in `style.css` (≤900px-Pain flach/2-spaltig, ≤560px-Pain 1-spaltig). `git diff 404adb0` zeigt jetzt genau: Hero-s-main-Fix + Pain-Flat, kein Yoga. Lokal: design-guard 0 Verstöße, html-validate 0 Fehler, Klammern 712/712.
+- **Konsequenz:** Reine CSS/Responsive-Änderung. **Visuelle Abnahme auf echten Geräten durch Vroni** (Build-Umgebung ohne Headless-Browser / Live-Zugriff).
+
 ### 2026-06-03 — Teil-Revert: nur Hero-Bild-Fix behalten, Pain + Yoga zurückgenommen (Branch `fix/revert-pain-yoga-keep-hero`, Claude Code)
 - **Was:** Aus dem vorherigen Merge (#38) die Pain- und Yoga-Mobile-Änderungen wieder zurückgenommen. **Behalten bleibt nur** der Hero-Bild-Fix (`.hb-soft .s-main` explizite Höhe ≤900px). `.pain-*` (≤900 und ≤560) und `.yoga-image` (≤900) sind exakt auf den Stand vor #38 zurückgesetzt. Verifiziert: `git diff 404adb0 -- style.css` zeigt nur noch den s-main-Hunk.
 - **Warum:** Vroni-Rückmeldung nach der Klärung der Vorschau-Verwechslung: „Geh nur vom Hero aus, das ist der einzige Bug" (bezogen auf das fehlende Hero-Bild). Die Pain-Stil-Angleichung und die Yoga-Höhe waren damit unnötig (die Pain-Mobile-Abweichung war vermutlich die Claude-Design-Vorschau, nicht die Live-Seite). Auswahl in Rückfrage: „Pain + Yoga zurücknehmen".
