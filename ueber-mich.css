@@ -3,9 +3,16 @@
    Erweitert style.css (Designsystem). Keine Font-CDN, alles lokal.
    Klassen-Präfix .au- (about / über-mich). Folgt der Farb- und
    Sektions-Logik der Startseite (chalk / beige / dunkel im Wechsel).
+
+   Designprinzipien dieser Seite:
+   - Gleiche Karten-Optik wie Startseite: numerierte Step-Karten = `.step`
+     (Definition in style.css; nur das Grid-Layout wird hier seitenspezifisch).
+   - Bilder neben Textspalten füllen die Höhe der Textspalte (Grid-Stretch),
+     statt mit fixem aspect-ratio winzig zu wirken.
+   - Eyebrow + .g-Akzent + .reveal-Animation wie auf der Startseite.
    ========================================================= */
 
-/* ---------- HERO ---------- */
+/* ---------- 1 · HERO ---------- */
 .au-hero{position:relative;overflow:hidden;padding:172px 0 104px;
   background:linear-gradient(178deg,#FBF5EA 0%,#FDFBF6 58%,#FCF9F3 100%);}
 .au-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:170px;z-index:0;pointer-events:none;
@@ -14,23 +21,29 @@
 .au-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.04fr .96fr;
   gap:clamp(40px,5vw,80px);align-items:center;}
 .au-hero-copy{max-width:560px;}
-.au-hero h1{font-family:var(--ff);font-size:clamp(40px,4.6vw,64px);line-height:1.04;
-  letter-spacing:-.03em;margin:20px 0 0;color:var(--ink);text-wrap:balance;}
+/* Hero-H1 + Lede greifen 1:1 die Startseiten-Hero-Tokens auf (.hb-h1 / .hb-lede /
+   .hb-lede--2 in style.css) — Hero darf seine eigene, größere Skala haben, aber
+   identisch zur Startseite, nicht als Sonderwert. */
+.au-hero h1{font-family:var(--ff);font-weight:650;font-size:clamp(40px,4.8vw,66px);line-height:1.05;
+  letter-spacing:-.025em;margin:18px 0 0;color:var(--ink);text-wrap:balance;}
 .au-hero h1 em{font-family:'Newsreader',Georgia,serif;font-weight:500;font-style:italic;
-  letter-spacing:-.01em;font-size:1.08em;}
-.au-hero .au-lede{font-size:clamp(17px,1.35vw,20px);font-weight:450;line-height:1.6;color:#3a362e;
+  letter-spacing:-.01em;font-size:1.12em;color:var(--ink);}
+.au-hero .au-lede{font-size:clamp(18px,1.35vw,21px);font-weight:450;line-height:1.55;color:#3a362e;
   max-width:48ch;margin:26px 0 0;text-wrap:pretty;}
-.au-hero .au-lede + .au-lede{margin-top:16px;font-size:clamp(15.5px,1.2vw,17px);color:var(--ink-soft);}
+.au-hero .au-lede + .au-lede{margin-top:14px;font-size:clamp(16px,1.15vw,18px);color:#4a463c;}
 .au-hero .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 0;}
 
-/* Hero-Bildkomposition: großes Hochformat + eingeschobenes Quadrat */
+/* Hero-Bildkomposition: großes Querformat + eingeschobenes Detail. Hero hat
+   absichtlich einen fixen Aspekt — Hero-Composing folgt nicht der Stretch-Regel
+   der unteren Sections, weil Chip+Sub-Card als bildkomponiertes Stillleben
+   designt sind. */
 .au-hero-media{position:relative;}
-.au-hm-main{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/5;
+.au-hm-main{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:3/2;
   box-shadow:0 34px 78px rgba(35,34,26,.2);}
 .au-hm-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
 .au-hero-media:hover .au-hm-main img{transform:scale(1.04);}
-.au-hm-sub{position:absolute;left:-34px;bottom:-30px;width:42%;aspect-ratio:1/1;
+.au-hm-sub{position:absolute;left:-34px;bottom:-44px;width:46%;aspect-ratio:5/4;
   border-radius:var(--r-md);overflow:hidden;border:7px solid var(--chalk);
   box-shadow:0 26px 54px rgba(35,34,26,.24);}
 .au-hm-sub img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
@@ -47,33 +60,66 @@
 .au-chip .t1{display:block;font-weight:700;font-size:13.5px;line-height:1.15;color:var(--ink);letter-spacing:-.01em;}
 .au-chip .t2{display:block;font-size:11px;color:var(--ink-soft);line-height:1.25;margin-top:2px;}
 
-/* ---------- SECTION 2 · GEFÜHL (2-Spalten, ruhig · beige) ---------- */
+/* ---------- GEMEINSAMES BILD-STRETCH-MUSTER für 2-Spalten-Sektionen ----------
+   2-Spalten-Grids dürfen das Bild auf die Texthöhe ziehen — sonst wirkt das Bild
+   neben langem Text optisch winzig. Mobile bleibt mit aspect-ratio sinnvoll,
+   weil dort vertikal gestapelt wird. */
+.au-feel-grid,
+.au-bridge-grid,
+.au-move-grid,
+.au-personal-grid{display:grid;gap:clamp(40px,5vw,72px);align-items:stretch;}
+.au-feel-media,
+.au-bridge-media,
+.au-move-media,
+.au-personal-media{position:relative;border-radius:var(--r-xl);overflow:hidden;
+  min-height:380px;box-shadow:0 28px 64px rgba(35,34,26,.18);}
+.au-feel-media img,
+.au-bridge-media img,
+.au-move-media img,
+.au-personal-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.au-feel-media:hover img,
+.au-bridge-media:hover img,
+.au-move-media:hover img,
+.au-personal-media:hover img{transform:scale(1.05);}
+
+/* ---------- GETEILTE TEXT-TOKENS (projektweite Vereinheitlichung) ----------
+   Lauftext + Lead-Sätze greifen IMMER dieselben Werte auf, egal in welcher
+   Sektion. Quelle der Wahrheit = style.css:
+     · Lauftext  = 16px / 1.72  (wie .about .body p — die Bio-Copy der Startseite)
+     · Lead-Satz = clamp(19px,1.6vw,22px) / 600 (eine emphatische Einstiegszeile)
+   Bewusste Sonderfälle (dürfen abweichen, sind dokumentiert): Hero-Lede,
+   Pull-Quote (.au-td-quote), Transformations-„To" (.tg-to). Eyebrows/Kicker
+   laufen über .lbl / .slbl-Tier (11–11.5px /.2em). NICHT hier pro Sektion
+   eigene Schriftgrößen setzen — sonst driftet die Seite wieder auseinander. */
+.au-feel-copy p,
+.au-bridge-copy p,
+.au-move-copy p,
+.au-personal-copy{font-size:var(--fs-body);color:#3a362e;line-height:var(--lh-prose);margin:18px 0 0;max-width:54ch;text-wrap:pretty;}
+.au-feel-copy .lead-strong,
+.au-bridge-copy .lead-strong,
+.au-move-copy p.lead{font-size:var(--fs-lead);font-weight:600;letter-spacing:var(--ls-snug);
+  line-height:var(--lh-snug);color:var(--ink);margin:24px 0 0;text-wrap:balance;}
+
+/* ---------- 2 · GEFÜHL (beige · 2-Spalten) ---------- */
 .au-feel{position:relative;overflow:hidden;
   background:linear-gradient(180deg,#F2EDE1,#EAE3D4);}
 .au-feel::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
   background:radial-gradient(circle,rgba(205,138,91,.10),transparent 70%);top:-220px;left:-120px;pointer-events:none;}
 .au-feel .wrap{position:relative;z-index:1;}
-.au-feel-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
-  gap:clamp(40px,5vw,72px);align-items:center;}
+.au-feel-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);}
 .au-feel-copy h2{margin:16px 0 0;max-width:18ch;}
-.au-feel-copy .lead-strong{font-size:clamp(19px,2vw,26px);font-weight:600;letter-spacing:-.015em;
-  line-height:1.32;color:var(--ink);margin:24px 0 0;text-wrap:balance;}
-.au-feel-copy p{font-size:clamp(16px,1.35vw,17.5px);color:#3a362e;line-height:1.7;margin:18px 0 0;max-width:52ch;text-wrap:pretty;}
-.au-feel-copy p:last-child{font-weight:600;color:var(--green-text);}
-.au-feel-media{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/5;
-  box-shadow:0 28px 64px rgba(35,34,26,.18);}
-.au-feel-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
-.au-feel-media:hover img{transform:scale(1.05);}
+.au-feel-copy p:last-child{color:var(--green-text);font-weight:600;}
+.au-feel-media{min-height:520px;}
+.au-feel-media img{object-position:center 30%;}
 
-/* ---------- SECTION 3 · MEIN WEG (leichte Timeline, Stil der Startseite) ---------- */
-.au-stations{margin-top:50px;}
-.au-stations .faden-rail{grid-template-columns:repeat(6,1fr);}
-.au-stations .faden .fl{white-space:normal;}
-.au-st-kicker{display:block;font-size:10.5px;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--clay);margin-bottom:5px;}
-
-/* ---------- SECTION 4 · ROTER FADEN (dunkles Centerpiece) ---------- */
+/* ---------- 3 · ROTER FADEN: FORM GEBEN (dunkles Centerpiece, editorial) ----------
+   Aufbau:
+     · zentrierte Headline (groß)
+     · zweispaltige Intro-Spalten
+     · Pull-Quote-Block mit dem Kernsatz „Ich übersetze Inneres in äußere Form"
+     · 5-Karten-Transformations-Grid als Beleg der Aussage
+*/
 .au-thread-dark{background:linear-gradient(165deg,#323c27,#2C3522 55%,#262d1c);color:var(--chalk);
   position:relative;overflow:hidden;}
 .au-thread-dark::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;
@@ -81,138 +127,167 @@
 .au-thread-dark::after{content:"";position:absolute;width:480px;height:480px;border-radius:50%;
   background:radial-gradient(circle,rgba(205,138,91,.14),transparent 70%);bottom:-220px;left:-150px;pointer-events:none;}
 .au-thread-dark .wrap{position:relative;z-index:1;}
-.au-td-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
-  gap:clamp(40px,5vw,72px);align-items:start;}
-.au-td-grid .eyebrow .dot{background:var(--green);}
-.au-td-grid .lbl{color:#9aa589;}
-.au-td-grid h2{color:var(--chalk);margin:16px 0 0;max-width:15ch;}
-.au-td-grid h2 .g{color:var(--green) !important;}
-.au-td-body p{color:#c5cdb6;font-size:clamp(16px,1.3vw,17.5px);line-height:1.7;margin:0 0 18px;text-wrap:pretty;}
-.au-td-body p strong{color:var(--chalk);font-weight:600;}
-.au-td-flow{display:block;width:100%;max-width:420px;height:auto;margin:8px 0 24px;}
-.au-td-flow path{stroke:rgba(168,232,79,.85);stroke-linecap:round;}
-.au-td-chips{display:flex;flex-wrap:wrap;gap:10px;}
-.au-td-chips span{font-size:13px;font-weight:500;color:var(--chalk);letter-spacing:-.005em;
-  background:rgba(248,245,238,.08);border:1px solid rgba(248,245,238,.16);border-radius:100px;padding:8px 15px;}
+.au-thread-dark .eyebrow .dot{background:var(--green);}
+.au-thread-dark .eyebrow .lbl{color:#9aa589;}
+.au-thread-dark .g{color:var(--green) !important;}
 
-/* ---------- SECTION 5 · WIE ICH ARBEITE ---------- */
-.au-work-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:48px 0 32px;}
-.au-work-duo figure{position:relative;margin:0;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:3/2;
-  box-shadow:0 24px 54px rgba(35,34,26,.15);}
-.au-work-duo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  transition:transform 1.5s cubic-bezier(.2,.7,.15,1);will-change:transform;}
-.au-work-duo figure:hover img{transform:scale(1.04);}
-.au-work-duo figcaption{position:absolute;left:14px;bottom:14px;z-index:2;
-  background:rgba(248,245,238,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  border-radius:100px;padding:8px 15px;font-size:12.5px;font-weight:600;color:var(--ink);
-  letter-spacing:.01em;box-shadow:0 10px 26px rgba(35,34,26,.16);display:inline-flex;align-items:center;gap:8px;}
-.au-work-duo figcaption::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);flex:0 0 auto;}
-.au-principles{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.au-principles .au-principle:last-child:nth-child(odd){grid-column:1 / -1;}
-.au-principle{background:var(--white);border:1px solid var(--hair-soft);border-radius:var(--r-md);
-  padding:24px 26px;display:flex;gap:20px;align-items:flex-start;
-  box-shadow:0 2px 12px rgba(35,34,26,.04);transition:transform .25s cubic-bezier(.2,.7,.15,1),box-shadow .25s,border-color .25s;}
-.au-principle:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(35,34,26,.09);
-  border-color:color-mix(in srgb,var(--green-deep) 30%,transparent);}
-.au-principle .pn{font-weight:800;font-size:18px;letter-spacing:-.02em;color:var(--green-deep);
-  width:30px;flex:0 0 auto;line-height:1.3;}
-.au-principle .pbody{min-width:0;}
-.au-principle h3{font-size:18.5px;margin:0 0 7px;letter-spacing:-.01em;line-height:1.25;}
-.au-principle p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin:0;text-wrap:pretty;}
+.au-td-head{max-width:1000px;margin:0 auto;text-align:center;}
+.au-td-head h2{color:var(--chalk);font-size:clamp(32px,3.9vw,48px);line-height:1.07;
+  letter-spacing:-.025em;margin:16px 0 0;text-wrap:balance;}
 
-/* ---------- SECTION 6 · BEWEGUNG & NERVENSYSTEM (beige) ---------- */
+.au-td-intro{display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(28px,3.5vw,64px);margin:56px auto 0;max-width:1040px;}
+/* Dunkle Sektion: gleiche Lauftext-Token (--fs-body/--lh-prose), nur hellere
+   Farbe für Kontrast auf Forest — wie .ansatz .body p auf der Startseite. */
+.au-td-intro p{color:#cdd2c4;font-size:var(--fs-body);line-height:var(--lh-prose);margin:0;text-wrap:pretty;}
+
+.au-td-quote{margin:72px auto 0;max-width:880px;padding:46px 28px 44px;text-align:center;
+  border-top:1px solid rgba(168,232,79,.26);border-bottom:1px solid rgba(168,232,79,.26);position:relative;}
+.au-td-quote .tq-mark{position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+  width:44px;height:44px;border-radius:50%;background:var(--green);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;line-height:1;}
+.au-td-quote p{font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:400;
+  font-size:clamp(28px,4vw,46px);line-height:1.22;color:var(--chalk);margin:0;letter-spacing:-.01em;text-wrap:balance;}
+.au-td-quote em{font-style:italic;color:var(--green);font-weight:500;}
+
+.au-td-grid{list-style:none;padding:0;margin:64px 0 0;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+.tg-card{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  text-align:center;padding:28px 14px 26px;border:1px solid rgba(168,232,79,.18);border-radius:18px;
+  background:linear-gradient(180deg,rgba(168,232,79,.045),rgba(168,232,79,0));
+  transition:transform .35s cubic-bezier(.2,.7,.15,1),border-color .35s,background .35s;}
+.tg-card:hover{transform:translateY(-4px);border-color:rgba(168,232,79,.42);
+  background:linear-gradient(180deg,rgba(168,232,79,.10),rgba(168,232,79,0));}
+.tg-from{display:block;font-size:var(--fs-label);font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:#9aa589;margin-bottom:14px;}
+.tg-arrow{display:block;width:18px;height:18px;color:var(--green);margin-bottom:10px;}
+.tg-arrow svg{width:100%;height:100%;display:block;}
+.tg-to{display:block;font-family:var(--ff);font-weight:700;font-size:clamp(20px,2vw,26px);
+  letter-spacing:-.015em;color:var(--chalk);line-height:1.1;}
+
+/* ---------- 4 · STATIONEN ---------- */
+.au-stations{margin-top:50px;}
+.au-stations .faden-rail{grid-template-columns:repeat(6,1fr);}
+.au-stations .faden .fl{white-space:normal;}
+
+/* ---------- 5 · WAS DARAUS HEUTE ENTSTEHT (chalk · 2-Spalten · Bild rechts) ---------- */
+.au-bridge{position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#FBF7EE 0%,#F3EDDF 100%);}
+.au-bridge::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.16),transparent 70%);top:-160px;left:-140px;pointer-events:none;}
+.au-bridge::after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,rgba(203,190,244,.18),transparent 70%);bottom:-120px;right:-100px;pointer-events:none;filter:blur(8px);}
+.au-bridge .wrap{position:relative;z-index:1;}
+.au-bridge-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);}
+.au-bridge-copy h2{margin:16px 0 0;max-width:18ch;}
+
+/* ---------- 6 · WIE ICH ARBEITE ----------
+   Reuses `.steps`/`.step`-Karten aus style.css (1:1 mit Startseiten-Sektion
+   „So können wir starten"). Nur der Section-Hintergrund + Orb-Position sind
+   hier seitenspezifisch. */
+.au-work{background:var(--chalk);}
+
+/* ---------- 7 · BEWEGUNG & NERVENSYSTEM (beige) ---------- */
 .au-move{background:linear-gradient(180deg,#EEE8DA,#E7DECE);position:relative;overflow:hidden;}
 .au-move::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
   background:radial-gradient(circle,rgba(155,163,131,.22),transparent 70%);top:-160px;right:-120px;pointer-events:none;}
-.au-move-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(40px,5vw,72px);align-items:center;}
-.au-move-media{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/3;
-  box-shadow:0 28px 64px rgba(35,34,26,.18);}
-.au-move-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;
-  transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
-.au-move-media:hover img{transform:scale(1.05);}
+.au-move .wrap{position:relative;z-index:1;}
+.au-move-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.au-move-media img{object-position:center 60%;}
 .au-move-copy h2{margin:14px 0 0;max-width:16ch;}
-.au-move-copy p{font-size:16.5px;color:#3a362e;line-height:1.7;margin:20px 0 0;max-width:50ch;text-wrap:pretty;}
-.au-move-copy p.lead{font-weight:600;color:var(--ink);}
 
-/* ---------- SECTION 7 · FÜR WEN (chalk) ---------- */
-.au-fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:50px;}
-.au-fit-col{border-radius:var(--r-xl);padding:34px 34px 32px;border:1px solid var(--hair-soft);
-  box-shadow:0 6px 22px rgba(35,34,26,.05);}
-.au-fit-col.is-yes{background:var(--white);}
-.au-fit-col.is-no{background:rgba(255,255,255,.55);}
-.au-fit-head{display:flex;align-items:center;gap:13px;margin-bottom:22px;}
-.au-fit-head .fb{width:42px;height:42px;border-radius:13px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;}
-.au-fit-head .fb svg{width:21px;height:21px;}
-.is-yes .fb{background:var(--green);color:var(--ink);}
-.is-no .fb{background:var(--sand);color:var(--ink-soft);}
-.au-fit-head h3{font-size:19px;letter-spacing:-.01em;line-height:1.2;margin:0;}
-.au-fit-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;}
-.au-fit-list li{position:relative;padding-left:30px;font-size:15px;line-height:1.55;color:#3a362e;text-wrap:pretty;}
-.au-fit-list li::before{position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;}
-.is-yes .au-fit-list li::before{content:"✓";background:rgba(168,232,79,.22);color:var(--green-text);}
-.is-no .au-fit-list li::before{content:"–";background:rgba(35,34,26,.06);color:var(--ink-soft);}
+/* ---------- 8 · FÜR WEN (chalk · zwei editorial-Cards, Single-Line-Bullets) ---------- */
+.au-fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-grid);margin-top:var(--shead-gap);}
+.au-fit-col{position:relative;border-radius:var(--r-xl);padding:var(--pad-card);}
+.au-fit-col.is-yes{background:var(--white);border:1px solid var(--hair-soft);
+  box-shadow:0 6px 22px rgba(35,34,26,.06);}
+.au-fit-col.is-no{background:rgba(255,255,255,.45);
+  border:1px dashed color-mix(in srgb,var(--ink) 14%,transparent);}
 
-/* ---------- SECTION 8 · WAS DU ERWARTEN KANNST ---------- */
-.au-expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px;}
-.au-expect-card{background:var(--white);border:1px solid var(--hair-soft);border-radius:var(--r-md);
-  padding:26px 26px 24px;box-shadow:0 2px 12px rgba(35,34,26,.04);
-  transition:transform .25s cubic-bezier(.2,.7,.15,1),box-shadow .25s,border-color .25s;}
-.au-expect-card:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(35,34,26,.09);
-  border-color:color-mix(in srgb,var(--green-deep) 28%,transparent);}
-.au-expect-card .ec-ic{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;
-  margin-bottom:18px;background:rgba(168,232,79,.16);color:var(--green-deep);}
-.au-expect-card .ec-ic svg{width:22px;height:22px;}
-.au-expect-card h3{font-size:17.5px;margin:0 0 8px;letter-spacing:-.01em;line-height:1.25;}
-.au-expect-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0;text-wrap:pretty;}
+.fit-tag{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-label);font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;padding:7px 14px;border-radius:100px;
+  line-height:1;margin-bottom:var(--gap-label);}
+.fit-tag::before{content:"";width:6px;height:6px;border-radius:50%;flex:0 0 auto;}
+.fit-tag--yes{background:rgba(168,232,79,.22);color:var(--green-text);}
+.fit-tag--yes::before{background:var(--green);}
+.fit-tag--no{background:rgba(35,34,26,.06);color:var(--ink-soft);}
+.fit-tag--no::before{background:var(--clay);opacity:.55;}
 
-/* ---------- SECTION 9 · PERSÖNLICH (chalk · Bild links) ---------- */
-.au-personal-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
-  gap:clamp(40px,5vw,72px);align-items:center;}
-.au-personal-media{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:1/1;
-  box-shadow:0 28px 64px rgba(35,34,26,.18);}
-.au-personal-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  transition:transform 1.6s cubic-bezier(.2,.7,.15,1);will-change:transform;}
-.au-personal-media:hover img{transform:scale(1.05);}
-.au-personal-copy h2{margin:14px 0 0;max-width:16ch;}
-.au-personal-copy p{font-size:16.5px;color:#3a362e;line-height:1.72;margin:20px 0 0;max-width:52ch;text-wrap:pretty;}
+/* Card-Column-Heading = Kartentitel-Token (--fs-h4, Gewicht 600 wie .trust-card h3 / .step h3). */
+.au-fit-col h3{font-size:var(--fs-h4);font-weight:600;margin:0 0 var(--gap-title);letter-spacing:var(--ls-snug);line-height:var(--lh-head);text-wrap:balance;}
 
-/* ---------- SECTION 10 · ABSCHLUSS / KONTAKT ----------
-   Übernimmt 1:1 das Kontakt-Layout der Startseite (.contact aus style.css).
-   About-spezifisch ist nur die persönliche Vertrauens-Zeile mit Avatar. */
+.au-fit-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
+/* List-Items = Sekundär-Text-Token (--fs-body-sm), identisch zu .pi-text/.trust-card p. */
+.au-fit-list li{position:relative;padding:14px 0 14px 30px;font-size:var(--fs-body-sm);line-height:1.62;color:#3a362e;
+  border-top:1px solid color-mix(in srgb,var(--ink) 7%,transparent);text-wrap:pretty;}
+.au-fit-list li:first-child{border-top:none;}
+.au-fit-list li::before{position:absolute;left:0;top:50%;transform:translateY(-50%);
+  display:flex;align-items:center;justify-content:center;}
+.is-yes .au-fit-list li::before{content:"";width:18px;height:18px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23355C2A' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M5 13l4 4 10-11'/></svg>") no-repeat center / 18px 18px;}
+.is-no .au-fit-list li::before{content:"";width:14px;height:2px;background:var(--ink-soft);opacity:.45;border-radius:2px;}
+
+/* ---------- 9 · WAS DU ERWARTEN KANNST (beige · 3-Spalten · nutzt `.step` aus style.css) ---------- */
+.au-expect{background:linear-gradient(180deg,#F1ECE0,#EAE3D4);}
+.au-expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap-grid);margin-top:var(--shead-gap);position:relative;z-index:1;}
+/* `.step`-Typografie (snum / slbl / h3 / p) erbt 1:1 aus style.css — bewusst
+   keine eigenen Overrides hier, damit Karten exakt wie auf der Startseite
+   wirken. Nur das Grid ist hier 3-spaltig statt 4-spaltig.
+   Auf beige Hintergrund weiß ich, dass die `.step`-Karte (white card) sich
+   sauber absetzt. */
+
+/* ---------- 10 · PERSÖNLICH (chalk · Bild links) ---------- */
+.au-personal-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);}
+/* .au-personal-copy erbt Lauftext-Token aus dem geteilten Block oben. */
+.au-personal-copy strong{color:var(--ink);}
+
+/* ---------- 11 · ABSCHLUSS / KONTAKT (übernimmt .contact aus style.css) ---------- */
 .au-sign-row{display:flex;align-items:center;gap:14px;margin:30px 0 0;}
 .au-sign-ava{width:54px;height:54px;border-radius:50%;overflow:hidden;flex:0 0 auto;
   border:2px solid rgba(168,232,79,.55);box-shadow:0 8px 22px rgba(0,0,0,.3);}
 .au-sign-ava img{width:100%;height:100%;object-fit:cover;object-position:center 32%;}
-.au-sign-note{font-size:15.5px;font-weight:500;line-height:1.4;letter-spacing:-.01em;color:var(--chalk);}
+.au-sign-note{font-size:var(--fs-body-sm);font-weight:500;line-height:1.4;letter-spacing:-.01em;color:var(--chalk);}
 .au-sign-note strong{color:var(--green);font-weight:600;}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:900px){
   .au-hero{padding:120px 0 68px;}
   .au-hero-grid{grid-template-columns:1fr;gap:52px;}
-  .au-hero-media{order:-1;max-width:440px;margin:0 auto;width:100%;}
-  .au-hm-sub{left:auto;right:14px;bottom:-24px;width:40%;border-width:6px;}
-  .au-feel-grid{grid-template-columns:1fr;gap:36px;}
-  .au-feel-media{order:-1;max-width:460px;margin:0 auto;width:100%;}
-  .au-td-grid{grid-template-columns:1fr;gap:22px;}
-  .au-stations .faden-rail{grid-template-columns:repeat(3,1fr);row-gap:42px;}
-  .au-move-grid{grid-template-columns:1fr;gap:36px;}
+  .au-hero-media{order:-1;max-width:560px;margin:0 auto;width:100%;}
+  .au-hm-sub{left:auto;right:14px;bottom:-32px;width:42%;border-width:6px;}
+
+  /* Auf Mobile stapeln 2-Col-Sections vertikal → Bilder brauchen wieder einen
+     definierten Aspekt, sonst klappt der absolut-positionierte Inhalt zusammen. */
+  .au-feel-grid,
+  .au-bridge-grid,
+  .au-move-grid,
+  .au-personal-grid{grid-template-columns:1fr;gap:36px;}
+  .au-feel-media,
+  .au-bridge-media,
+  .au-move-media,
+  .au-personal-media{aspect-ratio:4/3;min-height:0;max-width:560px;margin:0 auto;width:100%;}
+  .au-feel-media{order:-1;aspect-ratio:4/5;max-width:460px;}
   .au-move-media{order:-1;}
-  .au-work-duo{grid-template-columns:1fr;}
-  .au-principles{grid-template-columns:1fr;}
+  .au-personal-media{order:-1;aspect-ratio:5/4;}
+
+  .au-td-head h2{max-width:none;}
+  .au-td-intro{grid-template-columns:1fr;}
+  .au-td-grid{grid-template-columns:repeat(2,1fr);}
+
+  .au-stations .faden-rail{grid-template-columns:repeat(3,1fr);row-gap:42px;}
   .au-fit-grid{grid-template-columns:1fr;}
   .au-expect-grid{grid-template-columns:1fr 1fr;}
-  .au-personal-grid{grid-template-columns:1fr;gap:36px;}
-  .au-personal-media{order:-1;max-width:440px;}
 }
 @media (max-width:560px){
   .au-hero h1{font-size:clamp(32px,8.6vw,42px);}
   .au-hero .hero-cta{flex-wrap:wrap;}
   .au-hero .hero-cta .btn{flex:1 1 auto;justify-content:center;}
+  .au-hm-sub{right:8px;bottom:-22px;width:44%;}
   .au-expect-grid{grid-template-columns:1fr;}
-  .au-fit-col{padding:26px 24px;}
+  .au-fit-col{padding:28px 24px 24px;}
+  .au-td-grid{grid-template-columns:1fr;}
+  .au-td-quote{padding:38px 20px 36px;}
+  .au-td-quote .tq-mark{width:38px;height:38px;font-size:18px;top:-19px;}
   /* Stationen vertikal — identisch zum Startseiten-Verhalten der .faden */
   .au-stations .faden-rail{grid-template-columns:1fr;gap:0;}
   .au-stations .faden-station{padding:0 0 26px 54px;}

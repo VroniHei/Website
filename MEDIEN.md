@@ -101,11 +101,13 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/hero-branding.png` (2170 KB) · `images/hero-branding.webp` (128 KB)
 - **Maße:** 1672×941 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** — offen — · **Prompt:** — offen —
-- **Verwendung:** `index.html` (Hero-Bento, Soft-Grid)
+- **Verwendung:** *(aktuell nicht eingebunden)* — bis 2026-06-02 in `index.html` (Hero-Bento, Soft-Grid `.s-brand`); ausgetauscht gegen `about-arbeiten` (Vorgabe Vroni: Bild mit Bailey, langärmlig, rechter Arm/Tattoo verdeckt), weil das Querformat zusätzlich im jetzt höheren Bento-Cell stark beschnitten wurde. Datei bleibt vorerst im Repo (Aufräum-Kandidat).
 - **Alt-Text:** „Branding-Stillleben: aufgeschlagenes Moodboard mit Materialkarten und Farbflächen im warmen Licht"
 - **Dekorativ:** nein
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-02` — Aus Hero-Bento `.s-brand` entfernt (Crop-Probleme nach Bento-Stretch); Datei bleibt im Repo, ungenutzt.
 
 ### hero-journaling
 - **Dateien:** `images/hero-journaling.png` (1909 KB) · `images/hero-journaling.webp` (97 KB)
@@ -220,25 +222,66 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Rechte:** siehe Abschnitt 1
 - **Änderungen:** `2026-06-02` — Ersterfassung.
 
+### about-desk-detail
+- **Dateien:** `images/about-desk-detail.png` (664 KB) · `images/about-desk-detail.webp` (22 KB)
+- **Maße:** 700×560 px (5:4 Detail-Crop aus `about-hero-desk`)
+- **Herkunft:** abgeleitet aus `about-hero-desk` (KI, ChatGPT/DALL·E, V. Heidrich) · **Erstellt am:** 2026-06-03 · **Crop:** OffscreenCanvas im Atelier, Region `820,60 700×560` (rechte obere Bildhälfte, ohne Person/Hand), WebP-Quality 0.86
+- **Verwendung:** `ueber-mich.html` (Hero-Sub-Card · seit 2026-06-03; ersetzt `about-brand-essence`, das eine Person im Bild hatte und auf Vroni-Wunsch raus sollte)
+- **Alt-Text:** „Detail vom Arbeitsplatz: Laptop, Notizbuch, Vase mit Olivenzweig und Tasse im warmen Naturlicht"
+- **Dekorativ:** nein · **KI-Darstellung:** nein (zeigt nur Objekte aus dem Hero-Setup)
+- **Rechte:** siehe Abschnitt 1
+- **Beachten:** Crop wurde gezielt so gesetzt, dass keine Hand/kein Arm sichtbar bleibt. Wenn das Quellbild `about-hero-desk` jemals neu generiert wird, muss dieser Crop nachgezogen werden (Crop-Region steht oben).
+- **Änderungen:** `2026-06-03` — Ersterfassung (Vroni-Inline-Kommentar: „tausche das Bild gegen eins wo kein Mensch drauf ist").
+
+### about-notebook-still
+- **Dateien:** `images/about-notebook-still.png` (1678 KB) · `images/about-notebook-still.webp` (64 KB)
+- **Maße:** 869×1086 px (4:5 Hochformat-Crop aus `trust-ehrliche-einschaetzung`)
+- **Herkunft:** abgeleitet aus `trust-ehrliche-einschaetzung` (KI, ChatGPT/DALL·E, V. Heidrich) · **Erstellt am:** 2026-06-03 · **Crop:** OffscreenCanvas im Atelier, zentrierter Hochformat-Ausschnitt `290,0 869×1086`, WebP-Quality 0.86
+- **Verwendung:** `ueber-mich.html` (Sektion 2 · „Vielleicht kennst du dieses Gefühl" · seit 2026-06-03; ersetzt `about-arbeiten`, das auf Vroni-Wunsch hier weg sollte, weil es dem Hero-Bild thematisch zu ähnlich war und ebenfalls eine Person zeigte)
+- **Alt-Text:** „Offenes Notizbuch mit Stift, dampfender Tasse und einer Vase mit Olivenzweig auf dem Holztisch — ruhiger Sortier-Moment im Morgenlicht"
+- **Dekorativ:** nein · **KI-Darstellung:** nein (reines Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Beachten:** Quellbild `trust-ehrliche-einschaetzung` wird zusätzlich auf der Startseite verwendet (Trust-Card). Bei Ersetzung der Quelle muss dieser Crop nachgezogen werden.
+- **Änderungen:** `2026-06-03` — Ersterfassung (Vroni-Inline-Kommentar: „hier hätte ich gerne ein Bild dass dem im Hero nicht ganz so ähnlich ist, auch mehr mal ohne Mensch").
+
+### about-hero-desk
+- **Dateien:** `images/about-hero-desk.png` (2814 KB) · `images/about-hero-desk.webp` (86 KB)
+- **Maße:** 1536×1024 px
+- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-03 · **Prompt:** Frau am Holzschreibtisch am Laptop, schreibt im Notizbuch; Vase mit Olivenzweig, Tasse, Buchstapel; warmes Naturlicht durchs Fenster; schwarzer Labrador (Bailey) liegt entspannt auf einem Kissen unter dem Tisch — editorial, ruhig, Arbeitsprozess
+- **Verwendung:** `ueber-mich.html` (Hero, Hauptbild · seit 2026-06-03) · OG/Twitter-Card der Über-mich-Seite
+- **Alt-Text:** „Vroni arbeitet am Schreibtisch am Laptop und schreibt im Notizbuch — im warmen Naturlicht, Bailey liegt ruhig unter dem Tisch"
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
+- **Rechte:** siehe Abschnitt 1
+- **Beachten:** Ersetzt im Hero das vorherige `about-panorama-bailey` (Briefing 2026-06-03: erster Eindruck soll nach Strategie/Arbeit/Klarheit wirken, Hund/Berge nur als kleines Detail). Auch als `og:image` referenziert — bei Austausch beide Stellen prüfen.
+- **Änderungen:**
+  - `2026-06-03` — Ersterfassung. WebP im Atelier aus PNG erzeugt (OffscreenCanvas, quality 0.82).
+
 ### about-panorama-bailey
 - **Dateien:** `images/about-panorama-bailey.png` (1800 KB) · `images/about-panorama-bailey.webp` (81 KB)
 - **Maße:** 1448×1086 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni sitzt mit Hund Bailey, Bergpanorama, Sonnenuntergang
-- **Verwendung:** `ueber-mich.html` (Hero, Hauptbild links)
-- **Alt-Text:** Vroni sitzt mit Bailey im warmen Sonnenlicht — Bewegung und Stille als Teil der Arbeitsweise
-- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
+- **Verwendung:** `ueber-mich.html` (Claim-Band als Hintergrundbild · seit 2026-06-03; davor 2026-06-02 bis 2026-06-03 als Hero-Hauptbild)
+- **Alt-Text (Claim-Band):** `alt=""` — **dekoratives Hintergrundbild** (Claim-Band trägt eigenen Text-Overlay)
+- **Dekorativ:** ja (im Claim-Band) · **KI-Darstellung:** ja (generierte Person + Hund)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Aus Hero von `ueber-mich.html` entfernt, ersetzt durch `about-hero-desk`.
+  - `2026-06-03` — Wiederverwendung im Claim-Band von `ueber-mich.html` (ersetzt `about-claim-see`). Vroni-Inline-Kommentar: „Hier hätte ich gerne ein Bild dass dem im Hero nicht ganz so ähnlich ist. EIns auf de ich mit Bailey zu sehen bin. Wir sind draußen und schauen vielleicht in die Ferne."
 
 ### about-arbeiten
 - **Dateien:** `images/about-arbeiten.png` (1900 KB) · `images/about-arbeiten.webp` (97 KB)
 - **Maße:** 1122×1402 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Vroni schreibt in Notizbuch am Fenster, Bailey liegt daneben
-- **Verwendung:** `ueber-mich.html` (Hero, Sub-Bild rechts unten)
-- **Alt-Text:** Vroni schreibt in ihr Notizbuch am Fenster, Bailey liegt entspannt daneben
+- **Verwendung:** `index.html` (Hero-Bento, Soft-Grid `.s-brand`, seit 2026-06-02) · `ueber-mich.html` (Hero, Sub-Bild rechts unten)
+- **Alt-Text (Hero-Bento `.s-brand`):** „Vroni sitzt im Naturlicht am Fenster und schreibt in ihr Notizbuch, Bailey liegt entspannt neben ihr — konzentriertes Arbeiten mit Hund und Bergblick"
+- **Alt-Text (über-mich):** „Vroni schreibt in ihr Notizbuch am Fenster, Bailey liegt entspannt daneben"
 - **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person + Hund)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Beachten:** Wird jetzt an zwei Stellen verwendet — bei Änderungen am Bild beide Einbindungen prüfen. Langarm-Schnitt + Schreibhaltung verdecken den rechten Arm / das Tattoo (Vroni-Vorgabe für die Hero-Kachel).
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-02` — Zusätzliche Verwendung in `index.html` Hero-Bento `.s-brand` (ersetzt das Querformat `hero-branding`; Vroni-Vorgabe: Bild mit Bailey und Langarm/verdecktem rechtem Arm).
 
 ### about-journal-mat
 - **Dateien:** `images/about-journal-mat.png` (1700 KB) · `images/about-journal-mat.webp` (74 KB)

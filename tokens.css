@@ -1,0 +1,124 @@
+/* =========================================================
+   tokens.css · EINZIGE QUELLE DER WAHRHEIT für Design-Tokens + Schriften
+   ---------------------------------------------------------
+   Hier (und NUR hier) werden Farben, Typo-Skala (--fs-*), Zeilenhöhen,
+   Spacing (--space-*), Radien, Elevation (--shadow-*), Motion (--dur-*/--ease-*)
+   und Z-Index definiert, ebenso alle lokalen @font-face-Schriften.
+   Eingebunden von:  style.css (per @import, für die ganze Website)
+                     Designsystem.html (per <link>, als lebende Doku).
+   Niemand definiert diese Tokens an einer zweiten Stelle neu (sonst Drift).
+   Visuell dokumentiert in Designsystem.html. Regeln: DESIGN-HYGIENE.md.
+   ========================================================= */
+
+/* ---- Open Sauce Sans (lokal gehostet, Fallback) ---- */
+@font-face{font-family:'Open Sauce Sans';font-weight:400;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-400-normal.woff') format('woff');}
+@font-face{font-family:'Open Sauce Sans';font-weight:500;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Open Sauce Sans';font-weight:600;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Open Sauce Sans';font-weight:700;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Open Sauce Sans';font-weight:800;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-800-normal.woff2') format('woff2');}
+
+/* ---- Figtree (Hauptschrift, lokal gehostet, variable font) ---- */
+@font-face{font-family:'Figtree';font-weight:300 900;font-style:normal;font-display:swap;src:url('fonts/figtree-latin-400-800.woff2') format('woff2');}
+
+/* ---- Newsreader (Serif-Akzent für .g, lokal gehostet) ---- */
+@font-face{font-family:'Newsreader';font-weight:500;font-style:normal;font-display:swap;src:url('fonts/newsreader-latin-500.woff2') format('woff2');}
+@font-face{font-family:'Newsreader';font-weight:400 600;font-style:italic;font-display:swap;src:url('fonts/newsreader-latin-italic.woff2') format('woff2');}
+
+/* ---- Vaelia (organischer Versal-Display-Font, lokal) ---- */
+@font-face{font-family:'Vaelia';font-weight:400;font-style:normal;font-display:swap;src:url('fonts/Vaelia.woff2') format('woff2'),url('fonts/Vaelia.woff') format('woff');}
+
+:root{
+  --chalk:#F8F5EE; --sand:#EFEADD; --ink:#23221A; --forest:#2C3522;
+  --green:#A8E84F; --green-deep:#6E9B2C; --sage:#9BA383; --olive:#6E7449;
+  --clay:#CD8A5B; --lilac:#CBBEF4; --ink-soft:#5d564a; --white:#FFFFFF;
+  /* --green-text: WCAG-konformes Dunkelgrün (5.1:1 auf --chalk) für Kleinsttext/Links.
+     --green-deep nur noch für Großschrift (H2+) erlaubt — dort reichen 3:1. */
+  --green-text:#447510;
+  --hair:rgba(35,34,26,.12); --hair-soft:rgba(35,34,26,.07);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:34px;
+  --ff:'Figtree', 'Open Sauce Sans', system-ui, -apple-system, sans-serif;
+  --ff-display:'Vaelia', system-ui, sans-serif; /* organischer Versal-Display-Font */
+  --mx:max(28px, calc(50vw - 620px)); /* page side margin, content ~1240px */
+
+  /* ============================================================
+     TYPO-SKALA — kanonisch, site-weit (Quelle der Wahrheit).
+     Abgeleitet aus den Index-Stilen, logisch glattgezogen auf
+     wenige saubere Stufen. JEDE Sektion/Seite greift diese Tokens
+     auf — nie eigene px-Werte pro Sektion. Sonderfälle nur bewusst
+     (dokumentiert in PROTOKOLL.md). Siehe Designsystem.html §02.
+     ------------------------------------------------------------
+     Größen (clamp = responsive Display/Headline-Stufen) */
+  --fs-display: clamp(40px,4.8vw,66px); /* Hero-H1 */
+  --fs-h1:      clamp(33px,4.2vw,50px); /* Seiten-Titel (falls < Hero) */
+  --fs-h2:      clamp(28px,3.3vw,42px); /* Section-Headline */
+  --fs-h3:      clamp(20px,1.9vw,24px); /* Subsection / große Karte (Angebote) */
+  --fs-h4:      clamp(17px,1.5vw,18px); /* Kartentitel (Trust, Step, Pain, Yoga) */
+  --fs-lead:    clamp(19px,1.85vw,22px);/* emphatischer Lead / „große" Subline */
+  --fs-subline: 18px;   /* Section-Intro / Body L (Subline unter H2) */
+  --fs-body:    17px;   /* Fließtext in Content-Sektionen */
+  --fs-body-sm: 16px;   /* Karten-Text, Listen, dichte Bereiche */
+  --fs-caption: 13.5px; /* Meta / Bildunterzeile / Zeitstrahl-Text */
+  --fs-fine:    12px;   /* Fine Print: rechtliche Microcopy (Pflichtfeld-/Datenschutz-Hinweis). A11y-Untergrenze, nie kleiner. */
+  --fs-label:   11.5px; /* Eyebrow / Label (uppercase, .2em) */
+  /* Zeilenhöhen */
+  --lh-tight: 1.07; /* Headlines H1/H2 */
+  --lh-head:  1.25; /* H3/H4 / Kartentitel */
+  --lh-snug:  1.5;  /* Leads */
+  --lh-body:  1.6;  /* Fließtext, Sublines, Karten-Text */
+  --lh-prose: 1.72; /* lange Bio-/Erzähl-Copy (z. B. Über-mich) */
+  /* Laufweiten */
+  --ls-head:  -.025em; /* Headlines */
+  --ls-snug:  -.01em;  /* Kartentitel / Leads */
+  --ls-label: .2em;    /* Labels / Eyebrows */
+
+  /* ============================================================
+     SPACING-SKALA — 4px-Basis, site-weit. Für gleichmäßige,
+     ruhige Abstände. Karten nutzen IMMER dieselben Innenabstände
+     und denselben Text-Rhythmus (Label→Titel→Text), damit Kacheln
+     überall sauber & einheitlich sitzen. Siehe Designsystem.html §02b.
+     ------------------------------------------------------------ */
+  --space-3xs:4px; --space-2xs:8px; --space-xs:12px; --space-sm:16px;
+  --space-md:22px; --space-lg:32px; --space-xl:48px; --space-2xl:64px;
+  /* Komponenten-Abstände (semantisch) */
+  --pad-card:30px;       /* Karten-Innenabstand (einheitlich, alle vier Seiten) */
+  --gap-grid:18px;       /* Abstand zwischen Karten im Raster */
+  --gap-label:10px;      /* Label/Eyebrow → Titel (innerhalb Karte) */
+  --gap-title:12px;      /* Titel → Text (innerhalb Karte) */
+  --gap-stack:18px;      /* vertikaler Standardabstand zwischen Textblöcken */
+  --shead-gap:48px;      /* Section-Head → Karten-Raster */
+
+  /* ============================================================
+     ELEVATION / SCHATTEN — weiche, weit gestreute Schatten (nie harte
+     Kanten/graue Kästen). Fünf Stufen, site-weit. Siehe Designsystem §05.
+     ------------------------------------------------------------ */
+  --shadow-sm:   0 2px 10px rgba(35,34,26,.04);   /* ruhende Karte */
+  --shadow-card: 0 6px 22px rgba(35,34,26,.05);   /* Standard-Karte */
+  --shadow-md:   0 14px 36px rgba(35,34,26,.08);  /* angehoben / offen */
+  --shadow-lg:   0 22px 48px rgba(35,34,26,.11);  /* Karten-Hover */
+  --shadow-xl:   0 34px 74px rgba(35,34,26,.16);  /* Bild / Hero-Medien */
+
+  /* ============================================================
+     MOTION — eine Eingangs-Kurve site-weit, gestufte Dauern. Respektiert
+     prefers-reduced-motion. Siehe Designsystem §06.
+     ------------------------------------------------------------ */
+  --ease-out:  cubic-bezier(.2,.7,.15,1); /* Standard (sanftes Ausschwingen) */
+  --ease-soft: ease;                       /* einfache Farb-/BG-Wechsel */
+  --dur-1: .16s; /* Micro (Button, Hover-Farbe) */
+  --dur-2: .25s; /* UI-Standard (Border, Box-Shadow) */
+  --dur-3: .35s; /* Karten-Lift / Akkordeon */
+  --dur-img: 1.4s; /* langsamer Bild-Zoom */
+
+  /* ============================================================
+     Z-INDEX-EBENEN — feste Stapel-Ordnung, nie ad-hoc Zahlen. §18.
+     ------------------------------------------------------------ */
+  --z-base:1; --z-raised:3; --z-sticky:40; --z-nav:60;
+  --z-overlay:200; --z-modal:1000; --z-skip:9999;
+
+  /* ============================================================
+     BREAKPOINTS — Referenzwerte (CSS-Media-Queries nutzen die px direkt,
+     da Custom-Properties in @media nicht erlaubt sind). §07.
+       --bp-lg 1080px  (Nav klappt zu Burger)
+       --bp-md  900px  (2-Spalten → 1-Spalte, Raster reduzieren)
+       --bp-sm  560px  (Mobil: 1-Spalte, kompakte Paddings)
+     ------------------------------------------------------------ */
+}

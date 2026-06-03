@@ -2,36 +2,8 @@
    Vroni · Fresh Organic Hybrid — Website Styles
    ========================================================= */
 
-/* ---- Open Sauce Sans (lokal gehostet, Fallback) ---- */
-@font-face{font-family:'Open Sauce Sans';font-weight:400;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-400-normal.woff') format('woff');}
-@font-face{font-family:'Open Sauce Sans';font-weight:500;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-500-normal.woff2') format('woff2');}
-@font-face{font-family:'Open Sauce Sans';font-weight:600;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-600-normal.woff2') format('woff2');}
-@font-face{font-family:'Open Sauce Sans';font-weight:700;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-700-normal.woff2') format('woff2');}
-@font-face{font-family:'Open Sauce Sans';font-weight:800;font-style:normal;font-display:swap;src:url('fonts/open-sauce-sans-latin-800-normal.woff2') format('woff2');}
+@import url("tokens.css");
 
-/* ---- Figtree (Hauptschrift, lokal gehostet, variable font) ---- */
-@font-face{font-family:'Figtree';font-weight:300 900;font-style:normal;font-display:swap;src:url('fonts/figtree-latin-400-800.woff2') format('woff2');}
-
-/* ---- Newsreader (Serif-Akzent für .g, lokal gehostet) ---- */
-@font-face{font-family:'Newsreader';font-weight:500;font-style:normal;font-display:swap;src:url('fonts/newsreader-latin-500.woff2') format('woff2');}
-@font-face{font-family:'Newsreader';font-weight:400 600;font-style:italic;font-display:swap;src:url('fonts/newsreader-latin-italic.woff2') format('woff2');}
-
-/* ---- Vaelia (organischer Versal-Display-Font, lokal) ---- */
-@font-face{font-family:'Vaelia';font-weight:400;font-style:normal;font-display:swap;src:url('fonts/Vaelia.woff2') format('woff2'),url('fonts/Vaelia.woff') format('woff');}
-
-:root{
-  --chalk:#F8F5EE; --sand:#EFEADD; --ink:#23221A; --forest:#2C3522;
-  --green:#A8E84F; --green-deep:#6E9B2C; --sage:#9BA383; --olive:#6E7449;
-  --clay:#CD8A5B; --lilac:#CBBEF4; --ink-soft:#5d564a; --white:#FFFFFF;
-  /* --green-text: WCAG-konformes Dunkelgrün (5.1:1 auf --chalk) für Kleinsttext/Links.
-     --green-deep nur noch für Großschrift (H2+) erlaubt — dort reichen 3:1. */
-  --green-text:#447510;
-  --hair:rgba(35,34,26,.12); --hair-soft:rgba(35,34,26,.07);
-  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:34px;
-  --ff:'Figtree', 'Open Sauce Sans', system-ui, -apple-system, sans-serif;
-  --ff-display:'Vaelia', system-ui, sans-serif; /* organischer Versal-Display-Font */
-  --mx:max(28px, calc(50vw - 620px)); /* page side margin, content ~1240px */
-}
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{margin:0;font-family:var(--ff);color:var(--ink);
@@ -39,7 +11,7 @@ body{margin:0;font-family:var(--ff);color:var(--ink);
   background-image:radial-gradient(900px 520px at 88% -4%,rgba(155,163,131,.12),transparent 60%),radial-gradient(760px 460px at 4% 18%,rgba(205,138,91,.07),transparent 60%);
   background-attachment:fixed;
   -webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6;overflow-x:hidden;}
-h1,h2{margin:0;font-size:clamp(32px,3.9vw,48px);letter-spacing:-.025em;line-height:1.07;text-wrap:balance;font-weight:650;}
+h1,h2{margin:0;font-size:var(--fs-h2);letter-spacing:var(--ls-head);line-height:var(--lh-tight);text-wrap:balance;font-weight:650;}
 h3,h4{margin:0;letter-spacing:-.02em;line-height:1.04;text-wrap:balance;font-weight:650;}
 p{margin:0;}
 a{color:inherit;text-decoration:none;}
@@ -49,7 +21,7 @@ img{max-width:100%;display:block;}
 /* Dunkle / grüne Sektionen: .g bleibt Newsreader-Kursiv, bekommt aber grüne Farbe */
 .quote-band q .g,.cb-claim .g,.ansatz h2 .g,.contact h2 .g,.footer-quote .fq-text .g{color:var(--green) !important;}
 
-.lbl{font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);}
+.lbl{font-weight:600;font-size:var(--fs-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--ink-soft);}
 
 /* layout helpers */
 .wrap{max-width:1240px;margin:0 auto;padding:0 28px;}
@@ -229,6 +201,10 @@ img{max-width:100%;display:block;}
   background:radial-gradient(circle,rgba(155,163,131,.28),transparent 70%);top:-170px;right:-150px;pointer-events:none;}
 .pain::after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;
   background:radial-gradient(circle,rgba(205,138,91,.16),transparent 70%);bottom:-140px;left:-100px;pointer-events:none;}
+/* Pain-Layout: Intro als Split (links H2, rechts Leads),
+   Karten unten als 2×3-Haarlinien-Raster über die volle Wrap-Breite.
+   Löst das alte Ungleichgewicht (kurze Copy links, langer Karten-Wurm rechts)
+   und gibt dem H2 echtes Gewicht links. Mobile (Media-Query): Stack. */
 .pain-grid{display:block;position:relative;z-index:1;}
 .pain-intro--split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:start;}
 .pain-intro--split .pi-head{position:relative;}
@@ -239,7 +215,9 @@ img{max-width:100%;display:block;}
 .pain .lead{font-size:16px;color:#3a362e;margin:0;line-height:1.65;max-width:54ch;}
 .pain .setze{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-weight:700;font-size:17px;color:var(--ink);letter-spacing:-.01em;}
 .pain .setze::before{content:"";width:26px;height:2.5px;border-radius:2px;background:var(--green);}
-/* Pain-List Desktop: editoriales Haarlinien-Raster 2×3, kein Card-Chrome. */
+/* Pain-List Desktop: editoriales Haarlinien-Raster 2×3, kein Card-Chrome.
+   Karten lose, Trenner statt Boxen. Padding symmetrisch (26px 28px),
+   damit Hover-BG denselben Abstand vom Icon zu beiden Karten-Kanten hat. */
 .pain-list{display:grid;grid-template-columns:repeat(2,1fr);margin-top:56px;
   border-top:1px solid rgba(35,34,26,.09);}
 .pain-item{background:transparent;border:none;border-radius:0;box-shadow:none;
@@ -357,7 +335,7 @@ img{max-width:100%;display:block;}
   border:1.5px solid color-mix(in srgb,var(--clay) 60%, transparent);color:var(--clay);
   display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;letter-spacing:.02em;}
 .faden .fl{display:block;font-weight:700;font-size:15px;color:var(--ink);letter-spacing:-.01em;margin-bottom:6px;white-space:nowrap;}
-.faden .fd{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+.faden .fd{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.55;text-wrap:balance;min-height:3.1em;}
 
 /* ===== YOGA ===== */
 .yoga{background:linear-gradient(180deg,#EEE8DA,#E7DECE);overflow:hidden;position:relative;}
@@ -368,7 +346,7 @@ img{max-width:100%;display:block;}
 .yoga-intro h2{margin:14px 0 0;max-width:18ch;}
 /* .yoga-intro h2 .g — erbt Textfarbe via globalem .g */
 .yoga-intro .yi-right{padding-bottom:6px;}
-.yoga-intro .yoga-lead{font-size:16.5px;color:#3a362e;margin:0;line-height:1.65;max-width:50ch;text-wrap:pretty;}
+.yoga-intro .yoga-lead{font-size:var(--fs-subline);color:#3a362e;margin:0;line-height:var(--lh-body);max-width:50ch;text-wrap:pretty;}
 .yoga-intro .yoga-lead-sub{font-size:15.5px;color:var(--ink-soft);margin:14px 0 0;line-height:1.65;max-width:50ch;text-wrap:pretty;}
 .yoga-bento{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:stretch;}
 .yoga-image{position:relative;border-radius:var(--r-xl);overflow:hidden;
@@ -380,7 +358,7 @@ img{max-width:100%;display:block;}
 .yoga-card .lbl{color:var(--green);}
 .yoga-card .yp-desc{color:#c5cdb6;}
 .yoga-card .yc-head{margin-bottom:28px;}
-.yoga-card .yh{font-weight:700;font-size:27px;margin:12px 0 0;letter-spacing:-.01em;line-height:1.1;}
+.yoga-card .yh{font-weight:650;font-size:var(--fs-h3);margin:12px 0 0;letter-spacing:var(--ls-snug);line-height:var(--lh-head);}
 .ypaths{display:flex;flex-direction:column;flex:1;}
 .ypath{padding:22px 0;border-top:1px solid rgba(168,232,79,.22);}
 .ypath:first-child{border-top:none;padding-top:0;}
@@ -391,7 +369,7 @@ img{max-width:100%;display:block;}
 .yp-desc{font-size:14.5px;color:#c5cdb6;line-height:1.6;margin:8px 0 0;padding-left:36px;text-wrap:pretty;}
 .ypath-days{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding-left:36px;}
 .ypd{display:inline-flex;align-items:center;gap:8px;background:rgba(168,232,79,.10);border:1px solid rgba(168,232,79,.22);border-radius:100px;padding:5px 12px 5px 5px;font-size:12px;}
-.ypd-day{background:var(--green);color:var(--ink);font-weight:800;font-size:10.5px;letter-spacing:.04em;border-radius:100px;padding:3px 9px;}
+.ypd-day{background:var(--green);color:var(--ink);font-weight:800;font-size:var(--fs-label);letter-spacing:.04em;border-radius:100px;padding:3px 9px;}
 .ypd-name{color:var(--chalk);font-weight:500;}
 .yoga-card .yoga-cta{margin-top:30px;}
 
@@ -410,7 +388,7 @@ img{max-width:100%;display:block;}
   font-weight:600;color:var(--ink);transition:color .2s ease;}
 .faq-item summary::-webkit-details-marker{display:none;}
 .faq-item summary:hover{color:var(--green-text);}
-.faq-item .fq-title{font-size:clamp(16px,1.5vw,18px);line-height:1.4;letter-spacing:-.005em;text-wrap:balance;}
+.faq-item .fq-title{font-size:var(--fs-h4);line-height:1.4;letter-spacing:-.005em;text-wrap:balance;}
 .faq-item .fq-chev{display:flex;align-items:center;justify-content:center;color:var(--ink-soft);flex:0 0 auto;
   transition:transform .35s cubic-bezier(.2,.7,.15,1), color .25s ease;}
 .faq-item .fq-chev svg{width:18px;height:18px;}
@@ -514,7 +492,7 @@ img{max-width:100%;display:block;}
 .contact .lbl{color:var(--green);}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch;position:relative;z-index:1;}
 .contact-grid > .reveal{display:flex;flex-direction:column;justify-content:center;position:relative;padding-bottom:64px;}
-.contact-privacy{position:absolute;left:0;right:0;bottom:0;font-size:10.5px;color:rgba(154,165,137,.7);text-align:left;line-height:1.55;letter-spacing:.04em;margin:0;}
+.contact-privacy{position:absolute;left:0;right:0;bottom:0;font-size:var(--fs-fine);color:rgba(154,165,137,.7);text-align:left;line-height:1.55;letter-spacing:.04em;margin:0;}
 .contact-privacy a{color:rgba(189,195,173,.85);border-bottom:1px solid rgba(189,195,173,.22);padding-bottom:1px;transition:color .2s ease,border-color .2s ease;}
 .contact-privacy a:hover{color:var(--green);border-bottom-color:rgba(168,232,79,.5);}
 .contact h2{color:var(--chalk);margin:16px 0 0;max-width:18ch;}
@@ -550,7 +528,7 @@ img{max-width:100%;display:block;}
 .form.sent .form-success{display:block;}
 .form-success .sc-ic{width:64px;height:64px;border-radius:50%;background:var(--green);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;}
 .form-success .sc-ic svg{width:30px;height:30px;}
-.form-success h3{font-size:24px;margin:0 0 10px;}
+.form-success h3{font-size:var(--fs-h3);margin:0 0 10px;}
 .form-success p{font-size:15px;color:var(--ink-soft);}
 
 /* ===== DAS GROSSE GANZE ===== */
@@ -704,21 +682,21 @@ img{max-width:100%;display:block;}
 
 /* H2-Größe seitenweite Vereinheitlichung */
 .shead h2,.pain h2,.ansatz h2,.about h2,.yoga-intro h2,.steps-head h2,.contact h2{
-  font-size:clamp(32px,3.9vw,48px)!important;letter-spacing:-.025em;line-height:1.07!important;}
+  font-size:var(--fs-h2)!important;letter-spacing:var(--ls-head);line-height:var(--lh-tight)!important;}
 
 /* Sublines */
-.pain .lead{font-size:18px!important;line-height:1.6!important;}
-.shead p,.steps-head p,.contact .body,.faq-intro p,.lead-sub{font-size:18px!important;line-height:1.6!important;}
+.pain .lead{font-size:var(--fs-subline)!important;line-height:var(--lh-body)!important;}
+.shead p,.steps-head p,.contact .body,.faq-intro p,.lead-sub{font-size:var(--fs-subline)!important;line-height:var(--lh-body)!important;}
 
-/* „Das große Ganze" Subline */
+/* „Das große Ganze" Subline (emphatischer Lead) */
 .big .shead--center .lead-sub{
-  font-size:clamp(19px,1.85vw,22px)!important;line-height:1.5!important;
+  font-size:var(--fs-lead)!important;line-height:var(--lh-snug)!important;
   font-weight:600!important;color:var(--ink)!important;
-  letter-spacing:-.01em;max-width:42ch;margin-top:18px!important;}
-.big .shead--center .lead-body{font-size:16px!important;line-height:1.6!important;margin-top:14px!important;}
+  letter-spacing:var(--ls-snug);max-width:42ch;margin-top:18px!important;}
+.big .shead--center .lead-body{font-size:var(--fs-body)!important;line-height:var(--lh-body)!important;margin-top:14px!important;}
 
 /* Closer-Text über dem System-Block */
-.big-foot{font-size:16px!important;line-height:1.6!important;margin-top:38px!important;}
+.big-foot{font-size:var(--fs-body)!important;line-height:var(--lh-body)!important;margin-top:38px!important;}
 
 /* Zitate + dunkle Sektionen: Gewicht hoch */
 .cb-claim,.quote-band q,.footer-quote .fq-text{font-weight:650!important;}
@@ -727,31 +705,31 @@ img{max-width:100%;display:block;}
 /* Quote-Breite */
 .quote-band blockquote{max-width:560px!important;}
 
-/* Angebote */
-.offer h3{font-weight:700!important;font-size:26px!important;}
-.offer .offer-for{font-size:17px!important;font-weight:600!important;color:var(--ink)!important;line-height:1.55!important;}
-.offer .desc,.offer p{font-size:16px!important;line-height:1.62!important;}
+/* Angebote (große Karte → H3-Stufe) */
+.offer h3{font-weight:650!important;font-size:var(--fs-h3)!important;letter-spacing:var(--ls-snug);}
+.offer .offer-for{font-size:var(--fs-body)!important;font-weight:600!important;color:var(--ink)!important;line-height:1.55!important;}
+.offer .desc,.offer p{font-size:var(--fs-body-sm)!important;line-height:var(--lh-body)!important;}
 
 /* „Ein roter Faden"-Box */
-.big-umbrella .u-tag{font-size:15.5px!important;letter-spacing:.18em!important;}
-.big-umbrella .u-sub{font-size:15.5px!important;line-height:1.55!important;font-weight:500!important;color:var(--ink-soft)!important;margin-top:12px!important;max-width:50ch!important;letter-spacing:0!important;}
+.big-umbrella .u-tag{font-size:var(--fs-body-sm)!important;letter-spacing:.18em!important;}
+.big-umbrella .u-sub{font-size:var(--fs-body-sm)!important;line-height:1.55!important;font-weight:500!important;color:var(--ink-soft)!important;margin-top:12px!important;max-width:50ch!important;letter-spacing:0!important;}
 
 /* Big-Nodes */
-.big-node .bn-num{font-size:12px!important;font-weight:700!important;letter-spacing:.2em!important;margin-bottom:10px!important;}
-.big-node h4{font-weight:700!important;font-size:19px!important;letter-spacing:-.01em;margin:2px 0 8px!important;}
-.big-node p{font-size:15.5px!important;line-height:1.6!important;}
+.big-node .bn-num{font-size:var(--fs-label)!important;font-weight:700!important;letter-spacing:var(--ls-label)!important;margin-bottom:10px!important;}
+.big-node h4{font-weight:700!important;font-size:var(--fs-h4)!important;letter-spacing:var(--ls-snug);margin:2px 0 8px!important;}
+.big-node p{font-size:var(--fs-body-sm)!important;line-height:var(--lh-body)!important;}
 
 /* Trust-Cards */
-.trust-card h3{font-weight:600!important;font-size:clamp(17px,1.5vw,19px)!important;line-height:1.3!important;letter-spacing:-.005em!important;}
-.trust-card p{font-size:15.5px!important;line-height:1.62!important;}
+.trust-card h3{font-weight:600!important;font-size:var(--fs-h4)!important;line-height:var(--lh-head)!important;letter-spacing:var(--ls-snug)!important;}
+.trust-card p{font-size:var(--fs-body-sm)!important;line-height:1.62!important;}
 
 /* Yoga */
-.yp-title{font-size:18px!important;font-weight:700!important;}
-.yp-desc{font-size:15.5px!important;line-height:1.6!important;}
+.yp-title{font-size:var(--fs-h4)!important;font-weight:700!important;}
+.yp-desc{font-size:var(--fs-body-sm)!important;line-height:var(--lh-body)!important;}
 
 /* Ansatz + Über-mich-Body */
-.ansatz .body p,.about .body p{font-size:17px!important;line-height:1.6!important;}
-.about .body p.about-claim{font-size:clamp(19px,1.85vw,22px)!important;font-weight:600!important;line-height:1.45!important;letter-spacing:-.01em;}
+.ansatz .body p,.about .body p{font-size:var(--fs-body)!important;line-height:var(--lh-body)!important;}
+.about .body p.about-claim{font-size:var(--fs-lead)!important;font-weight:600!important;line-height:1.45!important;letter-spacing:var(--ls-snug);}
 
 /* Über-mich-Signatur */
 .about-sign .as-line{display:none!important;}
@@ -759,28 +737,36 @@ img{max-width:100%;display:block;}
 .about-sign .as-brand{margin-left:0!important;align-self:flex-start!important;}
 
 /* Ansatz-Prinzipien */
-.principle .pt{font-size:18px!important;font-weight:600!important;}
-.principle .pbody .ptxt,.principle .pbody p{font-size:17px!important;line-height:1.6!important;}
+.principle .pt{font-size:var(--fs-subline)!important;font-weight:600!important;}
+.principle .pbody .ptxt,.principle .pbody p{font-size:var(--fs-body)!important;line-height:var(--lh-body)!important;}
 .principle .pn{font-size:14.5px!important;font-weight:700!important;}
 
 /* Faden-Zeitstrahl */
 .faden .eyebrow{margin-bottom:32px!important;}
-.faden .fl{font-size:15px!important;font-weight:650!important;letter-spacing:-.008em!important;margin-bottom:5px!important;}
-.faden .fd{font-size:13.5px!important;line-height:1.5!important;color:var(--ink-soft)!important;}
+.faden .fl{font-size:var(--fs-body-sm)!important;font-weight:650!important;letter-spacing:-.008em!important;margin-bottom:5px!important;}
+/* Stationsbeschreibung = beschreibender Text-Token (--fs-body-sm/1.55), identisch
+   zu .step p („Wie ich arbeite") — gleiche Rolle, gleiche Formatierung. */
+.faden .fd{font-size:var(--fs-body-sm)!important;line-height:1.55!important;color:var(--ink-soft)!important;}
 
 /* Arbeitsweise-Steps */
-.step .slbl{font-size:11.5px!important;font-weight:700!important;letter-spacing:.22em!important;}
-.step h3,.step h4{font-weight:600!important;font-size:clamp(18px,1.6vw,20px)!important;line-height:1.25!important;margin:0 0 12px!important;letter-spacing:-.01em;}
-.step p{font-size:15.5px!important;line-height:1.55!important;}
+.step .slbl{font-size:var(--fs-label)!important;font-weight:700!important;letter-spacing:.22em!important;}
+.step h3,.step h4{font-weight:600!important;font-size:var(--fs-h4)!important;line-height:var(--lh-head)!important;margin:0 0 12px!important;letter-spacing:var(--ls-snug);}
+.step p{font-size:var(--fs-body-sm)!important;line-height:1.55!important;}
 .step .snum{font-weight:700!important;}
 
-/* Pain-Items (an Trust-Card-Standard angeglichen: Titel clamp(17,1.5vw,19)/600/-.005em, Text 15.5/1.62, Eyebrow 11/600/.2em wie .lbl) */
-.pain .pi-text{font-size:15.5px!important;line-height:1.62!important;color:var(--ink-soft)!important;font-weight:450!important;}
-.pain .pi-cat{font-size:11px!important;font-weight:600!important;letter-spacing:.2em!important;}
-.pain .pi-title{font-size:clamp(17px,1.5vw,19px)!important;line-height:1.3!important;font-weight:600!important;letter-spacing:-.005em!important;}
+/* Pain-Items (an Trust-Card-Standard angeglichen) */
+.pain .pi-text{font-size:var(--fs-body-sm)!important;line-height:1.62!important;color:var(--ink-soft)!important;font-weight:450!important;}
+.pain .pi-cat{font-size:var(--fs-label)!important;font-weight:600!important;letter-spacing:var(--ls-label)!important;}
+.pain .pi-title{font-size:var(--fs-h4)!important;line-height:var(--lh-head)!important;font-weight:600!important;letter-spacing:var(--ls-snug)!important;}
 
 /* Footer „Über"-Spalte */
-.footer-col--about .fc-about{font-size:14.5px!important;line-height:1.6!important;}
+.footer-col--about .fc-about{font-size:var(--fs-body-sm)!important;line-height:var(--lh-body)!important;}
+
+/* Karten-Text-Rhythmus — einheitlich über alle Karten-Familien (Label→Titel→Text).
+   So sitzen Texte in jeder Kachel identisch sauber. (Pain-Items nutzen flex-gap
+   und sind davon bewusst ausgenommen.) */
+.step .slbl,.big-node .bn-num{margin-bottom:var(--gap-label)!important;}
+.step h3,.step h4,.trust-card h3,.big-node h4,.offer h3{margin-bottom:var(--gap-title)!important;}
 
 /* ===== responsive ===== */
 @media (max-width:1080px){
@@ -788,6 +774,14 @@ img{max-width:100%;display:block;}
   .nav-burger{display:flex;}
   .hero-cta-only{display:none;}
   .nav-right .btn{display:none;}
+}
+/* Zeitstrahl-Zwischenzone: zwischen 901 und 1120px wird das 7-Spalten-Rail zu eng
+   (Beschreibungen würden 3-zeilig). Hier früher auf das komfortable 2-Spalten-Layout
+   umschalten, damit .fd immer ≤2 Zeilen bleibt. Das horizontale Rail bleibt ≥1121px. */
+@media (min-width:901px) and (max-width:1120px){
+  .faden-rail{grid-template-columns:1fr 1fr;gap:36px 26px;}
+  .faden-station{padding:50px 14px 0 0;}
+  .faden-station::before{display:none;}
 }
 @media (max-width:900px){
   .sec{padding:78px 0;}
@@ -873,8 +867,9 @@ img{max-width:100%;display:block;}
   /* Bento-Hero Mobile */
   .hero--bento{padding:110px 0 70px;}
   .hb-grid{grid-template-columns:1fr;gap:40px;}
-  .hb-visual{order:-1;height:auto;}
+  .hb-visual{order:-1;}
   .hb-copy{max-width:none;justify-content:flex-start;gap:0;}
+  .hb-visual{height:auto;}
   .hb-soft{min-height:0;height:auto;display:block;max-width:520px;margin:0 auto;}
   .hb-soft .s-main{aspect-ratio:4/3;border-radius:24px;}
   .hb-soft .s-brand,.hb-soft .s-journal{display:none;}
