@@ -97,7 +97,7 @@ img{max-width:100%;display:block;}
 .hero{padding:120px 0 56px;position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;}
 .hero-grid{display:grid;grid-template-columns:1fr clamp(360px,42vw,580px);gap:clamp(36px,5vw,72px);align-items:center;padding-left:var(--mx);width:100%;}
 .hero-copy{max-width:600px;}
-.hero h1{font-size:clamp(38px,4.4vw,60px);letter-spacing:-.035em;margin:18px 0 0;}
+.hero h1{font-size:var(--fs-display);letter-spacing:var(--ls-head);margin:18px 0 0;}
 .hero h1 .u{position:relative;white-space:nowrap;}
 .hero h1 .u svg{position:absolute;left:-2%;right:-2%;width:104%;bottom:-.16em;height:.2em;}
 .hero .sub{font-size:clamp(16px,1.4vw,19px);font-weight:400;color:#3a362e;max-width:500px;margin:22px 0 0;line-height:1.55;}
@@ -146,8 +146,9 @@ img{max-width:100%;display:block;}
 .hb-copy{max-width:540px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;}
 .hb-bottom{max-width:46ch;}
 .hb-bottom .hb-lede{margin:0 0 26px;}
-.hero--bento .hb-h1{font-family:var(--ff);font-weight:650;font-size:clamp(40px,4.8vw,66px);line-height:1.05;
-  letter-spacing:-.025em;margin:18px 0 0;color:var(--ink);text-wrap:balance;}
+/* Bento-Hero-H1 — Tokens aus tokens.css (Single Source of Truth für Display). */
+.hero--bento .hb-h1{font-family:var(--ff);font-weight:650;font-size:var(--fs-display);line-height:1.05;
+  letter-spacing:var(--ls-head);margin:18px 0 0;color:var(--ink);text-wrap:balance;}
 .hero--bento .hb-h1 em{font-family:'Newsreader',Georgia,serif;font-weight:500;font-style:italic;letter-spacing:-.01em;font-size:1.12em;color:var(--ink);}
 .hb-lede{font-size:clamp(18px,1.35vw,21px);font-weight:450;line-height:1.55;color:#3a362e;max-width:46ch;margin:24px 0 0;text-wrap:pretty;}
 .hb-lede--2{margin-top:14px;font-size:clamp(16px,1.15vw,18px);color:#4a463c;}
@@ -906,7 +907,7 @@ img{max-width:100%;display:block;}
   .hero-chip{display:none;}
   .brand{font-size:17px;gap:5px;}
   .brand svg{width:26px;height:auto;}
-  .hero--bento .hb-h1{font-size:clamp(33px,8.6vw,42px);letter-spacing:-.02em;}
+  .hero--bento .hb-h1{font-size:var(--fs-display-sm);letter-spacing:var(--ls-head-sm);}
   .hb-lede{font-size:16.5px;}
   .hero--bento .hero-cta{flex-wrap:wrap;}
   .hero--bento .hero-cta .btn{flex:1 1 auto;justify-content:center;}
@@ -966,6 +967,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 }
 
 @media (min-width:1600px){
-  .hero--bento .hb-h1{font-size:clamp(60px,3.4vw,68px);}
+  .hero--bento .hb-h1{font-size:var(--fs-display-lg);}
   .hb-lede{font-size:21px;}
 }
