@@ -872,9 +872,12 @@ img{max-width:100%;display:block;}
   .hb-copy{max-width:none;justify-content:flex-start;gap:0;}
   .hb-visual{height:auto;}
   .hb-soft{min-height:0;height:auto;display:block;max-width:520px;margin:0 auto;}
-  /* INVARIANTE: s-main braucht explizite Höhe, sonst ist das absolut positionierte
-     Hero-Bild auf Mobile/Tablet höhenlos = unsichtbar (gleiche Regel wie .am-main, Z. 830). */
-  .hb-soft .s-main{height:clamp(300px,70vw,440px);aspect-ratio:auto;border-radius:24px;}
+  /* Mobile/Tablet: Hero-Bild als normales IN-FLOW-Block-Bild rendern (nicht absolut positioniert).
+     Das absolute Muster blieb auf Mobile leer (Container-Höhe da = Weißraum, aber Bild nicht gemalt).
+     Statisch + feste Höhe + object-fit:cover ist hier zuverlässig sichtbar. */
+  .hb-soft .s-main{height:auto;aspect-ratio:auto;border-radius:24px;}
+  .hb-soft .s-main picture{display:block;width:100%;}
+  .hb-soft .s-main img{position:static;width:100%;height:clamp(300px,72vw,430px);object-fit:cover;display:block;}
   .hb-soft .s-brand,.hb-soft .s-journal{display:none;}
 }
 @media (max-width:560px){
