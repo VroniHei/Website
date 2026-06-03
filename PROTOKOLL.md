@@ -185,6 +185,12 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-03 — Hero-Bild Mobile/Tablet: In-Flow-Block statt absolut positioniert (Branch `fix/hero-mobile-image-render`, Claude Code)
+- **Was:** Auf ≤900px wird das Hero-Bild (`.hb-soft .s-main img`) jetzt als normales **In-Flow-Block-Bild** gerendert (`position:static;width:100%;height:clamp(300px,72vw,430px);object-fit:cover`), statt absolut positioniert in einem Container mit fester Höhe.
+- **Warum:** Der vorige Höhen-Fix gab dem Container zwar Höhe (Vroni: „Weißraum, wo das Bild stehen würde"), aber das **absolut positionierte** `<img>` wurde auf Mobile nicht gemalt. Der Hero-**Text** war sichtbar → Reveal/Opacity ist NICHT die Ursache; es ist spezifisch das absolute Bild im resized Container. In-Flow-Rendering ist robust und zuverlässig sichtbar.
+- **Wie:** Ein `str_replace` im ≤900px-Block: `.s-main` Höhe auf `auto`, `picture` als Block, `img` statisch mit fester Höhe + `object-fit:cover`. `.s-card`-Overlay bleibt absolut über dem Bild (`.s-main` weiter `position:relative`). Lokal: guard 0, html-validate 0, Klammern 714/714.
+- **Konsequenz:** Reine CSS-Änderung, nur ≤900px. Visuelle Abnahme durch Vroni nötig. Falls weiterhin leer: nächster Verdacht = evtl. fehlerhafte `hero-visual-960.webp`-Variante (würde nur Mobile betreffen, da Desktop die große `hero-visual.webp` wählt).
+
 ### 2026-06-03 — Pain-Sektion Mobile/Tablet-Parität (re-apply nach Klärung) (Branch `fix/pain-mobile-parity`, Claude Code)
 - **Was:** Pain-Sektion auf ≤900px (Tablet) und ≤560px (Phone) auf den **flachen Hairline-Stil des Desktops** gebracht (Parität): Tablet 2-spaltig mit Hairline-Trennern (border-top/-bottom, border-right auf odd), Phone 1-spaltig nur mit unterer Hairline. Card-Chrome (weiße Kacheln) entfällt. Hero-Bild-Fix (s-main Höhe) bleibt live. **Yoga unangetastet** (rendert korrekt mit `aspect-ratio:4/3`).
 - **Warum:** Klärung mit Vroni: Mobile/Tablet **müssen** zum überarbeiteten Desktop-Design passen; die Pain-Sektion tat das noch nicht (Card-Chrome statt flachem Raster). Der vorherige Teil-Revert (#39) hatte Pain irrtümlich mit zurückgenommen — „Yoga-Bild" war nur ein Verständnis-Missverständnis (= Foto in der Yoga-Sektion, wird ohnehin korrekt dargestellt).
