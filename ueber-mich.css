@@ -496,8 +496,13 @@
    Regel BEIDE `.reveal`-Kinder im Grid (Text-Spalte UND Formular-Box, weil
    das Formular `class="form reveal d2"` hat). Folge wäre, dass das Formular
    einen padding-bottom:0 erbt und alle späteren `.form{padding-bottom:Xpx}`-
-   Regeln durch höhere Spezifität überschrieben werden — Vroni-Debug 04.06.2026. */
-#kontakt.contact .contact-grid > .reveal:not(.form){padding-bottom:0;}
+   Regeln durch höhere Spezifität überschrieben werden — Vroni-Debug 04.06.2026.
+   Gilt nur ≤900px: auf Desktop braucht die linke Spalte den 64px-Puffer aus
+   style.css, damit contact-privacy--in (position:absolute;bottom:0) nicht
+   in die Buttons rutscht. */
+@media (max-width:900px){
+  #kontakt.contact .contact-grid > .reveal:not(.form){padding-bottom:0;}
+}
 .au-contact-aside{font-size:var(--fs-body-sm);line-height:1.55;font-style:italic;
   color:#a8aea0;margin:18px 0 0;max-width:500px;text-wrap:pretty;}
 
