@@ -91,6 +91,23 @@
   --shead-gap:48px;      /* Section-Head → Karten-Raster */
 
   /* ============================================================
+     MOBILE-SPACING-TOKENS (≤900px / ≤560px) — eingeführt 04.06.2026
+     für den finalen Mobile-Feinschliff der Über-mich-Seite.
+     Quelle der Wahrheit für alle mobilen Abstände — keine Einzelwerte
+     mehr pro Section. Werte sind das, was sich beim QA-Sweep als
+     ruhig/lesbar erwiesen hat (Vroni-Brief 04.06.2026).
+     ------------------------------------------------------------ */
+  --space-section-mobile: 64px;  /* Standard-Section-Padding ≤900px (oben/unten) */
+  --space-section-mobile-sm: 56px; /* enge Section-Variante ≤560px */
+  --space-section-desktop: 104px;/* Desktop-Standard (= aktueller .sec-Wert) */
+  --space-eyebrow-head: 10px;    /* Eyebrow/Kicker → Headline */
+  --space-head-body: 18px;       /* Headline → Lauftext / Lead */
+  --space-body-block: 28px;      /* Lauftext-Block → Karten/Bilder darunter */
+  --space-block-mobile: 24px;    /* Cards untereinander auf Mobile */
+  --space-grid-mobile: 16px;     /* Grid-Gap zwischen Cards auf Mobile */
+  --pad-card-mobile: 24px;       /* Karten-Innenabstand auf Mobile */
+
+  /* ============================================================
      ELEVATION / SCHATTEN — weiche, weit gestreute Schatten (nie harte
      Kanten/graue Kästen). Fünf Stufen, site-weit. Siehe Designsystem §05.
      ------------------------------------------------------------ */

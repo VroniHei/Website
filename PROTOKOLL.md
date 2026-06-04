@@ -185,6 +185,19 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-04 — Über-mich Final QA-Feinschliff Mobile + Tablet + Form-Padding-Specificity-Bugfix (Handoff Claude Code)
+
+- **Was:** Implementierung von 5 Dateien aus dem Claude-Design-Handoff 2026-06-04 (`tokens.css`, `style.css`, `ueber-mich.css`, `ueber-mich.html`, `PROTOKOLL.md`). Kein Redesign — konsolidierter QA-Feinschliff nach Vroni-Brief „FINAL QA-BRIEFING" und vier Inline-Feedback-Runden im Atelier. Tablet (561–900px) war der größte Brennpunkt.
+- **Warum:** Mobile und Tablet-Ansicht hatten nach dem v2-Redesign diverse Spacing-Inkonsistenzen, nicht-optimale Bild-Crops, fehlende 2-Spalten-Rückführung auf Tablet, und die Contact-Privacy-Zeile war nicht viewport-korrekt. Dazu ein CSS-Specificity-Bug im Formular.
+- **Was geändert wurde:**
+  - **`tokens.css`**: +9 neue MOBILE-SPACING-TOKENS (`--space-section-mobile`, `--space-section-mobile-sm`, `--space-section-desktop`, `--space-eyebrow-head`, `--space-head-body`, `--space-body-block`, `--space-block-mobile`, `--space-grid-mobile`, `--pad-card-mobile`). Quelle der Wahrheit für alle mobilen Abstände.
+  - **`style.css`** (2 Änderungen): (a) `.contact-grid > .reveal` auf `.contact-grid > .reveal:not(.form)` qualifiziert — Specificity-Bugfix, der verhinderte, dass das Formular korrekte `padding-bottom`-Werte bekam. Gilt auch auf der Startseite. (b) Neuer Block „GLOBALE MOBILE-CTA-LOGIK" am Ende: ≤560px stapeln alle `.hero-cta`-Gruppen vertikal mit `width:100%`; 561–900px `white-space:normal`.
+  - **`ueber-mich.css`**: Vollständige Ersetzung (+~270 Zeilen): QA-Mobile-Layer (Section-Padding via Tokens, Hero-Bento-Höhe, Bild-Crops, Skill-Tags 12.5px A11y, Kontakt-Inputs 16px kein iOS-Zoom), Tablet-Layer 561–900px (2-Spalten-Rückführung Gefühl/Heute/Persönlich/Bewegung/Für-wen, freilaufende Headlines, Kontaktbereich 2-spaltig, Footer 3-spaltig), Runde-3-Block (Hero-Tablet-Copy maxwidth:none, Bento-Höhe clamp, Stationen-Plakat 32px vertikal kompakt), Bild-Crops (See-Steg `object-position:60% 78%`, Trail `72% 88%`), contact-privacy zwei Viewport-Varianten via display:none-Toggle, Form-Padding Bugfix.
+  - **`ueber-mich.html`** (3 Änderungen): (a) Copy-Edit au-cred Intro: Vierfach-„X braucht Y"-Kaskade aufgelöst. (b) Copy-Edit au-bridge Absatz 2: „Nicht als Autopilot. Eher als Sparringspartner …" → „KI als Sparringspartner, der mitdenkt, nicht als Autopilot, der für dich entscheidet." (c) Contact-Privacy-Restruktur: in-column-Variante bekommt `--in`-Modifier; neue Sibling-Variante (zentriert, full-width) direkt unter `.contact-grid` innerhalb `.wrap`.
+- **Bugfix-Detail Specificity:** `.contact-grid > .reveal{padding-bottom:0}` matched mobil ungewollt auch `.form reveal d2` → Form-Padding war effektiv 0. Fix: `:not(.form)` auf beide Stellen in style.css (Desktop + Mobile), plus entsprechender Override in ueber-mich.css.
+- **Was NICHT geändert:** `index.html` (nur indirekt via style.css Bugfix), alle anderen HTML-Seiten, alle Bilder, Fonts, script.js, Rechtsdokumente.
+- **Kein neues Asset.** Recht/Datenschutz unverändert.
+
 ### 2026-06-03 — Über-mich Redesign v2: Texte, Layout-Verfeinerungen, Bewegung-Bento (Claude Design → Claude Code · feat/ueber-mich-v2-redesign)
 
 - **Was:** `ueber-mich.html` und `ueber-mich.css` auf den neuesten Atelier-Stand gebracht (Redesign v2, entstanden nach PR #44). Datei-Austausch 1:1 per Handoff-Bundle (Quelle: `HANDOFF-2026-06-03.md` MASTER + aktueller Atelier-Stand).

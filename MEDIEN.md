@@ -241,6 +241,7 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
   - `2026-06-03` — Ersterfassung (Vroni-Inline-Kommentar: „tausche das Bild gegen eins wo kein Mensch drauf ist").
   - `2026-06-03` — Aus der Hero-Sub-Inset entfernt (ersetzt durch `about-weg`, Vroni wollte dort Bewegung); Asset bleibt im Repo, aktuell ungenutzt.
   - `2026-06-03` — Wiederverwendung als Hintergrundbild der Hero-Bento Zitat-Kachel `.au-hb-quote` (Vroni-Inline-Kommentar: helles ruhiges Stillleben ohne Mensch statt Yoga-Bild). Unter Forest-Overlay, `alt=""`.
+  - `2026-06-04` — Verwendungsstatus unverändert: nur in Hero-Bento Zitat-Kachel (`.au-hb-quote`). Während des QA-Sweeps kurz als Mobile-Alternativbild für Sektion 2 erwogen, aber verworfen. Endgültig: `about-notebook-still` bleibt alleinige Quelle für Sektion 2 (Desktop + Mobile via CSS-Crop 5:4).
 
 ### about-notebook-still
 - **Dateien:** `images/about-notebook-still.png` (1678 KB) · `images/about-notebook-still.webp` (64 KB)
@@ -251,7 +252,9 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dekorativ:** nein · **KI-Darstellung:** nein (reines Stillleben)
 - **Rechte:** siehe Abschnitt 1
 - **Beachten:** Quellbild `trust-ehrliche-einschaetzung` wird zusätzlich auf der Startseite verwendet (Trust-Card). Bei Ersetzung der Quelle muss dieser Crop nachgezogen werden.
-- **Änderungen:** `2026-06-03` — Ersterfassung (Vroni-Inline-Kommentar: „hier hätte ich gerne ein Bild dass dem im Hero nicht ganz so ähnlich ist, auch mehr mal ohne Mensch").
+- **Änderungen:**
+  - `2026-06-03` — Ersterfassung (Vroni-Inline-Kommentar: „hier hätte ich gerne ein Bild dass dem im Hero nicht ganz so ähnlich ist, auch mehr mal ohne Mensch").
+  - `2026-06-04` — Mobile/Tablet zeigt jetzt dasselbe Bild wie Desktop (kein Bildtausch per `<picture><source media>` mehr). Crop-Variante für Mobile/Tablet via CSS: `aspect-ratio:5/4; object-position:center 62%` (QA-Feinschliff, Iterationsschleife: notebook-still 4:5 → hero-desk 1.5 landscape → desk-detail 1.25 landscape → zurück zu notebook-still 5:4). Learning: War nicht das Bild, sondern der Crop.
 
 ### about-hero-desk
 - **Dateien:** `images/about-hero-desk.png` (2814 KB) · `images/about-hero-desk.webp` (86 KB)
