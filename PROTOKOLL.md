@@ -185,6 +185,12 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-04 — Fix: Contact-Privacy Desktop-Überlappung (contact-privacy--in in Buttons)
+
+- **Was:** `#kontakt.contact .contact-grid > .reveal:not(.form){padding-bottom:0;}` in `ueber-mich.css` in `@media (max-width:900px)` eingeschränkt.
+- **Warum:** Die Regel galt zuvor auf allen Viewports und hob den 64px-Puffer aus `style.css` auch auf Desktop auf. Die `.contact-privacy--in`-Variante ist `position:absolute;bottom:0` und braucht diesen Puffer, damit sie unterhalb der E-Mail/Instagram-Buttons sitzt — nicht darin. Auf ≤900px ist die `--in`-Variante via `display:none` ausgeblendet (Sibling-Variante übernimmt), dort war `padding-bottom:0` korrekt und bleibt so.
+- **Learning:** `padding-bottom` auf dem Flex-Container ist der Abstandshalter für `position:absolute;bottom:0`-Kinder. Wird er auf 0 gesetzt, sitzt das absolute Element direkt am Ende des sichtbaren Inhalts.
+
 ### 2026-06-04 — Über-mich Final QA-Feinschliff Mobile + Tablet + Form-Padding-Specificity-Bugfix (Handoff Claude Code)
 
 - **Was:** Implementierung von 5 Dateien aus dem Claude-Design-Handoff 2026-06-04 (`tokens.css`, `style.css`, `ueber-mich.css`, `ueber-mich.html`, `PROTOKOLL.md`). Kein Redesign — konsolidierter QA-Feinschliff nach Vroni-Brief „FINAL QA-BRIEFING" und vier Inline-Feedback-Runden im Atelier. Tablet (561–900px) war der größte Brennpunkt.
