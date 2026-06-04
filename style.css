@@ -492,7 +492,7 @@ img{max-width:100%;display:block;}
   background:radial-gradient(circle,rgba(205,138,91,.12),transparent 70%);bottom:-180px;right:-140px;pointer-events:none;}
 .contact .lbl{color:var(--green);}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch;position:relative;z-index:1;}
-.contact-grid > .reveal{display:flex;flex-direction:column;justify-content:center;position:relative;padding-bottom:64px;}
+.contact-grid > .reveal:not(.form){display:flex;flex-direction:column;justify-content:center;position:relative;padding-bottom:64px;}
 .contact-privacy{position:absolute;left:0;right:0;bottom:0;font-size:var(--fs-fine);color:rgba(154,165,137,.7);text-align:left;line-height:1.55;letter-spacing:.04em;margin:0;}
 .contact-privacy a{color:rgba(189,195,173,.85);border-bottom:1px solid rgba(189,195,173,.22);padding-bottom:1px;transition:color .2s ease,border-color .2s ease;}
 .contact-privacy a:hover{color:var(--green);border-bottom-color:rgba(168,232,79,.5);}
@@ -789,7 +789,7 @@ img{max-width:100%;display:block;}
   .hero{padding:140px 0 64px;}
   .hero-grid{grid-template-columns:1fr;gap:40px;padding-left:var(--mx);padding-right:var(--mx);}
   .pain-grid,.ansatz-grid,.contact-grid{grid-template-columns:1fr;gap:42px;}
-  .contact-grid > .reveal{padding-bottom:0;justify-content:flex-start;}
+  .contact-grid > .reveal:not(.form){padding-bottom:0;justify-content:flex-start;}
   .contact-privacy{position:static;margin-top:32px;}
   .yoga-bento{grid-template-columns:1fr;gap:18px;}
   .yoga-image{min-height:auto;aspect-ratio:4/3;}
@@ -969,4 +969,32 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 @media (min-width:1600px){
   .hero--bento .hb-h1{font-size:var(--fs-display-lg);}
   .hb-lede{font-size:21px;}
+}
+
+/* =========================================================
+   GLOBALE MOBILE-CTA-LOGIK · eingeführt 04.06.2026
+   ---------------------------------------------------------
+   Eine Quelle der Wahrheit für CTA-Gruppen auf Mobile (Vroni-Brief
+   04.06.2026, §6). Vorher kombinierten einzelne Seiten Full-Width-,
+   Auto-Width- und nowrap-Buttons unterschiedlich; Ergebnis war eine
+   inkonsistente Hero-CTA-Optik zwischen Startseite und Über-mich.
+   Regel:
+   · ≤560px (Phone)  — Buttons in jeder .hero-cta-Gruppe stapeln vertikal
+                        und füllen die volle Spaltenbreite (gleiche Logik
+                        ohne Mischung, auch wenn 1 vs. 2 Buttons drin sind).
+   · 561–900px       — Auto-Breite, aber nowrap aufgehoben, damit nichts
+                        rausragt. .btn--lg ist auf Auto-Breite gepaddet.
+   · Form-Submit (.form .btn) bleibt full-width (war schon so) — gilt
+     unverändert.
+   ========================================================= */
+@media (max-width:560px){
+  .hero-cta{flex-direction:column;align-items:stretch;gap:12px;}
+  .hero-cta .btn{width:100%;justify-content:center;flex:0 0 auto;white-space:normal;}
+  .hero--bento .hero-cta .btn{flex:0 0 auto;}
+  /* btn--lg verbraucht auf 360px-Viewports zu viel Padding und macht das
+     Stapel-Paar optisch unruhig — auf Mobile auf reguläres Padding ziehen. */
+  .hero-cta .btn--lg{padding:15px 24px;font-size:15.5px;}
+}
+@media (min-width:561px) and (max-width:900px){
+  .hero-cta .btn{white-space:normal;}
 }
