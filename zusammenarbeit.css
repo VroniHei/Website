@@ -1,0 +1,306 @@
+/* =========================================================
+   zusammenarbeit.css · v3 (RFC-Workbook-Spread + Forest-Freebie-Bento)
+   ---------------------------------------------------------
+   Wiederverwendung aus style.css / ueber-mich.css:
+     - Hero      → .au-hero + .au-hero-bento + .au-hb-quote
+     - Problem   → .pain + .pain-list + .pain-item
+     - Angebote  → .offers + .offer (4-Card-Grid)
+     - Claim     → .claim-band
+     - Ablauf    → .faden + .faden-rail + .faden-station
+     - Ergebnis  → .big-panel + .big-nodes + .big-node
+     - FAQ       → .faq-item
+     - Kontakt   → .contact + .contact-grid + .form
+
+   Eigene Regeln nur für seitenspezifische Neuteile:
+     1) .sec--forest       — globale Modifier für dunkle Statement-Sektion
+                              (auf Forest-Hintergrund, heller Text)
+     2) .za-rfc            — Roter-Faden-Check, Editorial mit aufgeschlagenem
+                              Workbook-Spread (Cover-Page + Beispiel-Page)
+     3) .za-rfc-spread     — der CSS-gezeichnete 2-Seiten-Spread
+     4) .za-fit            — Passt-gut / Passt-eher-nicht 2-Panel
+     5) .za-freebie-cta    — Freebie-Brücke als Bento mit Bild (Forest-BG)
+     6) Hero-Freebie-Tile  — Override für .au-hb-b.au-hb-quote als Link
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   0 · Hintergrund-Rhythmus · sec-Modifier
+   --------------------------------------------------------- */
+.sec--forest{background:linear-gradient(180deg,#2C3522 0%,#252D1B 60%,#1F2616 100%);color:var(--chalk);position:relative;overflow:hidden;}
+.sec--forest::before{content:"";position:absolute;width:680px;height:680px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.10),transparent 65%);
+  top:-280px;right:-200px;pointer-events:none;filter:blur(8px);}
+.sec--forest::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(205,138,91,.10),transparent 65%);
+  bottom:-220px;left:-160px;pointer-events:none;filter:blur(8px);}
+.sec--forest .wrap{position:relative;z-index:1;}
+.sec--forest h2,.sec--forest h3{color:var(--chalk);}
+.sec--forest h2 .g,.sec--forest h3 .g{color:var(--green);}
+.sec--forest .lbl{color:#9aa589;}
+.sec--forest .eyebrow .dot{background:var(--green);box-shadow:0 0 0 4px rgba(168,232,79,.18);}
+.sec--forest p{color:#c5cbb8;}
+.sec--forest .btn--sec{color:var(--chalk);border-color:rgba(248,245,238,.45);}
+.sec--forest .btn--sec:hover{background:var(--chalk);color:var(--ink);border-color:var(--chalk);}
+
+.sec--sand{background:linear-gradient(180deg,#EFEADD 0%,#E8E0D0 100%);position:relative;overflow:hidden;}
+.sec--sand::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(155,163,131,.15),transparent 65%);
+  top:-180px;right:-140px;pointer-events:none;filter:blur(10px);}
+.sec--sand .wrap{position:relative;z-index:1;}
+
+
+/* ---------------------------------------------------------
+   1 · HERO · Bento-Freebie-Tile als Link
+   --------------------------------------------------------- */
+a.au-hb-tile.au-hb-quote{display:block;text-decoration:none;color:inherit;}
+a.au-hb-quote .hbq-text{font-size:clamp(20px,1.7vw,24px);}
+a.au-hb-quote .hbq-cta{display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--green);transition:gap .2s var(--ease-out);}
+a.au-hb-quote .hbq-cta svg{width:14px;height:14px;}
+a.au-hb-quote:hover .hbq-cta{gap:11px;}
+
+
+/* ---------------------------------------------------------
+   2 · ROTER-FADEN-CHECK · Forest-Sektion mit Workbook-Spread
+   --------------------------------------------------------- */
+.za-rfc{padding-top:clamp(80px,9vw,128px);padding-bottom:clamp(80px,9vw,128px);}
+.za-rfc-head{max-width:880px;margin:0 auto 64px;text-align:center;position:relative;z-index:1;}
+.za-rfc-head h2{margin:14px 0 0;text-wrap:balance;}
+.za-rfc-head p{font-size:var(--fs-subline);color:#c5cbb8;margin:20px auto 0;max-width:60ch;
+  line-height:var(--lh-body);text-wrap:pretty;}
+
+.za-rfc-grid{position:relative;z-index:1;display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(40px,5vw,72px);align-items:center;}
+
+.za-rfc-copy h3{font-family:var(--ff);font-weight:600;font-size:var(--fs-h4);
+  line-height:var(--lh-head);color:var(--chalk);margin:0 0 18px;}
+.za-rfc-list{list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:14px;}
+.za-rfc-list li{position:relative;padding-left:30px;font-size:var(--fs-body);
+  line-height:1.55;color:#c5cbb8;text-wrap:pretty;}
+.za-rfc-list li::before{content:"";position:absolute;left:0;top:.55em;width:16px;height:2px;
+  border-radius:2px;background:var(--green);}
+.za-rfc-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.za-rfc-note{margin-top:18px;font-size:13.5px;color:#9aa589;display:flex;align-items:center;gap:8px;}
+.za-rfc-note svg{width:14px;height:14px;flex:0 0 auto;}
+
+/* Workbook-Spread: aufgeschlagenes Buch (linke + rechte Seite) */
+.za-rfc-spread{position:relative;perspective:1800px;display:flex;justify-content:center;
+  align-items:center;min-height:480px;}
+.za-rfc-book{position:relative;display:grid;grid-template-columns:1fr 1fr;width:min(560px,100%);
+  aspect-ratio:1.45 / 1;border-radius:6px;
+  box-shadow:0 60px 100px -20px rgba(0,0,0,.55),0 28px 50px rgba(0,0,0,.35);
+  transform:rotateX(8deg) rotateY(-4deg);transform-style:preserve-3d;
+  transition:transform .8s var(--ease-out);}
+.za-rfc-spread:hover .za-rfc-book{transform:rotateX(4deg) rotateY(-2deg) translateY(-6px);}
+
+/* Gemeinsame Page-Basis */
+.za-rfc-book > .za-page{position:relative;background:#FCF8EE;padding:30px 28px;display:flex;
+  flex-direction:column;overflow:hidden;}
+.za-rfc-book .za-page-l{border-radius:6px 0 0 6px;background:linear-gradient(105deg,#FCF8EE 0%,#F6EDD7 100%);
+  box-shadow:inset -12px 0 18px -8px rgba(35,34,26,.18);}
+.za-rfc-book .za-page-r{border-radius:0 6px 6px 0;background:linear-gradient(255deg,#FCF8EE 0%,#F8F2E0 100%);
+  box-shadow:inset 12px 0 18px -8px rgba(35,34,26,.18);}
+/* Buchrücken (Spine) */
+.za-rfc-book::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:14px;
+  transform:translateX(-50%);z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,rgba(35,34,26,.32),rgba(35,34,26,.08) 50%,rgba(35,34,26,.32));}
+
+/* Linke Seite · Cover-Style */
+.za-page-l .za-cv-eyebrow{font-size:9.5px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--green-text);}
+.za-page-l .za-cv-title{font-family:var(--ff);font-weight:700;font-size:clamp(22px,2.4vw,32px);
+  line-height:1.04;letter-spacing:-.02em;color:var(--ink);margin:14px 0 0;}
+.za-page-l .za-cv-accent{position:relative;display:inline-block;color:var(--ink);}
+.za-page-l .za-cv-accent::before{content:"";position:absolute;left:-3px;right:-3px;top:54%;
+  height:11px;border-radius:8px;background:var(--green);transform:translateY(-50%);z-index:-1;}
+.za-page-l .za-cv-sub{font-size:11.5px;color:var(--ink-soft);line-height:1.5;margin:16px 0 0;
+  max-width:90%;}
+.za-page-l .za-cv-spacer{flex:1;}
+.za-page-l .za-cv-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+  border-top:1px solid rgba(35,34,26,.10);padding-top:14px;margin-top:14px;}
+.za-page-l .za-cv-author{font-size:9.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-soft);line-height:1.5;}
+.za-page-l .za-cv-brand{font-family:var(--ff-display);font-size:16px;letter-spacing:.02em;
+  text-transform:uppercase;font-feature-settings:"dlig" 1;color:var(--ink);line-height:1;
+  position:relative;display:inline-block;}
+.za-page-l .za-cv-brand::before{content:"";position:absolute;left:-3px;right:-3px;top:48%;
+  height:3px;border-radius:3px;background:var(--clay);transform:translateY(-50%);z-index:-1;}
+
+/* Rechte Seite · Beispiel-Frage */
+.za-page-r .za-pq-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border-bottom:1px solid rgba(35,34,26,.10);padding-bottom:10px;margin-bottom:14px;}
+.za-page-r .za-pq-step{font-size:9px;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--green-text);}
+.za-page-r .za-pq-page{font-size:9px;font-weight:600;letter-spacing:.18em;color:#a8a294;
+  text-transform:uppercase;}
+.za-page-r .za-pq-q{font-family:var(--ff);font-weight:650;font-size:clamp(13px,1.35vw,16.5px);
+  line-height:1.32;color:var(--ink);margin:0 0 16px;text-wrap:balance;}
+.za-page-r .za-pq-hint{font-size:10.5px;color:var(--ink-soft);line-height:1.5;margin:0 0 18px;}
+.za-page-r .za-pq-lines{flex:1;display:flex;flex-direction:column;gap:11px;}
+.za-page-r .za-pq-line{height:1px;background:rgba(35,34,26,.16);border-radius:1px;}
+.za-page-r .za-pq-line.short{width:62%;}
+.za-page-r .za-pq-foot{display:flex;align-items:center;justify-content:space-between;
+  padding-top:14px;margin-top:14px;border-top:1px solid rgba(35,34,26,.08);
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#a8a294;font-weight:600;}
+.za-page-r .za-pq-thread{width:34px;height:5px;border-radius:3px;background:var(--clay);}
+
+
+/* ---------------------------------------------------------
+   3 · ANGEBOTE · Header-Note (kleine Notiz über dem Offers-Grid)
+   --------------------------------------------------------- */
+#angebote .za-offers-note{margin-top:14px;font-size:var(--fs-body-sm);color:var(--ink-soft);
+  line-height:var(--lh-body);max-width:62ch;text-wrap:pretty;}
+
+
+/* ---------------------------------------------------------
+   4 · PASST GUT / PASST EHER NICHT · 2-Panel Editorial
+   --------------------------------------------------------- */
+.za-fit{position:relative;overflow:hidden;}
+.za-fit-head{max-width:760px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.za-fit-head h2{margin:14px 0 0;}
+.za-fit-head p{font-size:var(--fs-subline);color:var(--ink-soft);margin:18px auto 0;
+  line-height:var(--lh-body);max-width:60ch;text-wrap:pretty;}
+.za-fit-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;
+  gap:22px;margin-top:56px;}
+.za-fit-panel{position:relative;background:var(--white);border:1px solid var(--hair-soft);
+  border-radius:var(--r-xl);padding:38px 36px 34px;
+  box-shadow:var(--shadow-card);
+  transition:border-color .3s var(--ease-out), transform .3s var(--ease-out), box-shadow .3s var(--ease-out);}
+.za-fit-panel:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.za-fit-panel .za-fp-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.za-fit-panel .za-fp-mark{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;flex:0 0 auto;}
+.za-fit-panel .za-fp-mark svg{width:22px;height:22px;}
+.za-fit-panel .za-fp-label{font-size:11.5px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-soft);}
+.za-fit-panel h3{font-family:var(--ff);font-weight:650;font-size:var(--fs-h3);
+  line-height:var(--lh-head);letter-spacing:var(--ls-snug);color:var(--ink);margin:0 0 20px;
+  text-wrap:balance;}
+.za-fit-panel ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:13px;}
+.za-fit-panel li{position:relative;padding-left:28px;font-size:var(--fs-body);
+  line-height:1.55;color:var(--ink);text-wrap:pretty;}
+.za-fit-panel li svg{position:absolute;left:0;top:.25em;width:18px;height:18px;flex:0 0 auto;}
+.za-fit-panel.za-fit-yes{border-color:color-mix(in srgb,var(--green-deep) 22%, var(--hair-soft));}
+.za-fit-panel.za-fit-yes .za-fp-mark{background:var(--green);color:var(--ink);}
+.za-fit-panel.za-fit-yes .za-fp-label{color:var(--green-text);}
+.za-fit-panel.za-fit-yes li svg{color:var(--green-deep);}
+.za-fit-panel.za-fit-no{background:#FBF7EF;}
+.za-fit-panel.za-fit-no .za-fp-mark{background:var(--clay);color:#fff;}
+.za-fit-panel.za-fit-no .za-fp-label{color:var(--clay);}
+.za-fit-panel.za-fit-no h3{color:var(--ink-soft);}
+.za-fit-panel.za-fit-no li{color:var(--ink-soft);}
+.za-fit-panel.za-fit-no li svg{color:var(--clay);}
+
+
+/* ---------------------------------------------------------
+   5 · ERGEBNISSE · Outcome-Variante für .big-nodes
+   --------------------------------------------------------- */
+#ergebnisse .big-nodes{grid-template-columns:repeat(3,1fr);gap:32px 24px;}
+#ergebnisse .big-node h3{font-size:var(--fs-h4);}
+#ergebnisse .big-umbrella .u-tag{color:var(--green-text);}
+
+
+/* ---------------------------------------------------------
+   6 · FREEBIE-BRÜCKE · Forest-Bento mit Bild
+   Großzügige asymmetrische 2-Spalten-Komposition. Links Bild
+   (randabfallend, gerundet rechts), rechts Copy + CTAs auf Forest.
+   Mini-Workbook-Mockup oben rechts als visueller Anker.
+   --------------------------------------------------------- */
+.za-freebie-cta{padding:0;}
+.za-freebie-cta .wrap{padding:0;max-width:none;}
+.za-freebie-cta-bento{display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;
+  min-height:clamp(420px,42vw,540px);}
+.za-freebie-cta-media{position:relative;overflow:hidden;}
+.za-freebie-cta-media picture,.za-freebie-cta-media img{position:absolute;inset:0;width:100%;
+  height:100%;object-fit:cover;display:block;}
+.za-freebie-cta-media::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(31,38,22,0) 60%,rgba(31,38,22,.55) 100%);
+  pointer-events:none;}
+/* Floating Mini-Mockup über dem Bild, unten links */
+.za-freebie-cta-float{position:absolute;left:clamp(24px,3vw,40px);bottom:clamp(24px,3vw,40px);
+  z-index:2;display:flex;flex-direction:column;gap:6px;align-items:flex-start;}
+.za-freebie-cta-float-card{display:flex;gap:14px;align-items:center;
+  background:rgba(248,245,238,.95);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);border-radius:18px;padding:14px 18px 14px 14px;
+  box-shadow:0 22px 50px rgba(0,0,0,.32);}
+.za-freebie-cta-mini{width:48px;height:62px;border-radius:5px;flex:0 0 auto;
+  background:linear-gradient(168deg,#FCF8EE,#F0E9D7);border:1px solid rgba(35,34,26,.10);
+  box-shadow:0 8px 16px rgba(35,34,26,.15);position:relative;overflow:hidden;}
+.za-freebie-cta-mini::before{content:"";position:absolute;left:6px;right:6px;top:9px;height:3px;
+  border-radius:2px;background:#447510;}
+.za-freebie-cta-mini::after{content:"";position:absolute;left:6px;right:6px;top:17px;height:7px;
+  border-radius:2px;background:rgba(35,34,26,.78);
+  box-shadow:0 11px 0 rgba(35,34,26,.14),0 17px 0 rgba(35,34,26,.10),
+    0 23px 0 rgba(168,232,79,.55),0 29px 0 rgba(35,34,26,.12);}
+.za-freebie-cta-float-card .za-fmt{display:flex;flex-direction:column;line-height:1.3;}
+.za-freebie-cta-float-card .za-fmt-eyebrow{font-size:9.5px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--green-text);}
+.za-freebie-cta-float-card .za-fmt-title{font-size:13.5px;font-weight:650;color:var(--ink);
+  letter-spacing:-.005em;margin-top:3px;}
+
+.za-freebie-cta-content{background:linear-gradient(165deg,#2C3522 0%,#252D1B 60%,#1F2616 100%);
+  color:var(--chalk);padding:clamp(48px,5vw,72px) clamp(36px,4vw,64px);
+  display:flex;flex-direction:column;justify-content:center;gap:24px;position:relative;overflow:hidden;}
+.za-freebie-cta-content::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.12),transparent 65%);
+  top:-160px;right:-140px;pointer-events:none;filter:blur(8px);}
+.za-freebie-cta-content > *{position:relative;z-index:1;}
+.za-freebie-cta-content .eyebrow .lbl{color:#9aa589;}
+.za-freebie-cta-content .eyebrow .dot{background:var(--green);
+  box-shadow:0 0 0 4px rgba(168,232,79,.18);}
+.za-freebie-cta-content h2{font-family:var(--ff);font-weight:650;
+  font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-.02em;color:var(--chalk);
+  margin:6px 0 0;text-wrap:balance;}
+.za-freebie-cta-content h2 .g{color:var(--green);font-style:normal;font-family:inherit;}
+.za-freebie-cta-content p{font-size:var(--fs-body);line-height:var(--lh-body);
+  color:#c5cbb8;margin:0;max-width:50ch;text-wrap:pretty;}
+.za-freebie-cta-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;}
+.za-freebie-cta-content .btn--sec{color:var(--chalk);border-color:rgba(248,245,238,.55);}
+.za-freebie-cta-content .btn--sec:hover{background:var(--chalk);color:var(--ink);border-color:var(--chalk);}
+.za-freebie-cta-meta{display:flex;align-items:center;gap:14px;margin-top:6px;
+  font-size:12.5px;color:#9aa589;}
+.za-freebie-cta-meta svg{width:16px;height:16px;flex:0 0 auto;color:var(--green);}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+@media (max-width:1080px){
+  .za-rfc-grid{grid-template-columns:1fr;gap:48px;}
+  .za-rfc-spread{min-height:380px;}
+  .za-rfc-book{width:min(520px,100%);}
+  #ergebnisse .big-nodes{grid-template-columns:repeat(2,1fr);}
+  .za-freebie-cta-bento{grid-template-columns:1fr;min-height:auto;}
+  .za-freebie-cta-media{aspect-ratio:16/10;}
+  .za-freebie-cta-content{padding:clamp(40px,5vw,56px) clamp(28px,4vw,40px);}
+}
+
+@media (max-width:900px){
+  .za-rfc-spread{min-height:340px;}
+  .za-rfc-book{width:min(460px,100%);}
+  .za-fit-grid{grid-template-columns:1fr;gap:18px;}
+  .za-fit-panel{padding:28px 26px;}
+  #ergebnisse .big-nodes{grid-template-columns:1fr;}
+  .za-freebie-cta-float-card{padding:11px 14px 11px 11px;}
+  .za-freebie-cta-mini{width:42px;height:55px;}
+  .za-freebie-cta-float-card .za-fmt-title{font-size:12.5px;}
+}
+
+@media (max-width:560px){
+  .za-rfc-book{transform:none;}
+  .za-rfc-spread:hover .za-rfc-book{transform:none;}
+  .za-rfc-book > .za-page{padding:20px 18px;}
+  .za-fit-panel{padding:24px 22px;}
+  .za-fit-panel h3{font-size:var(--fs-h4);}
+  .za-freebie-cta-media{aspect-ratio:4/3;}
+  .za-freebie-cta-float{left:18px;bottom:18px;}
+  .za-freebie-cta-buttons{flex-direction:column;align-items:stretch;}
+  .za-freebie-cta-buttons .btn{justify-content:center;width:100%;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .za-rfc-book,.za-rfc-spread:hover .za-rfc-book{transition:none;transform:rotateX(8deg) rotateY(-4deg);}
+  .za-fit-panel{transition:none;}
+  .za-fit-panel:hover{transform:none;}
+}

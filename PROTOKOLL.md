@@ -185,6 +185,12 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF (neueste zuerst)
 
+### 2026-06-05 — Neue Seite zusammenarbeit.html + Nav-Update auf index.html
+
+- **Was:** Neue Unterseite `zusammenarbeit.html` + `zusammenarbeit.css` aus dem Design-Branch `design/zusammenarbeit-v3-rfc-redesign` ins Repo integriert. Nav in `index.html` aktualisiert: „Über mich" zeigt jetzt auf `ueber-mich.html` (statt `#ueber`), neuer Eintrag „Zusammenarbeit" → `zusammenarbeit.html`, „Werte" aus der Haupt-Nav entfernt.
+- **Handoff-Checks bestanden:** keine Google Fonts-CDN, kein image-slot.js, © 2026, E-Mail `info@veronika-heidrich.de`, GoatCounter + script.js eingebunden.
+- **Recht/Datenschutz:** Kein neuer Dritt-Dienst. Formular auf `zusammenarbeit.html` nutzt denselben `mailto`-Mechanismus wie Startseite und Über-mich (IDs identisch → script.js verdrahtet automatisch).
+
 ### 2026-06-04 — Fix: Contact-Privacy Desktop-Überlappung (contact-privacy--in in Buttons)
 
 - **Was:** `#kontakt.contact .contact-grid > .reveal:not(.form){padding-bottom:0;}` in `ueber-mich.css` in `@media (max-width:900px)` eingeschränkt.
