@@ -155,6 +155,39 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF
 
+### 2026-06-06 - Subline-Konsistenz: `.offer .offer-for strong` auf Startseiten-Niveau angeglichen
+
+**Was:** `zusammenarbeit.css` -- Override fuer `<strong>` innerhalb der Angebot-Karten-Subline so umgestellt, dass es Groesse/Gewicht/Zeilenhoehe von der Eltern-`.offer-for` erbt (vorher: eigene Stufe `--fs-h4` / Weight 650 / line-height 1.35 / `display:block` / `text-wrap:balance`).
+
+**Warum:** Vroni hat im direkten Vergleich gemerkt, dass die Sublines auf `zusammenarbeit.html` "etwas dicker" wirken als auf `index.html` (Screenshot Personal-Branding-Kachel Startseite). Ursache war exakt diese Strong-Regel: 50 Gewichtsstufen ueber der Startseiten-Subline (650 vs. 600), bei grossen Viewports zusaetzlich ca. 1px groesser (`--fs-h4` clamp ca. 18px vs. `--fs-body` 17px), plus engerer line-height. Optisch ein eigener Mini-Lead statt einer ruhigen Subline.
+
+**Wie:**
+- `zusammenarbeit.css` Block "7 - OFFER-KARTEN" (Z. 326-327):
+  - vorher: `font-weight:650; font-size:var(--fs-h4); line-height:1.35; letter-spacing:-.005em; display:block; text-wrap:balance;`
+  - nachher: `font-weight:inherit; font-size:inherit; line-height:inherit; letter-spacing:inherit; color:inherit; display:inline;`
+- Effektive Wirkung jetzt: `<strong>...</strong>` rendert mit Gewicht 600 (aus globalem `style.css` S711 `.offer .offer-for{font-weight:600!important}`), Groesse `--fs-body` (17px), Zeilenhoehe 1.55 -- exakt identisch zur Startseiten-Kachel.
+- Kommentar im CSS erklaert den Bezug zur Startseite, damit die Regel nicht wieder ausreisst.
+
+**Alternativen / Abwaegungen:**
+- *Strong komplett entfernen (im HTML)*: haette semantisch den Lead-Charakter zerstoert und 4x Markup angefasst (mehr Risiko, kein semantischer Mehrwert fuer die Kachel). Verworfen.
+- *Strong auf Weight 600, aber `--fs-h4` + display:block behalten*: wuerde immer noch optisch groesser wirken als Startseite, also wieder Drift. Verworfen.
+- *Globalen `.offer .offer-for`-Override in `style.css` lockern*: wuerde Startseite mit veraendern und ist gegen das Single-Source-of-Truth-Prinzip. Verworfen.
+- Gewaehlt: minimalinvasiv die Zusammenarbeits-spezifische Strong-Regel auf Erbe schalten -- Startseite bleibt unangetastet.
+
+**Quergeprüft (gesamte Website, nichts weiter angefasst):**
+- Andere Subline-/Kartentitel-Familien (`.au-station .as-title`, `.au-fit-col h3`, `.au-skill-title`, `.za-energy-note h3`, `.za-rfc-insight h3`, `.step h3/h4`, `.trust-card h3`, `.pain .pi-title`, `.big-node h4`) sitzen alle konsistent auf `--fs-h4` / Weight 600 / `--lh-head` / `--ls-snug` -- ein sauberes System.
+- `.offer h3` (Kartentitel) nutzt site-weit `--fs-h3` / Weight 650 (style.css S710) -- identisch auf Start und Zusammenarbeit.
+- `.offer .desc` und `.offer .offer-result` nutzen beide `--fs-body-sm` / 1.55-1.6 -- konsistent.
+- Einziger Ausreisser war die oben gefixte `.offer .offer-for strong`-Regel.
+
+**Learning:** Wenn auf einer Unterseite ein `<strong>` als "Lead-Claim" semantisch gewollt ist, aber visuell die normale Subline-Stufe sitzen soll, lieber explizit `inherit` setzen -- sonst zieht der Browser-Default (Weight bold) durch und CSS-Defaults aus dem Atelier koennen unbemerkt eine eigene Stufe erzeugen.
+
+**Konsequenz:** Die "Fuer dich, wenn..."-Saetze in den 4 Angebot-Karten auf `zusammenarbeit.html` lesen sich jetzt visuell wie die Startseiten-Subline. Keine weiteren Dateien betroffen.
+
+**Geaenderte Datei:** `zusammenarbeit.css` (eine Regel + Kontext-Kommentar). Kein neues Bild, kein HTML-Touch, kein neues Token.
+
+---
+
 ### 2026-06-06 — Zusammenarbeit v9: Vollständiges Redesign (Arbeitsweise + Energie + Ergebnisse + Grouped-Offers + Editorial-Mockups)
 
 **Branch:** `feat/zusammenarbeit-v9-redesign`

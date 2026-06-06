@@ -323,8 +323,16 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
    --------------------------------------------------------- */
 .offer .offer-for{font-size:var(--fs-body);line-height:1.55;color:var(--ink);
   margin:0 0 14px;text-wrap:pretty;}
-.offer .offer-for strong{font-weight:650;color:var(--ink);font-size:var(--fs-h4);
-  line-height:1.35;letter-spacing:-.005em;display:block;text-wrap:balance;}
+/* <strong> innerhalb .offer-for: visuell IDENTISCH zur Startseiten-Subline
+   (Vergleich 06.06.2026 mit `index.html` / "Personal Branding"-Kachel).
+   Vor dem Fix war die Subline auf Zusammenarbeit ~50 Gewichtsstufen schwerer
+   (650 statt 600) und bei grossen Viewports ~1px groesser (fs-h4 statt fs-body),
+   plus engerer line-height -- das erzeugte die optisch "dickere" Wirkung.
+   Strong erbt jetzt Groesse/Gewicht/Zeilenhoehe von der Eltern-Paragraph-Stufe
+   (siehe `style.css` S710-712 + globaler !important-Override fuer `.offer .offer-for`).
+   `display:inline`, damit der Satz nicht als eigener Block-Lead rausspringt. */
+.offer .offer-for strong{font-weight:inherit;font-size:inherit;
+  line-height:inherit;letter-spacing:inherit;color:inherit;display:inline;}
 .offer .desc{margin-bottom:20px;}
 .offer .offer-result{display:flex;gap:10px;align-items:flex-start;margin:0 0 22px;
   padding:14px 16px;background:color-mix(in srgb,var(--cardc) 8%,var(--chalk));
