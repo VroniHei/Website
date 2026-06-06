@@ -1495,3 +1495,41 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 - Display-Texte: Handoff sagt 700, aber User hat 650 nach langer Iteration bestätigt → 650!important
 
 **Dieser PR ersetzt PR #31** (falls noch offen) — schließ #31, merge diesen.
+
+---
+
+### 2026-06-06 - Brand-Source-Dokumente + Roter-Faden-PDF ins Repo committet
+
+**Branch:** `chore/brand-source-docs`
+
+**Was:** 8 Dateien neu in `brand/` versioniert:
+- `Der_Rote-Faden-Check.pdf` (2.86 MB)
+- `Vroni_Brand_Voice_4.1_Master.md` (51 KB)
+- `Vroni_Brand_Voice_4.0_Master.md` (24 KB)
+- `Vroni_Brand_Foundation_2.0_Master.md` (24 KB)
+- `Vroni_Brand_Foundation_2.0_KI_Kurzbriefing.md` (3.5 KB)
+- `Vroni_Voice_4.0_KI_Kurzprompt.md` (2.1 KB)
+- `README_Global_Brand_Source_Set.md` (3.3 KB)
+- `Briefing_Angebotsseite_Zusammenarbeit.md` (32 KB)
+
+**Warum:** Atelier-↔-Repo-Sync 2026-06-06 hat aufgedeckt, dass diese Dateien seit Wochen im Atelier-`brand/` liegen, aber nie ins Repo gewandert sind. Zwei akute Folgeprobleme:
+
+1. **Live-Bug:** `zusammenarbeit.html` Hero-Bento-Quote-Tile verlinkt `href="brand/Der_Rote-Faden-Check.pdf" download` als Freebie. Ohne PDF im Repo liefert GitHub Pages 404 — der versprochene Download ist tot. Mit diesem Commit funktioniert er.
+2. **CLAUDE.md-Verbindlichkeit:** `CLAUDE.md` nennt `brand/Vroni_Brand_Voice_4.1_Master.md` als „immer als Referenz nutzen"-Dokument. Solange das nicht im Repo lag, konnte Claude Code in jeder Session nur mit der CLAUDE.md-Kurzfassung arbeiten, nicht mit dem Master. Mit diesem Commit ist die Inkonsistenz behoben.
+
+`.gitignore` macht explizit klar: „Echte Brand-Assets (Logos etc.) liegen versioniert in `brand/` — NICHT [in `pics/`]." Das `brand/`-Verzeichnis ist also explizit als Versions-Quelle gewollt.
+
+**Wie:** `cp -r _handoff/2026-06-06_brand-source-docs/brand/* brand/` aus dem Atelier-Bundle. Kein HTML-/CSS-Touch, keine Code-Änderung. Reines Hinzufügen versioniert geführter Source-Dokumente.
+
+**Alternativen / Abwägungen:**
+- *Nur PDF und Voice 4.1 committen (Minimal-Fix für den Live-Bug + die CLAUDE.md-Inkonsistenz)*: hätte den restlichen Brand-Source-Set weiterhin auseinandergerissen gehalten (Atelier vs. Repo). Verworfen — wenn `brand/` die Quelle ist, soll sie komplett sein.
+- *Brand-Docs in `.gitignore` aufnehmen und nur PDF + Voice 4.1 ausnehmen*: hätte die strategische Intent von `.gitignore` (siehe Kommentar dort) umgekehrt. Verworfen.
+- *Den Live-Bug per HTML-Änderung lösen (Download-Link entfernen oder anderswo hin)*: Vroni hat den Freebie strategisch im Hero platziert (Briefing-Vorgabe v9). Verworfen.
+- Gewählt: vollständigen Brand-Source-Set committen, keine Code-Änderung.
+
+**Konsequenzen / Follow-up:**
+- Live-Site: Roter-Faden-Download funktioniert nach Merge sofort.
+- Claude Code sollte ab jetzt vor jeder Brand-/Voice-relevanten Edit `brand/Vroni_Brand_Voice_4.1_Master.md` lesen (per CLAUDE.md-Regel).
+- MEDIEN.md: PDF als Medien-Asset eingetragen (siehe selber PR).
+
+**Geänderte Dateien:** 8 neue Dateien in `brand/`, 1 Anhang in `PROTOKOLL.md`, 1 Eintrag in `MEDIEN.md`. Kein HTML, kein CSS, kein Token.

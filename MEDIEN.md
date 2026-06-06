@@ -476,3 +476,18 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Schriften:** lokal in `fonts/` (siehe Font-Regel in `CLAUDE.md`) — keine externe CDN.
 - **Icons:** Inline-SVG im Markup (Wellen-Kurve, Monitor, Sparkle, Herz) — Eigenerzeugung.
 - (Video/Audio: derzeit keine.)
+
+### PDFs
+
+#### Der_Rote-Faden-Check.pdf
+
+- **Datei:** `brand/Der_Rote-Faden-Check.pdf` (2.86 MB)
+- **Herkunft:** Eigenes Workbook von Vroni Heidrich, KI-gestützt erstellt (Layout + Reinschrift)
+- **Erstellt:** 2026 (vor Q2)
+- **Verwendung:** `zusammenarbeit.html` Hero-Bento-Quote-Tile (Download-Link, `href="brand/Der_Rote-Faden-Check.pdf" download`)
+- **Alt-Text:** n/a (Download-Asset, keine Bild-Einbindung)
+- **Dekorativ:** nein
+- **Rechte:** Vroni Heidrich, intern erstellt, keine Dritt-Lizenz
+- **Beachten:** PDF wird beim Klick heruntergeladen, nicht inline geöffnet. Größe (2.86 MB) sollte beobachtet werden — bei künftigen Updates ggf. komprimieren.
+- **Änderungen:**
+  - 2026-06-06: Erstmals ins Repo committet (war zuvor nur im Atelier, Live-Link lief auf 404).
