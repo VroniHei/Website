@@ -1,5 +1,5 @@
 /* =========================================================
-   zusammenarbeit.css · v5 (Editorial-Workbook-RFC + Passt-au-fit + Contact-Paths)
+   zusammenarbeit.css · v5 (Editorial-Workbook-RFC + Forest-Freebie-Bento)
    ---------------------------------------------------------
    Wiederverwendung aus style.css / ueber-mich.css:
      - Hero      → .au-hero + .au-hero-bento + .au-hb-quote
@@ -7,20 +7,21 @@
      - Angebote  → .offers + .offer (4-Card-Grid)
      - Claim     → .claim-band
      - Ablauf    → .faden + .faden-rail + .faden-station
-     - Passt     → .au-fit + .au-fit-grid + .au-fit-col (aus ueber-mich.css)
      - Ergebnis  → .big-panel + .big-nodes + .big-node
      - FAQ       → .faq-item
      - Kontakt   → .contact + .contact-grid + .form
 
    Eigene Regeln nur für seitenspezifische Neuteile:
-     1) .sec--forest / .sec--sand  — Hintergrund-Modifier
-     2) .za-rfc                    — Roter-Faden-Check, Editorial mit Cover-Stack
-     3) .za-rfc-feature            — Cover-Slot (CSS-Plate) + Insight-Panel
-     4) .za-rfc-toc                — Editorial Table-of-Contents (4 Bereiche)
-     5) .za-rfc-cta-panel          — Helle CTA-Karte am Ende der RFC-Sektion
-     6) .offer .offer-for/.offer-result — Offer-Karten-Erweiterung
-     7) .contact-path / .za-contact-paths — Pfad-Karten über dem Kontakt-Grid
-     8) Hero-Copy-Override         — max-width + H1 font-size für langen ZA-Titel
+     1) .sec--forest       — globale Modifier für dunkle Statement-Sektion
+                              (auf Forest-Hintergrund, heller Text)
+     2) .za-rfc            — Roter-Faden-Check, Editorial mit echten
+                              PDF-Page-Slots (image-slot.js)
+     3) .za-rfc-feature    — Cover-Slot + Insight-Liste
+     4) .za-rfc-trio       — Drei thematische Page-Slots (Marke/Web/Komm.)
+     5) .za-rfc-cta-panel  — Eigene CTA-Karte am Ende der RFC-Sektion
+     6) .za-fit            — Passt-gut / Passt-eher-nicht 2-Panel
+     7) .za-freebie-cta    — Freebie-Brücke als Bento mit Bild (Forest-BG)
+     8) Hero-Freebie-Tile  — Override für .au-hb-b.au-hb-quote als Link
    ========================================================= */
 
 /* ---------------------------------------------------------
@@ -51,12 +52,28 @@
 
 /* ---------------------------------------------------------
    1 · HERO · Bento-Freebie-Tile als Link + Hero-Copy-Override
-   ---------------------------------------------------------
-   Der lange H1 „Wenn deine Marke vieles zeigt, aber noch nicht
-   richtig zusammenführt." (≈ 69 Zeichen) bricht in der geteilten
-   Hero-Geometrie auf Desktop auf 4 Zeilen um.
-   Fix: Copy-Spalte etwas verbreitern + H1 leicht kleiner skalieren.
-   Tablet/Mobile-Stufen aus ueber-mich.css bleiben aktiv. */
+   --------------------------------------------------------- */
+/* Headline-3-Zeilen-Override (Vroni-Feedback 2026-06-06):
+   Der lange Originalsatz „Wenn deine Marke vieles zeigt, aber noch nicht
+   richtig zusammenführt." (≈ 69 Zeichen) bricht in der geteilten Über-mich-
+   Hero-Geometrie (`.au-hero-copy{max-width:560px}` + `.au-hero h1` mit
+   `--fs-display` clamp(40px,4.8vw,66px)) auf Desktop auf 4 Zeilen um.
+   Iteration 1 (`.au-hero h1{max-width:28ch}`) war wirkungslos, weil die
+   Copy-Spalte 560px die echte Wandgröße ist — nicht das H1.
+
+   Echter Fix: Copy-Spalte etwas verbreitern UND H1 eine Tick kleiner
+   skalieren. Zusammen ergibt das verlässlich 3 Zeilen, ohne den Hero-
+   Charakter zu kippen (Weight, Italic-em, Leading, Letter-Spacing bleiben
+   identisch zum Designsystem). Bento-Spalte rechts bleibt unangetastet —
+   die Grid-Verteilung `.au-hero-grid{1.04fr .96fr}` zieht sich nur
+   geringfügig zugunsten der Copy, weil Copy jetzt mehr ihrer Zellbreite
+   tatsächlich nutzt.
+
+   Mobile (≤560px) bleibt absichtlich auf der Designsystem-Stufe
+   `--fs-display-sm` aus `ueber-mich.css` — Override darum in
+   `@media (min-width:561px)` gekapselt, damit die Mobile-Regel nicht
+   überschrieben wird (Cascade: zusammenarbeit.css lädt nach ueber-mich.css,
+   ungeschützter Override würde sonst auf Mobile gewinnen). */
 .au-hero-copy{max-width:660px;}
 @media (min-width:561px){
   .au-hero h1{max-width:none;font-size:clamp(34px,3.55vw,52px);}
@@ -72,25 +89,37 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
 
 
 /* ---------------------------------------------------------
-   2 · ROTER-FADEN-CHECK · Editorial Workbook-Showcase (v5)
+   2 · ROTER-FADEN-CHECK · Editorial Workbook-Showcase (v6 · tokens.css-tidy)
    ---------------------------------------------------------
-   Struktur: helle Section → dunkle Feature-Karte (Cover-Stack +
-   Insight-Liste) + Editorial TOC (4 Bereiche) + helle CTA-Karte.
-   Cover wird als CSS-Plate dargestellt (images/rfc/rfc-cover.jpg
-   noch nicht bereit — Plate zeigt Titel + Brand in hellem Papier-
-   Look; sobald Bild vorhanden, durch <img> austauschen).
+   Aktuelle Iteration (Vroni-Feedback 2026-06-06: „kontrolliere Abstände &
+   Schriftgrößen, Designsystem stimmig“): alle magic numbers in dieser
+   Sektion auf `tokens.css`-Variablen umgestellt. Schrift-Stufen aus
+   `--fs-*`, Letter-Spacing aus `--ls-*`, Spacing aus `--space-*`/`--gap-*`,
+   Radien aus `--r-*`, Motion aus `--dur-*`/`--ease-out`. Reine
+   Forest-spezifische Farb-Alphas (rgba auf chalk) bleiben inline — sie
+   sind Forest-Section-spezifisch und nicht Teil des globalen Token-Sets.
    --------------------------------------------------------- */
 .za-rfc{padding-top:clamp(96px,10vw,140px);padding-bottom:clamp(96px,10vw,140px);}
 
-/* Section-Head: zentriert, kompakt, light theme */
-.za-rfc-head{max-width:780px;margin:0 auto var(--shead-gap);text-align:center;position:relative;z-index:1;}
-.za-rfc-head h2{margin:var(--space-eyebrow-head) 0 0;text-wrap:balance;color:var(--ink);}
-.za-rfc-head h2 em{font-family:'Newsreader',Georgia,serif;font-weight:500;font-style:italic;
-  letter-spacing:var(--ls-snug);color:var(--green-deep);}
-.za-rfc-head p{font-size:var(--fs-subline);color:var(--ink-soft);margin:var(--space-head-body) auto 0;
-  max-width:54ch;line-height:var(--lh-body);text-wrap:pretty;}
+/* Section-Head v9c · Split-Layout (Round 5d Vroni-Feedback 2026-06-06)
+   Vorher zentriert, wirkte „klobig“ über dem Forest-Feature-Modul. Jetzt
+   2-Spalter: H2 + Eyebrow links, kompakter Lede rechts. Pattern wie
+   `.pain-intro--split` auf der Reihenfolge-Section — ruhiger Rhythmus,
+   wiedererkennbar. Voice 4.1: keine Gedankenstriche im Lauftext. */
+.za-rfc-head{margin:0 auto var(--shead-gap);position:relative;z-index:1;text-align:left;}
+.za-rfc-head--split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(40px,5vw,72px);align-items:start;
+  max-width:none;}
+.za-rfc-head-l h2{margin:var(--space-eyebrow-head) 0 0;text-wrap:balance;color:var(--ink);max-width:18ch;}
+.za-rfc-head-l h2 .g{color:var(--green-deep);}
+.za-rfc-head-r{display:flex;flex-direction:column;gap:var(--gap-stack);padding-top:var(--space-3xs);}
+.za-rfc-head-r p{margin:0;font-size:var(--fs-body);color:var(--ink-soft);
+  line-height:var(--lh-body);text-wrap:pretty;max-width:54ch;}
 
-/* Feature-Karte: dunkler Editorial-Focal-Point auf hellem Section-BG */
+/* Feature-Karte: bleibt dunkel/forest (vom User explizit so gewollt) —
+   wirkt jetzt als dunkler Editorial-Focal-Point auf hellem Section-BG.
+   Vorher: feature war ein dezenter, semi-transparenter Overlay auf forest.
+   Jetzt: feature TRÄGT die Forest-Surface selbst, weil die Section hell ist. */
 .za-rfc-feature{position:relative;z-index:1;
   display:grid;grid-template-columns:minmax(200px,260px) minmax(0,1fr);
   gap:clamp(36px,5vw,72px);align-items:center;
@@ -101,64 +130,42 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
              0 14px 32px -16px rgba(35,52,34,.3);
   margin-bottom:clamp(64px,6vw,88px);
   overflow:hidden;}
-/* dezenter Green-Glow */
+/* dezenter Green-Glow oben-rechts — ruhiger Akzent, kein lautes Blob */
 .za-rfc-feature::before{content:"";position:absolute;top:-200px;right:-150px;
   width:480px;height:480px;border-radius:50%;
   background:radial-gradient(circle,rgba(168,232,79,.10),transparent 65%);
   pointer-events:none;z-index:0;filter:blur(8px);}
 .za-rfc-feature > *{position:relative;z-index:1;}
 
-/* Cover-Figure (linke Spalte) — Workbook-Stack-Mockup */
+/* Cover-Figure (linke Spalte) — Editorial-Tablet-Mockup (v9 Round 1)
+   ----------------------------------------------------------------
+   v8 hatte ein gebautes Stack-Mockup (image-slot + 2 Back-Page-Layer). v9 nutzt
+   das echte fotografische Editorial-Mockup (Tablet auf Café-Setup mit Olivenzweig
+   und Tasse) — wirkt deutlich hochwertiger, weil das Workbook IM Kontext gezeigt
+   wird, nicht nur als Cover-Stack. Die Bild-Komposition selbst erzählt schon die
+   „Ruhe-+-Klarheit“-Stimmung der Marke. */
 .za-rfc-cover{margin:0;display:flex;flex-direction:column;gap:var(--space-sm);align-items:center;}
-.za-rfc-cover-stack{position:relative;display:block;width:100%;max-width:220px;}
-
-/* Stack-Back-Layers: angedeutete Rückseiten suggerieren das mehrseitige Workbook */
-.za-rfc-page-back{position:absolute;left:0;right:0;top:0;bottom:0;
-  border-radius:var(--r-sm);pointer-events:none;
-  border:1px solid rgba(35,34,26,.10);
-  box-shadow:0 14px 26px -14px rgba(0,0,0,.35);}
-.za-rfc-page-back-1{background:#F4ECD8;transform:translate(6px,6px);z-index:1;}
-.za-rfc-page-back-2{background:#ECE2C8;transform:translate(11px,11px);z-index:0;opacity:.85;}
-
-/* CSS-Cover-Plate (solange images/rfc/rfc-cover.jpg fehlt) */
-.za-rfc-cover-plate{position:relative;z-index:2;
-  display:flex;flex-direction:column;justify-content:space-between;
-  width:100%;aspect-ratio:1/1.414;
-  background:linear-gradient(160deg,#FFFDF5 0%,#F4ECD8 60%,#ECE0C4 100%);
-  border:1px solid rgba(35,34,26,.10);border-radius:var(--r-sm);
-  padding:clamp(14px,2.5vw,22px);
-  box-shadow:0 36px 64px -26px rgba(0,0,0,.6),
-             0 16px 28px -14px rgba(0,0,0,.4);
+.za-rfc-cover-img{display:block;width:100%;height:auto;
+  max-width:380px;
+  border-radius:var(--r-md);
+  box-shadow:0 36px 64px -26px rgba(0,0,0,.45),
+             0 16px 28px -14px rgba(0,0,0,.3);
   transition:transform var(--dur-3) var(--ease-out),
              box-shadow var(--dur-3) var(--ease-out);}
-.za-rfc-cover-stack:hover .za-rfc-cover-plate{transform:translateY(-2px);
-  box-shadow:0 46px 80px -26px rgba(0,0,0,.65),
-             0 20px 34px -14px rgba(0,0,0,.45);}
-.za-rfc-plate-eyebrow{font-size:10px;font-weight:700;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--green-text);line-height:1.2;display:block;}
-.za-rfc-plate-title{font-family:var(--ff);font-weight:700;
-  font-size:clamp(18px,1.8vw,22px);line-height:1.15;
-  letter-spacing:-.02em;color:var(--ink);margin:0;}
-.za-rfc-plate-title em{font-style:italic;font-family:'Newsreader',Georgia,serif;
-  font-weight:500;color:var(--green-deep);}
-.za-rfc-plate-sub{font-size:11px;color:var(--ink-soft);line-height:1.5;
-  margin:8px 0 0;max-width:90%;}
-.za-rfc-plate-foot{font-size:9px;font-weight:600;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--ink-soft);
-  border-top:1px solid rgba(35,34,26,.10);padding-top:8px;margin-top:8px;}
-.za-rfc-plate-brand{font-family:var(--ff-display);font-size:14px;letter-spacing:.02em;
-  text-transform:uppercase;color:var(--ink);}
-
+.za-rfc-cover:hover .za-rfc-cover-img{transform:translateY(-3px);
+  box-shadow:0 44px 72px -26px rgba(0,0,0,.5),
+             0 20px 34px -14px rgba(0,0,0,.35);}
 .za-rfc-cover figcaption{display:flex;flex-direction:column;gap:var(--space-3xs);align-items:center;text-align:center;}
 
-/* Geteilte Caption-Atome (Cover) */
+/* Geteilte Caption-Atome (Cover + Trio) */
 .za-cap-eyebrow{font-size:var(--fs-label);font-weight:700;letter-spacing:var(--ls-label);
   text-transform:uppercase;color:var(--green);white-space:nowrap;}
 .za-cap-title{font-family:var(--ff);font-weight:600;font-size:var(--fs-subline);color:var(--chalk);
   line-height:var(--lh-head);letter-spacing:var(--ls-snug);}
 .za-cap-title .g{color:var(--green);}
 
-/* Insight-Panel (rechte Spalte) */
+/* Insight-Panel (rechte Spalte): Eyebrow + H3 + Bullet-Liste + Inline-Note —
+   vertikal zentriert zum Cover (align-self:center, kein Top-Padding). */
 .za-rfc-insight{align-self:center;display:flex;flex-direction:column;}
 .za-rfc-insight-eyebrow{display:block;font-size:var(--fs-label);font-weight:700;
   letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--green);
@@ -173,7 +180,11 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
   border-radius:2px;background:var(--green);}
 .za-rfc-insight .za-rfc-note-inline{align-self:flex-start;margin:var(--space-md) 0 0;}
 
-/* Editorial Table-of-Contents (4 Bereiche) — light theme */
+/* Editorial Table-of-Contents (v8 · light theme) — ersetzt das v6-Quartet aus 4
+   Page-Cards. Vroni-Feedback: vier Page-Mockups wirken zu kleinteilig, lieber
+   EIN Cover-Mockup oben + darunter eine ruhige Editorial-Liste mit den 4
+   Bereichen. v8: TOC jetzt in hell, weil die Section nicht mehr forest-dark ist.
+   Layout: Nummer (groß, Newsreader italic) · Name + Desc · Meta-Pille rechts. */
 .za-rfc-toc{position:relative;z-index:1;margin-bottom:clamp(56px,6vw,80px);}
 .za-rfc-toc-head{display:flex;align-items:baseline;justify-content:space-between;
   gap:var(--space-md);margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);
@@ -184,14 +195,20 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
 .za-rfc-toc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;}
 .za-rfc-toc-row{display:grid;
   grid-template-columns:auto minmax(0,1fr) auto;
-  gap:clamp(20px,2.4vw,40px);align-items:baseline;
+  gap:clamp(20px,2.4vw,40px);align-items:center;
   padding:clamp(20px,2.2vw,28px) 0;
   border-top:1px solid var(--hair-soft);
   transition:background var(--dur-2) var(--ease-soft);}
 .za-rfc-toc-row:first-child{border-top:none;padding-top:var(--space-xs);}
 .za-rfc-toc-row:hover{background:rgba(168,232,79,.04);}
-.za-rfc-toc-num{font-family:'Newsreader',Georgia,serif;font-weight:500;font-style:italic;
-  font-size:clamp(32px,3.6vw,46px);line-height:1;color:var(--green-deep);
+/* TOC-Nummer · 1:1 Designsystem-Pattern wie .step .snum (Round 5h, 2026-06-06).
+   Vorher hatte ich --green-deep 55%, jetzt --green 55% (heller) — exakt wie
+   die globalen Step-Nummern. Damit sieht TOC-Nummer und Arbeitsweise-Step-
+   Nummer identisch aus, auch in der Farbgewichtung. */
+.za-rfc-toc-num{font-family:var(--ff);font-weight:700;
+  font-size:clamp(32px,3.2vw,40px);line-height:1;letter-spacing:-.02em;
+  color:color-mix(in srgb,var(--green) 55%,var(--chalk));
+  font-feature-settings:"tnum" 1;
   min-width:1.6em;text-align:left;}
 .za-rfc-toc-body{display:flex;flex-direction:column;gap:var(--space-2xs);}
 .za-rfc-toc-name{font-family:var(--ff);font-weight:600;font-size:var(--fs-h4);
@@ -202,7 +219,9 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
   letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--green-text);
   white-space:nowrap;align-self:center;}
 
-/* CTA-Panel: zentriert, helle Variante */
+/* CTA-Panel: gestapelt zentriert, helle Variante (v8) — früher dunkelgrüner
+   Forest-Panel, jetzt sandige Surface mit grünem Akzent. Passt zur hellen
+   Section-Grundstimmung. */
 .za-rfc-cta-panel{position:relative;z-index:1;
   display:flex;flex-direction:column;align-items:center;text-align:center;
   gap:clamp(20px,2.4vw,28px);
@@ -227,26 +246,80 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
   display:inline-flex;align-items:center;gap:var(--space-2xs);
   line-height:var(--lh-snug);}
 .za-rfc-cta-foot svg{width:14px;height:14px;flex:0 0 auto;}
+/* Buttons: Grid mit 2 gleich breiten Spalten (minmax(0,1fr) verhindert
+   Blähen durch längeren Button-Text). */
 .za-rfc-cta-actions{display:grid;grid-template-columns:1fr;gap:var(--space-xs);
   width:100%;max-width:560px;}
 .za-rfc-cta-actions .btn{width:100%;justify-content:center;text-align:center;}
 
-/* RFC: Inline-Hinweis-Box im Insight-Panel */
-.za-rfc-note-inline{display:inline-block;margin:0;
-  padding:12px 22px;background:rgba(168,232,79,.08);
-  border:1px solid rgba(168,232,79,.22);border-radius:100px;
-  font-size:var(--fs-body-sm);color:#c5cbb8;line-height:1.5;text-wrap:pretty;}
+/* ---------------------------------------------------------
+   2a · PAIN-INTRO #reihenfolge — nutzt global .pain-intro--split (style.css)
+   ---------------------------------------------------------
+   Vroni-Feedback 2026-06-06: „zurück zur Aufteilung wie auf den anderen
+   Seiten“. Damit greift wieder der globale 2-Spalter (Headline links,
+   Lead rechts). Keine Page-Scope-Überschreibung mehr nötig.
+   --------------------------------------------------------- */
 
 
 /* ---------------------------------------------------------
-   3 · ANGEBOTE · Header-Note
+   3 · ANGEBOTE · Header-Note (kleine Notiz über dem Offers-Grid)
    --------------------------------------------------------- */
 #angebote .za-offers-note{margin-top:14px;font-size:var(--fs-body-sm);color:var(--ink-soft);
   line-height:var(--lh-body);max-width:62ch;text-wrap:pretty;}
 
 
 /* ---------------------------------------------------------
-   4 · OFFER-KARTEN · offer-for (lead) + offer-result (danach)
+   5 · ERGEBNISSE · Outcome-Variante für .big-nodes
+   --------------------------------------------------------- */
+#ergebnisse .big-nodes{grid-template-columns:repeat(3,1fr);gap:32px 24px;}
+#ergebnisse .big-node h3{font-size:var(--fs-h4);}
+#ergebnisse .big-umbrella .u-tag{color:var(--green-text);}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+@media (max-width:1080px){
+  .za-rfc-feature{grid-template-columns:1fr;gap:36px;padding:clamp(24px,3.5vw,40px);}
+  .za-rfc-cover-img{max-width:320px;}
+  .za-rfc-toc-row{grid-template-columns:auto minmax(0,1fr);gap:var(--space-md);}
+  .za-rfc-toc-meta{grid-column:2;justify-self:start;margin-top:var(--space-2xs);}
+  #ergebnisse .big-nodes{grid-template-columns:repeat(2,1fr);}
+}
+
+@media (min-width:721px){
+  /* Ab Tablet/Desktop: CTA-Buttons in 2 Spalten = identische Breite.
+     `minmax(0,1fr)` nötig, damit längerer Button-Text seine Spalte nicht
+     aufbläht (sonst landet „Rote-Faden-Check holen“ breiter als
+     „Gemeinsam draufschauen“ — genau das Problem, das Vroni gemeldet hat). */
+  .za-rfc-cta-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+}
+
+@media (max-width:900px){
+  .za-rfc-cover-img{max-width:300px;}
+  #ergebnisse .big-nodes{grid-template-columns:1fr;}
+}
+
+@media (max-width:560px){
+  .za-rfc-head{margin-bottom:48px;}
+  .za-rfc-cover-img{max-width:280px;}
+  .za-rfc-toc-head{flex-direction:column;align-items:flex-start;gap:10px;}
+  .za-rfc-toc-num{font-size:clamp(28px,7vw,32px);}
+  .za-rfc-cta-panel{padding:24px;}
+  .za-rfc-cta-actions{grid-template-columns:1fr;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .za-rfc-cover-img{transition:none;}
+  .za-rfc-cover:hover .za-rfc-cover-img{transform:none;}
+  .za-rfc-toc-row{transition:none;}
+}
+
+
+/* ---------------------------------------------------------
+   7 · OFFER-KARTEN · Erweiterung
+   - .offer-for trägt jetzt einen <strong>-Leitsatz oben
+   - .offer-result ersetzt die alte .tags-Reihe
    --------------------------------------------------------- */
 .offer .offer-for{font-size:var(--fs-body);line-height:1.55;color:var(--ink);
   margin:0 0 14px;text-wrap:pretty;}
@@ -261,18 +334,17 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
   text-transform:uppercase;color:color-mix(in srgb,var(--cardc) 70%,var(--ink) 40%);
   padding-top:2px;}
 
-
 /* ---------------------------------------------------------
-   5 · ERGEBNISSE · Outcome-Variante für .big-nodes
+   8 · RFC: Inline-Hinweis-Box im Head
    --------------------------------------------------------- */
-#ergebnisse .big-nodes{grid-template-columns:repeat(3,1fr);gap:32px 24px;}
-#ergebnisse .big-node h3{font-size:var(--fs-h4);}
-#ergebnisse .big-umbrella .u-tag{color:var(--green-text);}
-
+.za-rfc-note-inline{display:inline-block;margin:24px auto 0;
+  padding:12px 22px;background:rgba(168,232,79,.08);
+  border:1px solid rgba(168,232,79,.22);border-radius:100px;
+  font-size:var(--fs-body-sm);color:#c5cbb8;line-height:1.5;text-wrap:pretty;}
+.za-rfc-note-inline strong{color:var(--green);font-weight:650;}
 
 /* ---------------------------------------------------------
-   6 · KONTAKT: Pfad-Karte-Komponente (.contact-path)
-   Editorialer Auftakt-Block über dem Kontakt-Grid.
+   9 · KONTAKT: Pfad-Karte-Komponente (gemeinsam, .contact-path)
    --------------------------------------------------------- */
 .contact-path{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;
   background:var(--white);border:1px solid var(--hair-soft);border-radius:var(--r-md);
@@ -296,54 +368,199 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
 .contact-path .cp-meta{font-size:12.5px;color:var(--ink-soft);}
 .contact-path--active .cp-meta{color:#9aa589;}
 
+@media (max-width:560px){
+  .contact-paths{grid-template-columns:1fr;gap:10px;margin:24px 0 28px;}
+}
+@media (prefers-reduced-motion:reduce){
+  a.contact-path{transition:none;}
+  a.contact-path:hover{transform:none;}
+}
+
+/* ---------------------------------------------------------
+   9b · KONTAKT: Pfad-Karten ÜBER dem Kontakt-Grid
+   Editorialer Auftakt-Block. Sitzt OUTSIDE des .contact-grid,
+   damit die contact-privacy:absolute aus style.css nicht
+   überlappt.
+   --------------------------------------------------------- */
 .za-contact-paths{display:grid;grid-template-columns:1fr 1fr;gap:14px;
   margin:0 0 clamp(48px,5vw,64px);}
+@media (max-width:900px){
+  .za-contact-paths{grid-template-columns:1fr;gap:10px;margin-bottom:42px;}
+}
 .za-contact-paths .contact-path{padding:22px 24px;}
 .za-contact-paths .contact-path .cp-ic{width:42px;height:42px;border-radius:12px;}
 .za-contact-paths .contact-path .cp-ic svg{width:20px;height:20px;}
 .za-contact-paths .contact-path .cp-title{font-size:16px;}
 
-/* contact-privacy auf Zusammenarbeit-Seite: statisch statt absolut positioniert.
-   Linke Spalte enthält weniger Inhalt als auf Startseite/Über-mich,
-   daher kein :absolute-Trick nötig. */
+/* ---------------------------------------------------------
+   9c · KONTAKT: contact-privacy static statt absolute
+   Auf der Zusammenarbeit-Seite enthält die linke Spalte
+   weniger Inhalt als auf Startseite/Über-mich, daher kein
+   :absolute-Trick nötig. Reine Flow-Position.
+   --------------------------------------------------------- */
 #kontakt.contact .contact-grid > .reveal:not(.form){padding-bottom:0;}
 #kontakt.contact .contact-privacy{position:static;margin:32px 0 0;}
 
+/* ---------------------------------------------------------
+   10 · VRONIS ARBEITSWEISE (Editorial-Methodik, NEU v9 Round 1 2026-06-06)
+   ---------------------------------------------------------
+   Strategische Pflicht-Section laut Briefing: macht Vronis Methode sichtbar BEVOR
+   die Angebotskarten kommen. Briefing-Vorgabe: „Nicht als Standard-Icon-Reihe …
+   als ruhiger Editorial-Block mit vier kleinen Prozess-Notizen.”
+
+   Aufbau:
+     · Split-Head (H2 links, 2 Lead-Paragraphen rechts) — analog zur Reihenfolge-
+       Section, damit beide den gleichen Aufbau-Rhythmus haben.
+     · Vier Prozess-Steps als Editorial-Notes mit großer Newsreader-Italic-Nummer,
+       feiner Hairline darunter, kompakter Name + 1-Satz-Beschreibung. Auf Desktop
+       4-Spalter, auf Tablet 2×2, auf Mobile 1-Spalter.
+   --------------------------------------------------------- */
+.za-method{padding-top:clamp(96px,10vw,140px);padding-bottom:clamp(96px,10vw,140px);
+  background:var(--chalk);}
+
+.za-method-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:clamp(40px,5vw,72px);align-items:center;
+  margin-bottom:clamp(64px,7vw,96px);}
+.za-method-head-text{display:flex;flex-direction:column;gap:var(--gap-stack);}
+.za-method-head-text h2{margin:var(--space-eyebrow-head) 0 0;text-wrap:balance;
+  color:var(--ink);max-width:18ch;}
+.za-method-head-text h2 .g{color:var(--green-deep);}
+.za-method-head-text .lead{margin:0;font-size:var(--fs-body);line-height:var(--lh-body);
+  color:var(--ink-soft);text-wrap:pretty;}
+/* Editorial-Bild als rechte Spalte des Method-Heads (Round 5 · Vroni-Briefing:
+   Sektionen mit ruhigen, themenpassenden Bildern auflockern). Bild zeigt das,
+   wovon die Section handelt: jemand sortiert Gedanken in einem Notizbuch. */
+.za-method-head-figure{margin:0;display:flex;flex-direction:column;gap:var(--space-sm);}
+.za-method-head-figure picture{display:block;border-radius:var(--r-md);overflow:hidden;
+  box-shadow:0 24px 50px -22px rgba(35,34,26,.22),
+             0 10px 22px -10px rgba(35,34,26,.12);}
+.za-method-head-figure img{display:block;width:100%;height:auto;
+  aspect-ratio:1200/740;object-fit:cover;}
+.za-method-head-figure figcaption{display:flex;justify-content:flex-end;}
+/* Geteilte Atome · figure-eyebrow mit kleinem Strich-Akzent (Round 5) */
+.za-fig-eyebrow{display:inline-flex;align-items:center;gap:6px;
+  font-size:var(--fs-label);font-weight:700;letter-spacing:var(--ls-label);
+  text-transform:uppercase;color:var(--green-text);}
+.za-fig-eyebrow::before{content:"";width:14px;height:1px;background:var(--green-deep);}
+
+/* Method-Section nutzt jetzt die globale `.steps` / `.step` Komponente aus
+   style.css (identisch zur Über-mich-Sektion „Wie ich arbeite“). Designsystem-
+   Wiederverwendung statt eigener Variante. Siehe `.steps-wrap` Markup im HTML. */
+
+@media (max-width:1080px){
+  .za-method-head{grid-template-columns:1fr;gap:36px;}
+  .za-method-head-text h2{max-width:none;}
+  .za-method-head-figure{order:-1;}
+  .za-method-head-figure picture{max-width:520px;margin:0 auto;}
+  .za-method-head-figure figcaption{justify-content:center;}
+}
 
 /* ---------------------------------------------------------
-   RESPONSIVE
-   --------------------------------------------------------- */
+   11 · HERO-LEDE Soft (zweiter Absatz unter au-lede)
+   ---------------------------------------------------------
+   Briefing-Update Round 1: Hero-Subline ist jetzt zweigeteilt — erster Absatz
+   („Dann liegt es meistens nicht daran …") als au-lede in voller Stärke,
+   zweiter Absatz („Ich helfe dir, daraus eine klare Struktur …") als
+   au-lede.au-lede--soft (etwas leichter, gleicher Lese-Rhythmus). Damit wirkt
+   die Subline wie ein ruhiger Editorial-Block, nicht wie ein Mega-Paragraph. */
+.au-hero .au-lede + .au-lede{margin-top:var(--gap-stack);}
+.au-hero .au-lede--soft{color:var(--ink-soft);font-size:calc(var(--fs-subline) - 1px);}
+
+/* ---------------------------------------------------------
+   12 · ANGEBOTE · Gruppierung (Hauptangebote / Ergänzende Module)
+   ---------------------------------------------------------
+   Briefing Kap. 9: Branding & Website sind die Hauptangebote, Brand Voice & KI
+   die ergänzenden Module. Statt vier gleichwertige Cards setzen wir zwei
+   Group-Heads dazwischen — ähnlich wie Editorial-Magazine Kapitel trennen.
+   Reine HTML-Reihen, keine Card-Größen-Änderung (mobile-freundlich). */
+.offers--grouped{grid-template-rows:auto auto auto auto;row-gap:14px;}
+/* Group-Head: 2-Spalter v2 (Round 5l · Vroni-Feedback 2026-06-06:
+   "sieht zerschossen aus, muss klar definiert darüber stehen").
+   v1 hatte 3 Grid-Cells → Eyebrow+Label in col1/col2, Desc in col1/row2.
+   v2 nutzt grid-template-areas: links Eyebrow ÜBER Label gestapelt, rechts
+   Desc bündig. So bilden Eyebrow + Label eine klare Identitätseinheit. */
+.offer-group-head{grid-column:1 / -1;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  grid-template-areas:
+    "eyebrow desc"
+    "label   desc";
+  gap:8px clamp(20px,2.4vw,32px);align-items:end;
+  padding:10px 0 18px;
+  border-bottom:1px solid var(--hair-soft);}
+.offer-group-head--secondary{margin-top:clamp(28px,3vw,44px);}
+.offer-group-head .ogh-eyebrow{grid-area:eyebrow;
+  font-size:var(--fs-label);font-weight:700;
+  letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--green-text);
+  display:block;align-self:end;margin:0;white-space:nowrap;}
+.offer-group-head .ogh-label{grid-area:label;
+  font-family:var(--ff);font-weight:600;
+  font-size:clamp(20px,2vw,24px);line-height:1.2;color:var(--ink);
+  letter-spacing:var(--ls-snug);display:block;}
+.offer-group-head .ogh-label em{font-family:'Newsreader',Georgia,serif;
+  font-style:italic;font-weight:500;color:var(--green-deep);letter-spacing:-.005em;}
+.offer-group-head .ogh-desc{grid-area:desc;
+  font-size:var(--fs-body-sm);color:var(--ink-soft);
+  line-height:1.55;text-wrap:pretty;align-self:end;}
+@media (max-width:720px){
+  .offer-group-head{grid-template-columns:1fr;
+    grid-template-areas:"eyebrow" "label" "desc";
+    gap:6px;padding-bottom:14px;}
+}
+
+/* ---------------------------------------------------------
+   13 · SICHTBARKEIT & ENERGIE · Editorial-Erklärung (Round 3, 2026-06-06)
+   ---------------------------------------------------------
+   Briefing Kap. 10: Claim-Band bleibt als poetischer Moment, aber direkt
+   danach soll der strategische Inhalt kommen — sonst bleibt „Energie"
+   floskelhaft. Layout: Split-Head wie pain-intro (H2 links, Lead rechts) +
+   drei kompakte Editorial-Notes mit kleinen Eyebrow-Labels. Tonal: sec--sand
+   für ruhige optische Trennung vom Forest-Foto darüber. */
+.za-energy{padding-top:clamp(96px,10vw,140px);padding-bottom:clamp(96px,10vw,140px);}
+
+.za-energy-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  gap:clamp(40px,5vw,72px);align-items:stretch;
+  margin-bottom:clamp(56px,6vw,88px);}
+/* Bild folgt jetzt der Text-Höhe (Round 5l · Vroni-Feedback): position:relative
+   Container + position:absolute Picture, damit das Bild NICHT seine intrinsische
+   Höhe aufdrängt. Text bestimmt die Reihen-Höhe, Bild füllt diese mit cover. */
+.za-energy-head-figure{margin:0;position:relative;align-self:stretch;min-height:340px;
+  border-radius:var(--r-md);overflow:hidden;
+  box-shadow:0 24px 50px -22px rgba(35,34,26,.22),
+             0 10px 22px -10px rgba(35,34,26,.12);}
+.za-energy-head-figure picture{position:absolute;inset:0;display:block;}
+.za-energy-head-figure img{display:block;width:100%;height:100%;object-fit:cover;}
+.za-energy-head-figure figcaption{display:none;}
+.za-energy-head-text{display:flex;flex-direction:column;gap:var(--gap-stack);}
+.za-energy-head-text h2{margin:var(--space-eyebrow-head) 0 0;text-wrap:balance;
+  color:var(--ink);max-width:18ch;}
+.za-energy-head-text h2 .g{color:var(--green-deep);}
+.za-energy-head-text .lead{margin:0;font-size:var(--fs-body);line-height:var(--lh-body);
+  color:var(--ink-soft);text-wrap:pretty;}
+
+.za-energy-notes{list-style:none;padding:0;margin:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;
+  border-top:1px solid var(--hair-soft);
+  border-bottom:1px solid var(--hair-soft);}
+.za-energy-note{display:flex;flex-direction:column;gap:var(--space-2xs);
+  padding:clamp(28px,3vw,40px) clamp(24px,2.4vw,32px);
+  border-left:1px solid var(--hair-soft);}
+.za-energy-note:first-child{border-left:none;}
+.za-energy-note-eyebrow{font-size:var(--fs-label);font-weight:700;
+  letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--green-text);
+  margin-bottom:var(--space-xs);}
+.za-energy-note h3{font-family:var(--ff);font-weight:600;font-size:var(--fs-h4);
+  line-height:var(--lh-head);color:var(--ink);letter-spacing:var(--ls-snug);
+  margin:0;text-wrap:balance;}
+.za-energy-note p{margin:0;font-size:var(--fs-body-sm);line-height:var(--lh-snug);
+  color:var(--ink-soft);text-wrap:pretty;}
+
 @media (max-width:1080px){
-  .za-rfc-feature{grid-template-columns:1fr;gap:36px;padding:clamp(24px,3.5vw,40px);}
-  .za-rfc-cover-stack{max-width:200px;}
-  .za-rfc-toc-row{grid-template-columns:auto minmax(0,1fr);gap:var(--space-md);}
-  .za-rfc-toc-meta{grid-column:2;justify-self:start;margin-top:var(--space-2xs);}
-  #ergebnisse .big-nodes{grid-template-columns:repeat(2,1fr);}
-}
-
-@media (min-width:721px){
-  /* 2 gleich breite CTA-Buttons: minmax(0,1fr) verhindert Blähen durch längeren Text */
-  .za-rfc-cta-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
-}
-
-@media (max-width:900px){
-  .za-rfc-cover-stack{max-width:200px;}
-  #ergebnisse .big-nodes{grid-template-columns:1fr;}
-  .za-contact-paths{grid-template-columns:1fr;gap:10px;margin-bottom:42px;}
-}
-
-@media (max-width:560px){
-  .za-rfc-head{margin-bottom:48px;}
-  .za-rfc-cover-stack{max-width:200px;}
-  .za-rfc-toc-head{flex-direction:column;align-items:flex-start;gap:10px;}
-  .za-rfc-toc-num{font-size:clamp(28px,7vw,32px);}
-  .za-rfc-cta-panel{padding:24px;}
-  .za-rfc-cta-actions{grid-template-columns:1fr;}
-}
-
-@media (prefers-reduced-motion:reduce){
-  .za-rfc-cover-stack:hover .za-rfc-cover-plate{transform:none;}
-  .za-rfc-toc-row{transition:none;}
-  a.contact-path{transition:none;}
-  a.contact-path:hover{transform:none;}
+  .za-energy-head{grid-template-columns:1fr;gap:36px;}
+  .za-energy-head-text h2{max-width:none;}
+  .za-energy-head-figure picture{max-width:480px;margin:0 auto;}
+  .za-energy-head-figure figcaption{justify-content:center;}
+  .za-energy-notes{grid-template-columns:1fr;}
+  .za-energy-note{border-left:none;border-top:1px solid var(--hair-soft);}
+  .za-energy-note:first-child{border-top:none;}
 }
