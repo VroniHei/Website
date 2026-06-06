@@ -155,6 +155,59 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF
 
+### 2026-06-06 — Zusammenarbeit v9: Vollständiges Redesign (Arbeitsweise + Energie + Ergebnisse + Grouped-Offers + Editorial-Mockups)
+
+**Branch:** `feat/zusammenarbeit-v9-redesign`
+
+**Was geändert:**
+
+`zusammenarbeit.html` — Komplett-Neufassung (v5 -> v9):
+1. **Hero**: Neues H1 „Wenn du im Gespräch klarer klingst als auf deiner Website." Lede aufgeteilt in zwei Absätze (`.au-lede` + `.au-lede--soft`). Bento-Bilder auf Editorial-Mockups umgestellt: Hauptbild `rfc-mockups/tablet-leinen-bambus`, kleine Kachel `vroni-stillleben-buch-curtain`, Download-Kachel `vroni-stillleben-ruhe-morgenlicht`.
+2. **Problem-Intro**: H2 auf „Manchmal ist nicht dein Angebot unklar. Es steht nur noch nicht in der richtigen Reihenfolge." geändert. Drei statt zwei Lead-Absätze. Layout `pain-intro--split`.
+3. **NEU: Section „Vronis Arbeitsweise" (#arbeitsweise, `.za-method`)**: Neue Section zwischen Problem-Intro und RFC. Split-Head (Text links: H2 + 2 Leads; Bild rechts: `vroni-journaling-sortieren`) + 4 Steps via `.steps-wrap/.step` DS-Komponente (Verstehen / Sortieren / Übersetzen / Nutzbar machen).
+4. **RFC-Section**: Head auf Split-Layout (`za-rfc-head--split`, H2 links + 2 Lead-Absätze rechts) umgestellt. CSS-Cover-Plate durch echtes Editorial-Foto-Mockup (`rfc-mockups/tablet-cafe-olivenzweig`) ersetzt. Neuer H2-Text: „Der Rote-Faden-Check ist der erste Schritt, wenn du noch nicht genau weißt, was du brauchst." Note-Inline-Text aktualisiert.
+5. **Angebote**: `offers--grouped` Layout mit zwei `offer-group-head`-Separatoren (Hauptangebote: Fundament & Website; Ergänzende Module: Sprache & Workflow). `shead-intro`-Paragraph eingefügt. Offer-Texte (offer-for strong) aller 4 Karten überarbeitet.
+6. **Claim-Band**: Hintergrundbild von `claim-weg` auf `vroni-stille-holzsteg` gewechselt.
+7. **NEU: Section „Sichtbarkeit & Energie" (#energie-text, `.za-energy`)**: Neue Section direkt nach dem Claim-Band. Split-Head (Bild links: `vroni-sortieren-haende-moodboard`; Text rechts: H2 + 2 Leads). Drei Editorial-Notes (Realistisch / Stimmig / Tragfähig) als 3-Spalten-Grid.
+8. **Passt-Section**: Auf `shead--center` mit Erklärungs-Paragraph vor dem `au-fit-grid` umgestellt. Texte in beiden Spalten leicht überarbeitet.
+9. **NEU: Section „Ergebnisse" (#ergebnisse, `.big`)**: Neue Section vor dem FAQ. „Was danach klarer sein soll." 6 Ergebnis-Nodes (Startseite, Angebot, Sprache, Website-Führung, KI-Rolle, Nächste Schritte) im `.big-panel`-Grid.
+10. **FAQ**: 7 Fragen komplett überarbeitet (andere Fragen-Formulierungen als v5; FAQ-List auf 7 Items normalisiert).
+11. **Footer**: `footer-brand` ohne `brand--line`-Klasse und ohne `bl-word`-Wrapper (Logo ohne Linie im Footer, wie auf Über-mich). `footer-meaning`-Tagline bleibt.
+12. **image-slot.js entfernt** (Handoff-Regel: Atelier-Tool gehört nicht in Produktion).
+
+`zusammenarbeit.css` — Komplett-Neufassung (v5 -> v9, 349 -> 566 Zeilen):
+- Neu: `.za-method` + `.za-method-head` + `.za-method-head-figure` (neue Arbeitsweise-Section).
+- Neu: `.za-energy` + `.za-energy-head` + `.za-energy-notes` + `.za-energy-note` (neue Energie-Section).
+- Neu: `.offers--grouped`, `.offer-group-head`, `.offer-group-head--secondary` (Grouped-Angebote-Layout).
+- Neu: `#ergebnisse .big-nodes{grid-template-columns:repeat(3,1fr)}` (3-Spalten statt default).
+- Erweitert: `.za-rfc-head--split` (Split-Head Layout), `.za-rfc-cover-img` (echtes Foto statt CSS-Plate), `.za-rfc-toc-num` jetzt mit Figtree 700 / `color-mix(in srgb,var(--green) 55%,var(--chalk))` identisch zu Step-Nummern.
+- Neu: `.au-lede--soft` (zweiter Lede-Absatz im Hero, etwas gedämpfter).
+- Entfernt: CSS-Cover-Plate-Regeln (`.za-rfc-cover-plate`, `.za-rfc-page-back`, `.za-rfc-plate-*`).
+
+**Neue Bilder:**
+- `images/rfc-mockups/tablet-leinen-bambus.{webp,png}` + `-960.webp` (Hero Bento Hauptbild)
+- `images/rfc-mockups/tablet-cafe-olivenzweig.{webp,png}` + `-960.webp` (RFC Feature-Karte)
+- `images/vroni-stillleben-buch-curtain.{webp,png}` + `-960.webp` (Hero Bento oben)
+- `images/vroni-stillleben-ruhe-morgenlicht.{webp,png}` + `-960.webp` (Hero Bento Download-Kachel)
+- `images/vroni-journaling-sortieren.{webp,png}` + `-960.webp` (Arbeitsweise-Section)
+- `images/vroni-sortieren-haende-moodboard.{webp,png}` + `-960.webp` (Energie-Section)
+- `images/vroni-stille-holzsteg.{webp,png}` + `-960.webp` (Claim-Band)
+
+**Warum:**
+Claude Design Handoff 2026-06-06 (v9). Vroni-Briefing: Arbeitsweise-Section einbauen (zeigt Vronis Methode vor den Angeboten), Energie-Section konkretisiert das Claim-Band inhaltlich, Ergebnisse-Section mit 6 konkreten Outcomes, Offer-Karten gruppiert (Hauptangebote / Ergänzende Module), RFC mit echtem Foto-Mockup statt CSS-Plate, Hero mit Editorial-Bento-Bildern.
+
+**Abwägungen:**
+- `image-slot.js` des Designs nicht übernommen (Handoff-Regel: Atelier-Tool gehört nicht in Produktion).
+- CSS von v5 komplett ersetzt, kein selektives Patching — der Scope war zu gross für chirurgische Änderungen.
+- Footer `brand--line` entfernt: passt zur Über-mich-Seite (identische Struktur auf beiden Unterseiten).
+- Em-Dashes in alt-Texten, HTML-Kommentaren und Fließtext vor Commit durch natürliche Interpunktion ersetzt (CI-Pflicht).
+
+**Konsequenzen / Follow-up:**
+- LinkedIn-Link im Footer noch `href="#"` (dummy) — separater Task.
+- MEDIEN.md: 7 neue Bilder + 1 Verzeichnis ergänzt (im selben PR).
+
+---
+
 ### 2026-06-06 — Zusammenarbeit v5: RFC Editorial-Redesign + Offer-Karten + Passt-Panel
 
 **Branch:** `feat/zusammenarbeit-v5-redesign`

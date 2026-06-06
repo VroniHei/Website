@@ -395,6 +395,81 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 
 ---
 
+## 3b. Bilder für zusammenarbeit.html (v9 · 2026-06-06)
+
+### rfc-mockups/tablet-leinen-bambus
+- **Dateien:** `images/rfc-mockups/tablet-leinen-bambus.webp` · `images/rfc-mockups/tablet-leinen-bambus-960.webp` · `images/rfc-mockups/tablet-leinen-bambus.png`
+- **Maße:** 1672×941 px (original), 960er-Variante verfügbar
+- **Herkunft:** KI-generiertes Editorial-Mockup (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** `zusammenarbeit.html` (Hero-Bento Hauptkachel `.au-hb-main`, Preload im Head)
+- **Alt-Text:** Tablet mit dem Rote-Faden-Check geöffnet, daneben Workbook-Karten, Brille und Bambuszweig auf Leinen, Querformat-Editorial-Mockup
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stilleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9).
+
+### rfc-mockups/tablet-cafe-olivenzweig
+- **Dateien:** `images/rfc-mockups/tablet-cafe-olivenzweig.webp` · `images/rfc-mockups/tablet-cafe-olivenzweig-960.webp` · `images/rfc-mockups/tablet-cafe-olivenzweig.png`
+- **Maße:** 1122×1402 px (original), 960er-Variante verfügbar
+- **Herkunft:** KI-generiertes Editorial-Mockup (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** `zusammenarbeit.html` (RFC-Section Feature-Karte `.za-rfc-cover-img`)
+- **Alt-Text:** Rote-Faden-Check als PDF auf einem Tablet, daneben Tasse Kaffee und Olivenzweig auf Holztisch, ruhiger Editorial-Moment
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stilleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9; ersetzt CSS-Cover-Plate aus v5).
+
+### vroni-stillleben-buch-curtain
+- **Dateien:** `images/vroni-stillleben-buch-curtain.webp` · `images/vroni-stillleben-buch-curtain-960.webp` · `images/vroni-stillleben-buch-curtain.png`
+- **Maße:** 1672×941 px
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** `zusammenarbeit.html` (Hero-Bento kleine Kachel `.au-hb-a`)
+- **Alt-Text:** Offenes Notizbuch mit gepresstem Blütenzweig, Tasse und Leinen-Tuch auf dem Holztisch im Morgenlicht, ruhiger Sortier-Moment
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stilleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9).
+
+### vroni-stillleben-ruhe-morgenlicht
+- **Dateien:** `images/vroni-stillleben-ruhe-morgenlicht.webp` · `images/vroni-stillleben-ruhe-morgenlicht-960.webp` · `images/vroni-stillleben-ruhe-morgenlicht.png`
+- **Maße:** 1672×941 px
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** `zusammenarbeit.html` (Hero-Bento Download-Kachel `.au-hb-b.au-hb-quote`, dekorativer Hintergrund mit Overlay)
+- **Alt-Text:** (leer — dekoratives Hintergrundbild unter dem Overlay)
+- **Dekorativ:** ja (unter Forest-Overlay, Inhalt ist der Kachel-Text)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9).
+
+### vroni-journaling-sortieren
+- **Dateien:** `images/vroni-journaling-sortieren.webp` · `images/vroni-journaling-sortieren-960.webp` · `images/vroni-journaling-sortieren.png`
+- **Maße:** 1200×683 px
+- **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** `zusammenarbeit.html` (Sektion „Vronis Arbeitsweise" `.za-method-head-figure`)
+- **Alt-Text:** Person schreibt in ein Notizbuch, daneben Eukalyptuszweig, Tasse und Laptop, ruhiger Sortier-Moment am Schreibtisch
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person/Hände)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9, Arbeitsweise-Section).
+
+### vroni-sortieren-haende-moodboard
+- **Dateien:** `images/vroni-sortieren-haende-moodboard.webp` · `images/vroni-sortieren-haende-moodboard-960.webp` · `images/vroni-sortieren-haende-moodboard.png`
+- **Maße:** 1100×1100 px
+- **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** `zusammenarbeit.html` (Sektion „Sichtbarkeit & Energie" `.za-energy-head-figure`)
+- **Alt-Text:** Hände arrangieren Stoff- und Papierproben mit einem Landschaftsfoto auf einem Holztisch, ruhige Materialprobe
+- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Hände)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9, Energie-Section).
+
+### vroni-stille-holzsteg
+- **Dateien:** `images/vroni-stille-holzsteg.webp` · `images/vroni-stille-holzsteg-960.webp` · `images/vroni-stille-holzsteg.png`
+- **Maße:** 1200×675 px
+- **Herkunft:** KI-generierte Landschaft (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** `zusammenarbeit.html` (Claim-Band `.claim-band .cb-img`, dekoratives Hintergrundbild)
+- **Alt-Text:** (leer — rein dekoratives Claim-Band-Hintergrundbild)
+- **Dekorativ:** ja
+- **Rechte:** siehe Abschnitt 1
+- **Beachten:** Ersetzt `claim-weg` als Claim-Band-Hintergrund auf der Zusammenarbeit-Seite. `claim-weg` weiterhin auf anderen Seiten nutzbar.
+- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9; löst `claim-weg` als Claim-Band-Bild auf `zusammenarbeit.html` ab).
+
+---
+
 ## 4. Weitere Medien (Nicht-Fotos)
 
 - **Logo/Wortmarke:** `brand/logos/` (SVG/PNG/PDF-Quellen) + `favicon.svg` — Eigenerzeugung InnerLine.
