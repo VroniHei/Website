@@ -155,6 +155,24 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF
 
+### 2026-06-06 - Passt-Karten: Forest-Dark-Design aus v9-Handoff nachgezogen
+
+**Was:** `ueber-mich.css` -- `.au-fit-col.is-yes` von hellem Gruen-Wash auf dunklen Forest-Editorial-Card-Look umgestellt; `.au-fit-col.is-no` auf semi-transparentes Weiss (.72) angeglichen; Check-Icon auf 24px/stroke-width 3.2/Doppel-Ring aktualisiert. Gilt fuer `ueber-mich.html` UND `zusammenarbeit.html` (beide laden `ueber-mich.css`).
+
+**Warum:** Im v9-Handoff (2026-06-06_zusammenarbeit-v9-briefing-umsetzung) war die Aenderung der `.au-fit-col` Stile in `ueber-mich.css` enthalten (Punkt 7 des Briefings: "Passt-Karten neu"), aber bei der Umsetzung von PR #50 nicht mit uebernommen worden. Nur `zusammenarbeit.html` und `zusammenarbeit.css` wurden damals gemergt, nicht die `ueber-mich.css`-Aenderung.
+
+**Wie:**
+- `.au-fit-col.is-yes`: radial+linear Forest-Gradient (#2A3324 oben, #1F2618 unten), gruener Border-Glow, Inset-Highlight, chalk-Text; Hover mit verstaerktem Shadow.
+- Neue Overrides: `.au-fit-col.is-yes h3` (chalk), `.au-fit-col.is-yes .au-fit-list li` (chalk/88%, hellere Border), `.au-fit-col.is-yes .fit-tag` (gruener Ring).
+- `.au-fit-col.is-no`: background .55 -> .72, border 16% -> 14%, box-shadow 0 4px 14px; Hover mit .85-bg.
+- Check-Icon: 22px -> 24px, stroke-width 3 -> 3.2, icon-size 14px -> 15px, Doppel-Ring-Shadow (gruene Aura + chalk-Ring).
+
+**Alternativen:** Den gruenen Wash (v3-Design) haetten wir beibehalten koennen -- war aber laut Vroni-Feedback zu schwach gegen die weisse Eher-nicht-Karte. Forest-Dark schafft klaren visuellen Kontrast.
+
+**Konsequenz:** Beide Seiten (`ueber-mich.html`, `zusammenarbeit.html`) zeigen jetzt die Forest-Dark Passt-Karte. Kein HTML-Touch, kein neues Bild, kein neues Token.
+
+---
+
 ### 2026-06-06 - Subline-Konsistenz: `.offer .offer-for strong` auf Startseiten-Niveau angeglichen
 
 **Was:** `zusammenarbeit.css` -- Override fuer `<strong>` innerhalb der Angebot-Karten-Subline so umgestellt, dass es Groesse/Gewicht/Zeilenhoehe von der Eltern-`.offer-for` erbt (vorher: eigene Stufe `--fs-h4` / Weight 650 / line-height 1.35 / `display:block` / `text-wrap:balance`).

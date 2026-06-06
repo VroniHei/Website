@@ -401,19 +401,43 @@
   transition:transform var(--dur-3) var(--ease-out),box-shadow var(--dur-3) var(--ease-soft);}
 .au-fit-col:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(35,34,26,.10);}
 
-/* ---- PASST: dezenter Grün-Wash (vertikaler Akzent-Balken auf Wunsch
-   entfernt — Vroni-Inline-Kommentar 03.06.2026) ---- */
+/* ---- PASST: dunkelgrüner Editorial-Card-Look (v4, 2026-06-06).
+   Forest-Gradient mit weichem radialem Green-Glow oben-rechts.
+   Inset-Highlight oben simuliert sanftes Licht. Text in chalk. */
 .au-fit-col.is-yes{
-  background:linear-gradient(180deg,rgba(168,232,79,.06),rgba(168,232,79,.02) 60%,var(--white) 100%);
-  border-color:color-mix(in srgb,var(--green) 24%,var(--hair-soft));
-}
+  background:
+    radial-gradient(circle at 80% 0%,rgba(168,232,79,.18),transparent 55%),
+    linear-gradient(160deg,#2A3324 0%,#1F2618 100%);
+  border:1px solid rgba(168,232,79,.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 14px 36px rgba(20,26,16,.32),
+    0 4px 12px rgba(20,26,16,.18);
+  color:var(--chalk);}
+.au-fit-col.is-yes:hover{transform:translateY(-3px);
+  border-color:rgba(168,232,79,.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 22px 48px rgba(20,26,16,.38),
+    0 8px 18px rgba(20,26,16,.22);}
+.au-fit-col.is-yes h3{color:var(--chalk);}
+.au-fit-col.is-yes .au-fit-list li{color:rgba(248,245,238,.88);
+  border-top-color:rgba(248,245,238,.10);}
+.au-fit-col.is-yes .au-fit-list li:first-child{border-top:none;}
+.au-fit-col.is-yes .fit-tag{
+  background:rgba(168,232,79,.18);
+  border-color:rgba(168,232,79,.32);
+  color:var(--green);}
 
-/* ---- EHER NICHT: ruhige Outline mit gestrichelter Border ---- */
+/* ---- EHER NICHT: semi-transparenter weißer Hinweis-Block, sand-BG
+   schimmert leicht durch, Karte sitzt sanfter im Layout. ---- */
 .au-fit-col.is-no{
-  background:rgba(255,255,255,.55);
-  border:1px dashed color-mix(in srgb,var(--ink) 16%,transparent);
-  box-shadow:none;}
-.au-fit-col.is-no:hover{box-shadow:0 8px 22px rgba(35,34,26,.06);}
+  background:rgba(255,255,255,.72);
+  border:1px dashed color-mix(in srgb,var(--ink) 14%,transparent);
+  box-shadow:0 4px 14px rgba(35,34,26,.03);
+  opacity:1;}
+.au-fit-col.is-no:hover{box-shadow:0 10px 26px rgba(35,34,26,.06);
+  background:rgba(255,255,255,.85);}
 
 /* Tags oben (Pill mit Punkt) — beide auf hellem Grund */
 .fit-tag{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-label);font-weight:700;
@@ -442,10 +466,12 @@
 .au-fit-list li::before{position:absolute;left:0;top:50%;transform:translateY(-50%);
   display:flex;align-items:center;justify-content:center;}
 
-/* PASST-Card: grüne Check-Pille (vom User gewünscht) */
-.is-yes .au-fit-list li::before{content:"";width:22px;height:22px;border-radius:50%;
-  background:var(--green) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2323221A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M5 13l4 4 10-11'/></svg>") no-repeat center / 14px 14px;
-  box-shadow:0 0 0 4px rgba(168,232,79,.14);}
+/* PASST-Card: Check-Pille auf dunklem Forest-Grund — chalk-Ring damit
+   Check vor dunklem BG sauber lesbar bleibt. */
+.is-yes .au-fit-list li::before{content:"";width:24px;height:24px;border-radius:50%;
+  background:var(--green) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2323221A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 13l4 4 10-11'/></svg>") no-repeat center / 15px 15px;
+  box-shadow:0 0 0 4px rgba(168,232,79,.22),
+             0 0 0 5px rgba(248,245,238,.08);}
 
 /* EHER NICHT-Card: kleines gedämpftes Minus */
 .is-no .au-fit-list li::before{content:"";width:16px;height:2px;
