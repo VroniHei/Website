@@ -153,6 +153,48 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ---
 
+## 3. VERLAUF
+
+### 2026-06-06 — Zusammenarbeit v5: RFC Editorial-Redesign + Offer-Karten + Passt-Panel
+
+**Branch:** `feat/zusammenarbeit-v5-redesign`
+
+**Was geändert:**
+
+`zusammenarbeit.html` — 10 Änderungen:
+1. **Schema.org FAQ**: Q3 „Arbeitest du nur mit Selbstständigen?" → „Arbeitest du auch mit bestehenden Websites?" (+ neuer Answer-Text). Q7 „Wie schnell können wir starten?" → „Wie läuft die Anfrage ab?" (+ neuer Answer-Text).
+2. **Hero H1**: „Erstmal sortiert. Dann gestaltet." → „Wenn deine Marke vieles zeigt, aber noch nicht richtig *zusammenführt.*"
+3. **Hero Lede**: Zwei Paragraphen → ein Absatz, neuer Text.
+4. **Hero Bento-Tile-b** (`.au-hb-quote`): `href="#rote-faden-check"` → `href="brand/Der_Rote-Faden-Check.pdf" download`; Eyebrow + CTA-Text + Icon (Download statt Pfeil) aktualisiert.
+5. **Problem-Intro pi-leads**: Text gekürzt und pointierter (Tabs-im-Kopf-Metapher → RFC-Lösung).
+6. **RFC-Sektion (#rote-faden-check)**: Vollständiges Redesign. Helles Theme (kein `sec--forest` mehr). Neue Struktur: `za-rfc-head` (H2 mit Newsreader-em) + `za-rfc-feature` (Cover-Stack-Mockup als CSS-Plate + Insight-Panel) + `za-rfc-toc` (Editorial-TOC, 4 Bereiche: Innere Klarheit · Außenwirkung · Dein Angebot · Sichtbarkeit, je 3 Fragen) + `za-rfc-cta-panel` (helle CTA-Karte). „15 Fragen" → „12 Fragen" (reale Zahl). CSS-Cover-Plate als Platzhalter, bis `images/rfc/rfc-cover.jpg` geliefert wird.
+7. **Angebote shead-intro**: Text überarbeitet (fokussierter, mit „Jede Karte zeigt…"-Erklärung).
+8. **Angebote-Karten (alle 4)**: Neues Inhalts-Schema: `.offer-for` jetzt mit `<strong>`-Leitsatz (Wenn-Satz), kürzere `.desc`, `.tags` ersetzt durch `.offer-result` (Danach-Panel). CTA-Text: „anfragen" → „besprechen".
+9. **Ablauf**: 6 Stationen → 5, Faden-Rail auf `repeat(5,1fr)`, Intro-Satz angepasst, Stations-Texte überarbeitet.
+10. **Passt-Sektion**: Von seitenspezifischem `.za-fit-panel`-Stil auf `.au-fit`-Stil (aus `ueber-mich.css`) umgestellt. Klassen: `au-fit`, `au-fit-grid`, `au-fit-col is-yes/is-no`, `fit-tag`, `au-fit-list`. Neue Texte (kompakter, ohne Icons in `<li>`).
+11. **Freebie-Brücke (.za-freebie-cta)**: Sektion vollständig entfernt (Funktion übernimmt RFC-CTA-Panel + za-contact-paths).
+12. **FAQ Q3 + Q7**: Analog zu Schema.org-Änderungen im HTML.
+13. **Kontakt**: `za-contact-paths`-Block (2-Karten-Grid: PDF-Download-Pfad + aktiver Formular-Pfad) vor `.contact-grid` eingefügt. H2 „erstmal sortieren" → „gemeinsam draufschauen". Body-Text verkürzt.
+
+`zusammenarbeit.css` — Komplett-Neufassung (v3 → v5):
+- Entfernt: `.za-rfc-grid`, `.za-rfc-spread`, `.za-rfc-book`, `.za-page*`, `.za-cv-*`, `.za-pq-*`, `.za-fit-panel`, `.za-freebie-cta-*`.
+- Neu: Hero-Copy-Override (max-width:660px + H1 font-size für langen ZA-Titel), `.za-rfc-feature` (dunkle Cover-Karte auf hellem BG), `.za-rfc-cover-plate` (CSS-Plate für Cover-Platzhalter), `.za-rfc-toc` (Editorial-TOC mit Newsreader-italic-Zahlen), `.za-rfc-cta-panel` (helle CTA-Karte), `.offer .offer-for/.offer-result` (neue Karten-Erweiterung), `.contact-path` + `.za-contact-paths` (Pfad-Karten), `#kontakt.contact .contact-privacy{position:static}` (kein absolutes Positioning nötig, da weniger Inhalt in linker Spalte).
+
+**Warum:**
+Claude Design Handoff 2026-06-06. Vroni-Feedback: RFC-Section mit realen PDF-Seiten als Mockup zeigen (Cover-Stack statt CSS-Buch-Spread), Editorial-TOC statt Forest-dark-Section, Offer-Karten klarer mit Leitsatz + Danach-Ergebnis, Passt-Section aufgeräumter (wie Über-mich), Freebie-Brücke redundant da RFC-CTA + Kontakt-Pfade dieselbe Funktion übernehmen.
+
+**Abwägungen:**
+- `images/rfc/rfc-cover.jpg` fehlt noch im Repo → CSS-Plate als Platzhalter (styled div mit Titeltext + Brand). Sobald Vroni die JPGs liefert: `<div class="za-rfc-cover-plate">` durch `<picture><img src="images/rfc/rfc-cover.jpg">` ersetzen und CSS-Plate-Regeln entfernen.
+- `image-slot.js` des Designs nicht übernommen (Handoff-Regel: Atelier-Tool gehört nicht in Produktion).
+- `.za-fit-panel`-CSS komplett entfernt (kein Rückwärts-Kompatibilitätsbedarf, Seite war neu).
+- Hero-H1-Override (font-size:clamp(34px,3.55vw,52px)) nur in `zusammenarbeit.css`, nicht in `ueber-mich.css` — betrifft nur ZA-Seite.
+
+**Konsequenzen / Follow-up:**
+- Sobald `images/rfc/rfc-cover.jpg` (+ ggf. WebP) geliefert werden: Cover-Plate durch echtes Bild ersetzen und MEDIEN.md ergänzen.
+- LinkedIn-Link im Footer noch `href="#"` (dummy) — separater Task.
+
+---
+
 ## 2. ASSETS (müssen ins Repo committet sein!)
 
 ### Bilder (`images/`) — alle als PNG + WebP
