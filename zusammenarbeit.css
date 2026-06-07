@@ -720,8 +720,8 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
 .za-rfc-cta-figure img{
   display:block;width:100%;height:100%;
   object-fit:cover;object-position:center;
-  transition:transform var(--dur-5) var(--ease-out);}
-.za-rfc-cta-panel:hover .za-rfc-cta-figure img{transform:scale(1.03);}
+  transition:transform 1.4s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.za-rfc-cta-panel:hover .za-rfc-cta-figure img{transform:scale(1.05);}
 
 /* (Floating Trust-Badge entfernt 2026-06-07: Info doppelte sich mit dem Eyebrow,
     und die Pill war optisch zu prominent fuer die ruhigere CTA-Box.) */
