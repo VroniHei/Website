@@ -50,7 +50,7 @@
   box-shadow:0 30px 70px rgba(35,34,26,.2);}
 .au-hb-a{grid-column:1;grid-row:2;}
 .au-hb-b{grid-column:2;grid-row:2;}
-.au-hb-a,.au-hb-b{animation:hbDrift 9s ease-in-out infinite;}
+.au-hb-a,.au-hb-b{animation:auHbDrift 9s ease-in-out infinite;}
 .au-hb-a{animation-delay:-2s;}
 .au-hb-b{animation-delay:-5s;}
 
@@ -70,7 +70,9 @@
   letter-spacing:-.015em;margin:0;text-wrap:balance;color:var(--chalk);
   text-shadow:0 2px 14px rgba(0,0,0,.45);}
 .au-hb-quote .hbq-text .g{color:var(--green) !important;}
-@keyframes hbDrift{
+/* Eigener Name, damit er nicht den @keyframes hbDrift (-9px) aus style.css
+   überschreibt; Über-mich-Tiles brauchen nur 4px subtilere Bewegung. */
+@keyframes auHbDrift{
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(-4px);}
 }

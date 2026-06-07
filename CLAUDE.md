@@ -144,3 +144,34 @@ Maßstab ist EN 301 549 → faktisch **WCAG 2.1 Level AA**. Bei JEDER Sektion pr
 - **Durchsetzung (CI):** Der Job **`Medien-Register-Check`** in `.github/workflows/ci.yml` lässt einen PR scheitern,
   wenn `images/` geändert wurde, ohne dass `MEDIEN.md` im selben PR aktualisiert wird. Die Regel ist damit erzwungen, nicht nur Vorsatz.
 - **Bildwelt/Prompts:** Reproduktions-Referenz für neue Bilder = `brand/bildwelt-und-prompts.md` (Stil + Prompts).
+
+## Handoff-Qualitätssicherung — Encoding-Check (verpflichtend nach jedem Design-Import)
+> Gelernt aus PR #59/#60 (2026-06-07): Typografische Anführungszeichen (`"` `"`, U+201C/D) als HTML-Attribut-Delimiter
+> machen die betroffenen Tags für Browser unsichtbar — stiller Fehler, der im Editor optisch nicht erkennbar ist.
+
+**Nach dem Einspielen eines Claude-Design-Handoffs oder Paste von HTML-Blöcken** immer prüfen:
+
+```bash
+python3 -c "
+import sys
+data = open('zusammenarbeit.html','rb').read()
+hits = [i for i,b in enumerate(data) if b == 0xe2 and data[i+1:i+3] in (b'\x80\x9c', b'\x80\x9d')]
+for h in hits:
+    line = data.count(b'\n', 0, h) + 1
+    print(f'L{line}: curly quote at byte {h}')
+" 2>/dev/null || echo "OK"
+```
+— oder kurz: `grep -Pn '[\x{201C}\x{201D}]' dateiname.html`
+
+**Diagnoseregel:** Wenn eine Section im Browser komplett leer/unsichtbar ist und kein JS-Fehler vorliegt,
+zuerst prüfen ob das Element überhaupt als DOM-Node existiert (DevTools → Elements → suche `id="kontakt"`).
+Fehlt es im DOM komplett = Parser-Problem (Encoding, unclosed Tag), nicht CSS/JS.
+
+## CSS-Qualitätsregeln (Single Source of Truth)
+
+- **Tokens nur in `tokens.css`** — keine `--variable` Definitionen in `style.css`, `ueber-mich.css` oder `zusammenarbeit.css`.
+- **Keine Inline-Styles mit Layout-Logik** (display, grid-template-columns, flex, margin, text-align) in HTML-Dateien.
+  Ausnahme: per-Instanz-Farb-Tokens (`style="--cardc:var(--green)"`) — das ist das bewusste Komponenten-Coloring-Pattern.
+- **Duplicate CSS-Selektoren** in derselben Datei sind immer ein Fehler oder toter Code — einer muss weg.
+- **`@keyframes`-Namen müssen eindeutig sein** über alle geladenen Stylesheets. Wenn `ueber-mich.css` eine
+  Animation mit gleichem Namen wie `style.css` braucht: anderen Namen wählen (z. B. `auHbDrift` statt `hbDrift`).

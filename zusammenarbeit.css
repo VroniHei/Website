@@ -994,7 +994,7 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   line-height:1.55;
   letter-spacing:.04em;
   color:var(--ink-soft);
-  text-align:left;
+  text-align:center;
 }
 #kontakt.contact .contact-privacy--in-form a{
   color:var(--ink);
@@ -1021,10 +1021,9 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
 
 /* Linke Spalte: kein reservierter Platz mehr für Privacy.
    Aber: dezenter Bottom-Abstand für visuelle Balance zum
-   Form-Schatten beibehalten. */
-#kontakt.contact .contact-grid > .reveal:not(.form){
-  padding-bottom:0;
-}
+   Form-Schatten beibehalten.
+   Hinweis: identische Regel steht bereits in Block 9c (Z. 405) —
+   hier nur als Spacing-Dokumentation im Block 14 belassen. */
 
 /* Body-Text → Contact-Direct: minimal mehr Luft */
 #kontakt.contact .contact-direct{
@@ -1048,4 +1047,26 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
 /* Privacy-im-Form bekommt minimal mehr Trennung zur form-note */
 #kontakt.contact .contact-privacy--in-form{
   margin-top:20px;
+}
+
+/* ---------------------------------------------------------
+   15 · INLINE-STYLE-ERSATZ (Cleanup 2026-06-07)
+   Inline-Styles aus zusammenarbeit.html herausgezogen und
+   hier als Klassen definiert — Single Source of Truth.
+   --------------------------------------------------------- */
+
+/* .ogh-desc--right: rechts ausgerichteter Begleittext im Angebots-Header */
+.offer-group-head .ogh-desc--right{text-align:right;}
+
+/* .faden-rail--5: Roten-Faden-Visualisierung mit 5 Stationen (statt 7 im globalen Default) */
+.faden-rail--5{grid-template-columns:repeat(5,1fr);}
+
+/* .za-ablauf-cta: Zentrierte CTA-Reihe unterhalb der Ablauf-Stationen */
+.za-ablauf-cta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  text-align:center;
+  margin-top:48px;
 }
