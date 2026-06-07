@@ -58,13 +58,15 @@
         <li>Skip-Link „Zum Hauptinhalt springen" am Seitenanfang</li>
         <li>Alt-Texte für alle inhaltlichen Bilder; dekorative Bilder mit leerem <code>alt=""</code></li>
         <li>Responsives Design für alle Gerätegrößen (320 px bis Desktop)</li>
-        <li>Zugängliche Formulare mit sichtbaren Labels, Pflichtfeld-Markierungen und Fehlermeldungen</li>
-        <li>Barrierefreie FAQ-Accordions über natives <code>&lt;details&gt;/&lt;summary&gt;</code></li>
+        <li>Zugängliche Formulare mit sichtbaren Labels, Pflichtfeld-Markierungen, <code>aria-required</code>, <code>aria-describedby</code> und Fehlermeldungen mit <code>role="alert"</code></li>
+        <li>Formular-Status (Erfolg/Fehler) per <code>aria-live="polite"</code> für Screenreader angeboten</li>
+        <li>Barrierefreie FAQ-Accordions über natives <code>&lt;details&gt;/&lt;summary&gt;</code>; Prinzipien-Accordion auf der Startseite mit <code>&lt;button&gt;</code> und <code>aria-expanded</code></li>
         <li>Animationen respektieren <code>prefers-reduced-motion</code></li>
         <li>Sprachauszeichnung <code>lang="de"</code> im HTML-Element</li>
-        <li>Burger-Menü mit <code>aria-expanded</code>, <code>aria-controls</code> und Escape-Taste</li>
+        <li>Burger-Menü mit <code>aria-expanded</code>, <code>aria-controls</code>, toggled <code>aria-label</code> und Escape-Taste; mobiles Overlay mit <code>role="dialog"</code></li>
+        <li>Aktive Seite in der Navigation mit <code>aria-current="page"</code> ausgezeichnet</li>
         <li>Schrift ausreichend groß (16 px Basis, flüssig mit <code>clamp()</code>)</li>
-        <li>Externe Links mit Hinweis im <code>aria-label</code></li>
+        <li>Externe Links mit Hinweis im <code>aria-label</code> (z. B. „öffnet in neuem Tab")</li>
       </ul>
     </section>
 
@@ -73,7 +75,7 @@
       <p style="margin-bottom:12px;">Folgende Punkte werden aktuell noch verbessert:</p>
       <ul style="margin:0;padding-left:22px;line-height:1.8;">
         <li><strong>Placeholder-Text im Formular</strong>: Kontrast des Placeholder-Textes liegt unter 4.5:1. Sichtbare Labels sind vorhanden, Placeholder-Text gilt ergänzend.</li>
-        <li><strong>Hero-Tag-Labels</strong> (z. B. „Personal Branding", „Yoga &amp; Bewegung"): Kontrast der grauen Farbe liegt unter 4.5:1. Diese Labels sind rein ergänzend und inhaltlich im Haupttext abgedeckt.</li>
+        <li><strong>Angebots-Karte Tag-Chips</strong> (z. B. „Strategie", „Voice"): Kontrast der gedämpften Farbe (<code>var(--ink-soft)</code>) liegt je nach Hintergrund knapp unter 4.5:1. Diese Labels sind rein ergänzend und inhaltlich im Haupttext der jeweiligen Angebotskarte abgedeckt.</li>
         <li><strong>Manuelle Screenreader-Prüfung</strong>: Noch nicht vollständig mit NVDA/VoiceOver/JAWS getestet.</li>
         <li><strong>Formularanbindung</strong>: Das Kontaktformular öffnet das E-Mail-Programm (mailto). Nicht alle Geräte haben ein E-Mail-Programm konfiguriert. Eine direkte Server-Anbindung wird geprüft.</li>
       </ul>

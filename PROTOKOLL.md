@@ -2366,6 +2366,50 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 
 ---
 
+### 2026-06-07 — Full-Projekt-Audit & Cleanup (Claude Code)
+
+**Auslöser:** Vollständiger Code-Qualitäts-, Datei- und A11y-Audit nach Abschluss der Feinschliff-Runde. Drei parallele Audit-Agenten analysiert: Datei-Struktur, CSS/HTML-Qualität, WCAG-Konformität.
+
+**Was geändert wurde:**
+
+**Bugfixes:**
+- `ueber-mich.html` Footer: „Anfrage senden" verlinkten auf `index.html#kontakt` statt auf `#kontakt` — Fix: auf eigene Kontakt-Sektion der Seite verweisen.
+- `zusammenarbeit.css` Z.997: `text-align:left` widersprach dem Inline-Style `style="text-align: center"` auf `.contact-privacy--in-form` — CSS auf `text-align:center` korrigiert, Inline-Style aus HTML entfernt.
+- `zusammenarbeit.css` Block 14: Doppelter Selektor `#kontakt.contact .contact-grid > .reveal:not(.form){padding-bottom:0}` (Stand auch schon in Block 9c) — redundante Regel aus Block 14 entfernt (Kommentar hinterlassen).
+
+**Konsistenz / Qualität:**
+- Footer-Nav: „Zusammenarbeit"-Link auf `index.html` und `ueber-mich.html` ergänzt (war nur auf `zusammenarbeit.html` vorhanden).
+- `meta name="robots" content="index, follow"` auf `index.html` und `zusammenarbeit.html` ergänzt (war nur auf `ueber-mich.html` vorhanden).
+- Script-Ladereihenfolge vereinheitlicht auf allen 3 Seiten: `script.js` zuerst (kein `defer`), dann GoatCounter `async`. `ueber-mich.html` hatte die Reihenfolge umgekehrt; `zusammenarbeit.html` hatte überflüssiges `defer`.
+
+**CSS-Cleanup (`zusammenarbeit.css`, `ueber-mich.css`):**
+- `@keyframes hbDrift` in `ueber-mich.css` umbenannt zu `@keyframes auHbDrift` + Referenz in `.au-hb-a,.au-hb-b` angepasst. Verhindert, dass `ueber-mich.css` den gleichnamigen `@keyframes hbDrift` aus `style.css` global überschreibt (−9px Amplitude → −4px Amplitude auf allen Seiten die `ueber-mich.css` laden).
+- 3 Inline-Styles aus `zusammenarbeit.html` in CSS-Klassen überführt (Block 15 in `zusammenarbeit.css`):
+  - `style="text-align:right"` auf `.ogh-desc` → `.ogh-desc--right`
+  - `style="grid-template-columns:repeat(5,1fr)"` auf `.faden-rail` → `.faden-rail--5`
+  - Großer Inline-Style-Block auf Ablauf-CTA-Div → `.za-ablauf-cta`
+- `style="margin-top:60px"` auf `.faden` entfernt — globaler clamp-Wert aus `style.css` (clamp(60px,7vw,92px)) setzt den korrekten responsiven Abstand, der fixe Inline-Wert war redundant und unterdrückte den clamp.
+
+**Barrierefreiheit (`barrierefreiheit.html`):**
+- „Bereits berücksichtigte Maßnahmen": Prinzipien-Accordion-Hinweis ergänzt (`<button aria-expanded>`), Formular-Einträge präzisiert (`aria-required`, `aria-describedby`, `role="alert"`, `aria-live="polite"`), Mobile-Menu-Overlay (`role="dialog"`), `aria-current="page"` dokumentiert, externe Links-Hinweis konkretisiert.
+- „Bekannte Einschränkungen": „Hero-Tag-Labels"-Eintrag auf „Angebots-Karte Tag-Chips" aktualisiert (Hero wurde redesigned; der Farbkontrast-Hinweis betrifft jetzt die gedämpften `.offer .tag`-Chips).
+
+**CLAUDE.md:**
+- Neuer Abschnitt „Handoff-Qualitätssicherung — Encoding-Check": Curly-Quote-Prüfung nach jedem Design-Import, Diagnoseregel für leere Sections.
+- Neuer Abschnitt „CSS-Qualitätsregeln": Tokens nur in `tokens.css`, keine Layout-Inline-Styles, keine doppelten Selektoren, eindeutige `@keyframes`-Namen.
+
+**Invarianten-Check:**
+- Em-Dashes: keine neuen ✓. Externe Font-CDN: keine ✓. MEDIEN.md: keine Bilder geändert ✓. Rechtstexte: unverändert korrekt ✓.
+- Nav 4er-Liste weiterhin korrekt auf allen 3 Seiten ✓. Footer-Copyright einheitlich ✓.
+
+**Nicht angefasst (bewusste Entscheidung):**
+- Tote CSS-Klassen (`.about-portrait`, `.about-skills`, `.hero-scroll` etc. aus altem Hero-Layout): Identifiziert, aber nicht entfernt — ohne visuelle Probe zu riskant, da CSS-Entfernung stille Regressionen erzeugen kann. Separate Aufräum-PR wenn sicher.
+- `.voices-note`/`.voices-dots` in `style.css`: Gehören zum bewusst auskommentierten Kundenstimmen-Block — bleiben bis echter Content vorliegt.
+
+**Geänderte Dateien:** `index.html`, `ueber-mich.html`, `zusammenarbeit.html`, `ueber-mich.css`, `zusammenarbeit.css`, `barrierefreiheit.html`, `CLAUDE.md`, `PROTOKOLL.md`.
+
+---
+
 ### 2026-06-07 — Kritischer Fix: Encoding-Korruption Kontakt-Section + fehlende CSS-Hover-Regeln (Claude Code)
 
 **Auslöser:** Nach Merge von PR #59 (Finaler Feinschliff) zeigte der Live-Stand: Kontakt-Section auf `zusammenarbeit.html` komplett leer / unsichtbar. Diagnose über mehrere Runden (Byte-Analyse der Datei).
