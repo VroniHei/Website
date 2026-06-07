@@ -156,6 +156,25 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF
 
+### 2026-06-07 — Phase 3 Visuell: Claim-Band + Kontakt-Avatar + BG-Tönungen (Claude Code · Nachlieferung)
+
+**Was:** Drei visuelle Änderungen aus dem Handoff `2026-06-07_zusammenarbeit-briefing-gesamtcheck` (Phase 3 Visuelles), die in PR #57 noch nicht implementiert waren — der erste Vergleich mit dem Bundle hatte einen älteren Snapshot-Stand erwischt.
+
+**Geänderte Dateien:**
+- `zusammenarbeit.html` — Claim-Band: Bild `vroni-stille-holzsteg` → `about-brand-essence` (Editorial-Stillleben Brand-Strategy-Workspace), Text „Sichtbarkeit ist auch eine Frage von Energie." → „Was außen trägt, muss innen sortiert sein.", `data-screen-label` → „Claim Sortieren". Kontakt-Section: `.au-sign-row` mit 54×54 Round-Avatar (`about-arbeiten`) + Note „Ich lese jede Nachricht selbst." hinzugefügt (gleiches Pattern wie `ueber-mich.html`).
+- `zusammenarbeit.css` — BG-Tönung für `#rote-faden-check` (warm-chalk-Gradient + sage-Blob top-right + clay-Blob bottom-left) und `#ablauf` (warm-chalk + green-Glow top-left + sage-Blob bottom-right). Ergebnisse-Section: clay/sage-Blobs + dezentes „Roter Faden"-SVG-Linienmotiv oben rechts (auf ≤900px ausgeblendet).
+
+**Warum:** Phase 3 Visuelles aus dem Design-Briefing war bei PR #57 noch nicht im Repo. Der Claim-Band zeigte noch den alten Outdoor-Holzsteg-Stand; der Kontakt-Section fehlte der Avatar-Anker. Die BG-Tönungen machten plain-chalk-Strecken zwischen Sections visuell ruhiger.
+
+**Claim-Band-Iterations-Pfad (3 Runden im Design, dokumentiert in Handoff):**
+- Round 1: outdoor `zitat-weg` (Bergpfad) + neuer Text → Vroni: weder Text noch Bild ok.
+- Round 2: `vroni-stillleben-gedankenraum` + „Was außen trägt..." → Vroni: Text bleibt, aber Bild schon im RFC-CTA-Panel (Duplikat).
+- Round 3 (final): `about-brand-essence` (Brand-Strategy-Workspace) + Text bleibt.
+
+**Konsequenzen / Follow-up:** `about-brand-essence` jetzt auch auf `zusammenarbeit.html` im Einsatz → MEDIEN.md-Eintrag aktualisiert.
+
+---
+
 ### 2026-06-07 — Briefing-Gesamtcheck Zusammenarbeit + globale Quick-Wins (Claude Code · PR #57)
 
 **Was:** Umsetzung des Design-Handoffs `2026-06-07_zusammenarbeit-briefing-gesamtcheck` in einem PR. Drei Phasen 1:1 aus Claude Design übernommen.

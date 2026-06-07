@@ -841,3 +841,75 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   .za-rfc-cta-panel:hover .za-rfc-cta-figure img{transform:none;}
   .za-rfc-cta-btn-pri:hover{transform:none;}
 }
+
+/* ---------------------------------------------------------
+   BG-Tönung für RFC + Ablauf (Briefing §28/30 · Round
+   2026-06-07 Phase 3 Visuelles): plain chalk wirkte zwischen
+   den umliegenden sand- und gradient-Sections wie ein Loch.
+   Beide Sections bekommen jetzt eine sehr subtile warm-chalk-
+   Gradient + dezenten Editorial-Blob als Markenanker:
+     - RFC: warme Sand-Note + sage-Blob top-right (spiegelt
+       die Method-Section gegenüber, dort green-Blob top-left).
+     - Ablauf: leichter warm-chalk + sehr subtiler green-Glow
+       top-left -- nimmt die "roter Faden"-Brand-Linie auf,
+       passt zum Timeline-Charakter der Section.
+   Beide Tönungen bleiben SEHR subtil (Endwert F7-FB-Bereich),
+   damit der chalk-Look der Seite nicht kippt.
+   --------------------------------------------------------- */
+#rote-faden-check{position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--chalk) 0%,#FBF6EA 100%);}
+#rote-faden-check::before{content:"";position:absolute;
+  width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(155,163,131,.14),transparent 65%);
+  top:4%;right:-220px;pointer-events:none;filter:blur(14px);z-index:0;}
+#rote-faden-check::after{content:"";position:absolute;
+  width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(205,138,91,.08),transparent 70%);
+  bottom:-120px;left:-120px;pointer-events:none;filter:blur(10px);z-index:0;}
+#rote-faden-check .wrap{position:relative;z-index:1;}
+
+#ablauf{position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--chalk) 0%,#F7F4E8 100%);}
+#ablauf::before{content:"";position:absolute;
+  width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,232,79,.10),transparent 70%);
+  top:18%;left:-200px;pointer-events:none;filter:blur(16px);z-index:0;}
+#ablauf::after{content:"";position:absolute;
+  width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(155,163,131,.10),transparent 70%);
+  bottom:-100px;right:-100px;pointer-events:none;filter:blur(12px);z-index:0;}
+#ablauf .wrap{position:relative;z-index:1;}
+
+/* ---------------------------------------------------------
+   Ergebnisse-Section visuell stärker (Briefing §22 Output-Board
+   · Round 2026-06-07 Phase 3): Plain `.au-expect`-Beige-Gradient
+   bekommt zusätzliche Tiefe via Editorial-Blobs in clay + sage
+   (passend zu Method/FAQ-Pattern) plus ein dezentes "roter
+   Faden"-Linienmotiv als SVG-Background-Detail oben rechts.
+   Der Strang ist clay-getönt, blur-weich, sehr niedrige Opacity
+   -- visueller Anker zum Marken-Kern ohne in den Vordergrund
+   zu drängen. Section-Padding ist von .au-expect gesetzt; hier
+   nur die Background-Variation + Stacking-Context.
+   --------------------------------------------------------- */
+#ergebnisse{position:relative;overflow:hidden;}
+#ergebnisse::before{content:"";position:absolute;
+  width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(205,138,91,.14),transparent 65%);
+  top:-120px;right:-180px;pointer-events:none;filter:blur(16px);z-index:0;}
+#ergebnisse::after{content:"";position:absolute;
+  width:440px;height:440px;border-radius:50%;
+  background:radial-gradient(circle,rgba(155,163,131,.16),transparent 70%);
+  bottom:-160px;left:-160px;pointer-events:none;filter:blur(14px);z-index:0;}
+#ergebnisse .wrap{position:relative;z-index:1;}
+/* Roter-Faden-Linie als subtiles SVG-Background (top-right):
+   eine geschwungene clay-Hairline, die durch die Section läuft
+   wie ein "Brand-Anker". Sehr niedrige Opacity, blur-soft. */
+#ergebnisse .au-expect-grid::before{content:"";position:absolute;
+  top:-80px;right:-40px;width:280px;height:180px;pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 180' fill='none'><path d='M-20 140 C 40 100, 100 60, 160 70 S 260 130, 300 60' stroke='%23CD8A5B' stroke-width='1.4' stroke-linecap='round' stroke-dasharray='2 7' opacity='.55'/></svg>");
+  background-repeat:no-repeat;background-size:contain;
+  z-index:0;}
+#ergebnisse .au-expect-grid{position:relative;}
+@media (max-width:900px){
+  #ergebnisse .au-expect-grid::before{display:none;}
+}
