@@ -2061,4 +2061,71 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 - MEDIEN.md: `tablet-ausfuellen-hand` jetzt in aktiver Verwendung — Eintrag aktualisieren bzw. erstmals registrieren (war bisher als Asset im Repo, aber ohne Verwendung im Register).
 - Live-Effekt nach Merge: deutlich höhere Click-through-Wahrscheinlichkeit auf RFC-Download durch (a) Bild-Hook, (b) Trust-Badge, (c) klar dominanten Primary-Button.
 
+---
+
+### 2026-06-07 — Zusammenarbeit Finaler Feinschliff (6 Atelier-PRs + Audit, Branch `design/zusammenarbeit-final-politur-feinschliff`)
+
+**Auslöser:** Briefing „Claude_Design_Briefing_Zusammenarbeit_Finaler_Feinschliff.md" — Politur-Pass, kein Neubau. Sechs thematisch gruppierte PRs, dann ein A11y-Audit.
+
+**Was geändert wurde:**
+
+PR 1 — Sofort-Fixes (`zusammenarbeit.html`):
+- **PS-Box** ersetzt das Trust-Signal „Ich lese jede Nachricht selbst." am Kontakt-Avatar-Slot. PS-Box = dezenter Alternativ-Pfad zum RFC-Download, ohne mit dem Formular zu konkurrieren. Enthält Avatar, Eyebrow „Noch nicht bereit?", Kurztext, Download-CTA.
+- **LinkedIn-Spalte** im Footer-Kontakt-Block ergänzt (zuvor nur Instagram + Anfrage-Link + RFC). RFC-Link aus Kontakt-Spalte entfernt (RFC ist im Footer-Nav bereits vorhanden).
+- **Privacy-Hinweis** aus der linken Kontakt-Spalte in die Formular-Spalte (nach `form-note`) verschoben. Klasse `contact-privacy--in-form` neu. Linke Spalte dadurch ruhiger und besser ausbalanciert.
+- **Copyright** auf „© 2026 Veronika Heidrich · alle Rechte vorbehalten." angeglichen (war nur „© 2026 Veronika Heidrich"), identisch zu `index.html` und `ueber-mich.html`.
+- **Footer-Bottom-Reihenfolge** angeglichen: Copyright-Span jetzt vor `.legal` (wie auf den anderen Hauptseiten).
+
+PR 2 — Kontaktabschluss luftiger (`zusammenarbeit.css`):
+- Toten `padding-bottom:64px` in der linken Spalte entfernt (war für `contact-privacy` reserviert, die jetzt umgezogen ist).
+- `.za-ps-row` margin-top 36→44px, `.contact-direct` margin-top 32→36px, Form-Padding 38/38/34→42/40/38px, `form-note` margin-top 14→18px.
+
+PR 3 — Voice-/Mikrocopy-Sweep (`zusammenarbeit.html`):
+- Pain-Section Lead: „Viele Websites entstehen nicht aus einem sauberen Konzept, sondern aus einzelnen Teilen…" → „Viele Websites wachsen Stück für Stück. … Selten gibt es ein gemeinsames Konzept dahinter."
+- Angebote Branding-Result: „kannst du klarer benennen" → „weißt du" (Redundanz-Reduktion).
+- Angebote Website-Desc: „Menschen klarer durch dein Angebot führt" → „Menschen Schritt für Schritt durch dein Angebot führt".
+- Ablauf Intro: „Du musst mir keine perfekt vorbereitete Anfrage schicken" → „Eine Anfrage muss nicht perfekt vorbereitet sein"; „sortieren wir im Gespräch" → „schauen wir uns im Gespräch an".
+- RFC-CTA-Text: Grammatik-Fix „Wenn dir danach Lust auf ein Gespräch ist" → „Wenn du danach Lust auf ein Gespräch hast".
+- FAQ Rote-Faden-Check-Antwort: „sortieren möchtest … macht deine Anfrage später oft klarer" → „schauen möchtest … macht deine spätere Anfrage konkreter".
+- Kontakt H2: „Den Rest sortieren wir gemeinsam" → „Den Rest schauen wir gemeinsam an".
+- Kontakt Body: „Du musst nichts vorbereitet haben. Es reicht…" → „Ein paar Sätze reichen. Beschreib einfach…".
+- JSON-LD FAQ synchron zu sichtbarer FAQ-Antwort angeglichen.
+
+PR 4 — Mikrocopy-Endschliff (3 Seiten):
+- Falsche Anführungszeichen (ASCII `"` U+0022 statt typografisch `"` U+201C als schließende Guillemets) in 6 Stellen auf 3 Seiten korrigiert: `zusammenarbeit.html` (Angebote pi-text), `ueber-mich.html` (Knoten-Zitat), `index.html` (System-Box, 3× Testimonial-Quotes).
+- PS-Box-CTA semantisch: „holen" → „herunterladen" (konsistent mit Hero-Button „starten").
+
+PR 5 — Footer global luftiger (`style.css`):
+- `.footer` padding-top 64→72px, padding-bottom 26→32px.
+- `.footer-top` gap 38→44px.
+- `.footer-bottom` margin-top 48→60px, padding-top 24→28px.
+- Betrifft alle Seiten mit Footer (index, ueber-mich, zusammenarbeit, impressum, datenschutz, barrierefreiheit, 404).
+
+PR 6 — Nav-Vereinfachung global (alle 3 Hauptseiten + Mobile-Menu):
+- Neue Nav: **Start | Über mich | Zusammenarbeit | Kontakt** (4 Items statt 6).
+- Entfernt: Angebote, Ansatz, Yoga, FAQ.
+- `white-space:nowrap` auf `.nav-links a` ergänzt (verhindert Umbruch bei knappem Viewport).
+- Desktop-Nav und Mobile-Menu auf allen 3 Hauptseiten synchron.
+
+PR 7 — Sub-Seiten-Hero-H1-Größe (`tokens.css` + `ueber-mich.css` + `zusammenarbeit.css`):
+- Neuer Token `--fs-display-sub: clamp(34px,3.55vw,52px)` in `tokens.css` (Sub-Seiten-Hero etwas kleiner als Home, damit Home als Markeneinstieg größer bleibt).
+- `ueber-mich.css` `.au-hero h1` von `var(--fs-display)` auf `var(--fs-display-sub)` umgestellt.
+- `zusammenarbeit.css` `.au-hero h1` hardcoded `font-size:clamp(34px,3.55vw,52px)` entfernt — nutzt nun automatisch `var(--fs-display-sub)` via `ueber-mich.css`.
+
+A11y-Audit: Alle 3 Hauptseiten geprüft (Touch-Targets ≥44px ✓, Alt-Texte ✓, Heading-Order ✓, WCAG-Kontraste ✓).
+
+**Invarianten-Check:**
+- Em-Dashes in sichtbarem Text: keine neuen eingeschleust ✓.
+- Schriften weiterhin lokal, kein Font-CDN ✓.
+- MEDIEN.md: keine Bilder geändert → kein Update nötig ✓.
+- Rechtstexte: keine neuen Drittdienste → Impressum/Datenschutz unverändert korrekt ✓.
+- Footer-Logo `brand--line` auf `zusammenarbeit.html`: bisher ohne `brand--line` (korrekt, wie Home + Über mich) ✓.
+
+**Geänderte Dateien:** `zusammenarbeit.html`, `zusammenarbeit.css`, `ueber-mich.css`, `ueber-mich.html`, `index.html`, `style.css`, `tokens.css`, `PROTOKOLL.md`.
+
+**Offen nach diesem PR:**
+- Mobile-Audit: CSS-Level vollständig (Breakpoints @1080/900/720/560/520), aber Rendering auf echtem Handy noch nicht abgenommen. Bitte auf Mobilgerät prüfen.
+- Tastatur-Tab-Reihenfolge + Reduced-Motion manuell durchgehen.
+- Lighthouse-Lauf nach Livegang.
+
 **Geänderte Dateien:** `zusammenarbeit.html` (2 Sektionen komplett ersetzt), `zusammenarbeit.css` (alter CTA-Block entfernt + 2 neue Komponenten-Blöcke 17 + 18 am Datei-Ende). Kein Token, keine globalen Änderungen, kein `style.css`.

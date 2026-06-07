@@ -49,6 +49,7 @@
      ------------------------------------------------------------
      Größen (clamp = responsive Display/Headline-Stufen) */
   --fs-display: clamp(40px,4.8vw,66px); /* Hero-H1 — entspricht der Live-Optik der Startseite */
+  --fs-display-sub: clamp(34px,3.55vw,52px); /* Hero-H1 auf Sub-Seiten (Über mich, Zusammenarbeit, …) — etwas kleiner als Home, damit Home als Markeneinstieg größer bleibt. Round 2026-06-07. */
   --fs-display-sm: clamp(33px,8.6vw,42px); /* Hero-H1 ≤ 560px (Mobile) — engere clamp-Range für schmale Viewports */
   --fs-display-lg: clamp(60px,3.4vw,68px); /* Hero-H1 ≥ 1600px (sehr breit) — Headroom auf großen Screens */
   --ls-head-sm: -.02em;                   /* Headlines ≤ 560px — minimal lockerer als --ls-head (Lesbarkeit bei kleinerem Font) */

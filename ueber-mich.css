@@ -21,11 +21,11 @@
 .au-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.04fr .96fr;
   gap:clamp(40px,5vw,80px);align-items:stretch;}
 .au-hero-copy{max-width:560px;align-self:center;}
-/* Hero-H1 + Lede greifen 1:1 die Startseiten-Hero-Tokens auf (.hb-h1 / .hb-lede /
-   .hb-lede--2 in style.css) — Hero darf seine eigene, größere Skala haben, aber
-   identisch zur Startseite, nicht als Sonderwert. */
-/* Hero-H1 — Tokens aus tokens.css (identisch zur Startseite). */
-.au-hero h1{font-family:var(--ff);font-weight:650;font-size:var(--fs-display);line-height:1.05;
+/* Hero-H1 — Sub-Seiten-Token aus tokens.css (--fs-display-sub).
+   Round 2026-06-07: Sub-Seiten-Hero einen Tick kleiner als Home, damit
+   Home als Brand-Einstieg größer bleibt und Sub-Seiten sich konsistent
+   ruhiger einführen. */
+.au-hero h1{font-family:var(--ff);font-weight:650;font-size:var(--fs-display-sub);line-height:1.05;
   letter-spacing:var(--ls-head);margin:18px 0 0;color:var(--ink);text-wrap:balance;max-width:14ch;}
 .au-hero h1 em{font-family:'Newsreader',Georgia,serif;font-weight:500;font-style:italic;
   letter-spacing:-.01em;font-size:1.12em;color:var(--ink);}
