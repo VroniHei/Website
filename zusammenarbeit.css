@@ -76,7 +76,11 @@
    ungeschützter Override würde sonst auf Mobile gewinnen). */
 .au-hero-copy{max-width:660px;}
 @media (min-width:561px){
-  .au-hero h1{max-width:none;font-size:clamp(34px,3.55vw,52px);}
+  /* max-width:none bleibt zusammenarbeit-spezifisch (langer H1).
+     font-size nutzt seit Round 2026-06-07 den globalen Sub-Page-Token
+     --fs-display-sub aus tokens.css (gilt jetzt automatisch für alle
+     Sub-Seiten via ueber-mich.css-Default). */
+  .au-hero h1{max-width:none;}
 }
 
 a.au-hb-tile.au-hb-quote{display:block;text-decoration:none;color:inherit;}
@@ -912,4 +916,105 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
 #ergebnisse .au-expect-grid{position:relative;}
 @media (max-width:900px){
   #ergebnisse .au-expect-grid::before{display:none;}
+}
+
+/* ---------------------------------------------------------
+   12 · KONTAKT · PS-BOX (Round 2026-06-07 Final-Politur · Briefing §5)
+   Ersetzt das Trust-Signal "Ich lese jede Nachricht selbst." auf
+   exakt dem gleichen Slot (.au-sign-row neben Avatar).
+   Funktion: dezenter Alternativ-Pfad zum Formular über den RFC.
+   Wichtig laut Briefing: KEIN Lead-Magnet-Look, nicht mit dem
+   Formular konkurrieren, "wie eine hilfreiche Randnotiz".
+   --------------------------------------------------------- */
+.za-ps-row{
+  align-items:flex-start;
+  margin-top:36px;
+  padding:16px 18px;
+  border:1px solid rgba(168,232,79,.18);
+  border-radius:var(--r-md);
+  background:rgba(168,232,79,.04);
+  gap:16px;
+}
+.za-ps-row .au-sign-ava{
+  width:46px;height:46px;
+}
+.za-ps{
+  display:flex;flex-direction:column;min-width:0;
+}
+.za-ps-eyebrow{
+  font-size:10.5px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(168,232,79,.85);
+  line-height:1;margin:0 0 8px;
+}
+.za-ps-text{
+  font-size:var(--fs-body-sm);font-weight:500;line-height:1.45;
+  letter-spacing:-.005em;color:var(--chalk);margin:0 0 10px;
+}
+.za-ps-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:600;letter-spacing:-.005em;
+  color:var(--green);text-decoration:none;
+  align-self:flex-start;
+  border-bottom:1px solid rgba(168,232,79,.35);
+  padding-bottom:2px;margin:0;
+  transition:color .25s var(--ease-out), border-color .25s var(--ease-out);
+}
+.za-ps-cta svg{width:14px;height:14px;flex:0 0 auto;}
+.za-ps-cta:hover,.za-ps-cta:focus-visible{
+  color:#C8F77B;border-color:rgba(168,232,79,.7);
+}
+@media (max-width:560px){
+  .za-ps-row{padding:14px;gap:12px;}
+  .za-ps-row .au-sign-ava{width:42px;height:42px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .za-ps-cta{transition:none;}
+}
+
+/* ---------------------------------------------------------
+   13 · CONTACT-PRIVACY · in-form Variant (Round 2026-06-07):
+   Fineprint sitzt jetzt im Formular (rechte Spalte) statt unter
+   dem Kontakt-Text links. Macht die linke Spalte ruhiger.
+   --------------------------------------------------------- */
+#kontakt.contact .contact-privacy--in-form{
+  position:static;
+  display:block;
+  margin:18px 0 0;
+  padding-top:14px;
+  border-top:1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  font-size:var(--fs-fine);
+  line-height:1.55;
+  letter-spacing:.04em;
+  color:var(--ink-soft);
+  text-align:left;
+}
+#kontakt.contact .contact-privacy--in-form a{
+  color:var(--ink);
+  border-bottom:1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  padding-bottom:1px;
+  transition:color .2s ease,border-color .2s ease;
+}
+
+/* ---------------------------------------------------------
+   14 · KONTAKTABSCHLUSS LUFTIGER (Round 2026-06-07 · PR 2)
+   Privacy ist aus der linken Spalte ins Formular gewandert (PR 1),
+   damit ist der globale padding-bottom:64px toter Raum geworden.
+   --------------------------------------------------------- */
+#kontakt.contact .contact-grid > .reveal:not(.form){
+  padding-bottom:0;
+}
+#kontakt.contact .contact-direct{
+  margin-top:36px;
+}
+.za-ps-row{
+  margin-top:44px;
+}
+#kontakt.contact .form{
+  padding:42px 40px 38px;
+}
+#kontakt.contact .form-note{
+  margin-top:18px;
+}
+#kontakt.contact .contact-privacy--in-form{
+  margin-top:20px;
 }

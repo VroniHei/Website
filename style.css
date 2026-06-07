@@ -80,7 +80,7 @@ img{max-width:100%;display:block;}
 .footer .brand--line .bl-word::before{background:#BC7B4C;}
 .nav-links{display:flex;gap:4px;align-items:center;}
 .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink);padding:8px 14px;border-radius:100px;
-  transition:background .15s,color .15s;position:relative;}
+  transition:background .15s,color .15s;position:relative;white-space:nowrap;}
 .nav-links a:hover{background:rgba(35,34,26,.05);}
 .nav-links a.active{color:var(--green-text);}
 .nav-right{display:flex;align-items:center;gap:10px;}
@@ -625,12 +625,19 @@ img{max-width:100%;display:block;}
 .voices-dots .vd{width:8px;height:8px;border-radius:50%;background:var(--hair);transition:.18s;}
 .voices-dots .vd.on{width:26px;border-radius:100px;background:var(--green-deep);}
 
-/* ===== FOOTER — dunkles Ink, klare Trennung zum Kontakt-Forest ===== */
-.footer{background:var(--ink);color:var(--chalk);padding:64px 0 26px;position:relative;overflow:hidden;}
+/* ===== FOOTER — dunkles Ink, klare Trennung zum Kontakt-Forest =====
+   Round 2026-06-07 PR 5 (Final-Politur §6 „Footer hochwertiger und konsistenter"):
+   - padding-top 64→72px (mehr Atem zum Kontakt-Forest darüber)
+   - padding-bottom 26→32px (stärkere Ruhe am Seitenfuß)
+   - .footer-top gap 38→44px (Spalten harmonischer)
+   - .footer-bottom margin-top 48→60px + padding-top 24→28px (klarere Trennung)
+   Touches ALLE Seiten mit Footer (index, ueber-mich, zusammenarbeit,
+   impressum, datenschutz, barrierefreiheit, 404). */
+.footer{background:var(--ink);color:var(--chalk);padding:72px 0 32px;position:relative;overflow:hidden;}
 .footer::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
   background:radial-gradient(circle,rgba(203,190,244,.12),transparent 70%);top:-160px;right:-140px;pointer-events:none;filter:blur(10px);z-index:0;}
 .footer>.wrap{position:relative;z-index:2;}
-.footer-top{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:38px;align-items:stretch;}
+.footer-top{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:44px;align-items:stretch;}
 /* Mini-Zitat-Bild-Block (links, höhe passt sich an die Spalten an) */
 .footer-quote{position:relative;border-radius:var(--r-md);overflow:hidden;min-height:100%;margin-right:18px;
   box-shadow:0 20px 44px rgba(0,0,0,.36);}
@@ -657,7 +664,7 @@ img{max-width:100%;display:block;}
 .footer-col--about .fc-tags span{display:inline-flex;align-items:center;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--green);
   padding:5px 11px;background:rgba(168,232,79,.10);border:1px solid rgba(168,232,79,.22);border-radius:100px;}
 /* Bottom */
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:24px;
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:28px;
   border-top:1px solid rgba(168,232,79,.12);font-size:12.5px;color:#9aa589;flex-wrap:wrap;gap:18px;}
 .footer-bottom .footer-mark{display:inline-flex;flex-direction:column;align-items:flex-start;gap:4px;}
 .footer-bottom .footer-brand{font-family:var(--ff-display);font-size:20px;color:var(--chalk);line-height:1;letter-spacing:.015em;font-weight:400;}
