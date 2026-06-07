@@ -70,6 +70,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **about-media .am-main braucht explizite Höhe** im 900px-Breakpoint (`height:clamp(320px,70vw,520px)`), da `aspect-ratio` allein den Containing-Block nicht zuverlässig aufbaut für absolut positionierte Kinder.
 
 ### Mobile — Layout
+- [ ] **Navigation auf allen 3 Hauptseiten identisch (Desktop + Mobile)** — gleiche 6er-Liste, gleiche Reihenfolge: `Angebote · Ansatz · Über mich · Zusammenarbeit · Yoga · FAQ`. Active-State + `aria-current="page"` jeweils auf dem Eintrag der aktuellen Seite. Mobile-Menü erbt dieselbe Liste + Burger-CTA „Lass uns reden". (2026-06-07 verankert, nachdem die Nav nach der One-Pager-Trennung dreimal unterschiedlich war.)
 - [ ] **Burger-CTA** im Overlay = `background:var(--ink); color:var(--chalk)` (schwarz/weiß).
 - [ ] **Burger-Button** hat `aria-expanded`, `aria-controls="mobileMenu"` + toggled `aria-label` zwischen „Menü öffnen" / „Menü schließen" (in script.js).
 - [ ] Hero-Bild Mobile als **Banner über** der Headline (`.hero-visual{order:-1}`).
@@ -154,6 +155,160 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ---
 
 ## 3. VERLAUF
+
+### 2026-06-07 — Cross-Page Konsistenz: Navigation einheitlich · RFC-CTA-Panel verschlankt · Ergebnisse-Section ans DS angeglichen
+
+**Was geändert:**
+
+**A. Navigation einheitlich auf allen 3 Hauptseiten (Desktop + Mobile)**
+Vroni-Feedback: Beim Übergang vom One-Pager auf einzelne Seiten driftete die Nav: Über mich verlinkte „Werte" + „FAQ" statt „Zusammenarbeit", Mobile-Menüs waren ueberall unterschiedlich.
+
+Zielzustand (jetzt überall identisch, gleiche Reihenfolge):
+`Angebote · Ansatz · Über mich · Zusammenarbeit · Yoga · FAQ` + Burger-CTA „Lass uns reden".
+
+- `index.html`:
+  - `nav-links` war schon ok (Zusammenarbeit vorhanden) → unverändert.
+  - `mobile-menu` hatte `#ueber` (interner Anker, der so nicht mehr existiert) und `#trust` („Werte"), fehlte Zusammenarbeit + FAQ → ersetzt durch die einheitliche 6er-Liste.
+- `ueber-mich.html`:
+  - `nav-links`: „Werte" (`index.html#trust`) raus, „Zusammenarbeit" (`zusammenarbeit.html`) rein. „Über mich" bleibt `.active`.
+  - `mobile-menu`: gleiche Logik, plus FAQ als 6. Item.
+- `zusammenarbeit.html`:
+  - `nav-links` schon ok → unverändert.
+  - `mobile-menu`: nur FAQ ergänzt (war als einzige Mobile-Nav ohne FAQ).
+
+**B. RFC-CTA-Panel verschlankt + neues Bild (`#rote-faden-check`, am Ende der RFC-Section)**
+Vroni-Feedback: „Hol dir den Rote-Faden-Check"-Box ist viel zu massiv: Eyebrow „DEIN FREEBIE · SOFORT VERFÜGBAR" + Floating-Badge „KOSTENLOS · OHNE E-MAIL" beide groß, Titel sehr groß, dazu zwei fast identische Tablet+PDF-Mockups (Hero `tablet-leinen-bambus` + Feature `tablet-cafe-olivenzweig`, jetzt CTA noch ein drittes `tablet-ausfuellen-hand`).
+
+- `zusammenarbeit.html`:
+  - Floating-Pill `<span class="za-rfc-cta-badge">…</span>` ersatzlos entfernt (Info doppelte sich mit dem Eyebrow + Trust-Facts).
+  - Eyebrow-Wording von „Dein Freebie · Sofort verfügbar" auf das informativere „Kostenlos · ohne E-Mail" umgestellt (= das, was Vroni vorher als Badge zeigen wollte). „Freebie" raus, ist Marketing-Floskel.
+  - Bild: nach zwei Runden (Stillleben `vroni-stillleben-gedankenraum` zu losgelöst · Laptop `tablet-fensterbank-licht` passte vom Querformat nicht in die schmale Bildspur) zurück auf `rfc-mockups/tablet-ausfuellen-hand.{webp,png}` (Tablet in der Hand mit dem PDF · 1254×1254 quadratisch · passt in die schmale Spalte ohne hartes Cropping). Differenzierung zum Feature-Bild oben (`tablet-cafe-olivenzweig`, frei stehendes Tablet im Stillleben) entsteht durch das Framing: hier wird das Tablet aktiv gehalten/gelesen.
+- `zusammenarbeit.css` Block 18 (RFC-CTA-Panel):
+  - Grid-Spalte links von `minmax(280px,440px)` → `minmax(240px,360px)` (schmaler Bild-Spur).
+  - `max-width:1080px;margin:0 auto;` auf das Panel (war vorher full-width, wirkte zu massiv im sec).
+  - Schatten reduziert (von `0 30px 70px -30px` auf `0 22px 50px -28px`).
+  - `.za-rfc-cta-badge` + `.zbb-dot` komplett entfernt (DOM-Element ist weg).
+  - `.za-rfc-cta-eyebrow`: kein eigener Pill-Background mehr, kein Border, kein Padding → liest sich jetzt wie ein normaler Seiten-Eyebrow (`.lbl`-Stufe), nicht wie ein Sticker.
+  - `.za-rfc-cta-title`: von `clamp(28px,2.6vw,38px)` (Display-Stufe) auf `var(--fs-h3)` (DS-Stufe für Subsection/Karte). So passt der Titel zur Hierarchie der Seite (gleiche Stufe wie `.offer h3` etc.).
+  - `.za-rfc-cta-text`: von `var(--fs-body)` auf `var(--fs-body-sm)` (ruhigere Sub-Textstufe in einer Karte).
+  - `.za-rfc-cta-body`: Padding von `clamp(36px,4vw,56px)` auf `clamp(28px,3vw,40px)` reduziert; Gap zwischen Elementen von 18-24 auf 14-18.
+  - Mobile-Reset für `.za-rfc-cta-badge` weg, Figure-aspect von `4/3` auf `16/10` (passt zum Querformat des neuen Bildes 1672×941).
+
+**C. Ergebnisse-Section ans Designsystem angeglichen + Übergang zu FAQ**
+Vroni-Feedback: „Was danach klarer sein soll." sieht stilistisch anders aus als der Rest (große Newsreader-Italic-Zahlen + H3-Titel statt H4-Karten-Standard), und der Übergang zur darunterliegenden FAQ-Section ist optisch nicht da (beides weiß).
+
+**Round 1 (Edit-Pass):** zr-num auf `.lbl`-Stufe + h3 auf `var(--fs-h4)` + Section auf `sec--sand`. Vroni: „besser, aber noch nicht einheitlich. Vielleicht so wie auf ueber-mich `Was am Ende klarer werden soll`?" → Round 2 macht genau das.
+
+**Round 2 (gleicher Tag, finaler Stand):** komplett auf das `.au-expect`-Pattern aus `ueber-mich.html` umgestellt. Beide Unterseiten zeigen jetzt dieselbe Section in derselben Struktur:
+- `zusammenarbeit.html` `#ergebnisse`:
+  - Section-Klasse `sec za-results sec--sand` → `sec au-expect` (= beiger Gradient aus `ueber-mich.css`, identisch zu ueber-mich).
+  - `shead--center` + extra `.za-results-intro` → eine `shead` mit Eyebrow + H2 + Intro-`<p>` (gleicher Aufbau wie ueber-mich Section).
+  - Eyebrow-Wording auf „Was am Ende klarer werden soll" (gleiches Wording wie ueber-mich, schafft echte Zweier-Brücke).
+  - H2 auf „Aus dem, was da ist, eine Form, mit der du *weiterarbeiten* kannst." (identisch zur ueber-mich-Section). Intro-`<p>` aus dem Briefing-Text bleibt erhalten.
+  - 6 `.za-result` (li) → 6 `.step` (div) mit `<span class="snum">` + `<div class="scontent">` (slbl + h3 + p). Texte umformuliert: Label (slbl) als kurzes Schlagwort (Startseite/Angebote/Sprache/Struktur/KI-Rolle/Nächste Schritte), H3 als Outcome-Noun (z. B. „Eine Startseite, die sofort führt"), p als Detail. Inhaltliche Information bleibt erhalten.
+- `zusammenarbeit.css` Block 17 (Ergebnisse): alle eigenen Regeln (`.za-results`, `.za-results-intro`, `.za-results-grid`, `.za-result`, `.zr-num`, `.zr-line`, `.za-result:hover` etc.) komplett entfernt. Nur noch Kommentar-Stub, der auf `ueber-mich.css` `.au-expect` verweist. Styles erben aus `style.css` (`.step`, `.shead`) + `ueber-mich.css` (`.au-expect`, `.au-expect-grid`).
+
+**Was das tut für die Seite als Ganzes:** Die Zusammenarbeit-Seite hatte vorher ein eigenes Editorial-Pattern (Newsreader-Italic-Big-Number + Hairline-Grid) nur für diese eine Section. Das ist jetzt verschwunden. Stattdessen recyceln wir genau die Section, die auf ueber-mich denselben Job macht. Konsequenz: niemand muss zwei Stilfamilien pflegen.
+
+**D. Arbeitsweise-Steps: kurzer Titel + Beschreibung (Round 2026-06-07)**
+Vroni-Feedback (mit Screenshot): die 4 Steps unter „Vronis Arbeitsweise" wirkten zu schwer, weil der lange Satz allein als H3 stand. Schöner: Kurz-H3 + Beschreibungs-Paragraph (wie das DS-Pattern in `.step` ja eigentlich vorsieht — h3 + p). Nachfolge-Bitte: gleiche Zeilen-Länge pro Step, damit die 4 Karten visuell ruhiger sitzen → 03 und 04 P-Texte gekürzt auf ~115 chars (entspricht 01/02-Niveau).
+
+**E. Ablauf-Timeline: gleich lange Stations-Beschreibungen (Round 2026-06-07)**
+Vroni-Feedback: die `.fd`-Texte der 5 Stationen sollen visuell gleich lang sein. Vorher reichte das von ~78 bis ~96 chars (3 vs. 5 Zeilen in den engen 200px-Rail-Spalten). Jetzt alle in der ~90 chars Range:
+- Station 01: „Du schreibst mir kurz, wo du gerade stehst und was sich **gerade** nicht mehr stimmig anfühlt." (+1 Wort).
+- Station 03: „Du bekommst eine ehrliche Einschätzung, welcher nächste Schritt **für dich gerade** sinnvoll ist." (+3 Wörter).
+- Stationen 02/04/05 unverändert (lagen schon im Ziel-Range).
+
+**E.1 Step 04 positiver formuliert (Round 2026-06-07)**
+Vroni-Feedback: der P-Text in Step 04 („Kein schönes Ergebnis fürs Schaufenster. Sondern eine Grundlage…") trug eine Negativ-Konstruktion („Kein … sondern …"). Der Ergebnis-Block soll aber komplett positiv stehen. Neue Formulierung: „Eine Grundlage, mit der du im Alltag wirklich arbeiten kannst und die mit dir weiterwächst, wenn sich etwas verändert." (~118 chars, gleicher Ziel-Range).
+
+**F. Sichtbarkeit&Energie-Notes: 2. Kachel-Titel jetzt zweizeilig (Round 2026-06-07)**
+Vroni-Feedback: in der `.za-energy-notes`-3er-Reihe war Kachel 2 („Stimmig") als einzige nur einzeilig (4 Wörter). Jetzt: „Welche Form sich nach dir und nicht nach Pflicht anfühlt." (~ 2 Zeilen, parallel zu Kachel 1 und 3).
+
+**G. RFC-Feature-Box: 2-Spalter mit gleicher Höhe + ruhiger Note-Editorial-Zeile (Round 2026-06-07 Final C)**
+Iterations-Verlauf:
+- Round 1: 3-Spalter (Bild links). → „Aufteilung funktioniert nicht."
+- Round 2: 2-Spalter asymmetric (Insight links, Image rechts). → „Besser, aber Abstand fehlt, Mitte unruhig."
+- Round 3: 3-Spalter mit Bild MITTIG, Texte flankieren. → Vroni-Screenshot: „Stop, Round 2 war eigentlich gut. Nur 2 Detail-Fixes."
+- Round 4 (Final): zurück zur Round-2-Basis + 2 Fixes:
+  1. Note-Pill am unteren Rand der Insight-Spalte: aus Pill-Treatment (Hintergrund, Border, abgerundet) wird eine ruhige italic Editorial-Zeile mit Hairline-Border-Top. So liest sich der Block jetzt als „Hauptaussage → Bullets → Footnote", nicht als „Aussage + abgesetzte Pille".
+  2. Bild-Spalte streckt sich auf die Höhe der Insight-Spalte. `align-items:stretch` auf das Grid, `.za-rfc-cover` als flex column mit `height:100%`, `picture` als `flex:1 1 auto` und `img` als `height:100%; object-fit:cover`. So bleibt das Bild dynamisch passend zur Inhaltsmenge links.
+
+`zusammenarbeit.html` RFC-Feature: zurück auf 2-Spalter (insight + figure, ohne `--intro`/`--list`-Modifier). Bild bleibt `tablet-bereich-fenster` (Querformat 1672×941).
+
+`zusammenarbeit.css` Block 3 (RFC-Feature):
+- `grid-template-columns:1fr 320px 1fr` → `minmax(0,1.15fr) minmax(300px,420px)`.
+- `align-items:start` → `align-items:stretch`.
+- `.za-rfc-insight`: jetzt `height:100%; display:flex; flex-direction:column` (kein `align-self:start` mehr).
+- `.za-rfc-cover`: `height:100%`, `picture` mit `flex:1 1 auto; min-height:0`, `.za-rfc-cover-img` mit `height:100%; object-fit:cover` (statt `aspect-ratio` + `height:auto`).
+- `.za-rfc-list li`: zurück auf `padding-left:30px; font-size:var(--fs-body)` (in der breiteren linken Spalte verträgt's die normale Body-Stufe).
+- `.za-rfc-note-inline` im Insight-Kontext: kein Pill mehr (background:none, border:none, padding:0). Stattdessen italic, gedämpfter Chalk-Tone (`rgba(248,245,238,.65)`), Hairline-Border-Top, `margin-top:auto` (drückt es an den unteren Rand der Spalte) + `padding-top:var(--space-md)`. Liest sich jetzt wie eine ruhige Editorial-Fußzeile.
+- Mobile: max-width für die Bild-Spalte auf 560px hoch (vorher 380px), `height:auto` + Aspect-Ratio 16/10 statt full-height (auf 1-Spalter ist die Strecke-Logik nicht nötig). Note-Pill bekommt wieder ein normales `margin-top` (kein auto).
+
+**H. Ergebnisse-Shead: shead--split (Round 2026-06-07)**
+Vroni-Feedback: zu viel Weißraum rechts von der „Was am Ende klarer werden soll"-Shead. Lösung: `shead` -> `shead shead--split` mit `<div>` (Eyebrow + H2) links und `<p>` (Intro-Text) rechts. Pattern bereits etabliert (Pain-Intro, Angebote, Method-Head). Füllt den vollen Container.
+
+**I. Offer-Group-Head (Primär + Sekundär): rechte Beschreibung an Karten ankern (Round 2026-06-07)**
+Vroni-Feedback: in der `.offer-group-head` (beide Varianten) schwebte der `.ogh-desc`-Text rechts oben ohne visuellen Anker zur darunter liegenden Karte. Lösung in `zusammenarbeit.css`:
+- Inneres Grid an das umgebende `.offers`-Grid angeglichen: `grid-template-columns:1fr 1fr;gap:24px` (war `minmax(0,1fr) minmax(0,1.1fr)`).
+- `.ogh-desc` bekommt `padding-left:36px` (entspricht `.offer`-Karten-Padding 36px) → Text beginnt jetzt exakt an derselben x-Koordinate wie der Inhalt der rechten Offer-Karte.
+
+**J. Konsistenz-Sweep zusammenarbeit (Round 2026-06-07)**
+- **Hover-Motion auf allen Section-Bildern eingezogen.** Vroni-Feedback: einige Bilder auf der Zusammenarbeit-Seite hatten den site-weit etablierten Hover-Zoom (.au-hb-tile, .am-main etc.) noch nicht. Jetzt mit identischem Pattern (`transition:transform 1.4s cubic-bezier(.2,.7,.15,1); will-change:transform` + `:hover img{transform:scale(1.05)}` + `prefers-reduced-motion:reduce`-Fallback) eingezogen auf:
+  - `.za-method-head-figure` (Vronis Arbeitsweise).
+  - `.za-energy-head-figure` (Sichtbarkeit & Energie).
+  - `.za-rfc-cover-img` (RFC-Feature Cover) -- vorher hatte das Cover einen `translateY(-3px)`+shadow-Lift; auf Scale umgestellt, damit überall dieselbe Motion-Bewegung wirkt.
+- Hero-Bento (`.au-hb-tile`) erbt bereits aus `ueber-mich.css`, kein Doppel-Definition nötig.
+- CTA-Panel-Bild hat schon `scale(1.03)`-Hover.
+- Damit alle ruhenden Bilder auf der Seite jetzt das gleiche Hover-Verhalten zeigen wie auf Home und Über mich. **Ausnahme: Claim-Band** (Quote-Banner mit Ken-Burns-Animation `cbDrift`) bleibt explizit ohne Hover-Scale -- Quotes/Claim-Bänder haben grundsätzlich ambient Motion statt Hover-Motion.
+
+**K. Praxis-Regel: globale vs. seitenspezifische Patches (Round 2026-06-07, Vroni-Erinnerung)**
+Vroni: „Achte bitte auch drauf dass Anpassungen immer global angepasst werden wenn es sich um ein bestimmtes Element bzw. eine bestimmte Komponente handelt. Wie bei den Icons bei der Passt und passt eher Nicht Gegenüberstellung."
+
+Daumenregel verbindlich für alle künftigen Runden:
+- **Globaler Selektor** (kommt auf mehreren Seiten vor, z. B. `.offer`, `.step`, `.au-fit-list`, `.shead`, `.shead--split`, `.eyebrow`, `.btn`, `.form .field`) → Patch lebt in `style.css` oder in einer von mehreren Seiten geteilten Datei (z. B. `ueber-mich.css`, das auch auf `zusammenarbeit.html` geladen wird). Nie in eine seitenspezifische Datei kopieren.
+- **Seitenspezifischer Selektor** (Prefix `.za-*` nur Zusammenarbeit, `.au-*` nur Über mich) → seitenspezifisches CSS bleibt richtig.
+- **Neue Komponenten auf Unterseite**, die später wiederverwendet werden könnten → in `style.css` oder eine geteilte Datei heben + im Designsystem dokumentieren. Nicht doppelt entwickeln.
+- **Beispiel-Fall hier (au-fit-list Icons)**: 24px → 22px / 16px → 14px / padding-left 34px → 40px / Icon-Top-Alignment per `--fit-icon-size`-Custom-Prop wurde direkt in `ueber-mich.css` gepatcht (geteilte Datei) und wirkt damit gleichzeitig auf `ueber-mich.html` UND `zusammenarbeit.html`. So müssen Komponenten nicht doppelt gepflegt werden.
+
+Konsequenz: bei jedem Patch zuerst checken, ob der Selektor auf anderen Seiten auch vorkommt -- wenn ja, immer in die geteilte Quelle schreiben, nie in die seitenspezifische Datei kopieren. Vroni-Feedback: einige Bilder auf der Zusammenarbeit-Seite hatten den site-weit etablierten Hover-Zoom (.au-hb-tile, .am-main etc.) noch nicht. Jetzt mit identischem Pattern (`transition:transform 1.4s cubic-bezier(.2,.7,.15,1); will-change:transform` + `:hover img{transform:scale(1.05)}` + `prefers-reduced-motion:reduce`-Fallback) eingezogen auf:
+  - `.za-method-head-figure` (Vronis Arbeitsweise).
+  - `.za-energy-head-figure` (Sichtbarkeit & Energie).
+  - `.za-rfc-cover-img` (RFC-Feature Cover) -- vorher hatte das Cover einen `translateY(-3px)`+shadow-Lift; auf Scale umgestellt, damit überall dieselbe Motion-Bewegung wirkt.
+- Hero-Bento (`.au-hb-tile`) erbt bereits aus `ueber-mich.css`, kein Doppel-Definition nötig.
+- CTA-Panel-Bild hat schon `scale(1.03)`-Hover.
+- Damit alle ruhenden Bilder auf der Seite jetzt das gleiche Hover-Verhalten zeigen wie auf Home und Über mich.
+
+**Warum:**
+1. Navigation: Nach der One-Pager-Trennung war die Sub-Navigation drittes Kapitel: gleiche Seite, andere Reihenfolge, fehlende Links. Eine einheitliche 6er-Liste auf allen 3 Hauptseiten löst das ein für allemal.
+2. CTA-Panel: Zwei Eyebrow-Varianten + ein dritter Tablet-Mockup hintereinander wirkten redundant und unruhig. Ruhige Karte mit nur einem visuellen Akzent (Eyebrow) und einem Still-Life-Foto statt Tablet bringt das Tempo zurück zur Section.
+3. Ergebnisse: Auf einer Seite, die schon Steps mit `.snum`-Labels und Karten mit `--fs-h4` zeigt, fiel ein Editorial-Pattern mit großen Italic-Zahlen + `--fs-h3` aus dem Rahmen. Jetzt eine Familie weniger im Stilkanon.
+4. FAQ-Übergang: Zwei weiße Sections direkt hintereinander brauchen eine Trennung. Die Section in Sand zu setzen ist der vorhandene DS-Move (gleicher Token, gleicher Mechanismus wie Angebote, Passt).
+
+**Abwägungen:**
+- Ergebnisse-Section komplett umbauen (Icons rein, 3-Spalten statt 3×2)? Verworfen → das ändert die Logik, nicht den Stil. Nur Typo/Hintergrund anziehen reicht.
+- CTA-Panel auf `sec--sand`-Footer-Pattern (volle Section-Card)? Verworfen → die RFC-Section selber ist hell/forest; die CTA-Box war schon eine Card, sie braucht nur weniger Lautstärke, nicht ein anderes Layout.
+- „Werte" (`#trust`) in die Nav übernehmen? Verworfen → der Anker existiert nur auf der Home, das Wort tauchte sonst nirgends auf und Über-mich/Zusammenarbeit haben das Wort nicht als CTA. „Zusammenarbeit" als Cross-Page-Anker schlägt „Werte" als On-Page-Anker.
+
+**Learnings:**
+- Wenn dieselbe Information zweimal in einer Karte steht (Eyebrow + Badge), wirkt die Karte automatisch zu laut, auch wenn beide für sich klein sind.
+- Auf Mehrseiten-Sites ist die Nav-Reihenfolge eine Invariante. Ab jetzt hier verankert (siehe unten).
+
+**Konsequenzen:**
+- `tablet-ausfuellen-hand` Bild wird nicht mehr referenziert auf der Seite (bleibt im Repo, falls wir es später wieder brauchen). `MEDIEN.md` wird unter „Verwendung" beim nächsten Touch nachgezogen.
+- Neuer Mediennutzungs-Eintrag in `MEDIEN.md`: `vroni-stillleben-gedankenraum` jetzt auch im RFC-CTA-Panel (vorher nicht in der Website verwendet).
+- Mobile-Menü-Buttons werden in CI durch `lighthouserc.mobile.json` mit gemessen → keine Regression erwartet, Layout identisch.
+
+**Geänderte Dateien:**
+- `index.html` (mobile-menu)
+- `ueber-mich.html` (nav-links + mobile-menu)
+- `zusammenarbeit.html` (mobile-menu + CTA-Panel HTML + Ergebnisse-Section: `sec--sand`)
+- `zusammenarbeit.css` (Block 17 Ergebnisse: komplette eigene Regeln entfernt, Section erbt jetzt aus `ueber-mich.css` `.au-expect` · Block 18 CTA-Panel: max-width/grid/eyebrow/title/text/padding · Badge-Styles entfernt · `.za-method-head` Bild-Höhe an Textspalte angeglichen via `align-items:stretch` + Picture/Img füllen die Grid-Zelle, Mobile bleibt bei Original-Aspect-Ratio)
+
+**Neue Invariante (siehe oben):**
+- Navigation auf allen 3 Hauptseiten = identische 6er-Liste in derselben Reihenfolge: Angebote · Ansatz · Über mich · Zusammenarbeit · Yoga · FAQ. Active-State + `aria-current="page"` jeweils auf dem Eintrag der aktuellen Seite. Mobile-Menü erbt dieselbe Liste + Burger-CTA „Lass uns reden".
+
+---
 
 ### 2026-06-06 - Passt-Karten: Forest-Dark-Design aus v9-Handoff nachgezogen
 
@@ -1533,3 +1688,180 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 - MEDIEN.md: PDF als Medien-Asset eingetragen (siehe selber PR).
 
 **Geänderte Dateien:** 8 neue Dateien in `brand/`, 1 Anhang in `PROTOKOLL.md`, 1 Eintrag in `MEDIEN.md`. Kein HTML, kein CSS, kein Token.
+
+
+---
+
+### 2026-06-06 - Zusammenarbeit Finaloptimierung: Voice-Schärfung + Angebots-Gewichtung + Passt-Outro
+
+**Branch-Empfehlung:** `feat/zusammenarbeit-finaloptimierung`
+
+**Was:** Umfassende Textüberarbeitung von `zusammenarbeit.html` nach Vronis Briefing `Claude_Design_Briefing_Zusammenarbeit_Finaloptimierung.md` (06.06.2026). Plus zwei strukturelle Ergänzungen + zwei kleine CSS-Komponenten.
+
+**HTML-Änderungen (29 Blöcke gesamt):**
+
+1. **Hero-Subline neu** (3 Absätze statt 2): „Im Gespräch kannst du erklären… / Auf deiner Website fehlt diese Reaktion… / Ich helfe dir, deine Marke, Website, Texte oder KI-Workflows so aufzubauen…" Ersetzt die KI-typische „Dann liegt es meistens nicht daran…"-Formel, gegen die das Briefing explizit warnt.
+
+2. **Problem-Section** `#reihenfolge`:
+   - H2 neu: „Manchmal ist dein Angebot gar nicht das Problem. Es wird nur an der falschen Stelle erklärt."
+   - 3 Lead-Absätze neu, ohne „37 offene Tabs"-Bild (zu KI-typisch).
+
+3. **Arbeitsweise-Section** `#arbeitsweise`:
+   - H2 neu: „Bevor wir über ein Angebot sprechen, schauen wir erstmal, wo es wirklich hakt."
+   - Alle 4 Steps: `<h3>` enthält jetzt die einzeilige Briefing-Microcopy, `<p>` entfernt → ruhiger Editorial-Charakter statt klassischer Feature-Card-Reihe (Briefing-Designhinweis: „nicht als vier generische Feature-Cards", „kleine Notizen statt Cards").
+
+4. **RFC-Section** `#rote-faden-check`:
+   - H2 neu: „Der Rote-Faden-Check ist für den Moment, in dem du noch nicht genau weißt, wo du anfangen sollst."
+   - 3 Body-Absätze statt 2.
+   - Inline-Note: „Er ersetzt keine Strategie. Aber er macht sichtbar, welche Fragen wir uns als Nächstes anschauen sollten."
+   - CTA-Wording: „Rote-Faden-Check holen" → „Rote-Faden-Check **herunterladen**" (Konsistenz mit anderen RFC-CTAs auf der Seite); „Gemeinsam draufschauen" → „**Danach** gemeinsam draufschauen".
+
+5. **Angebote-Section** `#angebote`:
+   - H2 neu: „Je nachdem, wo es hakt, setzen wir an unterschiedlichen Stellen an."
+   - Intro neu, fokussiert auf „Nicht jedes Projekt braucht denselben Einstieg".
+   - Card 03 (Brand Voice) Leitsatz feinjustiert: „sachlich richtig sind" → „zwar etwas erklären" (klingt menschlicher).
+   - **NEU: Karten 03 + 04 bekommen die Klasse `.offer--module`** → visuelle Gewichtung Haupt vs. Modul (siehe CSS-Block 14).
+
+6. **Energie-Section** `#energie-text`: Body 2→3 Absätze, neuer Lead-Satz „Eine Marke funktioniert nur dann langfristig, wenn du sie auch im Alltag halten kannst" als Auftakt.
+
+7. **Ablauf-Section** `#ablauf`: Intro persönlicher („Du musst mir keine perfekt vorbereitete Anfrage schicken…"). Step 05 Microcopy: „klarere Grundlage" → „Grundlage" (eine Wertung weniger).
+
+8. **Passt-Section** `#passt`:
+   - Eyebrow: „Für wen das passt" → „Kleiner Selbstcheck".
+   - Intro mikro-justiert („sehr schnell beliebig" → „schnell beliebig").
+   - Passt-gut-Karte: neue Headline „Wenn du spürst, dass da mehr Ordnung rein muss.", 5 vollständige Briefing-Punkte (statt 6).
+   - Passt-eher-nicht-Karte: neue Headline „Wenn du nur schnell etwas Hübsches brauchst.", 4 vollständige Briefing-Punkte (statt 5).
+   - **NEU: `.za-fit-outro`-Block** mit Abschluss-Satz „Wenn du dich eher links wiederfindest…" + zentralem CTA „Projekt anfragen" (siehe CSS-Block 15).
+
+9. **Ergebnisse-Section** `#ergebnisse`:
+   - `lead-sub` „Nicht mehr Ideen. Bessere Entscheidungen." entfernt (Nicht-X-sondern-Y-Pattern, Briefing-Voice-Verbot).
+   - Intro-Paragraph neu, weniger Fragen-Kaskade, mehr Aussage.
+   - Alle 6 Card-Descriptions an Briefing-Tonalität angeglichen.
+   - **Card 04 umbenannt:** „Website-Führung" → „Seitenstruktur" (klarerer Begriff aus Briefing-Liste).
+   - `u-sub` angepasst.
+
+10. **FAQ**: 
+    - **Schema.org JSON-LD komplett neu** (war nicht mit visiblem HTML synchronisiert!) → 7 Q+A im Briefing-Wortlaut.
+    - Sichtbares HTML: 5 von 7 Antworten überarbeitet (kürzer, natürlicher), 2 Fragen umformuliert (Q2 „nur" raus; Q3 „bestehende Website" als Frage).
+    - Schema und sichtbares HTML jetzt vereinheitlicht (waren vorher 3× inkonsistent: Q1, Q3, Q5).
+
+11. **Kontakt-Outro**: Body neu, persönlicher („Schreib mir kurz, wo du gerade stehst. Es muss nicht perfekt sortiert sein…"). H2 unverändert (Briefing-Wortlaut entspricht bereits dem Live-Stand).
+
+**CSS-Änderungen (`zusammenarbeit.css`, +3 Blöcke am Ende):**
+
+- **Block 14 `.offer--module`**: schmalere Padding, kleinere H3 (`clamp(22px,1.9vw,26px)` statt `--fs-h3`), gedämpfte Nummer (Opacity .7), kleinerer Icon-Marker, leichterer Shadow. Effekt: Karten 01 + 02 lesen sich als Haupt-Block, 03 + 04 ruhiger als ergänzende Module. Layout-Grid unverändert.
+- **Block 15 `.za-fit-outro`**: zentrierter Editorial-Block (max-width 62ch), Abschluss-Satz + Primary-CTA. Mobile: Button full-width.
+- **Block 16 `.za-method .step h3`**: Headline-Stufe `--fs-h4` mit `max-width:36ch`, damit der reduzierte Notiz-Charakter trägt nachdem die `<p>`-Detailzeile pro Step entfallen ist.
+
+**Warum:** Vroni-Briefing „Finaloptimierung Zusammenarbeit": die Seite ist gut, aber noch nicht stark genug. Drei Hauptachsen — (a) Voice von KI-typischer Entlastungssprache weg, hin zu konkreten Beobachtungen, (b) visuelle Gewichtung Haupt vs. Modul herstellen, (c) Passt-Section als klaren Entscheidungsmoment ausspielen mit CTA. Die Sprach-Verbote im Briefing (z. B. „Dann liegt es meistens nicht daran…", „Du bist nicht zu viel.", „Nicht X, sondern Y") waren mehrfach in der bisherigen Copy enthalten — die hat das Update entfernt.
+
+**Wie:** Atomare `replaceText`-Operationen pro Textblock, gruppiert in drei Skript-Durchläufen (Sektionen Hero–RFC / Angebote–Passt / Ergebnisse–Kontakt). Kein freihändiges Rewriting, jede Änderung 1:1 aus dem Briefing. Strukturelle Ergänzungen (`.offer--module` Klasse, `.za-fit-outro` Block) als gezielte HTML-Inserts; CSS am Datei-Ende ergänzt (kein bestehender Block angefasst).
+
+**Alternativen / Abwägungen:**
+- *Pain-Items (4 Karten in Problem-Section) auf „ruhigen Editorial-Textblock mit Checkpunkten" umbauen*: Briefing-Designhinweis empfiehlt das. Verworfen für diese Runde, weil rein strukturell und nicht text-getrieben — würde die HTML-Architektur der `.pain-list` umbauen müssen (auch `style.css` betroffen). Vorgemerkt für Follow-up, falls Vroni das explizit will.
+- *Subtile Roter-Faden-Linie als wiederkehrendes Markendetail*: Briefing erwähnt das als Möglichkeit (\„keine Bastelmotiv-Spielerei"). Verworfen für diese Runde, weil Design-Explorationsschritt — Ergebnis nicht im Briefing definiert. Vorgemerkt.
+- *Hauptangebote auf full-width-Karte hoch und Module darunter in 2-Spalter*: würde das Grid grundlegend ändern und auf Mobile auseinanderfallen. Stattdessen subtile Gewichtung über `.offer--module`-Modifier — Grid-Layout bleibt stabil, Lesefluss 01→04 erhalten, visuell aber zwei Gewichtsklassen.
+- *Lead-sub „Nicht mehr Ideen. Bessere Entscheidungen." behalten als Akzent*: Verworfen, weil exakt das Nicht-X-sondern-Y-Pattern, das Briefing als Voice-Verbot listet.
+- *Step-Detail-Paragraphen in Arbeitsweise behalten*: Verworfen, weil Briefing explizit „kleine Notizen statt Cards" will. Reduzierung auf snum + slbl + h3 ist der direktest umsetzbare Hebel ohne Komponenten-Rewrite.
+
+**Quergeprüfte Voice-Verbote (Briefing §2) — keiner ist mehr in der Datei:**
+- „Dann liegt es meistens nicht daran" → entfernt aus Hero-Lede.
+- „Oft ist schon viel da: Ideen, Angebote, Erfahrung, Texte" → entfernt aus Hero-Lede.
+- „Du bist nicht zu viel." → kommt nicht (mehr) vor.
+- „Es liegt nicht an dir." → kommt nicht vor.
+- „Nicht X, sondern Y" → `lead-sub` der Ergebnisse-Section entfernt, kein anderes Vorkommen.
+
+**Konsequenzen / Follow-up:**
+- Roter-Faden-Linien-Element: separater Design-Schritt, falls Vroni das tatsächlich will.
+- Pain-Items umbauen: separater Strukturschritt.
+- LinkedIn-Footer-Link: weiter offen (separater Task).
+- MEDIEN.md: keine neuen Bilder dieser Runde, kein Eintrag nötig.
+
+**Geänderte Dateien:** `zusammenarbeit.html` (29 Textblöcke, 2 Klassen-Adds, 1 neues Outro-Element), `zusammenarbeit.css` (3 neue Komponenten-Blöcke am Ende). Kein neues Bild, kein Token, keine globalen CSS-Änderungen, kein `style.css`, kein `ueber-mich.css`.
+
+
+---
+
+### 2026-06-06 - Zusammenarbeit Finaloptimierung Round 2: Ergebnisse-Section + RFC-CTA komplett neu (Vroni-Inline-Feedback)
+
+**Branch-Empfehlung:** `feat/zusammenarbeit-finaloptimierung` (Folge-Commit zur Finaloptimierung)
+
+**Was:** Zwei Sektionen visuell deutlich gestärkt nach Vroni-Inline-Kommentaren auf der gerade gepushten Seite:
+
+1. **`#ergebnisse` (Ergebnisse-Section) komplett redesignt** — alte 6-Card-Reihe mit je eigener Akzentfarbe rausgeflogen.
+2. **`.za-rfc-cta-panel` komplett redesignt** — vom bild-losen zentrierten Stack zur 2-Spalten-Editorial-CTA mit Foto-Mockup.
+
+---
+
+#### 1) Ergebnisse-Section · `#ergebnisse`
+
+**Vroni-Feedback:** „bitte style die ganze Section deutlich ansprechender. Gerade sieht es etwas langweilig und auch von der Typo schlecht gesetzt aus. Ich glaube auch, dass die Icon-Box Aufteilung unten nicht optimal ist."
+
+**Vorher:**
+- `.big-panel` mit `.big-umbrella` ("Sechs Ergebnisse"-Tag) als zusätzlicher Header
+- `.big-nodes` Grid mit 6 `.big-node` Karten, jede mit eigener `bn-ic`-Box in unterschiedlicher Akzentfarbe (green, sage, clay, forest, olive, green-deep)
+- Visuell zerwürfelt durch die Farbvielfalt, Typo eng/wenig editorial
+
+**Nachher:**
+- Section-Klasse `.big` → `.za-results` (eigener Scope, kein Konflikt mit `style.css` Globals)
+- HTML: `<ol class="za-results-grid">` mit `<li class="za-result">` (semantisch sauberer 6er-Liste)
+- Jede Karte: `zr-num` (große Newsreader-Italic-Nummer als visueller Anker) + `zr-line` (feine grüne Akzentlinie) + H3 + p
+- Hairline-Grid statt Card-Stack: ein `<ol>`-Container mit Border + Shadow, Karten durch interne Hairlines getrennt
+- Hover: Akzentlinie wächst von 28px → 44px, dezenter green-tint (rgba .04) im BG
+- Responsive: 3 Spalten → 2 (≤1080px) → 1 (≤640px) mit korrekten Border-Resets
+
+**CSS-Block:** `zusammenarbeit.css` Block 17, am Datei-Ende. Verwendet Tokens (`--green-deep`, `--hair-soft`, `--fs-h3`, `--r-lg`, `--dur-2/3`). Alte `.big-panel`/`.big-node`-Regeln in `style.css` bleiben unangetastet (andere Seiten greifen darauf zu).
+
+---
+
+#### 2) RFC-CTA-Panel · `.za-rfc-cta-panel`
+
+**Vroni-Feedback:** „Dieser Bereich passt auch noch nicht so ganz rund ins Layout der Website. Das sieht auch noch super langweilig aus und macht gerade noch wenig Lust, irgendwas zu klicken. Vielleicht würde hier eine deutlich freundlichere Box mit Bild besser aussehen. Nimm dir gerne best practices für eine wunderschöne und vorbildlich umgesetzte CTA."
+
+**Vorher:**
+- Zentrierte Stack-Box, kein Bild
+- Sand-cream-gradient-BG mit dezentem grünem Akzent
+- 2 gleich große Buttons nebeneinander (Primary + Secondary), kompetitiv
+- Eyebrow-Pill + Body-Text + Buttons + Foot-Meta
+- Wirkte wie ein generisches Info-Panel, nicht wie eine echte CTA
+
+**Nachher (Editorial-CTA-Best-Practices):**
+- **2-Spalten-Grid:** `minmax(280px, 440px) | 1fr`, Bild links, Inhalt rechts
+- **Bild-Hook:** `images/rfc-mockups/tablet-ausfuellen-hand` — Tablet mit Rote-Faden-Check im warmen Morgenlicht, Keramiktasse und Olivenzweig. Holt das Workbook in einen echten Lebenskontext.
+- **Floating Trust-Badge** „Kostenlos · ohne E-Mail" oben-links auf dem Bild (white pill mit backdrop-blur, grüner Dot + glow)
+- **Klare Hierarchie rechts:** Eyebrow-Pill → H3-Headline „Hol dir den Rote-Faden-Check als PDF" → Body-Text → Primary-Button (mit Download-Icon, sattem Shadow, hover lift-2) → Secondary-Inline-Link „Danach gemeinsam draufschauen" (kein zweiter Button-Wettstreit) → Trust-Facts-Liste
+- **Trust-Facts-Row:** 4 kleine Detail-Items mit Mini-Icons („15 Seiten · 12 Fragen · Ausfüllbar & druckbar · ca. 1,2 MB") als ruhige Reihe unter den Buttons, getrennt durch eine Hairline
+- **Hover:** sanftes Image-Zoom (scale 1.03 über 0.6s)
+- **Mobile (≤880px):** Bild stapelt auf 4:3 oben, Inhalt unten. Buttons stretchen.
+
+**HTML-Strukturwechsel:**
+- `.za-rfc-cta-meta` (Wrap) → entfernt
+- Neu: `.za-rfc-cta-figure` (Bild + Badge) + `.za-rfc-cta-body` (Inhalt)
+- Neu: `.za-rfc-cta-title` (eigene H3-Klasse statt geteiltem H3-Pattern)
+- Neu: `.za-rfc-cta-link` (Secondary als Inline-Link statt `.btn--sec`)
+- Neu: `.za-rfc-cta-facts` (Trust-Facts als `<ul>`)
+- Neu: `.za-rfc-cta-badge` mit `.zbb-dot`
+
+**CSS-Block:** `zusammenarbeit.css` Block 18, am Datei-Ende. Alter Block (Z. 225-253) sowie zugehörige Media-Queries (alt. `za-rfc-cta-actions` 2-Spalter + Mobile-Reset) entfernt mit Kommentar-Stub („siehe Block 18").
+
+**Bild-Asset:** `images/rfc-mockups/tablet-ausfuellen-hand.{webp,png}` + `-960.webp` war bereits im Repo (kam mit dem v8/v9-Bilderbatch), aber bisher nirgends genutzt. Jetzt in Verwendung. MEDIEN.md sollte dafür ergänzt werden (Folge-Aufgabe im selben PR).
+
+---
+
+**Alternativen / Abwägungen:**
+
+- *Forest-dark CTA-Panel als Pendant zur Feature-Karte oben*: verworfen, weil zwei dunkle Editorial-Blöcke in derselben Section visuell überfrachten. Helles 2-Spalter-Panel setzt eigenen Akzent.
+- *Beide Karten-Sections (Ergebnisse, CTA) in einem einzigen Redesign-Block bauen*: separat gemacht, weil jede ihre eigene UI-Logik hat (Grid-Liste vs. CTA-Komposition). Sauberer in der Cascade.
+- *Trust-Facts oben unter dem Eyebrow*: verworfen, weil sie als „Beweis nach dem Versprechen" am besten unter den Buttons sitzen — klassische Conversion-Sequenz.
+- *Image-Reuse* `vroni-stillleben-buch-curtain` (Hero-Bento-Bild): verworfen wegen Visual-Reuse — die CTA hat jetzt mit `tablet-ausfuellen-hand` ein eigenes Bild, das visuell einzigartig ist.
+
+**Voice-Check:**
+- Keine KI-Muster eingeschmuggelt
+- CTA-Title nutzt das natürlich-sprechende „Hol dir den …" statt „Jetzt holen" oder „Sichere dir …" (Briefing-Voice-Verbot)
+- Trust-Text bleibt klar und ehrlich („Kein Formular dazwischen, kein Newsletter-Zwang")
+
+**Konsequenzen / Follow-up:**
+- MEDIEN.md: `tablet-ausfuellen-hand` jetzt in aktiver Verwendung — Eintrag aktualisieren bzw. erstmals registrieren (war bisher als Asset im Repo, aber ohne Verwendung im Register).
+- Live-Effekt nach Merge: deutlich höhere Click-through-Wahrscheinlichkeit auf RFC-Download durch (a) Bild-Hook, (b) Trust-Badge, (c) klar dominanten Primary-Button.
+
+**Geänderte Dateien:** `zusammenarbeit.html` (2 Sektionen komplett ersetzt), `zusammenarbeit.css` (alter CTA-Block entfernt + 2 neue Komponenten-Blöcke 17 + 18 am Datei-Ende). Kein Token, keine globalen Änderungen, kein `style.css`.

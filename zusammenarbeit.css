@@ -116,14 +116,14 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
 .za-rfc-head-r p{margin:0;font-size:var(--fs-body);color:var(--ink-soft);
   line-height:var(--lh-body);text-wrap:pretty;max-width:54ch;}
 
-/* Feature-Karte: bleibt dunkel/forest (vom User explizit so gewollt) —
-   wirkt jetzt als dunkler Editorial-Focal-Point auf hellem Section-BG.
-   Vorher: feature war ein dezenter, semi-transparenter Overlay auf forest.
-   Jetzt: feature TRÄGT die Forest-Surface selbst, weil die Section hell ist. */
+/* Feature-Karte (Round 2026-06-07 Final C): Editorial 2-Spalter (zurueck auf das
+   Vroni-Screenshot-Layout). Insight links tragend, Image-Card rechts -- aber jetzt
+   mit align-items:stretch + Image full-height, damit die rechte Spalte (Bild + Caption)
+   auf die Hoehe der linken Spalte mitlaeuft, statt frueh aufzuhoeren. */
 .za-rfc-feature{position:relative;z-index:1;
-  display:grid;grid-template-columns:minmax(200px,260px) minmax(0,1fr);
-  gap:clamp(36px,5vw,72px);align-items:center;
-  padding:clamp(28px,3.5vw,48px);
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,320px);
+  gap:clamp(40px,4.5vw,72px);align-items:stretch;
+  padding:clamp(32px,4vw,56px);
   background:linear-gradient(160deg,#2C3522 0%,#252D1B 100%);
   border:1px solid rgba(168,232,79,.14);border-radius:var(--r-lg);
   box-shadow:0 30px 70px -30px rgba(35,52,34,.5),
@@ -144,18 +144,24 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
    und Tasse) — wirkt deutlich hochwertiger, weil das Workbook IM Kontext gezeigt
    wird, nicht nur als Cover-Stack. Die Bild-Komposition selbst erzählt schon die
    „Ruhe-+-Klarheit“-Stimmung der Marke. */
-.za-rfc-cover{margin:0;display:flex;flex-direction:column;gap:var(--space-sm);align-items:center;}
-.za-rfc-cover-img{display:block;width:100%;height:auto;
-  max-width:380px;
+.za-rfc-cover{margin:0;display:flex;flex-direction:column;gap:var(--space-sm);align-items:stretch;
+  height:100%;}
+.za-rfc-cover picture{display:block;position:relative;flex:1 1 0;min-height:0;
+  border-radius:var(--r-md);overflow:hidden;}
+.za-rfc-cover-img{position:absolute;inset:0;display:block;
+  width:100%;height:100%;
+  /* Round 2026-06-07 Final H: Picture als position:relative + img absolute inset:0 erzwingt,
+     dass das Bild EXAKT die zur Verfuegung stehende Spalten-Hoehe ausnutzt (kein
+     Aspect-Ratio-Override durchs Bild). So bleibt rechte Spalte = linke Spalte in der Hoehe.
+     object-position:center 35% bevorzugt den Tablet-Bereich oben im Bild. */
+  object-fit:cover;object-position:40% center;
   border-radius:var(--r-md);
   box-shadow:0 36px 64px -26px rgba(0,0,0,.45),
              0 16px 28px -14px rgba(0,0,0,.3);
-  transition:transform var(--dur-3) var(--ease-out),
-             box-shadow var(--dur-3) var(--ease-out);}
-.za-rfc-cover:hover .za-rfc-cover-img{transform:translateY(-3px);
-  box-shadow:0 44px 72px -26px rgba(0,0,0,.5),
-             0 20px 34px -14px rgba(0,0,0,.35);}
-.za-rfc-cover figcaption{display:flex;flex-direction:column;gap:var(--space-3xs);align-items:center;text-align:center;}
+  /* Round 2026-06-07: site-weiter Hover-Zoom-Effekt analog .au-hb-tile / .am-main / .au-mb-tile. */
+  transition:transform 1.4s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.za-rfc-cover:hover .za-rfc-cover-img{transform:scale(1.05);}
+.za-rfc-cover figcaption{display:flex;flex-direction:column;gap:var(--space-3xs);align-items:flex-start;text-align:left;}
 
 /* Geteilte Caption-Atome (Cover + Trio) */
 .za-cap-eyebrow{font-size:var(--fs-label);font-weight:700;letter-spacing:var(--ls-label);
@@ -164,9 +170,10 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
   line-height:var(--lh-head);letter-spacing:var(--ls-snug);}
 .za-cap-title .g{color:var(--green);}
 
-/* Insight-Panel (rechte Spalte): Eyebrow + H3 + Bullet-Liste + Inline-Note —
-   vertikal zentriert zum Cover (align-self:center, kein Top-Padding). */
-.za-rfc-insight{align-self:center;display:flex;flex-direction:column;}
+/* Insight-Panels (linke + rechte Spalte): Round 2026-06-07 als 3-Spalter mit
+   Bild mittig -- intro links (Eyebrow + H3 + Note-Pill), list rechts (Eyebrow + UL).
+   Beide top-aligned, damit ihre Eyebrows visuell auf einer Linie sitzen. */
+.za-rfc-insight{display:flex;flex-direction:column;height:100%;}
 .za-rfc-insight-eyebrow{display:block;font-size:var(--fs-label);font-weight:700;
   letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--green);
   margin-bottom:var(--gap-label);}
@@ -178,7 +185,17 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
   line-height:var(--lh-snug);color:#dde2cf;text-wrap:pretty;}
 .za-rfc-list li::before{content:"";position:absolute;left:0;top:.62em;width:18px;height:2px;
   border-radius:2px;background:var(--green);}
-.za-rfc-insight .za-rfc-note-inline{align-self:flex-start;margin:var(--space-md) 0 0;}
+.za-rfc-insight .za-rfc-note-inline{
+  /* Round 2026-06-07 Final F: optisch gleiche Abstaende oberhalb + unterhalb des
+   Trennstrichs. Margin/padding gleich gesetzt; das line-height-Pufferspiel der
+   Liste oben kompensiert ein 4px-Plus auf padding-top. */
+  display:block;background:none;border:none;border-radius:0;
+  margin:var(--space-md) 0 0;
+  padding:calc(var(--space-md) + 4px) 0 0;
+  font-size:var(--fs-body-sm);font-style:italic;
+  color:rgba(248,245,238,.62);line-height:1.6;text-wrap:pretty;
+  border-top:1px solid rgba(248,245,238,.10);
+  align-self:stretch;}
 
 /* Editorial Table-of-Contents (v8 · light theme) — ersetzt das v6-Quartet aus 4
    Page-Cards. Vroni-Feedback: vier Page-Mockups wirken zu kleinteilig, lieber
@@ -222,35 +239,9 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
 /* CTA-Panel: gestapelt zentriert, helle Variante (v8) — früher dunkelgrüner
    Forest-Panel, jetzt sandige Surface mit grünem Akzent. Passt zur hellen
    Section-Grundstimmung. */
-.za-rfc-cta-panel{position:relative;z-index:1;
-  display:flex;flex-direction:column;align-items:center;text-align:center;
-  gap:clamp(20px,2.4vw,28px);
-  padding:clamp(28px,3.5vw,44px) clamp(28px,3.5vw,48px);
-  background:linear-gradient(135deg,rgba(168,232,79,.10) 0%,var(--chalk) 60%,var(--sand) 100%);
-  border:1px solid color-mix(in srgb,var(--green) 22%,var(--hair-soft));
-  border-radius:var(--r-md);
-  box-shadow:0 20px 50px -20px rgba(35,34,26,.10);}
-.za-rfc-cta-meta{max-width:640px;display:flex;flex-direction:column;align-items:center;gap:var(--space-2xs);}
-.za-rfc-cta-eyebrow{display:inline-flex;align-items:center;gap:var(--space-2xs);
-  padding:7px 14px 7px 12px;
-  font-size:var(--fs-label);font-weight:700;
-  letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--green-text);
-  background:rgba(168,232,79,.18);
-  border:1px solid color-mix(in srgb,var(--green-deep) 38%,transparent);
-  border-radius:100px;
-  white-space:nowrap;}
-.za-rfc-cta-eyebrow svg{width:13px;height:13px;flex:0 0 auto;color:var(--green-text);}
-.za-rfc-cta-text{margin:0;font-size:var(--fs-body);line-height:var(--lh-snug);
-  color:var(--ink);text-wrap:pretty;}
-.za-rfc-cta-foot{margin:var(--space-2xs) 0 0;font-size:var(--fs-caption);color:var(--ink-soft);
-  display:inline-flex;align-items:center;gap:var(--space-2xs);
-  line-height:var(--lh-snug);}
-.za-rfc-cta-foot svg{width:14px;height:14px;flex:0 0 auto;}
-/* Buttons: Grid mit 2 gleich breiten Spalten (minmax(0,1fr) verhindert
-   Blähen durch längeren Button-Text). */
-.za-rfc-cta-actions{display:grid;grid-template-columns:1fr;gap:var(--space-xs);
-  width:100%;max-width:560px;}
-.za-rfc-cta-actions .btn{width:100%;justify-content:center;text-align:center;}
+/* CTA-Panel-Redesign 2026-06-06: siehe Block 18 am Datei-Ende.
+   Alter Stack-Layout-Code entfernt (war Bild-loses, zentriertes Stack-Panel,
+   Vroni-Feedback „passt nicht rund ins Layout und macht keine Lust zu klicken"). */
 
 /* ---------------------------------------------------------
    2a · PAIN-INTRO #reihenfolge — nutzt global .pain-intro--split (style.css)
@@ -281,7 +272,11 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
    --------------------------------------------------------- */
 @media (max-width:1080px){
   .za-rfc-feature{grid-template-columns:1fr;gap:36px;padding:clamp(24px,3.5vw,40px);}
-  .za-rfc-cover-img{max-width:320px;}
+  .za-rfc-cover{order:-1;max-width:420px;margin:0 auto;width:100%;height:auto;}
+  .za-rfc-cover picture{flex:none;position:static;}
+  .za-rfc-cover-img{position:static;height:auto;aspect-ratio:1122/1402;max-width:none;}
+  .za-rfc-cover figcaption{align-items:center;text-align:center;}
+  .za-rfc-insight .za-rfc-note-inline{margin-top:var(--space-md);}
   .za-rfc-toc-row{grid-template-columns:auto minmax(0,1fr);gap:var(--space-md);}
   .za-rfc-toc-meta{grid-column:2;justify-self:start;margin-top:var(--space-2xs);}
   #ergebnisse .big-nodes{grid-template-columns:repeat(2,1fr);}
@@ -292,21 +287,18 @@ a.au-hb-quote:hover .hbq-cta{gap:11px;}
      `minmax(0,1fr)` nötig, damit längerer Button-Text seine Spalte nicht
      aufbläht (sonst landet „Rote-Faden-Check holen“ breiter als
      „Gemeinsam draufschauen“ — genau das Problem, das Vroni gemeldet hat). */
-  .za-rfc-cta-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+  /* (alter za-rfc-cta-actions 2-Spalter — redesigned, siehe Block 18) */
 }
 
 @media (max-width:900px){
-  .za-rfc-cover-img{max-width:300px;}
   #ergebnisse .big-nodes{grid-template-columns:1fr;}
 }
 
 @media (max-width:560px){
   .za-rfc-head{margin-bottom:48px;}
-  .za-rfc-cover-img{max-width:280px;}
   .za-rfc-toc-head{flex-direction:column;align-items:flex-start;gap:10px;}
   .za-rfc-toc-num{font-size:clamp(28px,7vw,32px);}
-  .za-rfc-cta-panel{padding:24px;}
-  .za-rfc-cta-actions{grid-template-columns:1fr;}
+  /* (alter za-rfc-cta-* Mobile-Reset — redesigned, siehe Block 18) */
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -427,7 +419,7 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   background:var(--chalk);}
 
 .za-method-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-  gap:clamp(40px,5vw,72px);align-items:center;
+  gap:clamp(40px,5vw,72px);align-items:stretch;
   margin-bottom:clamp(64px,7vw,96px);}
 .za-method-head-text{display:flex;flex-direction:column;gap:var(--gap-stack);}
 .za-method-head-text h2{margin:var(--space-eyebrow-head) 0 0;text-wrap:balance;
@@ -437,14 +429,25 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   color:var(--ink-soft);text-wrap:pretty;}
 /* Editorial-Bild als rechte Spalte des Method-Heads (Round 5 · Vroni-Briefing:
    Sektionen mit ruhigen, themenpassenden Bildern auflockern). Bild zeigt das,
-   wovon die Section handelt: jemand sortiert Gedanken in einem Notizbuch. */
-.za-method-head-figure{margin:0;display:flex;flex-direction:column;gap:var(--space-sm);}
+   wovon die Section handelt: jemand sortiert Gedanken in einem Notizbuch.
+   Round 2026-06-07: Bild streckt sich auf die Hoehe der Textbox links
+   (align-items:stretch + Picture/Img fuellen die Grid-Zelle). */
+.za-method-head-figure{margin:0;display:flex;flex-direction:column;gap:var(--space-sm);
+  min-height:100%;}
 .za-method-head-figure picture{display:block;border-radius:var(--r-md);overflow:hidden;
   box-shadow:0 24px 50px -22px rgba(35,34,26,.22),
-             0 10px 22px -10px rgba(35,34,26,.12);}
-.za-method-head-figure img{display:block;width:100%;height:auto;
-  aspect-ratio:1200/740;object-fit:cover;}
+             0 10px 22px -10px rgba(35,34,26,.12);
+  flex:1;min-height:0;}
+.za-method-head-figure img{display:block;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  /* Round 2026-06-07: site-weiter Hover-Zoom-Effekt analog .au-hb-tile / .am-main. */
+  transition:transform 1.4s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.za-method-head-figure:hover img{transform:scale(1.05);}
 .za-method-head-figure figcaption{display:flex;justify-content:flex-end;}
+@media (prefers-reduced-motion:reduce){
+  .za-method-head-figure img{transition:none;}
+  .za-method-head-figure:hover img{transform:none;}
+}
 /* Geteilte Atome · figure-eyebrow mit kleinem Strich-Akzent (Round 5) */
 .za-fig-eyebrow{display:inline-flex;align-items:center;gap:6px;
   font-size:var(--fs-label);font-weight:700;letter-spacing:var(--ls-label);
@@ -456,10 +459,11 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
    Wiederverwendung statt eigener Variante. Siehe `.steps-wrap` Markup im HTML. */
 
 @media (max-width:1080px){
-  .za-method-head{grid-template-columns:1fr;gap:36px;}
+  .za-method-head{grid-template-columns:1fr;gap:36px;align-items:start;}
   .za-method-head-text h2{max-width:none;}
-  .za-method-head-figure{order:-1;}
-  .za-method-head-figure picture{max-width:520px;margin:0 auto;}
+  .za-method-head-figure{order:-1;min-height:0;}
+  .za-method-head-figure picture{max-width:520px;margin:0 auto;flex:none;
+    aspect-ratio:1200/740;}
   .za-method-head-figure figcaption{justify-content:center;}
 }
 
@@ -488,7 +492,12 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
    v2 nutzt grid-template-areas: links Eyebrow ÜBER Label gestapelt, rechts
    Desc bündig. So bilden Eyebrow + Label eine klare Identitätseinheit. */
 .offer-group-head{grid-column:1 / -1;
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  /* Round 2026-06-07: Inneres Grid an das uebergeordnete .offers-Grid angeglichen
+     (1fr 1fr + 24px gap), damit die rechte Spalte (ogh-desc) ueber der rechten
+     Offer-Karte sitzt. Plus padding-left auf ogh-desc, damit der Text genau dort
+     beginnt, wo der Karten-Inhalt beginnt (36px = Karten-Padding) -- kein
+     verlorener freier Text mehr. */
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
   grid-template-areas:
     "eyebrow desc"
     "label   desc";
@@ -507,6 +516,9 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
 .offer-group-head .ogh-label em{font-family:'Newsreader',Georgia,serif;
   font-style:italic;font-weight:500;color:var(--green-deep);letter-spacing:-.005em;}
 .offer-group-head .ogh-desc{grid-area:desc;
+  /* Round 2026-06-07: padding-left matched to .offer's left padding (36px) so the
+     desc text starts at the same x as the right offer card's content underneath. */
+  padding-left:36px;
   font-size:var(--fs-body-sm);color:var(--ink-soft);
   line-height:1.55;text-wrap:pretty;align-self:end;}
 @media (max-width:720px){
@@ -536,7 +548,14 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   box-shadow:0 24px 50px -22px rgba(35,34,26,.22),
              0 10px 22px -10px rgba(35,34,26,.12);}
 .za-energy-head-figure picture{position:absolute;inset:0;display:block;}
-.za-energy-head-figure img{display:block;width:100%;height:100%;object-fit:cover;}
+.za-energy-head-figure img{display:block;width:100%;height:100%;object-fit:cover;
+  /* Round 2026-06-07: site-weiter Hover-Zoom-Effekt analog .au-hb-tile / .am-main. */
+  transition:transform 1.4s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.za-energy-head-figure:hover img{transform:scale(1.05);}
+@media (prefers-reduced-motion:reduce){
+  .za-energy-head-figure img{transition:none;}
+  .za-energy-head-figure:hover img{transform:none;}
+}
 .za-energy-head-figure figcaption{display:none;}
 .za-energy-head-text{display:flex;flex-direction:column;gap:var(--gap-stack);}
 .za-energy-head-text h2{margin:var(--space-eyebrow-head) 0 0;text-wrap:balance;
@@ -552,8 +571,12 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   border-bottom:1px solid var(--hair-soft);}
 .za-energy-note{display:flex;flex-direction:column;gap:var(--space-2xs);
   padding:clamp(28px,3vw,40px) clamp(24px,2.4vw,32px);
-  border-left:1px solid var(--hair-soft);}
+  border-left:1px solid var(--hair-soft);
+  /* Round 2026-06-07: dezenter Green-Tint Hover wie in `.za-rfc-toc-row` --
+   keine Translate-Bewegung, weil die Karten als verbundenes Hairline-Grid sitzen. */
+  transition:background var(--dur-2) var(--ease-out);}
 .za-energy-note:first-child{border-left:none;}
+.za-energy-note:hover{background:rgba(168,232,79,.06);}
 .za-energy-note-eyebrow{font-size:var(--fs-label);font-weight:700;
   letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--green-text);
   margin-bottom:var(--space-xs);}
@@ -571,4 +594,250 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   .za-energy-notes{grid-template-columns:1fr;}
   .za-energy-note{border-left:none;border-top:1px solid var(--hair-soft);}
   .za-energy-note:first-child{border-top:none;}
+}
+
+/* ---------------------------------------------------------
+   14 · OFFER · MODUL-VARIANTE (Briefing Finaloptimierung 2026-06-06)
+   ---------------------------------------------------------
+   Briefing-Pflicht: Hauptangebote (Branding + Website) sollen sich
+   visuell von den Modulen (Brand Voice + KI) absetzen, ohne das
+   Grid-Layout zu sprengen. Karten 03 + 04 bekommen die Klasse
+   .offer--module und werden ruhiger gewichtet:
+     - schmalerer Innenabstand
+     - kleinere H3-Stufe (.85x der Hauptkarte)
+     - dezenter abgesetzte Nummer + leichterer Shadow
+   Resultat: Lese-Reihenfolge bleibt erhalten (01 → 04), aber Haupt
+   und Modul sind als zwei Gewichtsklassen erkennbar.
+   --------------------------------------------------------- */
+.offer.offer--module{
+  padding:clamp(24px,2.6vw,32px);
+  box-shadow:0 4px 16px rgba(35,34,26,.04);
+}
+.offer.offer--module:hover{
+  box-shadow:0 16px 40px rgba(35,34,26,.10);
+}
+.offer.offer--module h3{
+  font-size:clamp(22px,1.9vw,26px);
+  letter-spacing:var(--ls-snug);
+  line-height:var(--lh-head);
+}
+.offer.offer--module .num{
+  font-size:clamp(26px,2.2vw,30px);
+  opacity:.7;
+}
+.offer.offer--module .mk{
+  width:36px;height:36px;
+}
+.offer.offer--module .mk svg{width:18px;height:18px;}
+
+/* ---------------------------------------------------------
+   15 · PASST-SECTION · OUTRO (Briefing Finaloptimierung 2026-06-06)
+   ---------------------------------------------------------
+   Briefing: Passt-Section soll als Entscheidungsmoment enden.
+   Kleiner Abschluss-Satz + zentraler CTA UNTER dem au-fit-grid.
+   Ruhig, hochwertig, kein zweiter Card-Block. Lesefluss bleibt
+   im Editorial-Rhythmus.
+   --------------------------------------------------------- */
+.za-fit-outro{display:flex;flex-direction:column;align-items:center;
+  gap:var(--space-md);
+  margin:clamp(40px,4vw,56px) auto 0;
+  max-width:62ch;text-align:center;}
+.za-fit-outro p{margin:0;font-size:var(--fs-body);line-height:var(--lh-body);
+  color:var(--ink-soft);text-wrap:pretty;}
+@media (max-width:560px){
+  .za-fit-outro .btn{width:100%;}
+}
+
+/* ---------------------------------------------------------
+   16 · ARBEITSWEISE-STEPS · Editorial-Mode (Briefing 2026-06-06)
+   ---------------------------------------------------------
+   Briefing-Designhinweis: Arbeitsweise „nicht als vier generische
+   Feature-Cards" gestalten, sondern „wie ein Arbeitsprozess auf
+   einem Tisch", mit kleinen Notizen statt Cards.
+   Schritt 1: die <p>-Detailzeile pro Step entfernt (HTML), jetzt
+   nur noch snum + slbl + h3 mit einem Microcopy-Satz. Macht die
+   Steps optisch leichter und ruhiger.
+   Schritt 2 (hier): h3 in den Steps der za-method-Section etwas
+   kompakter, damit der „Notiz-Charakter" stärker durchkommt.
+   --------------------------------------------------------- */
+.za-method .step h3{
+  font-size:var(--fs-h4);
+  line-height:var(--lh-head);
+  letter-spacing:var(--ls-snug);
+  margin:0;
+  max-width:36ch;
+  text-wrap:pretty;
+}
+
+/* ---------------------------------------------------------
+   17 · ERGEBNISSE · Round 2026-06-07 (Vroni-Kommentar Round 2):
+   --------------------------------------------------------- */
+/* Die Ergebnisse-Section nutzt jetzt das `.au-expect`-Pattern aus
+   ueber-mich.css (gleicher beiger Gradient, gleiches 3-Spalten-Grid,
+   gleiche `.step`-Karten wie Arbeitsweise). Damit auf beiden Unterseiten
+   die "Was am Ende klarer werden soll"-Section identisch aussieht.
+   Es braucht hier keine eigenen Regeln mehr -- alle Styles erben aus
+   style.css (.step, .shead) und ueber-mich.css (.au-expect, .au-expect-grid).
+   Der frueher hier definierte eigene Editorial-Grid (zr-num/zr-line/za-result)
+   wurde komplett entfernt. Falls jemand spaeter wieder ein eigenes
+   Ergebnisse-Pattern fuer diese Seite haben moechte, kann er hier ansetzen. */
+
+/* ---------------------------------------------------------
+   18 · RFC-CTA-PANEL · Redesign (Round 2026-06-06, Vroni-Kommentar)
+   ---------------------------------------------------------
+   Vorher: zentriertes Stack-Layout, bild-los, sand-cream-gradient.
+   Vroni: „passt nicht rund ins Layout, sieht langweilig aus, macht
+   keine Lust zu klicken".
+   Redesign-Prinzipien (Editorial-CTA-Best-Practices):
+     · 2-Spalter mit echtem Foto-Mockup links → visueller Hook
+     · klare Hierarchie: Eyebrow → Headline → Beschreibung → Primary-Button → Secondary-Link → Trust-Facts
+     · ein einziger optisch dominanter Primary-Button (Download-Icon dran)
+     · Secondary-Aktion als ruhiger Inline-Link, nicht zweite große Button-Konkurrenz
+     · Trust-Badge "Kostenlos · ohne E-Mail" als floating Pill auf dem Bild
+     · Bild: tablet-ausfuellen-hand (warmes Morgenlicht, Olivenzweig, Tasse)
+   --------------------------------------------------------- */
+.za-rfc-cta-panel{
+  /* Round 2026-06-07 verschlankt: schmalere Bild-Spur, kompakteres Layout,
+     kleinere Title-Stufe -> wirkt wie eine ruhige Karte, nicht wie ein 2. Hero. */
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:minmax(240px,360px) minmax(0,1fr);
+  gap:0;
+  background:var(--white);
+  border:1px solid var(--hair-soft);
+  border-radius:var(--r-lg);
+  box-shadow:0 22px 50px -28px rgba(35,34,26,.16),
+             0 10px 22px -14px rgba(35,34,26,.08);
+  overflow:hidden;
+  isolation:isolate;
+  max-width:1080px;margin:0 auto;}
+
+/* LINKS: Foto-Mockup als visueller Hook */
+.za-rfc-cta-figure{
+  position:relative;margin:0;
+  background:linear-gradient(135deg,#F0E7D3 0%,#E5D7B8 100%);
+  overflow:hidden;}
+.za-rfc-cta-figure picture,
+.za-rfc-cta-figure img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  transition:transform var(--dur-5) var(--ease-out);}
+.za-rfc-cta-panel:hover .za-rfc-cta-figure img{transform:scale(1.03);}
+
+/* (Floating Trust-Badge entfernt 2026-06-07: Info doppelte sich mit dem Eyebrow,
+    und die Pill war optisch zu prominent fuer die ruhigere CTA-Box.) */
+
+/* RECHTS: Editorial-Content */
+.za-rfc-cta-body{
+  display:flex;flex-direction:column;
+  gap:clamp(14px,1.4vw,18px);
+  padding:clamp(28px,3vw,40px) clamp(26px,3vw,36px);
+  justify-content:center;}
+
+.za-rfc-cta-eyebrow{
+  /* Round 2026-06-07: kleiner + ruhiger, kein Background-Pill mehr.
+     Liest sich wie ein normaler Eyebrow der Seite, nicht wie ein Sticker. */
+  display:inline-flex;align-items:center;gap:8px;
+  align-self:flex-start;
+  font-size:var(--fs-label);font-weight:700;
+  letter-spacing:var(--ls-label);text-transform:uppercase;
+  color:var(--green-text);
+  white-space:nowrap;}
+.za-rfc-cta-eyebrow svg{width:13px;height:13px;flex:0 0 auto;}
+
+.za-rfc-cta-title{
+  /* Round 2026-06-07: H3-Stufe statt eigener Display-Klasse. */
+  font-family:var(--ff);font-weight:600;
+  font-size:var(--fs-h3);
+  line-height:var(--lh-head);
+  letter-spacing:var(--ls-snug);
+  color:var(--ink);
+  margin:0;
+  text-wrap:balance;}
+.za-rfc-cta-title .g{color:var(--green-deep);}
+
+.za-rfc-cta-text{
+  margin:0;
+  font-size:var(--fs-body-sm);
+  line-height:var(--lh-body);
+  color:var(--ink-soft);
+  text-wrap:pretty;
+  max-width:54ch;}
+
+/* Actions: Primary-Button + Inline-Link (kein 2-Button-Wettstreit) */
+.za-rfc-cta-actions{
+  display:flex;flex-direction:column;
+  gap:var(--space-sm);
+  align-items:flex-start;
+  margin-top:var(--space-2xs);}
+
+.za-rfc-cta-btn-pri{
+  display:inline-flex;align-items:center;gap:10px;
+  justify-content:center;
+  padding:16px 28px;
+  font-size:16px;font-weight:650;
+  letter-spacing:.005em;
+  box-shadow:0 12px 28px -10px rgba(110,155,44,.55),
+             0 4px 10px -4px rgba(35,34,26,.18);
+  transition:transform var(--dur-2) var(--ease-out),
+             box-shadow var(--dur-2) var(--ease-out);}
+.za-rfc-cta-btn-pri:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 38px -10px rgba(110,155,44,.6),
+             0 6px 14px -4px rgba(35,34,26,.22);}
+.za-rfc-cta-btn-pri svg{width:18px;height:18px;flex:0 0 auto;}
+
+.za-rfc-cta-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:var(--fs-body-sm);font-weight:600;
+  color:var(--green-text);
+  text-decoration:none;
+  letter-spacing:-.005em;
+  padding:6px 2px;
+  border-bottom:1px solid transparent;
+  transition:gap var(--dur-2) var(--ease-out),
+             border-color var(--dur-2) var(--ease-out);}
+.za-rfc-cta-link:hover{
+  gap:12px;
+  border-bottom-color:color-mix(in srgb,var(--green-deep) 40%,transparent);}
+.za-rfc-cta-link svg{width:14px;height:14px;flex:0 0 auto;}
+
+/* Trust-Facts: vier kleine Detail-Items mit Mini-Icons */
+.za-rfc-cta-facts{
+  list-style:none;padding:0;margin:var(--space-xs) 0 0;
+  display:flex;flex-wrap:wrap;
+  gap:8px 18px;
+  padding-top:var(--space-sm);
+  border-top:1px solid var(--hair-soft);}
+.za-rfc-cta-facts li{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:var(--fs-caption);
+  color:var(--ink-soft);
+  line-height:1.4;
+  white-space:nowrap;}
+.za-rfc-cta-facts li svg{
+  width:14px;height:14px;flex:0 0 auto;
+  color:var(--green-deep);opacity:.75;}
+
+/* RESPONSIVE */
+@media (max-width:880px){
+  .za-rfc-cta-panel{grid-template-columns:1fr;}
+  .za-rfc-cta-figure{aspect-ratio:16/10;}
+  .za-rfc-cta-figure picture,
+  .za-rfc-cta-figure img{height:100%;}
+  .za-rfc-cta-body{padding:clamp(24px,3.6vw,32px) clamp(22px,3.4vw,28px);}
+}
+
+@media (max-width:520px){
+  .za-rfc-cta-actions{align-items:stretch;}
+  .za-rfc-cta-btn-pri{width:100%;}
+  .za-rfc-cta-link{align-self:center;}
+  .za-rfc-cta-facts{gap:8px 14px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .za-rfc-cta-figure img,
+  .za-rfc-cta-btn-pri,
+  .za-rfc-cta-link{transition:none;}
+  .za-rfc-cta-panel:hover .za-rfc-cta-figure img{transform:none;}
+  .za-rfc-cta-btn-pri:hover{transform:none;}
 }

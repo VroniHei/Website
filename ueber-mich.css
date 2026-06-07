@@ -459,22 +459,29 @@
 
 .au-fit-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
   position:relative;z-index:1;}
-.au-fit-list li{position:relative;padding:14px 0 14px 34px;font-size:var(--fs-body-sm);
+.au-fit-list li{position:relative;padding:14px 0 14px 40px;font-size:var(--fs-body-sm);
   line-height:1.6;color:#3a362e;text-wrap:pretty;
   border-top:1px solid color-mix(in srgb,var(--ink) 6%,transparent);}
 .au-fit-list li:first-child{border-top:none;}
-.au-fit-list li::before{position:absolute;left:0;top:50%;transform:translateY(-50%);
+.au-fit-list li::before{position:absolute;left:0;
+  /* Round 2026-06-07: Icon an der ersten Textzeile mittig ausgerichtet, nicht
+     mehr an der gesamten Karte (vorher top:50%). Bei mehrzeiligen Listenpunkten
+     wandert das Icon sonst optisch nach unten weg. Formel: padding-top + halbe
+     Line-Height - halbe Icon-Hoehe (via Custom-Prop --fit-icon-size pro Variante). */
+  top:calc(14px + (1.6em - var(--fit-icon-size, 22px)) / 2);
   display:flex;align-items:center;justify-content:center;}
 
 /* PASST-Card: Check-Pille auf dunklem Forest-Grund — chalk-Ring damit
-   Check vor dunklem BG sauber lesbar bleibt. */
-.is-yes .au-fit-list li::before{content:"";width:24px;height:24px;border-radius:50%;
-  background:var(--green) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2323221A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 13l4 4 10-11'/></svg>") no-repeat center / 15px 15px;
+   Check vor dunklem BG sauber lesbar bleibt. Round 2026-06-07: 24px -> 22px. */
+.is-yes .au-fit-list li{--fit-icon-size:22px;}
+.is-yes .au-fit-list li::before{content:"";width:22px;height:22px;border-radius:50%;
+  background:var(--green) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2323221A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 13l4 4 10-11'/></svg>") no-repeat center / 14px 14px;
   box-shadow:0 0 0 4px rgba(168,232,79,.22),
              0 0 0 5px rgba(248,245,238,.08);}
 
-/* EHER NICHT-Card: kleines gedämpftes Minus */
-.is-no .au-fit-list li::before{content:"";width:16px;height:2px;
+/* EHER NICHT-Card: kleines gedämpftes Minus. Round 2026-06-07: 16px -> 14px. */
+.is-no .au-fit-list li{--fit-icon-size:2px;}
+.is-no .au-fit-list li::before{content:"";width:14px;height:2px;
   background:var(--ink-soft);opacity:.4;border-radius:2px;}
 
 /* ---------- 9 · WAS DU ERWARTEN KANNST (beige · 3-Spalten · nutzt `.step` aus style.css) ---------- */
@@ -682,7 +689,7 @@
      Brief §7: gleiche Höhen, linksbündige Listen, ruhig. */
   .au-fit-grid{margin-top:32px;gap:var(--space-grid-mobile);}
   .au-fit-col{padding:26px 22px 24px;}
-  .au-fit-list li{padding:13px 0 13px 32px;font-size:15.5px;}
+  .au-fit-list li{padding:13px 0 13px 38px;font-size:15.5px;}
 
   /* ----- 10 · „Was du erwarten kannst"-Grid Mobile ----- */
   .au-expect-grid{margin-top:32px;gap:var(--space-grid-mobile);}
