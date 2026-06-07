@@ -425,7 +425,7 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Alt-Text:** Rote-Faden-Check als PDF auf einem Tablet in der Hand, daneben Keramiktasse und Olivenzweig auf Holzbank im warmen Morgenlicht
 - **Dekorativ:** nein · **KI-Darstellung:** ja (Hand als KI-generierte Darstellung, Tablet/Setting Stillleben)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-07` — Ersterfassung. Wird im CTA-Panel als visueller Anker neben dem Download-Button gezeigt. Hand-Framing setzt es bewusst vom RFC-Feature-Bild oben (tablet-cafe-olivenzweig, ruhendes Tablet) ab.
+- **Änderungen:** `2026-06-07` — Ersterfassung. Wird im CTA-Panel als visueller Anker neben dem Download-Button gezeigt. Hand-Framing setzt es bewusst vom RFC-Feature-Bild oben (tablet-cafe-olivenzweig, ruhendes Tablet) ab. `2026-06-07` — Bild-Dateien ins Repo nachgeliefert (waren im Sweep-PR #54 versehentlich nicht mitgenommen worden; PR #55 behebt das).
 
 ### rfc-mockups/tablet-bereich-fenster (Reserve)
 - **Dateien:** `images/rfc-mockups/tablet-bereich-fenster.webp` · `images/rfc-mockups/tablet-bereich-fenster-960.webp` · `images/rfc-mockups/tablet-bereich-fenster.png`
