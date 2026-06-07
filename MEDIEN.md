@@ -312,11 +312,15 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/about-brand-essence.png` (1900 KB) · `images/about-brand-essence.webp` (102 KB)
 - **Maße:** 1402×1122 px
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Brand Strategy Workspace, Laptop mit Moodboard und Notizbuch auf Tisch
-- **Verwendung:** `ueber-mich.html` (Sektion „Wie ich arbeite", Bild 1)
-- **Alt-Text:** Vroni sortiert den Markenkern — Vision, Werte, Zielgruppe — auf dem Schreibtisch mit Laptop und Moodboard
-- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person)
+- **Verwendung:** `zusammenarbeit.html` Claim-Band (Section 5 „Claim Sortieren", typografischer Claim „Was außen trägt, muss innen sortiert sein.") seit 2026-06-07; bis 2026-06-03 in `ueber-mich.html` (Sektion „Wie ich arbeite", Bild 1), durch das Über-mich-Redesign entfernt.
+- **Alt-Text:** `alt=""` — dekoratives Claim-Band-Hintergrundbild (der typografische Claim steht als Overlay über dem Bild)
+- **Dekorativ:** ja (im Claim-Band-Kontext) · **KI-Darstellung:** ja (generierte Person)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-02` — Ersterfassung.
+- **Beachten:** Iterations-Pfad (3 Runden bis zur finalen Wahl): siehe PROTOKOLL 2026-06-07 Phase 3 Eintrag B.
+- **Änderungen:**
+  - `2026-06-02` — Ersterfassung.
+  - `2026-06-03` — Aus `ueber-mich.html` entfernt (Über-mich-Redesign; Sektion durch Stationskarten + Fachlich-Band ersetzt).
+  - `2026-06-07` — Neue Verwendung als Claim-Band-Bild auf `zusammenarbeit.html` (ersetzt `vroni-stille-holzsteg`). Iterations-Pfad: Round 1 outdoor (zitat-weg) → Round 2 stillleben-gedankenraum (Duplikat mit CTA-Panel) → Round 3 about-brand-essence (final, inhaltlich exakt das Seitenthema).
 
 ### about-journal-mat
 - **Dateien:** `images/about-journal-mat.png` (1700 KB) · `images/about-journal-mat.webp` (74 KB)
@@ -329,18 +333,6 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Änderungen:**
   - `2026-06-02` — Ersterfassung.
   - `2026-06-03` — Aus `ueber-mich.html` entfernt (Über-mich-Redesign; ersetzt durch `about-notebook-still` + `about-arbeiten`).
-
-### about-brand-essence
-- **Dateien:** `images/about-brand-essence.png` (1900 KB) · `images/about-brand-essence.webp` (102 KB)
-- **Maße:** 1402×1122 px
-- **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-02 · **Prompt:** Brand Strategy Workspace, Laptop mit Moodboard und Notizbuch auf Tisch
-- **Verwendung:** *(aktuell nicht eingebunden)* — bis 2026-06-03 in `ueber-mich.html` (Sektion „Wie ich arbeite", Bild 1); durch das Über-mich-Redesign 2026-06-03 entfernt (Sektion neu strukturiert). Datei bleibt im Repo.
-- **Alt-Text:** „Vroni sortiert den Markenkern — Vision, Werte, Zielgruppe — auf dem Schreibtisch mit Laptop und Moodboard"
-- **Dekorativ:** nein · **KI-Darstellung:** ja (generierte Person)
-- **Rechte:** siehe Abschnitt 1
-- **Änderungen:**
-  - `2026-06-02` — Ersterfassung.
-  - `2026-06-03` — Aus `ueber-mich.html` entfernt (Über-mich-Redesign; Sektion durch Stationskarten + Fachlich-Band ersetzt).
 
 ### about-wireframe
 - **Dateien:** `images/about-wireframe.png` (2100 KB) · `images/about-wireframe.webp` (100 KB)
