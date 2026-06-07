@@ -927,6 +927,9 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
    Formular konkurrieren, "wie eine hilfreiche Randnotiz".
    --------------------------------------------------------- */
 .za-ps-row{
+  /* Layout-Override: vertikale Stack-Struktur in der Body-Spalte,
+     Avatar bleibt links-bündig wie in .au-sign-row, Body bekommt
+     mehr Luft (eyebrow/text/CTA = 3 Zeilen). */
   align-items:flex-start;
   margin-top:36px;
   padding:16px 18px;
@@ -937,6 +940,7 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
 }
 .za-ps-row .au-sign-ava{
   width:46px;height:46px;
+  /* dezenter Rahmen, gleiche Optik wie ueber-mich-Sign-Row */
 }
 .za-ps{
   display:flex;flex-direction:column;min-width:0;
@@ -972,9 +976,13 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
 }
 
 /* ---------------------------------------------------------
-   13 · CONTACT-PRIVACY · in-form Variant (Round 2026-06-07):
-   Fineprint sitzt jetzt im Formular (rechte Spalte) statt unter
-   dem Kontakt-Text links. Macht die linke Spalte ruhiger.
+   13 · CONTACT-PRIVACY · in-form Variant (Round 2026-06-07
+   · Vroni-Inline-Kommentar): Fineprint sitzt jetzt im Formular
+   (rechte Spalte) statt unter dem Kontakt-Text links. Macht die
+   linke Spalte ruhiger und visuell besser balanciert.
+   Override: globale .contact-privacy ist absolute+bottom:0 mit
+   grün-greyem Text auf dunklem BG. Hier auf chalk-BG: ink-soft,
+   statisch, mit dünnem Hair-Trenner zur form-note.
    --------------------------------------------------------- */
 #kontakt.contact .contact-privacy--in-form{
   position:static;
@@ -994,27 +1002,50 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   padding-bottom:1px;
   transition:color .2s ease,border-color .2s ease;
 }
+#kontakt.contact .contact-privacy--in-form a:hover,
+#kontakt.contact .contact-privacy--in-form a:focus-visible{
+  color:var(--green-deep);
+  border-bottom-color:var(--green-deep);
+}
 
 /* ---------------------------------------------------------
    14 · KONTAKTABSCHLUSS LUFTIGER (Round 2026-06-07 · PR 2)
-   Privacy ist aus der linken Spalte ins Formular gewandert (PR 1),
-   damit ist der globale padding-bottom:64px toter Raum geworden.
+   Politur-Pass aus Briefing „Finaler Feinschliff" §6.
+   Privacy ist aus der linken Spalte ins Formular gewandert
+   (PR 1), damit ist der globale padding-bottom:64px in
+   .contact-grid > .reveal:not(.form) toter Raum geworden.
+   Hier: linke Spalte ohne toten Raum, dafür PS-Box, Form
+   und contact-direct minimal luftiger setzen — kein Layout-
+   Umbau, nur Rhythmus.
    --------------------------------------------------------- */
+
+/* Linke Spalte: kein reservierter Platz mehr für Privacy.
+   Aber: dezenter Bottom-Abstand für visuelle Balance zum
+   Form-Schatten beibehalten. */
 #kontakt.contact .contact-grid > .reveal:not(.form){
   padding-bottom:0;
 }
+
+/* Body-Text → Contact-Direct: minimal mehr Luft */
 #kontakt.contact .contact-direct{
   margin-top:36px;
 }
+
+/* PS-Box bekommt mehr Atem zur Contact-Direct-Reihe */
 .za-ps-row{
   margin-top:44px;
 }
+
+/* Form atmet großzügiger (Briefing §6: „Wirkt das Formular
+   einladend?") */
 #kontakt.contact .form{
   padding:42px 40px 38px;
 }
 #kontakt.contact .form-note{
   margin-top:18px;
 }
+
+/* Privacy-im-Form bekommt minimal mehr Trennung zur form-note */
 #kontakt.contact .contact-privacy--in-form{
   margin-top:20px;
 }

@@ -53,6 +53,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ### Schrift-System
 - [ ] **Vaelia = nur Display/Wortmarke** (Logo + `about-sign .as-brand`). NIEMALS für Fließtext.
 - [ ] Überschriften = **Open Sauce Sans 800**. Fließtext Open Sauce Sans 400.
+- [ ] **Hero-H1 Skala:** Home (`.hero--bento .hb-h1`) nutzt `var(--fs-display)` (größer, clamp 40–66px), **alle Sub-Seiten** (`.au-hero h1` → Über mich, Zusammenarbeit, künftige) nutzen `var(--fs-display-sub)` (kleiner, clamp 34–52px). Beide Tokens in `tokens.css`. Pro-Seite-Override für Hero-H1-Skala = Anti-Pattern. (2026-06-07 verankert nach Vroni-Inline-Wunsch.)
 - [ ] **Alle Schriften lokal in `fonts/`** (Open Sauce Sans 400 = `.woff`, 500–800 = `.woff2`; Vaelia). **Keine externe Font-CDN** (kein Google Fonts, kein jsDelivr/Fontsource) — datenschutzrechtlich (IP-Übertragung) tabu.
 - [ ] **Kein `image-slot.js`** in der Produktionsdatei — stammt aus dem Design-Atelier, hat in Produktion nichts verloren.
 
@@ -70,7 +71,8 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **about-media .am-main braucht explizite Höhe** im 900px-Breakpoint (`height:clamp(320px,70vw,520px)`), da `aspect-ratio` allein den Containing-Block nicht zuverlässig aufbaut für absolut positionierte Kinder.
 
 ### Mobile — Layout
-- [ ] **Navigation auf allen 3 Hauptseiten identisch (Desktop + Mobile)** — gleiche 6er-Liste, gleiche Reihenfolge: `Angebote · Ansatz · Über mich · Zusammenarbeit · Yoga · FAQ`. Active-State + `aria-current="page"` jeweils auf dem Eintrag der aktuellen Seite. Mobile-Menü erbt dieselbe Liste + Burger-CTA „Lass uns reden". (2026-06-07 verankert, nachdem die Nav nach der One-Pager-Trennung dreimal unterschiedlich war.)
+- [ ] **Navigation auf allen 3 Hauptseiten identisch (Desktop + Mobile)** — 4er-Liste, gleiche Reihenfolge: `Start · Über mich · Zusammenarbeit · Kontakt`. Active-State + `aria-current="page"` jeweils auf dem Eintrag der aktuellen Seite. Mobile-Menü erbt dieselbe Liste + Burger-CTA „Lass uns reden". `Kontakt` linkt per `#kontakt` (Anchor auf der jeweiligen Seite, alle 3 Hauptseiten haben eine `<section id="kontakt">`). `Start` linkt auf `index.html` (auf Subseiten) bzw. `#top` (auf der Startseite selbst). (2026-06-07 PR „Nav-Vereinfachung global": Briefing-§13-Empfehlung umgesetzt, vorher 6er-Liste `Angebote·Ansatz·Über mich·Zusammenarbeit·Yoga·FAQ`.)
+- [ ] **`.nav-links a` braucht `white-space:nowrap;`** in `style.css`, sonst bricht „Über mich" auf engen Desktop-Viewports auf zwei Zeilen. (2026-06-07 verankert.)
 - [ ] **Burger-CTA** im Overlay = `background:var(--ink); color:var(--chalk)` (schwarz/weiß).
 - [ ] **Burger-Button** hat `aria-expanded`, `aria-controls="mobileMenu"` + toggled `aria-label` zwischen „Menü öffnen" / „Menü schließen" (in script.js).
 - [ ] Hero-Bild Mobile als **Banner über** der Headline (`.hero-visual{order:-1}`).
@@ -155,6 +157,305 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 ---
 
 ## 3. VERLAUF
+
+### 2026-06-07 — Regression-Fix: .contact-privacy--in-form Hover-Styles wiederhergestellt (Claude Design · Atelier)
+
+**Was:** Reparatur einer Mini-Regression aus PR 2. Die Hover- und Focus-Visible-Styles für `.contact-privacy--in-form a` (in `zusammenarbeit.css` Block 13, hinzugefügt mit PR 1) waren beim Einfügen von Block 14 in PR 2 versehentlich überschrieben worden — der `str_replace_edit`-Match hatte das Ende von Block 13 (inkl. der `a:hover, a:focus-visible`-Regel) mit dem Anfang von Block 14 verwechselt. Resultat: Privacy-Link im Formular hatte keinen Hover-State mehr (nur Hover-Trigger war noch da, optisch keine Veränderung).
+
+**Auslöser:** Code-Feedback („der Kontaktbereich ist leer / zerschossen") nach Application der Final-Politur-Handoff. Atelier-Live-Audit zeigte: HTML-Struktur valide, alle Tags balanciert, alle Children sichtbar (opacity:1), Container-Größen korrekt (Section 1308×855, Grid 2×560px, PS-Box 560×109, Privacy 480×70). Code's „leer"-Befund war damit nicht auf einen Struktur-/Render-Bruch zurückzuführen, sondern wahrscheinlich auf den noch nicht deployten Stand der Live-Seite gegenüber der Atelier-Version. Beim systematischen Re-Check fiel allerdings die fehlende Hover-Regel als kleinere Regression aus PR 2 auf — die wurde jetzt wiederhergestellt.
+
+**Geänderte Dateien:**
+- `zusammenarbeit.css` Block 13 (Privacy-in-Form-Variant): `a:hover, a:focus-visible { color:var(--green-deep); border-bottom-color:var(--green-deep); }` wieder eingefügt zwischen `a{...}` und dem Block-14-Kommentar.
+- `_handoff/2026-06-07_final-politur-feinschliff/zusammenarbeit.css` aktualisiert (1:1-Kopie der gefixten Datei).
+
+**Warum:** Ohne Hover/Focus-State wären Tastatur-Nutzer:innen ohne visuelle Bestätigung beim Hovern über den Datenschutz-Link im Formular — minimal, aber inkonsistent mit den gleichen Hover-Verhalten auf anderen Inline-Links der Seite. Außerdem ist die Regel ja explizit in PR 1 angelegt worden und gehört dort hin.
+
+**Wie:** Eine `str_replace_edit`-Operation: `a{...}` + Block-14-Kommentar → `a{...}` + Hover/Focus-Rule + Block-14-Kommentar.
+
+**Alternativen / Abwägungen:** Keine echte Alternative — das ist eine reine Wiederherstellung des ursprünglich vorgesehenen Zustands.
+
+**Learnings:**
+- `str_replace_edit`-Matches sollten besser mit längerem Kontext gemacht werden, wenn ein Block direkt an einen Kommentar grenzt. Ein „eindeutiger" Match ist nicht immer eindeutig — wenn das Match unmittelbar vor einem strukturellen Übergang (Comment-Header eines nächsten Blocks) sitzt, kann ein scheinbar additiver Edit versehentlich subtrahieren.
+- Code/Atelier-Sync: Wenn Live ein Problem zeigt, das im Atelier nicht reproduzierbar ist, ist die wahrscheinlichste Ursache nicht ein Atelier-Bug sondern ein Deployment-Versatz. Trotzdem lohnt sich der systematische Audit, weil er Mini-Regressionen aufdeckt, die sonst durchrutschen.
+
+**Konsequenz / Handoff:**
+- Handoff `_handoff/2026-06-07_final-politur-feinschliff/` regeneriert mit dem gefixten `zusammenarbeit.css`.
+- Keine Markup-Änderungen, keine Token-Änderungen, keine A11y-Auswirkung außer der Wiederherstellung des Hover-Feedback.
+
+### 2026-06-07 — Hero-H1 globaler Sub-Token: --fs-display-sub (Claude Design · Atelier)
+
+**Was:** Neuer Design-Token `--fs-display-sub` in `tokens.css` für Hero-H1 auf Sub-Seiten. Über mich + Zusammenarbeit nutzen ihn jetzt automatisch, Home behält den größeren `--fs-display`. Vroni-Inline-Wunsch: „dass die Überschrift im Hero auf der Über-Mich-Seite die selbe Schriftgröße hat wie die Überschrift im Hero auf der Seite Zusammenarbeit. Ich würde das als globalen Style setzen. Dann startet nur die Home-Seite etwas größer und alle weiteren Seiten haben die etwas kleinere Überschriftengröße."
+
+**Vorher:**
+- Home `.hero--bento .hb-h1`: `var(--fs-display)` = `clamp(40px, 4.8vw, 66px)` → Desktop max 66px.
+- Über mich `.au-hero h1`: `var(--fs-display)` = identisch zur Home → Desktop max 66px.
+- Zusammenarbeit `.au-hero h1` (mit hardcoded `@media (min-width:561px)`-Override in `zusammenarbeit.css`): `clamp(34px, 3.55vw, 52px)` → Desktop max 52px.
+- Inkonsistenz: Über mich sah größer aus als Zusammenarbeit, weil der Zusammenarbeit-Override nicht greifbar war als globale Skala.
+
+**Nachher:**
+- Home unverändert: `var(--fs-display)` (66px max).
+- Über mich + Zusammenarbeit + zukünftige Sub-Seiten: `var(--fs-display-sub)` = `clamp(34px, 3.55vw, 52px)` (52px max).
+- Live verifiziert bei 1308px Viewport: beide Hero-H1s rechnen sich auf exakt 46.434px (3.55vw) — identisch.
+
+**Geänderte Dateien:**
+- `tokens.css` Z. 51–52: neuer Token `--fs-display-sub` direkt nach `--fs-display`, mit Erklär-Kommentar zur Logik (Home größer als Sub-Seiten).
+- `ueber-mich.css` Z. 28: `font-size: var(--fs-display)` → `font-size: var(--fs-display-sub)`. Kommentar-Block aktualisiert auf neuen Token-Bezug.
+- `zusammenarbeit.css` Z. 78–84: bisheriger Override-Block (hardcoded `font-size:clamp(34px,3.55vw,52px)`) abgebaut. Nur noch `.au-hero h1{max-width:none;}` bleibt (zusammenarbeit-spezifisch wegen längerem H1-Text „Wenn du im Gespräch klarer klingst als auf deiner Website."). Kommentar erklärt: max-width-Override bleibt seitenspezifisch, font-size kommt jetzt vom globalen Sub-Token.
+
+**Warum:** Eine globale Design-Skala für Sub-Page-Hero ist sauberer als pro-Seite-Hardcodierung. Bei künftigen neuen Sub-Seiten (z. B. dedizierte „Yoga"-Seite oder Service-Detail-Seiten) greift der Token automatisch — kein Copy-Paste-Override mehr nötig. Außerdem korrigiert es eine bestehende sichtbare Inkonsistenz, die Vroni bemerkt hat: Über-mich-H1 wirkte größer als Zusammenarbeit-H1, weil Über mich auf dem Home-Token saß statt auf der kleineren Sub-Stufe.
+
+**Wie:** Drei `str_replace_edit`-Operationen über drei Dateien. Tokens als Source of Truth, ueber-mich.css als Default-Style für `.au-hero h1` (geladen auch von zusammenarbeit.html, da Cascade), zusammenarbeit.css nur noch für die seitenspezifische `max-width:none`-Anpassung. Live-Verifikation per `getComputedStyle(.au-hero h1).fontSize` auf beiden Seiten: **beide 46.434px bei 1308px Viewport** (3.55vw computed).
+
+**Alternativen / Abwägungen:**
+- **Den Home-Token kleiner ziehen (alle Hero-H1 gleich klein)**: verworfen, Vroni hat explizit gesagt „nur die Home-Seite startet etwas größer". Sie will den Brand-Einstieg auf der Home größer halten.
+- **Den Sub-Token in `style.css` statt `tokens.css`** definieren: verworfen, `tokens.css` ist die globale Source-of-Truth für Type/Color/Spacing-Tokens. Eine Skala dort definieren erleichtert spätere Pflege (CMS-Variablen, Theme-Switch, etc.).
+- **Den hardcoded `clamp` in zusammenarbeit.css lassen** (nur Über-mich-CSS ändern): verworfen, hätte den Token-Override-Block in zusammenarbeit.css als toten Code stehen lassen. Sauber refactoren statt akkumulieren.
+- **Tablet-Override** für Sub-Seiten anpassen (Z. 947 in ueber-mich.css `.au-hero h1{font-size:clamp(34px,5.2vw,46px)}`): nicht nötig — der Tablet-Wert 46px Max passt eh schon unter den Sub-Desktop-Wert 52px Max. Keine Lücke.
+- **Mobile-Variante (`--fs-display-sub-sm`)**: nicht angelegt. Mobile-H1 ist auf allen Seiten gleich auf `--fs-display-sm` (clamp 33-42px); auf Mobile gibt es keine Sub-Page-Differenzierung, das wäre auf 360px-Screens auch optisch albern. Token-Set bleibt schlank.
+
+**Learnings:**
+- Hidden Inconsistencies durch hardcoded Overrides aufzuspüren ist mühselig — eine Token-Centralisierung jetzt erspart später viele Site-Walks. Pattern für künftige Skalen: erst den Token in `tokens.css` definieren, dann pro Komponente referenzieren, statt direkt zu hardcoden.
+- Die Cascade-Reihenfolge `style.css → ueber-mich.css → zusammenarbeit.css` macht ueber-mich.css zum natürlichen „Sub-Page-Default"-Layer. Was dort steht, gilt automatisch auch auf zusammenarbeit (und künftigen Sub-Seiten, die ueber-mich.css linken).
+
+**Konsequenz / Handoff:**
+- Geändert: `tokens.css`, `ueber-mich.css`, `zusammenarbeit.css`, `PROTOKOLL.md`. Kein HTML-Touch.
+- **Neue Invariante:** Hero-H1 auf Sub-Seiten via `var(--fs-display-sub)` — nicht per-Seite duplizieren.
+- Keine Bilder, kein Drittdienst, keine Schrift → MEDIEN.md / Rechtstexte unverändert.
+- Handoff-Branch z. B. `design/hero-h1-sub-token` → PR auf `main`.
+
+### 2026-06-07 — Nav-Vereinfachung global + Nav-Link-Wrap-Fix (Claude Design · Atelier)
+
+**Was:** Globale Vereinfachung der Hauptnavigation auf allen drei Hauptseiten nach Briefing „Finaler Feinschliff" §13 (Navigation auf allen Seiten vereinheitlichen). Plus ein kleiner CSS-Fix gegen Zeilenumbruch im „Über mich"-Nav-Link (Briefing §11 „unsaubere Zeilenumbrüche").
+
+**Vorher:** Sechs Nav-Items über drei Hauptseiten:
+`Angebote | Ansatz | Über mich | Zusammenarbeit | Yoga | FAQ` (+ „Lass uns reden"-CTA rechts).
+„Angebote / Ansatz / Yoga / FAQ" waren Anchors auf `index.html#...`, was von Subseiten aus immer einen Seitenwechsel verursachte.
+
+**Nachher:** Vier Nav-Items, klare Hauptseiten-Hierarchie:
+`Start | Über mich | Zusammenarbeit | Kontakt` (+ „Lass uns reden"-CTA rechts).
+- `Start` → auf index.html `href="#top"`, auf Subseiten `href="index.html"`.
+- `Über mich` → `ueber-mich.html` (active-State auf der Seite selbst).
+- `Zusammenarbeit` → `zusammenarbeit.html` (active-State auf der Seite selbst).
+- `Kontakt` → `#kontakt` (Anchor, funktioniert auf allen 3 Seiten, weil alle eine `<section id="kontakt">` haben).
+- CTA „Lass uns reden" bleibt erhalten (Vroni-Voice, mehr als nur „Kontakt"), funktional auch `#kontakt`. Visuelle Redundanz akzeptiert, weil der Text-Link und der CTA verschiedene Tonalitäten haben.
+
+**Geänderte Dateien:**
+- `index.html` — `.nav-links` + `.mobile-menu` Inhalt komplett ersetzt (alte 6-Items raus, neue 4-Items rein). Start-Link aktiv auf Start-Seite.
+- `ueber-mich.html` — gleiche Operation, Über-mich-Link aktiv.
+- `zusammenarbeit.html` — gleiche Operation, Zusammenarbeit-Link aktiv.
+- `style.css` Z. 82–83 — `.nav-links a` bekommt `white-space:nowrap;`. Verhindert, dass „Über mich" auf manchen Viewports auf zwei Zeilen umbricht (war pre-existing seit Brand-Voice-Update, unabhängig von dieser Runde).
+
+**Warum:** Briefing §13 fordert: „Navigation auf allen Hauptseiten vereinheitlichen. Empfohlen: Start / Über mich / Zusammenarbeit / Rote-Faden-Check / Kontakt. Oder kompakter: Start / Über mich / Zusammenarbeit / Kontakt." Außerdem: „Wichtig: Zusammenarbeit muss auf allen Seiten erreichbar sein" und „Über-mich-Seite darf nicht eine abweichende Navigation mit „Werte" statt „Zusammenarbeit" haben". Vroni hat in der Wrap-up-Runde explizit zugestimmt („mach die Nav-Vereinfachung auch gleich mit").
+
+**Wie:** Sechs `str_replace_edit`-Operationen, zwei pro Seite (`nav-links`-Block + `mobile-menu`-Block synchron). Active-State und `aria-current="page"` an die jeweils richtige Position gezogen. Plus eine CSS-Regel-Erweiterung in `style.css`. Live-Verifikation der Nav-Höhen via `getBoundingClientRect` (alle Links 39px single-line; html-to-image-Capturer rendert „Über mich" fälschlich als 2-Zeiler, das ist ein bekannter Capturer-Bug — der echte Browser zeigt es einzeilig).
+
+**Alternativen / Abwägungen:**
+- **Längere Nav-Variante mit „Rote-Faden-Check"** (Briefing-Empfehlung 1, 5 Items): verworfen. RFC ist eine Sub-Komponente der Zusammenarbeit-Seite (`#rote-faden-check`), nicht eine eigene Hauptseite. Als eigener Nav-Eintrag würde er den Section-Status zur Hauptkategorie aufwerten, was die Hierarchie verwässert. Wer ihn sucht, findet ihn über die Zusammenarbeit-Seite (Hero-Secondary-Button „Rote-Faden-Check starten", PS-Box am Kontakt, RFC-Section selbst, Footer-Verweis hist. entfernt).
+- **CTA „Lass uns reden" entfernen** (weil `Kontakt` jetzt im Nav steht): verworfen. „Lass uns reden" ist Vroni-Voice, der einzige sichtbare Brand-Voice-Touch in der Nav. Funktionale Redundanz mit dem Text-Link „Kontakt" ist gewollt: Text-Link für scanbare Navigation, CTA-Button für die emotionale Einladung.
+- **Yoga + FAQ als eigene Nav-Items behalten**: verworfen. Brief fordert explizit Vereinfachung, und „Yoga" + „FAQ" sind Sektionen auf der Startseite, keine Hauptkategorien. Wer Yoga sucht, kommt über Start hin. FAQ ist sowieso im Seiten-Fluss verlinkbar.
+- **`white-space:nowrap` nur auf eine Subset von Nav-Links**: verworfen. Ist ein universeller Sanity-Default für Nav-Items, nichts spricht für selektives nowrap.
+- **CTA-Text statt „Lass uns reden" auf „Kontakt" ziehen**: verworfen, der nav-Text-Link macht das schon — das war ja der Sinn der Vereinfachung.
+
+**Learnings:**
+- `html-to-image`-Capturer rendert manche `display:flex`-Container mit `flex-wrap` und schmalen Items inkonsistent — Text-Items mit Leerzeichen ("Über mich") zeigt er manchmal als 2-Zeiler, obwohl der echte Browser sie einzeilig rendert. Belastbare Quelle: `getBoundingClientRect.height` im echten Browser. Bei nav-Höhen unter 44px ist „single line" sicher.
+- Nav-Vereinfachung von 6 auf 4 Items reduziert kognitive Last sichtbar und macht Subseiten-Navigation (Start ↔ Über mich ↔ Zusammenarbeit) erstmals direkt zugänglich, nicht nur via Anchor-Sprünge zur Home. Die Brief-Empfehlung passte.
+
+**Konsequenz / Handoff:**
+- Geändert: `index.html`, `ueber-mich.html`, `zusammenarbeit.html`, `style.css`, `PROTOKOLL.md`. Sub-Seiten (impressum/datenschutz/barrierefreiheit/404) haben eigene Nav-Implementierungen (vereinfacht oder minimal), die wurden in dieser Runde nicht angefasst — wenn die auch Vereinheitlichung brauchen, separater PR.
+- Keine neuen Drittdienste, keine Bilder, keine Schriften → MEDIEN.md / Rechtstexte unverändert.
+- Handoff-Branch z. B. `design/nav-vereinfachung-global` → PR auf `main`.
+- **Damit ist der Briefing „Zusammenarbeit-Seite finaler Feinschliff" final durchgespielt:** PR 1 → PR 2 → PR 3 → PR 4+5 → A11y-Audit-Pass → Nav-Vereinfachung. Offen bleiben nur Mobile-Live-Probe (echtes Gerät) und Lighthouse-Lauf (nach Livegang).
+
+### 2026-06-07 — Final-Audit-Pass: A11y + Kontrast auf allen 3 Hauptseiten (Claude Design · Atelier)
+
+**Was:** Reiner Check-Pass, keine Code-Änderungen. Programmatischer Audit auf `index.html`, `ueber-mich.html`, `zusammenarbeit.html` via JS-Inspektion im Live-DOM.
+
+**Geprüft:**
+1. **Touch-Targets ≥44px** (Vroni-Ziel laut CLAUDE.md): alle interaktiven Elemente (a/button/summary) gemessen via `getBoundingClientRect`. Worst Case: `.offer .more`-Button auf zusammenarbeit auf exakt 44×180px (knapp, aber okay). Alle anderen Buttons/Links ≥44px in beiden Dimensionen. **0 zu kleine Hit-Targets auf allen 3 Seiten.**
+2. **Alt-Texte:** alle `<img>` auf Alt-Attribut geprüft. **0 fehlende Alts auf allen 3 Seiten.**
+3. **Heading-Order (H-Struktur):** sequenzielle Prüfung h1→h2→h3, kein Skip-Sprung erlaubt. **0 Skips auf allen 3 Seiten.** Jede Seite startet mit genau einer h1.
+4. **Button/Link Accessible Name:** jedes `<a>` und `<button>` braucht textContent oder aria-label. **0 unbeschriftete Elemente auf allen 3 Seiten.**
+5. **Kontrast (WCAG AA)** auf zusammenarbeit, Stichproben an den im CLAUDE.md als Risiko genannten Stellen + den dunklen Bereichen:
+   - Contact body (chalk-grau auf forest): **8.30 ✓**
+   - Footer-Links (auf ink): **10.70 ✓**
+   - Footer-Bottom muted (rgb 154/165/137 auf ink): **6.17 ✓**
+   - Contact eyebrow (green auf forest): **8.74 ✓**
+   - Form-Note + Privacy-in-Form (ink-soft auf chalk): **6.66 ✓**
+   - Energy-Note eyebrow (green-deep auf chalk, vorher als grenzwertig markiert): **5.08 ✓** — passt WCAG AA trotz 11.5px Größe (Pflicht ist 4.5:1 für Normaltext, hier rgb 68/117/16).
+   - Faden-Step-Description (ink-soft auf chalk): **6.66 ✓**
+   - Inline-Links (chalk auf ink): **14.66 ✓**
+   - **0 Kontrast-Fails.** Alle gemessenen Stellen über WCAG AA Mindestkontrast.
+
+**Was nicht via Atelier-Audit prüfbar ist (und an Vroni für Livegang-Test übergeht):**
+- **Echtes Mobile-Rendering (Briefing §12):** html-to-image-Capturer triggert keine Media-Queries. CSS-Level ist umfangreich responsive (Breakpoints @1080/900/720/560/520, alle Hauptsections kollabieren auf 1-Spalter, Hero-CTAs stacken, `.form-row` geht auf 1fr bei ≤900px, Form-Submit ist full-width, Mobile-Menu deckt Nav ab), aber die finale visuelle Politur (Card-Stack-Rhythmus, Bildgrößen, Lesefluss) braucht ein echtes Gerät.
+- **Tastatur-Navigation Tab-Reihenfolge:** Skip-Link „Zum Hauptinhalt springen" ist gesetzt, focus-visible-Outlines existieren in `style.css` (Z. 942–946), aber die End-to-End-Tab-Probe braucht manuelle Bedienung.
+- **Reduced-Motion:** Mehrere `@media (prefers-reduced-motion:reduce)`-Blöcke vorhanden (Footer-Quote Hover, FAQ-Animation, hb-blob-Animation, qbDrift). Komplette Sweep-Validierung braucht aktivierte System-Einstellung im echten Browser.
+- **Lighthouse Score:** Atelier hat keinen Lighthouse-Runner. Bei Bedarf nach Livegang mit `lighthouserc.json` lokal laufen lassen.
+
+**Konsequenz / Handoff:**
+- Keine Datei-Änderungen in dieser Runde. Reine Audit-Dokumentation.
+- **Stand für Livegang:** alle Briefing-§14-A11y-Punkte erfüllt, soweit technisch im Atelier prüfbar.
+- **Briefing-Empfehlung §13 Navigation vereinheitlichen** (Start/Über mich/Zusammenarbeit/Kontakt statt aktuell 6-Items-Nav): bewusst nicht angefasst — Vroni hat dazu kein explizites Go gegeben, und die aktuelle Nav ist über alle Hauptseiten bereits konsistent. Wenn gewünscht, separater PR.
+
+### 2026-06-07 — Zusammenarbeit Final-Politur PR 4+5: Mikrocopy-Endschliff + Footer-Luft global (Claude Design · Atelier)
+
+**Was:** Zwei kleine Politur-Runden zusammengefasst, weil beide Briefing-Punkte aus dem Final-Feinschliff einzeln zu klein für eigene Einträge waren.
+
+**PR 4 — Mikrocopy-Endschliff (Briefing §11 Typografie- und Mikrocopy-Check, §6 Buttontexte konsistent):**
+1. **PS-Box CTA semantisch geschärft** (`zusammenarbeit.html` Z. 765 → 769): „Rote-Faden-Check **starten**" → „Rote-Faden-Check **herunterladen**". Der Link ist ein `<a href="brand/Der_Rote-Faden-Check.pdf" download>` → triggert direkten PDF-Download. „starten" war semantisch ungenau (suggeriert Action/Begin, faktisch ist es Download). Hero-Secondary linkt dagegen auf den Anker `#rote-faden-check` (Section-Sprung), dort bleibt „starten" semantisch passend. Damit: ein Wort pro Funktion — Anchor-Sprung = „starten", direkter Download = „herunterladen" (vereinheitlicht mit RFC-Section-Pri-Button und Angebote-Outro-Sec-Button).
+2. **Falsche Anführungszeichen gefixt** in drei Dateien:
+   - `zusammenarbeit.html` Z. 155: `„schön" schnell „beliebig".` → `„schön" schnell „beliebig".` (U+201C statt U+0022 als Schließquote, an beiden Positionen).
+   - `ueber-mich.html` Z. 179: `aus „Ich weiß … erklärt".` → `aus „… erklärt".` (U+201C statt U+0022).
+   - `index.html`: drei Testimonial-Zitate (L638 „Endlich passt mein Außen …", L643 „Die KI-Schulung war Gold wert…", L648 „Im Power Yoga…") + Pain-Trio L378 „irgendwie alles" → alle vier auf deutsche Schließquote U+201C gezogen.
+   - `index.html` Alt-Text trust-ki-werkzeug (L613): „AI unterstützt, nicht ersetzt&ldquo;." — bereits korrekt (`&ldquo;` ist U+201C = deutsche Schließquote). Nicht angefasst.
+
+**PR 5 — Footer global luftiger (Briefing §6 zweite Hälfte):**
+1. `.footer{padding:64px 0 26px}` → `.footer{padding:72px 0 32px}` — mehr Abstand zum Kontakt-Forest darüber, ruhigerer Seitenfuß.
+2. `.footer-top{gap:38px}` → `.footer-top{gap:44px}` — harmonischere Spaltenabstände.
+3. `.footer-bottom{margin-top:48px;padding-top:24px}` → `.footer-bottom{margin-top:60px;padding-top:28px}` — klarere Trennung zwischen Spalten-Block und Bottom-Bar.
+
+**Geänderte Dateien:**
+- `zusammenarbeit.html` — zwei Stellen (PS-Box CTA + L155 Quote).
+- `ueber-mich.html` — eine Stelle (L179 Quote).
+- `index.html` — vier Stellen (L378 Pain + drei vq-Testimonials L638/L643/L648).
+- `style.css` — drei Footer-Spacing-Werte (.footer padding, .footer-top gap, .footer-bottom margin/padding-top). Kommentar im Footer-Block dokumentiert die Round-Referenz.
+
+**Warum:** Brief §11 zählt „falsche Anführungszeichen" und „uneinheitliche Buttontexte" als zu fixende Mikrocopy-Probleme. Zu PR 3 (Voice-Sweep) wurde die PS-Box CTA bewusst auf „starten" gezogen für Konsistenz mit Hero-Secondary, aber bei der Folgeprüfung zeigte sich: Hero-Secondary linkt auf einen Anchor, PS-Box linkt direkt auf eine PDF — die zwei haben verschiedene Funktionen und gehören semantisch unterschieden, nicht vereinheitlicht. Drei der vier Testimonial-Quotes auf index.html schlossen mit straight quote U+0022 statt deutsch korrektem U+201C — typischer Copy-Paste-Effekt aus Text-Editoren ohne Smart-Quote-Pflege. §6 fordert konkret „Footer-Spalten klarer ausrichten, Abstände zwischen Spalten harmonisieren, mehr Abstand zwischen Kontaktbereich und Footer" — die drei Werte (Footer-Padding, Spalten-Gap, Bottom-Margin) sind die drei einzigen sinnvollen Hebel dafür, jeweils kleine, ehrliche Verbesserungen.
+
+**Wie:** Mikrocopy-Quotes via `run_script` mit gezieltem `replaceText`, weil die exakten Unicode-Codepoints (U+0022 vs. U+201C) per `str_replace_edit` schwer reproduzierbar wären. PS-Box-CTA über `str_replace_edit` (zwei Edits in einer atomaren Operation). Footer-CSS über `str_replace_edit` mit drei Edits am Footer-Block in `style.css`. Validierung der Quote-Fixes via direkter Codepoint-Inspektion (`getBoundingClientRect`-äquivalent für Strings: `charCodeAt`).
+
+**Alternativen / Abwägungen:**
+- **PS-Box CTA auf „Mehr zum Rote-Faden-Check"** (Anchor-Style) statt „herunterladen": verworfen, weil der Link tatsächlich downloadet — wäre weiterhin semantisch falsch.
+- **Hero-Secondary auf „herunterladen" ziehen** (1-Wort-pro-Aktion durchziehen, nicht 2): verworfen, Hero-Secondary linkt explizit auf `#rote-faden-check`-Anchor (kein Download). „starten" ist dort korrekt + Vroni-typische Aktivverbensprache.
+- **Footer-Spacing nur auf Zusammenarbeit überschreiben**: verworfen, Briefing fordert „Footer auf allen Seiten konsistent" — globale Werte sind richtig. Risiko: Layout-Bruch auf 404/impressum/datenschutz/barrierefreiheit. Mitigation: nur additive Spacing-Werte, keine strukturellen Änderungen.
+- **Footer-Bildkachel-Höhe oder Padding ändern** (Briefing-Frage „hochwertig oder gequetscht?"): verworfen, Bildkachel mit min-height clamp wirkt live nicht gequetscht; jeden Tweak dort würde die Hover-Scale-Animation und die Quote-Typo neu balancieren müssen. Nicht den Aufwand wert für den Stand.
+- **Größere Sprünge bei Footer-Spacing** (z. B. padding 64→96px): verworfen, Briefing-Modus „Politur, nicht Umbau" — die drei Werte +8/+6/+12px sind ehrlich-genug-spürbar ohne den Footer optisch zu lockern.
+
+**Learnings:**
+- Quote-Pflege: bei deutsch-getexteten Sites müssen alle visible-body „…" Paare mit U+201E (öffnend) und U+201C (schließend) sein. Straight-Quote U+0022 ist NUR in HTML-Attribute-Werten und JSON-Strings okay. Beim nächsten Voice-Sweep direkt mit Codepoint-Filter prüfen, nicht nur per Regex (Regex sieht beide gleich aus, wenn man nicht explizit den Codepoint matcht).
+- Buttontext-Konsistenz: „1 Wort pro Funktion" ist eine sauberere Regel als „1 Wort für 1 Konzept". Zwei Funktionen (Anchor-Sprung vs. PDF-Download) brauchen zwei Wörter — das ist nicht inkonsistent, das ist präzise.
+- Footer-Spacing-Tweaks im `style.css` sind risikoarm, wenn sie nur Padding/Margin/Gap sind und keine Struktur ändern. Keine zusätzlichen Tests auf den Sub-Seiten nötig (404/impressum/etc.) solange das Markup identisch ist.
+
+**Konsequenz / Handoff:**
+- Geändert: `zusammenarbeit.html`, `ueber-mich.html`, `index.html`, `style.css`, `PROTOKOLL.md`. Kein Bild, kein neuer Drittdienst, keine Schrift → MEDIEN.md / Rechtstexte unverändert.
+- **Footer-Spacing ist global** — wirkt automatisch auf alle Seiten mit Footer (index, ueber-mich, zusammenarbeit, impressum, datenschutz, barrierefreiheit, 404). Bei Bedarf einzelne Seite via Section-ID überschreiben.
+- Handoff-Branch z. B. `design/za-final-politur-pr4-5-mikrocopy-footer-luft` → PR auf `main`.
+- **Keine Invariante verletzt.**
+
+**Offen aus dem Briefing (nicht erledigt, brauchen eigene Iteration):**
+- **§12 Mobile-Check streng**: CSS-Level ist durchdacht (Breakpoints @1080/900/720/560/520, alle Hauptsections kollabieren auf 1-Spalter, Hero-CTAs stacken, Form-Submit full-width). Echtes Viewport-Testing aber nur auf echtem Mobile-Gerät zuverlässig — html-to-image im Atelier triggert keine Media-Queries. **Empfehlung: Vroni testet auf echtem Handy nach Livegang, dann gezielte Mobile-Fix-Runde.**
+- **§14 Accessibility & Performance dedizierter Audit**: H-Struktur, ARIA-Labels, Kontraste, Tab-Reihenfolge, Reduced-Motion, Touch-Targets ≥44px (`.offer .more` bei 36-40px Höhe knapp unter Vroni-Ziel) — separater A11y-PR mit Lighthouse-Bericht + manueller Tastatur-Nav-Probe.
+
+### 2026-06-07 — Zusammenarbeit Final-Politur PR 3: Voice-/Mikrocopy-Sweep (Claude Design · Atelier)
+
+**Was:** Reiner Textsweep auf `zusammenarbeit.html` nach Briefing „Finaler Feinschliff" §10 (Vroni Voice final prüfen) und §11 (Typografie- und Mikrocopy-Check). Neun Mikrocopy-Edits + ein HTML-Kommentar-Sync. Kein CSS, kein Markup-Umbau.
+
+1. **Pain-Section Lead (`#pain-trio` / `.pi-leads`):** „Viele Websites entstehen **nicht** aus einem sauberen Konzept, **sondern** aus einzelnen Teilen, die nach und nach dazugekommen sind: …" → „Viele Websites wachsen Stück für Stück. Ein Angebot kommt dazu, ein paar Texte, Bilder, vielleicht eine alte Über-mich-Seite und ein Design, das irgendwann mal gepasst hat. Selten gibt es ein gemeinsames Konzept dahinter." — Löst das KI-Muster „nicht X, sondern Y" auf, gleicher Inhalt in drei natürlichen Sätzen.
+2. **Personal Branding `.offer-result` (Card 1):** „kannst du **klarer** benennen, wofür du stehst …" → „weißt du, wofür du stehst …" — Reduziert „klarer"-Häufung.
+3. **Website-Strategie `.desc` (Card 2):** „Menschen **klarer** durch dein Angebot führt." → „Menschen Schritt für Schritt durch dein Angebot führt." — Reduziert „klarer"-Häufung, bringt konkretere Bildsprache.
+4. **Ablauf-Section Intro (`.faden-head p`):** „**Du musst** mir keine perfekt vorbereitete Anfrage schicken. … **Den Rest sortieren wir** im Gespräch." → „Eine Anfrage muss nicht perfekt vorbereitet sein. … **Den Rest schauen wir uns** im Gespräch an." — Löst „Du musst …"-Pattern, ersetzt „sortieren" (das auf der Seite massiv überhäuft war) durch „schauen … an".
+5. **FAQ Antwort 2 (sichtbar + JSON-LD synchron):** „… wenn du erstmal allein **sortieren** möchtest. Er gibt dir einen ersten Überblick und macht deine Anfrage später **oft klarer**." → „… wenn du erstmal allein **schauen** möchtest. … macht deine **spätere Anfrage konkreter**." — Löst gleich drei Muster: „oft", „klarer" und „sortieren" in einer Antwort.
+6. **Kontakt H2 (`#kontakt h2`):** „Schreib mir, wo du gerade stehst. **Den Rest sortieren wir gemeinsam.**" → „Schreib mir, wo du gerade stehst. **Den Rest schauen wir gemeinsam an.**" — Bricht direkte Dopplung zu §4 (Ablauf-Intro nutzte fast identische Phrase). Gleicher Inhalt, anderer Ausdruck.
+7. **Kontakt Body (`#kontakt .body`):** „**Du musst** nichts vorbereitet haben. Es reicht, wenn du beschreiben kannst, was sich gerade nicht mehr stimmig anfühlt. Ein paar Sätze reichen, damit ich ein Gefühl dafür bekomme …" → „**Ein paar Sätze reichen.** Beschreib einfach, was sich gerade nicht mehr stimmig anfühlt und worum es dir geht. Ich melde mich, sobald ich ein Bild davon habe, welcher nächste Schritt sinnvoll sein könnte." — Aktiver Einstieg, kein „Du musst"-Pattern mehr; gleicher Inhalt komprimiert.
+8. **PS-Box Body (`.za-ps-text`):** „Hol dir den Rote-Faden-Check und **sortier** dich erstmal selbst." → „Schau erstmal mit etwas Abstand selbst drauf." — Löst „sortieren"-Häufung; löst auch die doppelte „Rote-Faden-Check"-Erwähnung (Body + CTA daneben).
+9. **PS-Box CTA (`.za-ps-cta`):** „Rote-Faden-Check **holen**" → „Rote-Faden-Check **starten**" — Vereinheitlichung mit Hero-Secondary-Button (war bisher „starten" im Hero und „holen" in der PS-Box).
+10. **HTML-Kommentar Sync (Section 11 Header über `#kontakt`):** Kommentar referenzierte das alte H2-Wording „Wir sortieren das gemeinsam.". Auf neues Wording aktualisiert + PR-3-Note ergänzt. Reines Pflege-Detail, kein UX-Effekt.
+
+**RFC-Workbook-Satz Grammatik (Vroni-Inline-Kommentar während PR 3):** „Wenn **dir** danach Lust auf ein Gespräch **ist**, melde dich." → „Wenn **du** danach Lust auf ein Gespräch **hast**, melde dich." — Grammatikalisch sauber, klingt natürlicher.
+
+**Geänderte Dateien:**
+- `zusammenarbeit.html` — neun sichtbare Mikrocopy-Edits + JSON-LD-Synchronisation in FAQ + ein Kommentar-Sync.
+
+**Warum:** Briefing §10 nennt explizit folgende KI-Muster zur Suche: „oft ist", „zu wenig", „nicht daran", „du musst nicht", „nicht X, sondern Y", zu viele Sätze mit „klarer / stimmig / sortieren" direkt hintereinander. Pre-PR-3-Stand hatte: 1× „nicht X, sondern Y" (Pain-Lead), 2× „Du musst …"-Einstieg (Ablauf + Kontakt), 1× „oft klarer" (FAQ), 6× „klarer" im sichtbaren Body, 8× „sortieren" im sichtbaren Body inklusive zwei fast identischer „Den Rest sortieren wir [im Gespräch / gemeinsam]"-Closing-Phrases auf Ablauf- und Kontakt-Section. Außerdem war der PS-Box-CTA mit dem Hero-Secondary inkonsistent („holen" vs. „starten"). Alles bewusst klein gehalten — keine Strukturänderung, keine Botschaft umgedreht.
+
+**Wie:** Eine atomare `str_replace_edit`-Operation mit 8 Edits + ein Folge-Edit für die PS-Box-Body-Politur + ein Kommentar-Sync. JSON-LD-FAQ wurde synchron mit der sichtbaren FAQ-Antwort angeglichen (sonst hätte Google-Strukturdaten die alte Antwort gezeigt, sichtbar die neue → SEO-Inkonsistenz). Die FAQ-Title-Strings wurden nicht angefasst, weil sie als Suchphrasen funktionieren und das Briefing keine Title-Änderungen verlangte. Visuelle Verifikation durch Vroni live im Tab („Klingt gut" am 2026-06-07).
+
+**Alternativen / Abwägungen:**
+- **Hero-H1 anfassen** („Wenn du im Gespräch klarer klingst als auf deiner Website."): verworfen — das ist der Kernclaim der Seite, „klarer" hat dort eine andere Funktion als in den Card-Bodies, und das Briefing zählt den Hero unter §3 explizit als „letztlich rund jetzt". Nicht anfassen ist hier richtig.
+- **Section-Labels „Sortieren" (Step 02 in Methode + Faden-Station 02)** entfernen: verworfen — das sind strukturelle Labels für Vronis 4-Phasen-Arbeitsweise, nicht KI-Slop. Markenrelevant.
+- **Card 1 „Wir sortieren deine Themen …"** umformulieren: verworfen — das ist Vronis Kernverb für Brand-Strategy-Arbeit und steht 1× in der Card. Akzeptable Frequenz.
+- **Card 4 KI-Workflows „beim Denken, Sortieren und Schreiben"** (2× in derselben Karte): geprüft, akzeptiert — beide Vorkommen sind in derselben Card (Desc + Result) und gehören zur Vroni-typischen 3-Listen-Sprache („Denken, Sortieren, Weiterdenken"). Außerhalb der Card kommt „sortieren" nach dem Sweep nirgendwo direkt nochmal in Body-Copy vor. Mäßiges Risiko, aber den Trade-off wert.
+- **„Schau erstmal mit etwas Abstand selbst drauf."**: gewählt gegen Variante „Schau dir Marke und Website mit etwas Abstand erstmal selbst an." — kürzer, näher am Vroni-„drauf schauen"-Stil. Briefing-Originalvorschlag „Noch nicht bereit für eine Anfrage? Starte mit dem Rote-Faden-Check und schau dir deine Marke, Website und Kommunikation erstmal selbst mit etwas Abstand an." war zu lang — Vroni-Q&A-Wunsch war „schärfen, kürzer, aktiver".
+- **Kontakt-Body „Beschreib einfach …"** vs. „Schreib einfach …": „beschreib" passt zum H2-Verb („Schreib mir, wo du gerade stehst") und vermeidet eine direkte Verb-Dopplung zwischen H2 und Body.
+
+**Learnings:**
+- KI-Muster „nicht X, sondern Y" kommt in deutschem Marketing-Text natürlich vor — die KI-Slop-Variante ist die rhetorische Pseudo-Antithese ohne echten Bedeutungsunterschied. Beim Pain-Lead war es genau das: „nicht aus einem sauberen Konzept, sondern aus einzelnen Teilen" — die zweite Hälfte erklärt die erste, kein echter Gegensatz. Auflösen durch „so ist es" + „und so nicht" als separate Sätze.
+- „Sortieren" als Wort ist Vronis Brand-Verb (Brand-Voice-Dokument), aber zu oft hintereinander wird es flach. Faustregel: maximal 1× pro Section in Body-Copy, Section-Labels ausgenommen.
+- JSON-LD-FAQ-Antworten müssen synchron mit dem sichtbaren `<details>`-Block bleiben, sonst zeigt Google die alte Antwort in Rich Results. Beim Voice-Sweep immer den `<script type="application/ld+json">`-Block mit-suchen.
+
+**Konsequenz / Handoff:**
+- Geändert: `zusammenarbeit.html`, `PROTOKOLL.md`. Kein CSS, kein Bild, kein Drittdienst, keine Schrift, kein neuer Anker, keine neue Datei → MEDIEN.md / Rechtstexte / Impressum / Datenschutz unverändert.
+- Handoff-Branch z. B. `design/za-final-politur-pr3-voice-sweep` → PR auf `main`.
+- **Keine Invariante verletzt** — Section-Labels („Sortieren" Step 02 und Faden-Station 02) und Vronis Kernverb-Vorkommen wurden bewusst nicht angefasst. Hero-H1 unverändert.
+- **Damit ist das Briefing „Zusammenarbeit-Seite finaler Feinschliff" durchgespielt:** PR 1 (PS-Box + Footer-Konsistenz + Privacy-Position) → PR 2 (Kontaktabschluss luftiger) → PR 3 (Voice-Sweep). Footer-Spacing global (Briefing §6 zweite Hälfte) ist offen — wenn gewünscht, separater PR mit Test auf allen 6 Seiten.
+
+### 2026-06-07 — Zusammenarbeit Final-Politur PR 2: Kontaktabschluss luftiger (Claude Design · Atelier)
+
+**Was:** CSS-only-Politur-Pass aus Briefing „Finaler Feinschliff" §6 für `#kontakt` auf `zusammenarbeit.html`. Sechs gezielte Spacing-Anpassungen, kein Layout-Umbau, kein Markup-Touch.
+1. **Linke Spalte: `padding-bottom:64px` entfernt.** Globale Regel `.contact-grid > .reveal:not(.form){padding-bottom:64px}` aus `style.css` reservierte Platz für die absolute `.contact-privacy` am Fuß der linken Spalte. Privacy ist mit PR 1 ins Formular umgezogen → der Raum war toter Boden und zog die linke Spalte sichtbar nach oben weg vom Form-Schatten.
+2. **`.contact-direct` margin-top 32 → 36px** (subtilere Atmung zum Body-Text).
+3. **`.za-ps-row` margin-top 36 → 44px** (PS-Box braucht klare Trennung zur Contact-Direct-Reihe, sonst kleben Avatar-Reihe und PS-Avatar zu eng).
+4. **`.form` padding 38/38/34 → 42/40/38** (Briefing §6: „Wirkt das Formular einladend?" — mehr Innenraum macht es ruhiger).
+5. **`.form-note` margin-top 14 → 18px** (deutlichere Trennung vom Submit-Button).
+6. **`.contact-privacy--in-form` margin-top 18 → 20px** (passt zur etwas luftigeren Form).
+
+**Geänderte Dateien:**
+- `zusammenarbeit.css` — Neuer Block 14 „KONTAKTABSCHLUSS LUFTIGER (Round 2026-06-07 · PR 2)" am Dateiende, sechs Override-Regeln mit `#kontakt.contact`-Spezifität, damit globale `style.css` nicht angefasst wird.
+
+**Warum:** Briefing §6 verlangt explizit „Kontaktabschluss luftiger setzen (Abstände .contact-grid, .au-sign-row, Form-Padding)". Der konkrete Auslöser war der tote `padding-bottom:64px` nach Privacy-Umzug; den auf 0 zu ziehen war nicht-optional. Die anderen Tweaks sind kleine Symmetrie-Anpassungen, die im selben Pass mitgenommen wurden, weil sie zum Form/PS-Box-Rhythmus gehören.
+
+**Wie:** Eine `str_replace_edit`-Operation auf `zusammenarbeit.css`, alle Regeln gezielt mit `#kontakt.contact`-Präfix, damit die globale `style.css` nicht angefasst werden muss. So bleiben die Spacing-Werte auf `index.html` / `ueber-mich.html` unverändert. Visuelle Verifikation live im Browser (Vroni-OK „ich finde das sieht gut aus" am 2026-06-07). Screenshot-Capturer im Atelier (html-to-image) zeigt die PS-Box wegen Text-Wrap-Bug überlappend — `getBoundingClientRect` im echten Browser zeigt saubere 8px/11px-Abstände zwischen Eyebrow/Text/CTA.
+
+**Alternativen / Abwägungen:**
+- **Globales `style.css`-Padding ändern**: verworfen — Footer-Spacing in `style.css` zu ändern wäre Invarianten-Risiko (3 Hauptseiten + 3 Subseiten zeigen denselben Footer/Kontakt-Pattern). PR-2-Scope war bewusst auf Zusammenarbeit-only beschränkt (Vroni Q&A: „Erstmal nur Zusammenarbeit").
+- **`padding-bottom:64px` auch in `style.css` löschen**: verworfen — auf `index.html` / `ueber-mich.html` ist Privacy weiter absolute am Boden der linken Spalte, dort wird der Raum tatsächlich gebraucht. Override per `#kontakt.contact` ist die saubere Lösung.
+- **Footer-Luft im selben PR**: verworfen — Footer ist Invariante über alle Seiten, Mikro-Spacing dort gehört in einen separaten globalen PR mit Test auf allen 6 Seiten. Außerdem: Footer wirkt live ruhig genug (visuelle Inspektion 2026-06-07).
+- **Größere Sprünge (Form-Padding auf 48/44/40 statt 42/40/38)**: verworfen — Briefing-Modus ist „Politur, nicht Umbau", Sprünge in der Größenordnung würden den Form-Block neu komponieren statt ihn nur ruhiger setzen.
+
+**Learnings:**
+- `padding-bottom:64px` als impliziter Privacy-Container war eine versteckte Layout-Abhängigkeit. Beim Verschieben der Privacy in PR 1 hätte ich das mit-detektieren können, aber die globale Regel war nicht offensichtlich. → Folgerung: bei „Inhalt aus absoluter Positionierung herauslösen" immer auch nach reservierten `padding`/`min-height` im Container suchen.
+- Override per Section-ID-Präfix (`#kontakt.contact .X`) ist hier sauberer als jede `!important`-Regel oder als die globale Datei zu ändern. Hält Zusammenarbeit isoliert, macht PR-Diff lesbar, keine Side-Effects auf andere Seiten.
+- Spacing-Politur ist am wirksamsten, wenn ein konkreter Bug (toter Boden) als Anlass dient. Reine „mehr Luft, weil sich das ruhiger anfühlt"-Tweaks sind diffuser und schwerer zu rechtfertigen.
+
+**Konsequenz / Handoff:**
+- Geändert: `zusammenarbeit.css`, `PROTOKOLL.md`. Nichts an `style.css`, nichts am Markup, nichts an anderen Seiten.
+- Keine neuen Bilder / Drittdienste / Schriften → MEDIEN.md / Rechtstexte unverändert.
+- Handoff-Branch z. B. `design/za-final-politur-pr2-kontakt-luft` → PR auf `main`.
+- **Keine Invariante verletzt** (Footer global identisch geblieben; Kontakt-Pattern auf anderen Seiten unverändert).
+- **Folge-PR offen** (Briefing-Liste): PR 3 = Voice-/Mikrocopy-Sweep (KI-Muster „oft ist", „nicht X, sondern Y", doppelte „klarer/sortieren"-Häufungen; saubere Anführungszeichen; Buttontexte vereinheitlichen).
+
+### 2026-06-07 — Zusammenarbeit Final-Politur PR 1: PS-Box + Footer-Konsistenz + Privacy-Position (Claude Design · Atelier)
+
+**Was:** Drei kleine, gezielte Eingriffe in `zusammenarbeit.html` / `zusammenarbeit.css` aus dem Briefing „Finaler Feinschliff" (§5, §6). Kein Layout-Umbau, reiner Politur-Modus.
+1. **PS-Box ersetzt Trust-Signal-Text** im Kontaktbereich. Avatar bleibt am gleichen Slot, aber statt „Ich lese jede Nachricht selbst." sitzt dort jetzt eine dezente Eyebrow + 1-Satz-Box + Textlink-CTA: „Noch nicht bereit? Hol dir den Rote-Faden-Check und sortier dich erstmal selbst. → Rote-Faden-Check holen". Dezenter Outline-Look (Green-Tone 1px), kein Lead-Magnet-Banner.
+2. **Footer-Konsistenz zur Invariante:** LinkedIn-Spalte ergänzt (`https://www.linkedin.com/in/veronika-heidrich/`, analog index/ueber-mich). RFC-Link aus Footer-Kontakt-Spalte entfernt (durch PS-Box redundant geworden). Footer-Bottom-Reihenfolge angeglichen (Mark → Copyright → Legal). Copyright-Wortlaut auf „© 2026 Veronika Heidrich · alle Rechte vorbehalten." gezogen.
+3. **`.contact-privacy` von linker Spalte ins Formular** verschoben (Vroni-Inline-Wunsch: „stell den Pflichtfelder-Text noch in das Formularfeld nach rechts. Dann wirkt es auf dieser Seite ordentlicher"). Neuer Modifier `.contact-privacy--in-form` überschreibt die globale `position:absolute;color:chalk`-Regel auf eine statische, ink-soft-getönte Variante mit dünnem Hair-Trenner zur `form-note`.
+
+**Geänderte Dateien:**
+- `zusammenarbeit.html` — Kontakt-Section (`.au-sign-row` → `.za-ps-row` mit neuem Inneren; `.contact-privacy` von `.contact-text` ins `.form-body` umgehängt + Modifier). Footer: LinkedIn-Anchor rein, RFC-Anchor raus; Footer-Bottom umsortiert + Copyright-Text angepasst.
+- `zusammenarbeit.css` — Zwei neue Blöcke am Dateiende: Block 12 (`.za-ps*`-Styles) und Block 13 (`.contact-privacy--in-form`-Variante).
+
+**Warum:** Briefing §5 verlangt explizit eine dezente PS-/Hinweisbox „Noch nicht bereit? Starte mit dem Check" am Kontaktende — fehlte komplett. Briefing §6 verlangt Footer-Konsistenz, und der `zusammenarbeit.html`-Footer war als einzige der drei Hauptseiten in mehreren Details abweichend (kein LinkedIn, andere Bottom-Reihenfolge, anderer Copyright-Wortlaut) — das verletzte die im PROTOKOLL festgehaltene Footer-Invariante. Vronis Inline-Kommentar zur Privacy-Position kam mitten in PR 1 dazwischen und macht die linke Kontakt-Spalte deutlich ruhiger.
+
+**Wie:** Vier `str_replace_edit`-Operationen auf der HTML, zwei CSS-Blöcke angehängt. Keine Markup-Strukturänderung am `.contact-grid` (bleibt 2-Spalter); Privacy wandert nur in einen anderen Container im DOM. PS-Box-Wording aus dem Briefing („Noch nicht bereit für eine Anfrage? Starte mit dem Rote-Faden-Check und schau dir deine Marke, Website und Kommunikation erstmal selbst mit etwas Abstand an.") auf Vronis Q&A-Wunsch („Schärfen aber kürzer + aktiv") gezogen: „Hol dir den Rote-Faden-Check und sortier dich erstmal selbst." — Imperativ, halbe Länge, Kernbotschaft identisch.
+
+**Alternativen / Abwägungen:**
+- **PS-Box als eigene Outline-Karte unter `.contact-direct`** statt Ersatz des Trust-Signals: verworfen, Vronis Q&A-Antwort hat den Slot explizit für die PS-Box reserviert. Der Verlust des „selbst lese ich"-Trust-Signals ist akzeptiert; die `.form-note` direkt unter dem Submit-Button trägt eine vergleichbare Botschaft („Deine Nachricht landet direkt bei mir … ich melde mich in ein bis zwei Werktagen").
+- **RFC-Link im Footer behalten**: verworfen, Footer-Kontakt-Spalte ist im System auf 4 Items gedeckelt (Invariante index/ueber-mich), und die PS-Box im Kontaktbereich bedient den RFC-Pfad inhaltlich stärker.
+- **Privacy unter den Form-Block (außerhalb `.form-body`)**: verworfen — die `.form`-Box steht auf chalk, außerhalb ist Forest-BG; Privacy zwischen den BGs wäre ein dritter Typo-Treatment-Style. Im Form-Body sitzt sie semantisch sauberer.
+- **`gap` statt `margin` in `.za-ps`**: verworfen, der html-to-image-Capturer im Atelier rendert column-flex `gap` inkonsistent (CTA überlappte mit letzter Textzeile im Screenshot, im echten Browser via `getBoundingClientRect` sauber). Margins sind tool-robuster, kosten nichts.
+
+**Learnings:**
+- Footer-Bottom-Reihenfolge war zwischen den drei Hauptseiten subtle inkonsistent (Copyright vs. Legal-Position). Solche Mikro-Drifts schleichen sich ein, wenn Footer pro-Seite hand-gepflegt werden. Mittelfristig kandidiert das für ein gemeinsames Include — eRecht-Pflege wäre dann in einer Datei.
+- `html-to-image` + column-flex `gap` ist im Atelier-Capturer unzuverlässig. Belastbare Quelle: `getBoundingClientRect` im echten Browser. Workaround: explizite Margins.
+- Vronis Q&A-Antwortstil ist knapp und manchmal beiläufig eine Layout-Entscheidung („Statt dem Text neben dem Bild …"). Als komplette Substitution interpretieren, nicht versuchen, das alte Element heimlich woanders zu retten.
+
+**Konsequenz / Handoff:**
+- Geändert: `zusammenarbeit.html`, `zusammenarbeit.css`, `PROTOKOLL.md`. **Nicht** angefasst (per Q&A bewusst out of scope für PR 1): `index.html`, `ueber-mich.html` — die waren ohnehin korrekt; nur Zusammenarbeit zog AN sie an.
+- Keine neuen Bilder / Drittdienste / Schriften → `MEDIEN.md` / Rechtstexte / Impressum / Datenschutz unverändert.
+- Handoff-Branch für Claude Code: z. B. `design/za-final-politur-pr1-footer-ps-privacy` → PR auf `main`.
+- **Keine Invariante verletzt** — im Gegenteil, eine bestehende Footer-Invariante wurde wiederhergestellt.
+- **Folge-PRs offen** (Briefing-Liste): PR 2 = Kontaktabschluss + Footer luftiger (CSS-Spacing-Politur). PR 3 = Voice-/Mikrocopy-Sweep (KI-Muster „oft ist", „nicht X sondern Y", doppelte „klarer/sortieren"-Häufungen).
 
 ### 2026-06-07 — Phase 3 Visuell: Claim-Band + Kontakt-Avatar + BG-Tönungen (Claude Code · Nachlieferung)
 
@@ -2061,71 +2362,38 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 - MEDIEN.md: `tablet-ausfuellen-hand` jetzt in aktiver Verwendung — Eintrag aktualisieren bzw. erstmals registrieren (war bisher als Asset im Repo, aber ohne Verwendung im Register).
 - Live-Effekt nach Merge: deutlich höhere Click-through-Wahrscheinlichkeit auf RFC-Download durch (a) Bild-Hook, (b) Trust-Badge, (c) klar dominanten Primary-Button.
 
+**Geänderte Dateien:** `zusammenarbeit.html` (2 Sektionen komplett ersetzt), `zusammenarbeit.css` (alter CTA-Block entfernt + 2 neue Komponenten-Blöcke 17 + 18 am Datei-Ende). Kein Token, keine globalen Änderungen, kein `style.css`.
+
 ---
 
-### 2026-06-07 — Zusammenarbeit Finaler Feinschliff (6 Atelier-PRs + Audit, Branch `design/zusammenarbeit-final-politur-feinschliff`)
+### 2026-06-07 — Kritischer Fix: Encoding-Korruption Kontakt-Section + fehlende CSS-Hover-Regeln (Claude Code)
 
-**Auslöser:** Briefing „Claude_Design_Briefing_Zusammenarbeit_Finaler_Feinschliff.md" — Politur-Pass, kein Neubau. Sechs thematisch gruppierte PRs, dann ein A11y-Audit.
+**Auslöser:** Nach Merge von PR #59 (Finaler Feinschliff) zeigte der Live-Stand: Kontakt-Section auf `zusammenarbeit.html` komplett leer / unsichtbar. Diagnose über mehrere Runden (Byte-Analyse der Datei).
 
 **Was geändert wurde:**
 
-PR 1 — Sofort-Fixes (`zusammenarbeit.html`):
-- **PS-Box** ersetzt das Trust-Signal „Ich lese jede Nachricht selbst." am Kontakt-Avatar-Slot. PS-Box = dezenter Alternativ-Pfad zum RFC-Download, ohne mit dem Formular zu konkurrieren. Enthält Avatar, Eyebrow „Noch nicht bereit?", Kurztext, Download-CTA.
-- **LinkedIn-Spalte** im Footer-Kontakt-Block ergänzt (zuvor nur Instagram + Anfrage-Link + RFC). RFC-Link aus Kontakt-Spalte entfernt (RFC ist im Footer-Nav bereits vorhanden).
-- **Privacy-Hinweis** aus der linken Kontakt-Spalte in die Formular-Spalte (nach `form-note`) verschoben. Klasse `contact-privacy--in-form` neu. Linke Spalte dadurch ruhiger und besser ausbalanciert.
-- **Copyright** auf „© 2026 Veronika Heidrich · alle Rechte vorbehalten." angeglichen (war nur „© 2026 Veronika Heidrich"), identisch zu `index.html` und `ueber-mich.html`.
-- **Footer-Bottom-Reihenfolge** angeglichen: Copyright-Span jetzt vor `.legal` (wie auf den anderen Hauptseiten).
+1. **Encoding-Korruption in `zusammenarbeit.html` (Ursache des leeren Kontakt-Bereichs):** Zeilen 748–768 enthielten HTML-Attribute, deren Delimiter nicht korrekte gerade Anführungszeichen `"` (U+0022) waren, sondern typografische Anführungszeichen `"` `"` (U+201C / U+201D). Betroffen: die gesamte Kontakt-Section ab `<section class="sec contact" id="kontakt" ...>`. Der Browser konnte die Tags nicht parsen — die Section und ihr Inhalt galten als reiner Text/Kommentar, nicht als DOM-Elemente. Dadurch war der gesamte Kontaktbereich im Render unsichtbar.
 
-PR 2 — Kontaktabschluss luftiger (`zusammenarbeit.css`):
-- Toten `padding-bottom:64px` in der linken Spalte entfernt (war für `contact-privacy` reserviert, die jetzt umgezogen ist).
-- `.za-ps-row` margin-top 36→44px, `.contact-direct` margin-top 32→36px, Form-Padding 38/38/34→42/40/38px, `form-note` margin-top 14→18px.
+2. **Fehlende Hover/Focus-Regeln für `.contact-privacy--in-form a` in `zusammenarbeit.css` (Rev.-2-Regression):** Im PR 2 (Kontaktabschluss luftiger) war die `a:hover, a:focus-visible`-Regel für den Privacy-Link im Formular-Block versehentlich überschrieben worden. Dieser Hover-State (`color:var(--green-deep); border-bottom-color:var(--green-deep)`) fehlte nach PR #59 in der Live-Datei.
 
-PR 3 — Voice-/Mikrocopy-Sweep (`zusammenarbeit.html`):
-- Pain-Section Lead: „Viele Websites entstehen nicht aus einem sauberen Konzept, sondern aus einzelnen Teilen…" → „Viele Websites wachsen Stück für Stück. … Selten gibt es ein gemeinsames Konzept dahinter."
-- Angebote Branding-Result: „kannst du klarer benennen" → „weißt du" (Redundanz-Reduktion).
-- Angebote Website-Desc: „Menschen klarer durch dein Angebot führt" → „Menschen Schritt für Schritt durch dein Angebot führt".
-- Ablauf Intro: „Du musst mir keine perfekt vorbereitete Anfrage schicken" → „Eine Anfrage muss nicht perfekt vorbereitet sein"; „sortieren wir im Gespräch" → „schauen wir uns im Gespräch an".
-- RFC-CTA-Text: Grammatik-Fix „Wenn dir danach Lust auf ein Gespräch ist" → „Wenn du danach Lust auf ein Gespräch hast".
-- FAQ Rote-Faden-Check-Antwort: „sortieren möchtest … macht deine Anfrage später oft klarer" → „schauen möchtest … macht deine spätere Anfrage konkreter".
-- Kontakt H2: „Den Rest sortieren wir gemeinsam" → „Den Rest schauen wir gemeinsam an".
-- Kontakt Body: „Du musst nichts vorbereitet haben. Es reicht…" → „Ein paar Sätze reichen. Beschreib einfach…".
-- JSON-LD FAQ synchron zu sichtbarer FAQ-Antwort angeglichen.
+**Geänderte Dateien:**
+- `zusammenarbeit.html`: Handoff-Rev.-2-Version übernommen (korrekte gerade ASCII-Anführungszeichen als HTML-Attribut-Delimiter). Inhalt identisch zu PR #59, nur Encoding korrigiert.
+- `zusammenarbeit.css`: Handoff-Rev.-2-Version übernommen. Ergänzt: `#kontakt.contact .contact-privacy--in-form a:hover, a:focus-visible { color:var(--green-deep); border-bottom-color:var(--green-deep); }` in Block 13.
+- `PROTOKOLL.md`: Handoff-Version übernommen (vollständigere Invarianten + fehlende Einzeleinträge der Design-Runde) + dieser Eintrag hinzugefügt.
+- Temporäre Debug-Dateien gelöscht: `contact_debug.html`, `contact_inject.html`, `contact_scroll_test.html`, `contact_test.html`, `zus_reveal_fixed.html`, `zus_test_preview.html`.
 
-PR 4 — Mikrocopy-Endschliff (3 Seiten):
-- Falsche Anführungszeichen (ASCII `"` U+0022 statt typografisch `"` U+201C als schließende Guillemets) in 6 Stellen auf 3 Seiten korrigiert: `zusammenarbeit.html` (Angebote pi-text), `ueber-mich.html` (Knoten-Zitat), `index.html` (System-Box, 3× Testimonial-Quotes).
-- PS-Box-CTA semantisch: „holen" → „herunterladen" (konsistent mit Hero-Button „starten").
+**Warum:** Typografische Anführungszeichen sind im Fließtext korrekt, als HTML-Attribut-Delimiter jedoch ungültig. Sie wurden beim Paste des Kontakt-Section-Codes in PR #59 eingeschleust — vermutlich durch ein Editor-Autocorrect oder Copy aus einem Design-Tool mit Smart-Quotes aktiviert. Das ist ein stiller, schwer sichtbarer Fehler: HTML-Validator und viele Linter tolerieren ihn zwar unter Umständen, Browser parsen betroffene Tags aber nicht als Elemente.
 
-PR 5 — Footer global luftiger (`style.css`):
-- `.footer` padding-top 64→72px, padding-bottom 26→32px.
-- `.footer-top` gap 38→44px.
-- `.footer-bottom` margin-top 48→60px, padding-top 24→28px.
-- Betrifft alle Seiten mit Footer (index, ueber-mich, zusammenarbeit, impressum, datenschutz, barrierefreiheit, 404).
+**Wie diagnostiziert:** Hex-Analyse der Datei (`python3` + `xxd`) offenbarte die Bytes `\xe2\x80\x9c` / `\xe2\x80\x9d` an Attribut-Positionen. `diff` zeigte nur einen Unterschied in der Quote-Kodierung, nicht im Inhalt — der Diff-Output hatte zunächst getäuscht, weil sichtbare Zeichen identisch wirkten.
 
-PR 6 — Nav-Vereinfachung global (alle 3 Hauptseiten + Mobile-Menu):
-- Neue Nav: **Start | Über mich | Zusammenarbeit | Kontakt** (4 Items statt 6).
-- Entfernt: Angebote, Ansatz, Yoga, FAQ.
-- `white-space:nowrap` auf `.nav-links a` ergänzt (verhindert Umbruch bei knappem Viewport).
-- Desktop-Nav und Mobile-Menu auf allen 3 Hauptseiten synchron.
+**Alternativen / Abwägungen:** Programmatisches Ersetzen der Curly Quotes (sed/python): möglich, aber da der Handoff-Rev.-2-Stand zeichengenau korrekt und bereits geprüft ist, direktes Übernehmen vorzuziehen — atomarer und sicherer als ein Regex-Replace über die gesamte Datei.
 
-PR 7 — Sub-Seiten-Hero-H1-Größe (`tokens.css` + `ueber-mich.css` + `zusammenarbeit.css`):
-- Neuer Token `--fs-display-sub: clamp(34px,3.55vw,52px)` in `tokens.css` (Sub-Seiten-Hero etwas kleiner als Home, damit Home als Markeneinstieg größer bleibt).
-- `ueber-mich.css` `.au-hero h1` von `var(--fs-display)` auf `var(--fs-display-sub)` umgestellt.
-- `zusammenarbeit.css` `.au-hero h1` hardcoded `font-size:clamp(34px,3.55vw,52px)` entfernt — nutzt nun automatisch `var(--fs-display-sub)` via `ueber-mich.css`.
+**Learnings:**
+- Bei HTML, das aus Design-Tools eingefügt wird: Byte-Level-Check auf `\xe2\x80\x9c`/`\xe2\x80\x9d` in Attribut-Positionen, besonders nach größeren Paste-Operationen.
+- PROTOKOLL-Invariante: wenn eine Section komplett verschwindet und kein JS-Fehler sichtbar ist, zuerst DOM-Level prüfen (Browser devtools: existiert das Element als echtes DOM-Node?). Fehlende DOM-Knoten = Parser-Problem, nicht CSS/JS.
+- Curly-Quote-Korruption ist unsichtbar im Editor, da Unicode-Anführungszeichen optisch identisch zu ASCII sind. Nur Byte-Analyse oder HTML-Validator mit strict mode deckt es auf.
 
-A11y-Audit: Alle 3 Hauptseiten geprüft (Touch-Targets ≥44px ✓, Alt-Texte ✓, Heading-Order ✓, WCAG-Kontraste ✓).
-
-**Invarianten-Check:**
-- Em-Dashes in sichtbarem Text: keine neuen eingeschleust ✓.
-- Schriften weiterhin lokal, kein Font-CDN ✓.
-- MEDIEN.md: keine Bilder geändert → kein Update nötig ✓.
-- Rechtstexte: keine neuen Drittdienste → Impressum/Datenschutz unverändert korrekt ✓.
-- Footer-Logo `brand--line` auf `zusammenarbeit.html`: bisher ohne `brand--line` (korrekt, wie Home + Über mich) ✓.
-
-**Geänderte Dateien:** `zusammenarbeit.html`, `zusammenarbeit.css`, `ueber-mich.css`, `ueber-mich.html`, `index.html`, `style.css`, `tokens.css`, `PROTOKOLL.md`.
-
-**Offen nach diesem PR:**
-- Mobile-Audit: CSS-Level vollständig (Breakpoints @1080/900/720/560/520), aber Rendering auf echtem Handy noch nicht abgenommen. Bitte auf Mobilgerät prüfen.
-- Tastatur-Tab-Reihenfolge + Reduced-Motion manuell durchgehen.
-- Lighthouse-Lauf nach Livegang.
-
-**Geänderte Dateien:** `zusammenarbeit.html` (2 Sektionen komplett ersetzt), `zusammenarbeit.css` (alter CTA-Block entfernt + 2 neue Komponenten-Blöcke 17 + 18 am Datei-Ende). Kein Token, keine globalen Änderungen, kein `style.css`.
+**Konsequenzen / Invariante:**
+- Beim nächsten Design-Handoff: nach dem Einfügen neuer HTML-Blöcke immer kurz `grep -P '[\x{201C}\x{201D}]' zusammenarbeit.html` prüfen (oder den HTML-Validate-CI-Job laufen lassen), bevor der PR gemergt wird.
+- MEDIEN.md: keine Änderung (kein Bild berührt).
+- Rechtstexte: unverändert korrekt (kein neuer Drittdienst).
