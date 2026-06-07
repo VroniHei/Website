@@ -156,6 +156,184 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ## 3. VERLAUF
 
+### 2026-06-07 — Briefing-Gesamtcheck Zusammenarbeit + globale Quick-Wins (Claude Code · PR #57)
+
+**Was:** Umsetzung des Design-Handoffs `2026-06-07_zusammenarbeit-briefing-gesamtcheck` in einem PR. Drei Phasen 1:1 aus Claude Design übernommen.
+
+**Geänderte Dateien (5 HTML + sitemap.xml):**
+
+- `index.html` — Hero-CTA + Footer-Nav-Anker `#ansatz` → `#system`; LinkedIn-Footer-Link auf echte URL; Meta-Keywords entfernt.
+- `ueber-mich.html` — `noindex` → `index, follow`; LinkedIn-Footer-Link produktiv; Skill-Tags „SEO/GEO" → „SEO & KI-Sichtbarkeit", „Sparring & Prompts" → „KI-Anleitungen & Sparring".
+- `zusammenarbeit.html` — Großer Content/Voice-Refresh (Hero-Sublines, Problem, Angebote, Energie, Ablauf, Ergebnisse-H3-Pattern, Kontaktabschluss komplett neu; `.za-contact-paths`-Bar entfernt; Submit-Button → „Anfrage abschicken").
+- `zusammenarbeit.css` — kein Netto-Diff (kurzlebige Probe-Komponenten Round 1–3 bereits in Design rausgenommen).
+- `barrierefreiheit.html` — „Impressum/Datenschutz noch in Vorbereitung"-Listenpunkt entfernt; Stand-Datum auf 2026-06-07.
+- `PROTOKOLL.md` — drei neue Verlaufseinträge aus Design-Handoff (Phase 1–3) + dieser Code-Eintrag.
+- `sitemap.xml` — `ueber-mich.html` + `zusammenarbeit.html` neu eingetragen (waren noch nicht drin!); `barrierefreiheit.html` lastmod → 2026-06-07.
+
+**Warum:** Vronis Final-Briefing „Briefing Zusammenarbeit Final mit Gesamtcheck" — Text/Voice-Schärfung auf der Hauptseite + produktionstaugliche Quick-Wins (SEO-Index, LinkedIn, Anker-Bug). `ueber-mich.html` ist damit erstmals korrekt indexierbar.
+
+**Wichtige neue Invariante:** LinkedIn-Link auf allen 3 Hauptseiten = `https://www.linkedin.com/in/veronika-heidrich/` mit `target="_blank" rel="noopener"`. Alle 3 Stellen synchron halten.
+
+**Konsequenzen / Follow-up:** A11y-Audit Kontakt-Section H2+Body-Combo; Fokus-Indikatoren neue LinkedIn-Links prüfen (Backlog, kein Blocker).
+
+**Geänderte Dateien:** 5 HTML + `sitemap.xml` + `PROTOKOLL.md`. Kein neues Bild, kein Token-Diff, kein CSS-Diff, kein `MEDIEN.md`-Diff.
+
+---
+
+### 2026-06-07 — Briefing PHASE 3 (operational): Kontakt-Section finalisiert · Designsystem + Handoff
+
+**A. Kontakt-Section: Editorial-Opener verworfen, Statement-Spirit in H2 absorbiert**
+Iterations-Verlauf nach Vroni-Feedback:
+- Round 1: eigene `.za-pre-contact`-Section auf chalk zwischen FAQ und dunklem Kontakt — Vroni: „passt visuell nicht rein" (Bruch chalk vor forest).
+- Round 2: Statement+Subline INS dunkle Forest-Bereich gezogen, oben zentriert mit Hairline-Anker und Eyebrow „Bevor du schreibst" — Vroni: „ist nett, aber passt visuell noch nicht stimmig — überlege ob hier überhaupt von Nutzen ist".
+- Round 3 (final): Opener komplett raus, Statement-Spirit in die H2 absorbiert:
+  - H2 vorher: „Wenn deine Marke gerade nicht mehr richtig führt, schauen wir gemeinsam *drauf*." (sachlich, Beobachtung)
+  - H2 jetzt: „Schreib mir, wo du gerade stehst. *Den Rest sortieren wir gemeinsam.*" (direkt, einladend — Briefing §25 „muss nicht perfekt vorbereitet sein" lebt jetzt in der zweiten Halbzeile)
+  - Body: erste Zeile jetzt „Du musst nichts vorbereitet haben." (übernimmt explizit den Statement-Inhalt aus Round 1/2).
+- CSS-Komponenten `.za-kontakt-opener`, `.za-kontakt-opener-eyebrow`, `.za-kontakt-opener-statement`, `.za-kontakt-opener-sub` aus `zusammenarbeit.css` komplett entfernt. Auch `.za-pre-contact` und `.za-kontakt-ps` (PS-Box war in Round 2 schon raus) sind weg. Die `:has(.za-kontakt-ps)`-Grid-Override ebenfalls weg (nicht mehr nötig).
+- Konsequenz: `.contact-grid` ist wieder symmetrisch 1fr/1fr (wie auf index.html), kein Spaltenverhältnis-Override mehr. Linke Spalte: Eyebrow + H2 + Body + Direkt-Links + Privacy. Rechte Spalte: Form. Balance wieder okay.
+
+**B. Ergebnisse-H2 wärmer formuliert (inline-Kommentar)**
+- Vorher: „Aus dem, was da ist, eine Form, mit der du *weiterarbeiten* kannst." — Vroni: „klingt noch nicht rund, formuliere runter und menschlicher".
+- Jetzt: „Damit du am Ende eine Form hast, *die dich trägt.*" — „trägt" knüpft an die „Marke, die du halten kannst"-Linie der Energie-Section an, ruhiger und Vroni-Voice-näher als der zerhackte „eine Form, mit der du weiterarbeiten kannst".
+
+**Was bewusst NICHT (mehr) auf der Seite ist:**
+- Editorial-Übergang zwischen FAQ und Kontakt (Briefing §25) — Spirit in H2 absorbiert.
+- PS-Box mit RFC-Hinweis im Kontakt (Briefing §27) — der RFC ist schon prominent im Hero-Bento, in der eigenen RFC-Section und im Footer-Link platziert. Eine vierte Wiederholung im Kontakt war Overkill und hat den linken Column überfrachtet.
+- Brücken-Karte (Briefing §17) — Spirit im RFC-Section-Text drin („Bring ihn mit in deine Anfrage" könnte ggf. später als Inline-Hinweis in der `.za-rfc-feature` ergänzt werden, falls Vroni das mal will).
+
+**Was als Phase-3-Bonus an visuellen Improvements aussteht (nicht in diesem PR):**
+- Roter-Faden-Linie subtil als wiederkehrendes Element (Briefing §30) — gewollt-erhalten als Backlog-Item, weil kein konkretes Bauteil entschieden.
+- Mehr Editorial-Asymmetrie + Hintergrund-Tiefe (Briefing §28/30) — Page ist visuell schon stark, kein konkretes Issue offen.
+- Bilddetails in Arbeitsweise/Prozess/Ergebnisse (Briefing §28) — bestehende Method-Head + Energy-Head + Claim-Band tragen die Bildlast, mehr Bilder würden die Ruhe brechen.
+
+**Konsequenz / Handoff:** Geändert: `zusammenarbeit.html`, `zusammenarbeit.css` (Komponenten entfernt, Datei netto kleiner). Reine Markup/CSS-Räumung; kein neues Bild, kein neuer Dritt-Dienst → Recht/Datenschutz unverändert.
+
+---
+
+### 2026-06-07 — Briefing Final-Gesamtcheck PHASE 2: Zusammenarbeit Content/Voice-Refresh (Hero · Problem · Arbeitsweise · RFC · Angebote · Energie · Ablauf · Passt · Ergebnisse · FAQ · Kontaktabschluss)
+
+**Was geändert:**
+Komplette Voice-/Content-Durchsicht auf `zusammenarbeit.html` nach `uploads/Claude_Design_Briefing_Zusammenarbeit_Final_mit_Gesamtcheck.md`. In 10 Iterationen Section für Section durchgegangen, jeweils mit Vroni-Approval pro Section, bevor weitergegangen wurde. Reine Text-/Struktur-Änderungen, kein neues Bild.
+
+**A. Hero-Sublines + Zusatz (Briefing §13)**
+- `.au-lede` Paragraph 1: „Im Gespräch kannst du **reagieren**. Du merkst, wo dein Gegenüber mitgeht, wo du nachschärfen musst und welches Beispiel gerade hilft." (vorher: „kannst du erklären, was du machst").
+- `.au-lede` Paragraph 2: „**Eine Website kann das nicht.** Sie braucht eine Struktur, die deine Arbeit auch dann verständlich macht, wenn du gerade nicht daneben sitzt und alles selbst erklärst." (vorher: „Auf deiner Website fehlt diese Reaktion…").
+- `.au-lede--soft` (Zusatz): „Genau dabei unterstütze ich dich: mit Strategie, Website-Struktur, Texten und KI-Workflows, die zu deiner Marke passen und im Alltag nutzbar bleiben." (vorher: „Ich helfe dir, deine Marke, Website, Texte oder KI-Workflows so aufzubauen…").
+- H1 + CTAs unverändert.
+
+**B. Problem-Section (.pain id=#reihenfolge) Editorial-Block (Briefing §14)**
+- H2 + Eyebrow unverändert.
+- 3 `pi-leads`-Paragraphen 1:1 auf Briefing-Form: Einzelne-Teile-Erklärung → Konsequenz „Menschen sehen einzelne Informationen, aber sie verstehen den Zusammenhang nicht schnell genug" → Lösung „Es geht nicht darum, alles neu zu machen. Erstmal geht es darum, die richtige Reihenfolge zu finden."
+
+**C. Arbeitsweise (.za-method) — keine Änderung nötig (Briefing §15)**
+- Intro-Texte (2 `lead`-Paragraphen) matchten bereits 1:1 das Briefing.
+- 4 Step-Karten bleiben im Hybrid-Format (H3 Kurztitel + Beschreibungs-P), wie am Sonntag etabliert. Vroni explizit gefragt: a) Briefing-stur (nur 1-Satz H3) vs. b) Hybrid behalten vs. c) Tweak — Entscheidung: **b**, weil ohne P zu schwer.
+
+**D. RFC-Section — Hauptbereich keine Änderung nötig (Briefing §16)**
+- H2 + 3 Subhead-Paragraphen + italic Note matchten bereits 1:1 das Briefing.
+- Sekundär-Link „Danach gemeinsam draufschauen" bewusst NICHT wieder eingebaut (in voriger Runde explizit von Vroni entfernt).
+
+**E. Kleine RFC-Karte vor Kontakt → Brücken-Karte (Briefing §17)**
+- `.za-contact-paths` linke Karte (war: „Erstmal selbst sortieren / Rote-Faden-Check herunterladen") → jetzt **Brücken-Karte**:
+  - eyebrow: „Du hast den Check schon gemacht?"
+  - title: „Bring ihn gern mit in die Anfrage"
+  - meta: „Daran sehen wir oft schneller, wo der nächste Schritt liegt."
+  - href: `#contactForm` (statt PDF-Download)
+  - Icon: arrow-with-sparkles-Bridge statt PDF-Icon
+- Bleibt nur kurz so — in Iteration 10 wurde die ganze `.za-contact-paths`-Bar entfernt.
+
+**F. Angebote-Texte feinjustiert (Briefing §18)**
+- H2 + Tier-1/Tier-2-Struktur waren bereits da (`.offers--grouped`, `.offer-group-head`, `.offer--module` mit schmalerem Padding/H3/Num/Mk). Briefing wurde durch die existierende Architektur bereits erfüllt.
+- 5 Texte 1:1 auf Briefing-Form gebracht:
+  - `shead-intro`: „Manchmal liegt der Hebel in der Positionierung. Manchmal in der Website-Struktur. Und manchmal reicht es, Sprache, Inhalte oder KI-Workflows so aufzubauen, dass sie endlich zu dem passen, was du eigentlich sagen willst."
+  - Branding Ergebnis: „Danach kannst du **klarer benennen**, wofür du stehst, für wen deine Arbeit gedacht ist und **was Menschen bei dir wirklich bekommen**."
+  - Website Text-Erweiterung: „…dass deine Website deine Arbeit besser erklärt **und Menschen klarer durch dein Angebot führt**."
+  - Voice Text-Komprimierung: „in eine Sprache, die **verständlich ist und trotzdem nach dir klingt**" (vorher: „klar, menschlich und näher an deiner echten Art").
+  - KI Ergebnis: „…ein KI-Setup, das dir **beim Sortieren, Schreiben und Weiterdenken hilft, ohne deine eigene Richtung zu verwässern**." (vorher: „dir Arbeit abnimmt, ohne deine Richtung an das Tool abzugeben").
+
+**G. Sichtbarkeit & Energie (.za-energy) Lead-Texte 1:1 (Briefing §19)**
+- Drei `lead`-Paragraphen auf Briefing-Form gebracht. Kleinere Verschiebung: vorher „wenn du sie auch im Alltag halten kannst", jetzt „wenn sie zu deinem Alltag passt". Vorher „eine Content-Strategie entwickeln, die theoretisch gut aussieht", jetzt „auf dem Papier sinnvoll aussieht". Vorher „Was passt zu deinem Alltag? Was kannst du wirklich pflegen?", jetzt „Was kannst du realistisch pflegen? Welche Form von Kommunikation passt zu dir?". 3 Notes-Kacheln darunter unverändert.
+
+**H. Ablauf-Timeline (.faden 5 Stationen) gekürzt (Briefing §20)**
+- Briefing wollte kürzere Stationstexte; konsequenz: aus den ~90-Zeichen-Aussagen (Round vor 4 Tagen) wurden kürzere, dichter formulierte Texte. Schwankungsbreite jetzt 65–87 Zeichen (vorher 78–96).
+- Label-Änderungen: „Erstes Sortieren" → „Sortieren", „Strategie und Umsetzung" → „Umsetzung" (Briefing-konform).
+- Station 03 Text: „Du bekommst eine ehrliche Einschätzung zum nächsten sinnvollen Schritt." (vorher: „welcher nächste Schritt für dich gerade sinnvoll ist").
+- Station 05 Text: „Du bekommst eine Grundlage, mit der du im Alltag weiterarbeiten kannst." (vorher: „Am Ende hast du nicht nur ein Ergebnis, sondern…").
+
+**I. Passt-Section — keine Änderung nötig (Briefing §21)**
+- Eyebrow „Kleiner Selbstcheck" + H2 + Intro + beide Listen + Outro matchten bereits 1:1.
+
+**J. Ergebnisse (.au-expect 6 Karten) als Output-Board (Briefing §22)**
+- Section-Intro minimal gekürzt: „dass alles größer oder aufwendiger wird" (statt „größer, lauter oder aufwendiger") und „Was braucht **mehr** Erklärung?" statt „Was braucht Erklärung?".
+- Alle 6 Step-Karten umgestellt: H3 jetzt scannbar im Briefing-Stil (kurzer Aussage-Satz), P bleibt als knappe Vertiefung. Konkret:
+  - 01 Startseite: „Eine Startseite, die sofort führt" → „**Was sofort klar werden muss.**" + neues P.
+  - 02 Angebote: „Klarere Angebote" → „**Was wirklich in den Mittelpunkt gehört.**" + neues P.
+  - 03 Sprache: „Eine Sprache, die nach dir klingt" → „**Wie es natürlicher nach dir klingt.**" + neues P.
+  - 04 Struktur: „Eine sinnvollere Seitenstruktur" → „**Welche Reihenfolge sinnvoll ist.**" + neues P.
+  - 05 KI (Label „KI-Rolle" → „KI"): „KI mit klarer Rolle" → „**Wo das Tool helfen kann und wo nicht.**" + neues P.
+  - 06 Nächster Schritt (Label „Nächste Schritte" → „Nächster Schritt"): „Klare nächste Schritte" → „**Was jetzt wirklich dran ist.**" + neues P.
+- Hybrid-Format beibehalten (slbl + H3 + P), wie in Arbeitsweise — konsistent zur Vroni-Entscheidung in C.
+
+**K. FAQ — keine Änderung nötig (Briefing §23)**
+- 7 Fragen + 7 Antworten matchten bereits 1:1.
+
+**L. Kontaktabschluss komplett umgebaut (Briefing §24–27)**
+Strukturelle Änderung:
+- **Editorial-Übergang als neue Mini-Section** zwischen FAQ und Kontakt (§25): `.za-pre-contact`. Zentriert, Newsreader-Italic Statement (clamp 26→40px) + Body-Sm-Subline. Inhalt:
+  - Statement: „Der nächste Schritt muss nicht *perfekt vorbereitet* sein."
+  - Subline: „Es reicht, wenn du beschreiben kannst, was sich gerade nicht mehr stimmig anfühlt."
+- **`.za-contact-paths`-Bar entfernt** (war: 2-Karten-Bar mit Brücken-Karte + „Schreib mir direkt"-Karte). Wirkte wie eine zweite CTA-Lautschicht vor dem eigentlichen Formular; Briefing §27 verlangt explizit „kein großes PDF-Mockup mehr". Konsequenz: die Brücken-Karte aus Iteration E ist mit weggefallen — das Konzept ist jetzt in der PS-Box subsumiert.
+- **Kontakt-Eyebrow** „Kontakt" → „Nächster Schritt" (§26).
+- **Kontakt-H2**:
+  - Briefing-Variante: „Wenn deine Website oder Marke gerade nicht mehr richtig führt, schauen wir gemeinsam drauf."
+  - Vroni-Feedback unmittelbar danach (Inline-Kommentar): „bitte fass das mal ein bisschen kürzer zusammen ohne die Aussage und Vroni Voice zu verlieren" → „Website oder" raus.
+  - **Final:** „Wenn deine Marke gerade nicht mehr richtig führt, schauen wir gemeinsam *drauf*." („drauf" in `.g`-Akzent). Marke trägt im Vroni-Vokabular die Website als Teilaspekt mit.
+- **Body-Text** 1:1 auf Briefing: „Schreib mir kurz, wo du gerade stehst. Es muss nicht fertig sortiert sein. Ein paar Sätze reichen, damit ich ein Gefühl dafür bekomme, worum es geht und welcher nächste Schritt sinnvoll sein könnte."
+- **PS-Box `.za-kontakt-ps`** im linken Column eingefügt (§27): Grid `auto 1fr`, italic Newsreader „PS"-Marker als Anker links (font-size 18px, Green-Accent), rechts Body-Sm-Text + Inline-Pfeil-Link „Check herunterladen" mit Border-Bottom-Hover. Outline ist 1px `rgba(248,245,238,.16)` Hairline auf semi-transparentem chalk-tint — bewusst kein Lead-Magnet-Look, kein Mockup, kein Bild. Auf ≤560px wird Grid auf 1-Spalte gestapelt.
+- **Submit-Button** „Nachricht abschicken" → „Anfrage abschicken" (Briefing §26, konsistent zur restlichen Seite).
+- **CSS-Additions in `zusammenarbeit.css`**: zwei neue Komponenten-Blöcke `.za-pre-contact` und `.za-kontakt-ps` mit Mobile-Stack-Breakpoint + reduced-motion-Fallback.
+
+**Was bewusst NICHT geändert:**
+- Visuelle Editorial-Tiefe (Briefing §28/29/30: mehr Asymmetrie, Hintergrundvariation, dezenter roter-Faden-Linienverlauf) → Phase 3 in eigenständigen Iterationen.
+- Method-Section bleibt Hybrid-Format (Vroni-Entscheidung b im aktuellen Briefing-Lauf).
+- Step 04 Text der Method-Section wurde in voriger Runde schon positiv umformuliert, Briefing-Version würde Negativ-Konstruktion zurückbringen → bleibt positiv.
+
+**Konsequenz / Handoff:** Geändert: `zusammenarbeit.html` (große Diff), `zusammenarbeit.css` (~70 Zeilen Additions), `PROTOKOLL.md`. Kein neues Bild, keine neuen Dritt-Dienste → Recht/Datenschutz unverändert. Auf der Seite ist die Section-Zählung im Markup-Kommentar verschoben (war 11=Kontakt, jetzt 11=Editorial-Übergang + 12=Kontakt) — rein doku, kein Live-Effekt.
+
+---
+
+### 2026-06-07 — Briefing Final-Gesamtcheck PHASE 1: globale Quick-Wins (noindex, LinkedIn, Footer-Anker, Meta-Keywords, Fachbegriffe, Barrierefreiheit-Stand)
+
+**Was geändert (technisch/Voice/Links, keine Layout-Änderungen):**
+
+- **ueber-mich.html `noindex` entfernt** → `<meta name="robots" content="index, follow">`. Die Seite war versehentlich noch aus der WIP-Phase auf `noindex`; Briefing §8 fordert sie als zentrale Story-/Vertrauenseite indexierbar.
+- **LinkedIn-Links produktiv**:
+  - `index.html` Footer und `ueber-mich.html` Footer: `<a href="#">LinkedIn</a>` → `<a href="https://www.linkedin.com/in/veronika-heidrich/" target="_blank" rel="noopener" aria-label="Veronika Heidrich auf LinkedIn, öffnet in neuem Tab">LinkedIn</a>`.
+  - `zusammenarbeit.html` Footer hatte vorher gar keinen LinkedIn-Eintrag → zwischen Instagram und „Anfrage senden" mit gleichem Pattern ergänzt. Damit ist die Sozial-Liste auf allen drei Hauptseiten konsistent: Mail · Instagram · LinkedIn · Anfrage.
+- **Footer-Anchor-Bug auf `index.html`**: alle Links auf `#ansatz` (existiert nicht als Section-ID) auf `#system` umgestellt (die echte Section-ID des „Das große Ganze"-Blocks). Betrifft: Hero-Sekundär-CTA „Mehr über meinen Ansatz" + Footer-Nav-Item „Ansatz". Briefing §7.
+- **Meta-Keywords entfernt** auf `index.html` + `zusammenarbeit.html`. Google ignoriert das Feld ohnehin (Briefing §12); raus, weil bei Head-Arbeiten nicht mitschleppen.
+- **Fachbegriffe entglättet** (Briefing §10):
+  - `ueber-mich.html` Skill-Tag „SEO/GEO" → „SEO & KI-Sichtbarkeit" (versteht jede:r ohne Insider-Wissen).
+  - `ueber-mich.html` Skill-Tag „Sparring & Prompts" → „KI-Anleitungen & Sparring" (Prompts steht jetzt für sich nicht mehr alleine).
+  - Die JSON-LD `knowsAbout`-Arrays mit "SEO","GEO" bleiben unverändert — das ist Maschinen-Vokabular für Schema.org/Google, kein Nutzertext.
+- **Barrierefreiheits-Seite aktualisiert** (Briefing §9):
+  - Listenpunkt „Impressum und Datenschutz: Diese Seiten sind noch in Vorbereitung (`noindex`)" komplett entfernt — die beiden Seiten sind seit Wochen live und ausführlich gepflegt.
+  - Stand-Datum 2026-05-31 → 2026-06-07.
+
+**Was bewusst NICHT geändert (jeweils mit Begründung):**
+- Markenname „InnerLine" vs. „innerline" Schreibweise: live ist bereits konsistent — Wortmarke/Logo nutzt klein „innerline" (Vaelia, mit NN-Ligatur), Fließtext/Meta/Footer/JSON-LD nutzt PascalCase „InnerLine". Briefing §6 verlangt genau diese Regel. Keine Mischformen wie „Innerline" gefunden außer in den Brand-Foundation-Dokumenten unter `brand/` — das ist intern, kein Live-Text.
+- Yoga-Pills „MiRücken Yoga / DoPower Yoga" (Briefing §11 Beispiel): live ist die Komponente schon mit `.ypath-days{display:flex;gap:8px}` + `.ypd{display:inline-flex;gap:8px}` korrekt aufgesetzt. Die Beobachtung im Briefing scheint ein älterer Snapshot zu sein.
+- „Ein roter FadenBranding · ..." (Briefing §11 zweites Beispiel): nicht gefunden — entweder ein Render-Effekt aus einer alten Version oder ein Browser-Plugin-Artefakt.
+- Hero-Subline + Section-Texte auf `zusammenarbeit.html`: separat in PHASE 2 (eigenständiger Content-Refresh).
+
+**Warum klein und in einem Schritt:**
+Quick-Wins zuerst, damit die Live-Seite sofort sauber indexierbar ist, Links funktionieren und der Barrierefreiheits-Text nicht mehr lügt. PHASE 2 (großer Voice-/Content-Sweep auf `zusammenarbeit.html`) und PHASE 3 (visuelle Tiefe + A11y-Audit + Designsystem-Update + Handoff) folgen separat, damit Vroni inkrementell mitlesen kann.
+
+**Konsequenz / Handoff:** Geändert: `index.html`, `ueber-mich.html`, `zusammenarbeit.html`, `barrierefreiheit.html`, `PROTOKOLL.md`. Reine Markup/Voice-Änderungen, kein Layout-Diff. Kein neuer Dritt-Dienst → Recht/Datenschutz unverändert. **Wichtig fürs Sitemap-Update bei Claude Code:** mit dem `noindex`-Entfernen auf `ueber-mich.html` sollte `sitemap.xml` auf `lastmod 2026-06-07` aktualisiert werden.
+
+---
+
 ### 2026-06-07 — Cross-Page Konsistenz: Navigation einheitlich · RFC-CTA-Panel verschlankt · Ergebnisse-Section ans DS angeglichen
 
 **Was geändert:**
