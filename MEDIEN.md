@@ -415,7 +415,27 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Alt-Text:** Rote-Faden-Check als PDF auf einem Tablet, daneben Tasse Kaffee und Olivenzweig auf Holztisch, ruhiger Editorial-Moment
 - **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stilleben)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9; ersetzt CSS-Cover-Plate aus v5).
+- **Änderungen:** `2026-06-06` — Ersterfassung (Handoff v9; ersetzt CSS-Cover-Plate aus v5). `2026-06-07` — Verwendung in der RFC-Feature-Box nach der grossen Layout-Iteration (2-Spalter mit Bild rechts, full-stretch auf Spaltenhoehe) wieder bestaetigt.
+
+### rfc-mockups/tablet-ausfuellen-hand
+- **Dateien:** `images/rfc-mockups/tablet-ausfuellen-hand.webp` · `images/rfc-mockups/tablet-ausfuellen-hand-960.webp` · `images/rfc-mockups/tablet-ausfuellen-hand.png`
+- **Maße:** 1254×1254 px (original, quadratisch), 960er-Variante verfügbar
+- **Herkunft:** KI-generiertes Editorial-Mockup (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** `zusammenarbeit.html` (RFC-CTA-Panel `.za-rfc-cta-figure`)
+- **Alt-Text:** Rote-Faden-Check als PDF auf einem Tablet in der Hand, daneben Keramiktasse und Olivenzweig auf Holzbank im warmen Morgenlicht
+- **Dekorativ:** nein · **KI-Darstellung:** ja (Hand als KI-generierte Darstellung, Tablet/Setting Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-07` — Ersterfassung. Wird im CTA-Panel als visueller Anker neben dem Download-Button gezeigt. Hand-Framing setzt es bewusst vom RFC-Feature-Bild oben (tablet-cafe-olivenzweig, ruhendes Tablet) ab.
+
+### rfc-mockups/tablet-bereich-fenster (Reserve)
+- **Dateien:** `images/rfc-mockups/tablet-bereich-fenster.webp` · `images/rfc-mockups/tablet-bereich-fenster-960.webp` · `images/rfc-mockups/tablet-bereich-fenster.png`
+- **Maße:** 1672×941 px (Querformat)
+- **Herkunft:** KI-generiertes Editorial-Mockup (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06-06
+- **Verwendung:** aktuell **nicht in der Website eingebunden** (Reserve). War in der RFC-Feature-Box-Iteration vom 07.06.2026 zwischenzeitlich aktiv, wurde aber zugunsten des vertikalen `tablet-cafe-olivenzweig` wieder entfernt, weil das vertikale Format in der schmalen rechten Spalte besser sitzt ohne Crop.
+- **Alt-Text-Vorlage:** Rote-Faden-Check auf einem Tablet, daneben ausgefüllte Workbook-Seiten und eine Hand, die gerade die nächste Frage beantwortet, warmes Editorial-Setup
+- **Dekorativ:** nein · **KI-Darstellung:** ja (Hand als KI-generierte Darstellung)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-07` — Ersterfassung als Reserve nach Test-Einsatz im RFC-Feature.
 
 ### vroni-stillleben-buch-curtain
 - **Dateien:** `images/vroni-stillleben-buch-curtain.webp` · `images/vroni-stillleben-buch-curtain-960.webp` · `images/vroni-stillleben-buch-curtain.png`

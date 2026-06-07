@@ -15,8 +15,8 @@
   .lbl{font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);}
   section{padding:60px 80px;border-top:1px solid var(--hair);}
   .sec-h{display:flex;align-items:baseline;gap:16px;margin:0 0 8px;}
-  .sec-h .no{font-weight:800;font-size:14px;color:var(--green-deep);}
-  .sec-h h2{font-weight:700;font-size:22px;letter-spacing:-.01em;margin:0;}
+  .sec-h .no{font-weight:700;font-size:14px;color:var(--green-deep);}
+  .sec-h h2{font-weight:650;font-size:22px;letter-spacing:var(--ls-snug);margin:0;}
   .sec-sub{font-size:14px;color:var(--ink-soft);margin:0 0 34px;max-width:680px;line-height:1.5;}
 
   /* Masthead */
@@ -91,13 +91,13 @@
   .offer{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:28px 28px 26px;display:flex;flex-direction:column;height:100%;}
   .offer .mark{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
   .offer .mark svg{width:22px;height:22px;}
-  .offer h4{font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0 0 8px;}
+  .offer h4{font-weight:650;font-size:20px;letter-spacing:var(--ls-snug);margin:0 0 8px;}
   .offer p{font-size:14px;line-height:1.55;color:var(--ink-soft);margin:0 0 18px;}
   .offer .more{font-size:13.5px;font-weight:600;color:var(--green-deep);margin-top:auto;display:inline-flex;gap:6px;align-items:center;}
 
   .stat-card{background:var(--forest);border-radius:var(--r-lg);padding:26px 28px;color:var(--chalk);}
   .stat-card .top{display:flex;justify-content:space-between;align-items:flex-start;}
-  .stat-card .top h4{font-weight:700;font-size:19px;margin:0;letter-spacing:-.01em;}
+  .stat-card .top h4{font-weight:600;font-size:19px;margin:0;letter-spacing:var(--ls-snug);}
   .stat-card .badge{font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--green);color:var(--ink);padding:5px 11px;border-radius:100px;}
   .stat-card .route{width:100%;height:60px;margin:16px 0 14px;display:block;}
   .stat-card .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
@@ -140,7 +140,7 @@
   .bleed-card.r{grid-template-columns:1fr 1.05fr;}
   .bleed-card.l{grid-template-columns:1.05fr 1fr;}
   .bleed-card .txt{padding:26px;}
-  .bleed-card .txt .k{font-weight:700;font-size:16px;}
+  .bleed-card .txt .k{font-weight:600;font-size:16px;}
   .bleed-card .txt .v{font-size:12.5px;color:var(--ink-soft);margin-top:6px;line-height:1.5;}
   .bleed-card .img{align-self:stretch;background:linear-gradient(150deg,#e4e7d9,#d2d7c3);position:relative;display:flex;align-items:flex-end;box-shadow:-20px 0 50px rgba(35,34,26,.1);}
   .bleed-card.r .img{border-radius:26px 0 0 26px;}
@@ -150,7 +150,7 @@
   /* Section rhythm */
   .rhythm{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
   .band{border-radius:var(--r-lg);padding:22px;min-height:128px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--hair);}
-  .band .bn{font-weight:700;font-size:15px;}
+  .band .bn{font-weight:600;font-size:15px;}
   .band .bd{font-size:12px;margin-top:6px;line-height:1.45;}
   .band.chalk{background:var(--chalk);}
   .band.sand{background:linear-gradient(180deg,#EFEADD,#E8E0D0);}
@@ -168,7 +168,7 @@
   .mu{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px 26px;}
   .mu .cap{font-size:11px;color:var(--ink-soft);margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;}
   .mu .divider svg{width:100%;height:24px;display:block;}
-  .mu .uhead{font-weight:700;font-size:26px;letter-spacing:-.02em;position:relative;display:inline-block;}
+  .mu .uhead{font-weight:650;font-size:26px;letter-spacing:var(--ls-snug);position:relative;display:inline-block;}
   .mu .uhead svg{position:absolute;left:0;right:0;bottom:-8px;width:100%;height:11px;}
   .mu.dark{background:var(--forest);}
   .mu.dark .cap{color:#9aa589;}
@@ -186,7 +186,7 @@
 
   <!-- MASTHEAD -->
   <div class="masthead">
-    <div class="eyebrow"><span class="dot"></span><span class="lbl">Quelle der Wahrheit · tokens.css + style.css</span></div>
+    <div class="eyebrow"><span class="dot"></span><span class="lbl">Quelle der Wahrheit · tokens.css + style.css · Stand 07.06.2026</span></div>
     <h1 class="mast-title">InnerLine<br><span class="em">Designsystem</span></h1>
     <p class="mast-sub">Der Baukasten für deine Website: Tokens, Typo, Buttons, Karten, Navigation, Formulare, Bildstil, das Linienmotiv, ein Sektions-Baukasten, und eine Live-Vorschau der echten Seiten. Hell, offen, organisch.</p>
     <div class="mast-wave">
@@ -248,7 +248,7 @@
     <div class="type-row"><div class="tag"><b>Display</b>--fs-display · 40→66 / 650</div><div class="demo" style="font-size:var(--fs-display);font-weight:650;letter-spacing:-.025em;">Klarheit in Bewegung</div></div>
     <div class="type-row"><div class="tag"><b>H1</b>--fs-h1 · 33→50 / 650</div><div class="demo" style="font-size:var(--fs-h1);font-weight:650;letter-spacing:-.025em;">Sichtbar werden</div></div>
     <div class="type-row"><div class="tag"><b>H2</b>--fs-h2 · 28→42 / 650</div><div class="demo" style="font-size:var(--fs-h2);font-weight:650;letter-spacing:-.025em;">Viele Themen, ein Faden</div></div>
-    <div class="type-row"><div class="tag"><b>H3</b>--fs-h3 · 20→24 / 650</div><div class="demo" style="font-size:var(--fs-h3);font-weight:650;letter-spacing:-.01em;">Subsection &amp; große Karte</div></div>
+    <div class="type-row"><div class="tag"><b>H3</b>--fs-h3 · 20→24 / 650 default · <b style="color:var(--clay);">600 in Karten</b></div><div class="demo" style="font-size:var(--fs-h3);font-weight:600;letter-spacing:-.01em;">Subsection &amp; große Karte</div></div>
     <div class="type-row"><div class="tag"><b>H4 · Kartentitel</b>--fs-h4 · 17→18 / 600</div><div class="demo" style="font-size:var(--fs-h4); font-weight: 600; letter-spacing: -.01em">Titel in Trust-, Step- &amp; Pain-Karten</div></div>
     <div class="type-row"><div class="tag"><b>Lead</b>--fs-lead · 19→22 / 600</div><div class="demo" style="font-size:var(--fs-lead);font-weight:600;letter-spacing:-.01em;line-height:1.5;">Emphatischer Einstiegssatz unter einer Headline.</div></div>
     <div class="type-row"><div class="tag"><b>Subline · Body L</b>--fs-subline · 18 / 400</div><div class="demo" style="font-size:var(--fs-subline);font-weight:400;letter-spacing:0;line-height:1.6;">Section-Intro unter der H2. Ruhig, gut lesbar, führt in den Abschnitt.</div></div>
@@ -327,9 +327,9 @@
     <div class="sec-h"><span class="no">07</span><h2>Breakpoints &amp; Responsives Verhalten</h2></div>
     <p class="sec-sub">Mobile-first im Verhalten, drei Haupt-Schwellen. Inhalt bleibt bis 200% Zoom nutzbar (BFSG).</p>
     <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:14px;overflow:hidden;">
-      <div style="display:flex;gap:18px;padding:16px 22px;background:#fff;"><span style="flex:0 0 130px;font-weight:700;font-size:14px;">≤ 1080px</span><span style="font-size:14px;color:var(--ink-soft);">Nav klappt zur Burger-Navigation, Desktop-CTA blendet aus.</span></div>
-      <div style="display:flex;gap:18px;padding:16px 22px;background:rgba(255,255,255,.55);border-top:1px solid var(--hair);"><span style="flex:0 0 130px;font-weight:700;font-size:14px;">≤ 900px</span><span style="font-size:14px;color:var(--ink-soft);">2-Spalten-Sektionen → 1 Spalte, Karten-Raster reduzieren (6→3, 4→2).</span></div>
-      <div style="display:flex;gap:18px;padding:16px 22px;background:#fff;border-top:1px solid var(--hair);"><span style="flex:0 0 130px;font-weight:700;font-size:14px;">≤ 560px</span><span style="font-size:14px;color:var(--ink-soft);">Mobil: alles 1-spaltig, kompakte Paddings, Zeitstrahl vertikal.</span></div>
+      <div style="display:flex;gap:18px;padding:16px 22px;background:#fff;"><span style="flex:0 0 130px;font-weight:600;font-size:14px;">≤ 1080px</span><span style="font-size:14px;color:var(--ink-soft);">Nav klappt zur Burger-Navigation, Desktop-CTA blendet aus.</span></div>
+      <div style="display:flex;gap:18px;padding:16px 22px;background:rgba(255,255,255,.55);border-top:1px solid var(--hair);"><span style="flex:0 0 130px;font-weight:600;font-size:14px;">≤ 900px</span><span style="font-size:14px;color:var(--ink-soft);">2-Spalten-Sektionen → 1 Spalte, Karten-Raster reduzieren (6→3, 4→2).</span></div>
+      <div style="display:flex;gap:18px;padding:16px 22px;background:#fff;border-top:1px solid var(--hair);"><span style="flex:0 0 130px;font-weight:600;font-size:14px;">≤ 560px</span><span style="font-size:14px;color:var(--ink-soft);">Mobil: alles 1-spaltig, kompakte Paddings, Zeitstrahl vertikal.</span></div>
     </div>
   </section>
 
@@ -443,7 +443,7 @@
     <div class="grid-2" style="margin-top:22px;">
       <div class="panel">
         <span class="lbl">Basis-Karte</span>
-        <h4 style="font-weight:700;font-size:20px;margin:0 0 8px;letter-spacing:-.01em;">Karte / Container</h4>
+        <h4 style="font-weight:600;font-size:20px;margin:0 0 8px;letter-spacing:var(--ls-snug);">Karte / Container</h4>
         <p style="font-size:14px;line-height:1.55;color:var(--ink-soft);margin:0;">Weiße Fläche, Radius 26, feine Hairline und ein weicher, weit gestreuter Schatten für Tiefe. Beim Hover hebt die Karte leicht an. Für Inhalte, Listen, Teaser.</p>
       </div>
       <div class="stat-card">
@@ -452,6 +452,102 @@
         <div class="stats"><div><div class="k">Fokus</div><div class="v">Mobility</div></div><div><div class="k">Dauer</div><div class="v">75 min</div></div><div><div class="k">Level</div><div class="v">Alle</div></div></div>
       </div>
     </div>
+
+    <!-- ROUND 2026-06-07: erweiterte Karten-Bibliothek (Vroni: „mehrere Komponenten fehlen"). -->
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:32px 0 14px;">Step-Karte · <code style="font-family:ui-monospace,monospace;font-size:12px;">.step</code> (mit Nummerierung)</div>
+    <p style="font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin:0 0 14px;max-width:780px;">Nummerierte Schritt-Karte für Arbeitsweise-Methoden, Ablauf-Übersichten und Outcome-Listen. <code style="font-family:ui-monospace,monospace;font-size:12px;">snum</code> (Nummer, Figtree 700) · <code style="font-family:ui-monospace,monospace;font-size:12px;">slbl</code> (kurzes Label, uppercase, Clay-Akzent) · <code style="font-family:ui-monospace,monospace;font-size:12px;">h3</code> (Titel, 600/H4-Stufe) · <code style="font-family:ui-monospace,monospace;font-size:12px;">p</code> (Beschreibung, Body-Sm).</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;">
+      <div style="position:relative;background:#fff;border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:24px 22px 22px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);">
+        <span style="font-weight:700;font-size:32px;letter-spacing:-.02em;line-height:1;color:color-mix(in srgb,var(--green) 55%,var(--ink));margin-bottom:16px;">01</span>
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);margin-bottom:8px;">Verstehen</span>
+        <h4 style="font-weight:600;font-size:17px;line-height:1.25;letter-spacing:var(--ls-snug);margin:0 0 10px;color:var(--ink);">Wir schauen, was schon da ist.</h4>
+        <p style="font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin:0;">Deine Ideen, deine Erfahrung, dein Angebot, deine Zielgruppe und das Gefühl, das noch schwer greifbar ist.</p>
+      </div>
+      <div style="position:relative;background:#fff;border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:24px 22px 22px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);">
+        <span style="font-weight:700;font-size:32px;letter-spacing:-.02em;line-height:1;color:color-mix(in srgb,var(--green) 55%,var(--ink));margin-bottom:16px;">02</span>
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);margin-bottom:8px;">Sortieren</span>
+        <h4 style="font-weight:600;font-size:17px;line-height:1.25;letter-spacing:var(--ls-snug);margin:0 0 10px;color:var(--ink);">Dann bringen wir Ordnung rein.</h4>
+        <p style="font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin:0;">Was gehört zusammen? Was ist wichtig? Was darf in den Hintergrund?</p>
+      </div>
+      <div style="position:relative;background:#fff;border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:24px 22px 22px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);">
+        <span style="font-weight:700;font-size:32px;letter-spacing:-.02em;line-height:1;color:color-mix(in srgb,var(--green) 55%,var(--ink));margin-bottom:16px;">03</span>
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);margin-bottom:8px;">Übersetzen</span>
+        <h4 style="font-weight:600;font-size:17px;line-height:1.25;letter-spacing:var(--ls-snug);margin:0 0 10px;color:var(--ink);">Aus Gedanken wird etwas Sichtbares.</h4>
+        <p style="font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin:0;">Aus deiner Haltung wird Gestaltung, aus deinen Themen werden Texte, aus deinen Ideen eine Seitenstruktur.</p>
+      </div>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:32px 0 14px;">Passt-Karte (Yes/No) · <code style="font-family:ui-monospace,monospace;font-size:12px;">.au-fit-col</code></div>
+    <p style="font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin:0 0 14px;max-width:780px;">Selbst-Check-Karte mit Pill-Tag oben, Karten-Titel und Häkchen-/Minus-Liste. Forest-Dark für „Passt", semi-transparent weiß mit Dashed-Border für „Eher nicht". Icons (22px Häkchen / 14px Minus) sitzen mittig auf der ersten Textzeile.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+      <div style="position:relative;background:radial-gradient(circle at 80% 0%,rgba(168,232,79,.18),transparent 55%),linear-gradient(160deg,#2C3522 0%,#252D1B 100%);border:1px solid rgba(168,232,79,.22);border-radius:var(--r-xl);padding:26px 24px 24px;color:var(--chalk);box-shadow:0 18px 36px rgba(20,26,16,.28);">
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:7px 14px;border-radius:100px;background:rgba(168,232,79,.18);border:1px solid rgba(168,232,79,.30);color:var(--green);line-height:1;margin-bottom:20px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);"></span>Passt</span>
+        <h4 style="font-weight:600;font-size:17px;line-height:1.25;margin:0 0 14px;letter-spacing:var(--ls-snug);color:var(--chalk);">Wenn du spürst, dass da mehr Ordnung rein muss.</h4>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;">
+          <li style="position:relative;padding:12px 0 12px 40px;font-size:14.5px;line-height:1.6;color:rgba(248,245,238,.88);border-top:1px solid rgba(248,245,238,.10);"><span style="position:absolute;left:0;top:14px;width:22px;height:22px;border-radius:50%;background:var(--green) url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2323221A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 13l4 4 10-11'/></svg>&quot;) no-repeat center / 14px 14px;box-shadow:0 0 0 4px rgba(168,232,79,.22),0 0 0 5px rgba(248,245,238,.08);"></span>Deine Website erklärt dich nicht so gut wie du selbst.</li>
+          <li style="position:relative;padding:12px 0 12px 40px;font-size:14.5px;line-height:1.6;color:rgba(248,245,238,.88);border-top:1px solid rgba(248,245,238,.10);"><span style="position:absolute;left:0;top:14px;width:22px;height:22px;border-radius:50%;background:var(--green) url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2323221A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 13l4 4 10-11'/></svg>&quot;) no-repeat center / 14px 14px;box-shadow:0 0 0 4px rgba(168,232,79,.22),0 0 0 5px rgba(248,245,238,.08);"></span>Du hast viele Ideen, aber noch keine klare Linie.</li>
+        </ul>
+      </div>
+      <div style="position:relative;background:rgba(255,255,255,.72);border:1px dashed color-mix(in srgb,var(--ink) 14%,transparent);border-radius:var(--r-xl);padding:26px 24px 24px;box-shadow:0 4px 14px rgba(35,34,26,.03);">
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:7px 14px;border-radius:100px;background:rgba(35,34,26,.04);border:1px solid rgba(35,34,26,.10);color:var(--ink-soft);line-height:1;margin-bottom:20px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--clay);opacity:.55;"></span>Eher nicht</span>
+        <h4 style="font-weight:600;font-size:17px;line-height:1.25;margin:0 0 14px;letter-spacing:var(--ls-snug);color:var(--ink);">Wenn du nur schnell etwas Hübsches brauchst.</h4>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;">
+          <li style="position:relative;padding:12px 0 12px 40px;font-size:14.5px;line-height:1.6;color:#3a362e;border-top:1px solid color-mix(in srgb,var(--ink) 6%,transparent);"><span style="position:absolute;left:0;top:22px;width:14px;height:2px;border-radius:2px;background:var(--ink-soft);opacity:.4;"></span>Du möchtest nur ein Template befüllen.</li>
+          <li style="position:relative;padding:12px 0 12px 40px;font-size:14.5px;line-height:1.6;color:#3a362e;border-top:1px solid color-mix(in srgb,var(--ink) 6%,transparent);"><span style="position:absolute;left:0;top:22px;width:14px;height:2px;border-radius:2px;background:var(--ink-soft);opacity:.4;"></span>Du willst keine Strategie vor dem Design.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:32px 0 14px;">Editorial-Note · italic mit Hairline</div>
+    <p style="font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin:0 0 14px;max-width:780px;">Footnote-Pattern für Sätze, die als „Aside" zur Hauptaussage stehen. Italic, gedämpfter Color, oben ein 1px-Hairline-Trenner statt Pill-Background.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+      <div style="background:linear-gradient(160deg,#2C3522 0%,#252D1B 100%);border:1px solid rgba(168,232,79,.14);border-radius:var(--r-md);padding:26px 24px;">
+        <p style="margin:0;font-size:14px;font-style:italic;line-height:1.6;color:rgba(248,245,238,.62);border-top:1px solid rgba(248,245,238,.10);padding-top:18px;">Er ersetzt keine Strategie. Aber er macht sichtbar, welche Fragen wir uns als Nächstes anschauen sollten.</p>
+      </div>
+      <div style="background:#fff;border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:26px 24px;">
+        <p style="margin:0;font-size:14px;font-style:italic;line-height:1.6;color:var(--ink-soft);border-top:1px solid var(--hair-soft);padding-top:18px;">Auf hellem Grund: gleiche Logik, nur Forest-Tone-Hairline durch <code style="font-family:ui-monospace,monospace;font-size:11.5px;">--hair-soft</code> ersetzt.</p>
+      </div>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:32px 0 14px;">Faden-Timeline · <code style="font-family:ui-monospace,monospace;font-size:12px;">.faden-station</code></div>
+    <p style="font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin:0 0 14px;max-width:780px;">5-Spalten-Zeitstrahl für Ablauf-Prozesse. Nummerierter Kreis-Avatar (Clay-Outline) + Stations-Label + ruhiger Beschreibungs-Text. Verbindungs-Linie ist optional (Hairline-Pseudo-Element).</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;background:#fff;border:1px solid var(--hair-soft);border-radius:var(--r-md);padding:36px 32px;">
+      <div style="padding:0 14px 0 0;position:relative;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--clay) 60%,transparent);color:var(--clay);font-size:12.5px;font-weight:700;letter-spacing:.02em;margin-bottom:14px;">01</span>
+        <span style="display:block;font-weight:650;font-size:15px;color:var(--ink);letter-spacing:var(--ls-snug);margin-bottom:6px;">Anfrage</span>
+        <span style="display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.55;">Du schreibst mir kurz, wo du gerade stehst und was sich gerade nicht mehr stimmig anfühlt.</span>
+      </div>
+      <div style="padding:0 14px 0 0;position:relative;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--clay) 60%,transparent);color:var(--clay);font-size:12.5px;font-weight:700;letter-spacing:.02em;margin-bottom:14px;">02</span>
+        <span style="display:block;font-weight:650;font-size:15px;color:var(--ink);letter-spacing:var(--ls-snug);margin-bottom:6px;">Erstes Sortieren</span>
+        <span style="display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.55;">Wir schauen gemeinsam, ob es eher um Marke, Website, Texte oder KI geht.</span>
+      </div>
+      <div style="padding:0 14px 0 0;position:relative;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--clay) 60%,transparent);color:var(--clay);font-size:12.5px;font-weight:700;letter-spacing:.02em;margin-bottom:14px;">03</span>
+        <span style="display:block;font-weight:650;font-size:15px;color:var(--ink);letter-spacing:var(--ls-snug);margin-bottom:6px;">Empfehlung</span>
+        <span style="display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.55;">Du bekommst eine ehrliche Einschätzung, welcher nächste Schritt für dich sinnvoll ist.</span>
+      </div>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:32px 0 14px;">Energy-Notes · Hairline-Grid · <code style="font-family:ui-monospace,monospace;font-size:12px;">.za-energy-notes</code></div>
+    <p style="font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin:0 0 14px;max-width:780px;">Editorial-Drei-Spalter ohne Karten-Chrome, nur Hairline-Trenner zwischen den Spalten. Eyebrow + H3 + Body. Hover: dezenter Green-Tint.</p>
+    <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border-top:1px solid var(--hair-soft);border-bottom:1px solid var(--hair-soft);">
+      <li style="display:flex;flex-direction:column;gap:8px;padding:28px 24px;border-left:none;">
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--green-text);">Realistisch</span>
+        <h4 style="font-weight:600;font-size:17px;line-height:1.25;letter-spacing:var(--ls-snug);margin:0;color:var(--ink);text-wrap:balance;">Was du im Alltag tatsächlich halten kannst.</h4>
+        <p style="margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-soft);">Lieber ein Format, das du ein Jahr durchziehst, als drei, bei denen du nach sechs Wochen aussteigst.</p>
+      </li>
+      <li style="display:flex;flex-direction:column;gap:8px;padding:28px 24px;border-left:1px solid var(--hair-soft);">
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--green-text);">Stimmig</span>
+        <h4 style="font-weight:600;font-size:17px;line-height:1.25;letter-spacing:var(--ls-snug);margin:0;color:var(--ink);text-wrap:balance;">Welche Form sich nach dir anfühlt.</h4>
+        <p style="margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-soft);">Nicht jedes Medium passt zu jeder Person. Was für andere funktioniert, kann dich auslaugen.</p>
+      </li>
+      <li style="display:flex;flex-direction:column;gap:8px;padding:28px 24px;border-left:1px solid var(--hair-soft);">
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--green-text);">Tragfähig</span>
+        <h4 style="font-weight:600;font-size:17px;line-height:1.25;letter-spacing:var(--ls-snug);margin:0;color:var(--ink);text-wrap:balance;">Ein System, das dich nicht nervt.</h4>
+        <p style="margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-soft);">Werkzeuge, Routinen und KI-Workflows so gebaut, dass sie dir Arbeit abnehmen statt zusätzlich Pflege zu brauchen.</p>
+      </li>
+    </ul>
   </section>
 
   <!-- 06 NAVIGATION -->
@@ -620,6 +716,75 @@
     <div class="ex" style="margin-bottom:0;">
       <div class="ex-cap">Über mich · ueber-mich.html <a href="ueber-mich.html" target="_blank" rel="noopener" style="float:right;color:var(--green-deep);font-weight:600;text-transform:none;letter-spacing:0;">in neuem Tab öffnen →</a></div>
       <div class="ex-body"><iframe src="ueber-mich.html" loading="lazy" title="Live-Vorschau Über mich" style="width:100%;height:700px;border:0;display:block;background:#fff;"></iframe></div>
+    </div>
+    <div class="ex" style="margin-bottom:0;">
+      <div class="ex-cap">Zusammenarbeit · zusammenarbeit.html <a href="zusammenarbeit.html" target="_blank" rel="noopener" style="float:right;color:var(--green-deep);font-weight:600;text-transform:none;letter-spacing:0;">in neuem Tab öffnen →</a></div>
+      <div class="ex-body"><iframe src="zusammenarbeit.html" loading="lazy" title="Live-Vorschau Zusammenarbeit" style="width:100%;height:700px;border:0;display:block;background:#fff;"></iframe></div>
+    </div>
+  </section>
+
+  <!-- 20 CROSS-PAGE PATTERNS (Round 2026-06-07: neue / erweiterte geteilte Komponenten) -->
+  <section>
+    <div class="sec-h"><span class="no">20</span><h2>Cross-Page Patterns</h2></div>
+    <p class="sec-sub">Komponenten, die in dieser Iteration so weit gehaerteet wurden, dass sie auf mehreren Seiten 1:1 wiederverwendet werden. Stand 07.06.2026.</p>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">Geteilte CSS-Quellen (wo der Patch hingehoert)</div>
+    <div class="panel" style="margin-bottom:24px;">
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;">
+        <li><b>Globaler Selektor</b> (kommt auf mehreren Seiten vor) -> <code style="font-family:ui-monospace,monospace;font-size:12.5px;background:rgba(168,232,79,.12);padding:2px 6px;border-radius:6px;">style.css</code> oder eine andere geteilte Datei (z. B. <code style="font-family:ui-monospace,monospace;font-size:12.5px;background:rgba(168,232,79,.12);padding:2px 6px;border-radius:6px;">ueber-mich.css</code>, die auch von <code style="font-family:ui-monospace,monospace;font-size:12.5px;">zusammenarbeit.html</code> geladen wird).</li>
+        <li><b>Seitenspezifischer Selektor</b> (Prefix <code style="font-family:ui-monospace,monospace;font-size:12.5px;">.za-*</code>, <code style="font-family:ui-monospace,monospace;font-size:12.5px;">.au-*</code>) -> die jeweilige seitenspezifische CSS-Datei.</li>
+        <li><b>Nie zwei Definitionen</b> derselben Klasse parallel pflegen. Vor jedem Patch pruefen: lebt der Selektor woanders schon?</li>
+      </ul>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">Section-Head mit viel Lauftext &middot; <code style="font-family:ui-monospace,monospace;font-size:12px;background:rgba(168,232,79,.12);padding:2px 6px;border-radius:6px;">.shead--split</code></div>
+    <div class="panel" style="margin-bottom:24px;">
+      <p style="margin:0 0 12px;font-size:14px;line-height:1.55;color:var(--ink-soft);">Wenn der Section-Head einen laengeren Intro-Absatz braucht: H2 + Eyebrow links, Body-Lead rechts. Fuellt den ganzen Container, vermeidet den Whitespace, der bei einem zentrierten <code style="font-family:ui-monospace,monospace;font-size:12px;">.shead</code> mit viel Text rechts neben dem Absatz entsteht.</p>
+      <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:end;padding:18px 22px;background:var(--sand);border-radius:14px;">
+        <div>
+          <div class="eyebrow" style="margin:0 0 8px;"><span class="dot"></span><span class="lbl">Eyebrow</span></div>
+          <div style="font-weight:650;font-size:22px;line-height:1.1;color:var(--ink);text-wrap:balance;">Headline, links als Anker</div>
+        </div>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:var(--ink-soft);">Body-Lead rechts, fuellt die Spalte. Pattern wird auf der Zusammenarbeit-Seite z. B. in der Ergebnisse-Section + im Pain-Intro genutzt.</p>
+      </div>
+      <div style="font-size:12px;font-family:ui-monospace,monospace;color:var(--ink-soft);margin-top:10px;">CSS: <code>.shead--split{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:end}</code> &middot; Quelle: <code>style.css</code></div>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">„Was am Ende klarer wird“-Section &middot; <code style="font-family:ui-monospace,monospace;font-size:12px;background:rgba(168,232,79,.12);padding:2px 6px;border-radius:6px;">.au-expect</code></div>
+    <div class="panel" style="margin-bottom:24px;">
+      <p style="margin:0 0 12px;font-size:14px;line-height:1.55;color:var(--ink-soft);">Beiger Editorial-Hintergrund-Gradient (<code style="font-family:ui-monospace,monospace;font-size:12px;">linear-gradient(180deg,#F1ECE0,#EAE3D4)</code>) + 3-Spalten-Grid mit <code style="font-family:ui-monospace,monospace;font-size:12px;">.step</code>-Karten (snum/slbl/h3/p). Genutzt fuer Outcome-Listen am Ende einer Beratungs-/Angebots-Seite. Aktuell auf <b>ueber-mich.html</b> &middot; <b>zusammenarbeit.html</b>.</p>
+      <div style="font-size:12px;font-family:ui-monospace,monospace;color:var(--ink-soft);">CSS: <code>.au-expect{background:linear-gradient(180deg,#F1ECE0,#EAE3D4)}</code> + <code>.au-expect-grid{grid-template-columns:repeat(3,1fr);gap:var(--gap-grid)}</code> &middot; Quelle: <code>ueber-mich.css</code> (wird auch von zusammenarbeit.html geladen).</div>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">Passt-Listen &middot; <code style="font-family:ui-monospace,monospace;font-size:12px;background:rgba(168,232,79,.12);padding:2px 6px;border-radius:6px;">.au-fit-list</code></div>
+    <div class="panel" style="margin-bottom:24px;">
+      <p style="margin:0 0 12px;font-size:14px;line-height:1.55;color:var(--ink-soft);">Stand 07.06.2026: Check-Pille 22px, Minus 14px, <code style="font-family:ui-monospace,monospace;font-size:12px;">padding-left:40px</code>, Icon-Mitte sitzt auf der <b>ersten Textzeile</b> (nicht auf der Karten-Mitte), berechnet via <code style="font-family:ui-monospace,monospace;font-size:12px;">top:calc(14px + (1.6em - var(--fit-icon-size)) / 2)</code>. <code style="font-family:ui-monospace,monospace;font-size:12px;">--fit-icon-size</code> wird pro Variante gesetzt (<code style="font-family:ui-monospace,monospace;font-size:12px;">.is-yes</code> 22px / <code style="font-family:ui-monospace,monospace;font-size:12px;">.is-no</code> 2px). Patch in <code>ueber-mich.css</code> wirkt automatisch auf <b>ueber-mich.html</b> + <b>zusammenarbeit.html</b>.</p>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">Bilder-Hover-Motion &middot; site-weite Konvention</div>
+    <div class="panel" style="margin-bottom:24px;">
+      <p style="margin:0 0 12px;font-size:14px;line-height:1.55;color:var(--ink-soft);">Jedes ruhende Bild (kein Quote-/Claim-Band) traegt einen leichten Hover-Zoom. Pattern:</p>
+      <pre style="margin:0;padding:14px 16px;background:rgba(35,34,26,.04);border-radius:10px;font-family:ui-monospace,monospace;font-size:12.5px;line-height:1.5;color:var(--ink);overflow-x:auto;">.figure img{transition:transform 1.4s cubic-bezier(.2,.7,.15,1);will-change:transform;}
+.figure:hover img{transform:scale(1.05);}
+@media (prefers-reduced-motion:reduce){
+  .figure img{transition:none;}
+  .figure:hover img{transform:none;}
+}</pre>
+      <p style="margin:12px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft);"><b>Ausnahme:</b> Quote-/Claim-Baender (z. B. <code style="font-family:ui-monospace,monospace;font-size:12px;">.claim-band .cb-img</code>) tragen ambient Ken-Burns-Drift statt Hover-Zoom -- bewusste Trennung Editorial-Banner vs. interaktive Bilder.</p>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">Offer-Group-Head &middot; Inner-Grid spiegelt Outer-Grid</div>
+    <div class="panel" style="margin-bottom:24px;">
+      <p style="margin:0;font-size:14px;line-height:1.55;color:var(--ink-soft);">Wenn ein Section-Header ueber zwei Karten-Spalten sitzt: das innere Grid des Headers spiegelt das umgebende <code style="font-family:ui-monospace,monospace;font-size:12px;">.offers</code>-Grid (<code style="font-family:ui-monospace,monospace;font-size:12px;">1fr 1fr</code> + <code style="font-family:ui-monospace,monospace;font-size:12px;">gap:24px</code>). Die rechte Beschreibung bekommt zusaetzlich <code style="font-family:ui-monospace,monospace;font-size:12px;">padding-left:36px</code> (= Karten-Padding), damit ihr Text exakt an derselben x-Koordinate beginnt wie der Karten-Inhalt darunter. Sonst schwebt der Text ohne visuellen Anker.</p>
+    </div>
+
+    <div class="sub-h" style="font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin:0 0 14px;">Navigation &middot; identisch auf allen 3 Hauptseiten</div>
+    <div class="panel">
+      <p style="margin:0 0 8px;font-size:14px;line-height:1.55;color:var(--ink-soft);">Reihenfolge verbindlich (Desktop + Mobile):</p>
+      <ol style="margin:0;padding-left:20px;font-size:14px;line-height:1.7;color:var(--ink);">
+        <li>Angebote</li><li>Ansatz</li><li>Über mich</li><li>Zusammenarbeit</li><li>Yoga</li><li>FAQ</li>
+      </ol>
+      <p style="margin:10px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft);">Aktiver Eintrag bekommt <code style="font-family:ui-monospace,monospace;font-size:12px;">aria-current="page"</code>. Mobile-Menue erbt dieselbe Liste + Burger-CTA „Lass uns reden“.</p>
     </div>
   </section>
 
