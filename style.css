@@ -84,6 +84,14 @@ img{max-width:100%;display:block;}
 .nav-links a:hover{background:rgba(35,34,26,.05);}
 .nav-links a.active{color:var(--green-text);}
 .nav-right{display:flex;align-items:center;gap:10px;}
+.nav-user-icon{
+  display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  border:1.5px solid var(--hair);color:var(--ink-soft);
+  transition:border-color var(--dur-1) var(--ease-soft),color var(--dur-1) var(--ease-soft),background var(--dur-1) var(--ease-soft);
+  flex-shrink:0;
+}
+.nav-user-icon:hover{border-color:var(--ink);color:var(--ink);background:rgba(35,34,26,.05);}
 .nav-burger{display:none;width:44px;height:44px;border:none;background:transparent;cursor:pointer;
   border-radius:50%;align-items:center;justify-content:center;}
 .nav-burger span{display:block;width:20px;height:2px;background:var(--ink);position:relative;transition:.2s;}

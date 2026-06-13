@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools · Innerline</title>
+<meta name="description" content="Lokale KI-Tools von Innerline: PDF Maker und mehr.">
+<meta name="author" content="Veronika Heidrich">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preload" href="fonts/figtree-latin-400-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Vaelia.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2C3522">
+<link rel="stylesheet" href="style.css">
+<style>
+  .tools-hero { padding: 80px 0 40px; }
+  .tools-hero .eyebrow { margin-bottom: 18px; }
+  .tools-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); max-width: 600px; margin-bottom: 16px; }
+  .tools-hero p { font-size: 17px; color: var(--ink-soft); max-width: 520px; line-height: 1.65; }
+
+  .tools-start-note {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--sand); border-radius: 16px; padding: 18px 22px;
+    margin: 36px 0;
+  }
+  .tools-start-note .note-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .tools-start-note p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+  .tools-start-note code {
+    font-family: 'Menlo', 'Monaco', monospace; font-size: 12.5px;
+    background: rgba(35,34,26,.1); padding: 2px 7px; border-radius: 5px;
+    color: var(--ink);
+  }
+
+  .tools-grid-pub {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding-bottom: 80px;
+  }
+
+  .tool-pub-card {
+    background: var(--white); border-radius: 22px;
+    border: 1.5px solid var(--hair);
+    padding: 28px; display: flex; flex-direction: column; gap: 16px;
+    transition: border-color .2s, box-shadow .2s, transform .18s;
+    text-decoration: none; color: inherit;
+  }
+  .tool-pub-card:hover {
+    border-color: var(--green-deep);
+    box-shadow: 0 12px 32px rgba(35,34,26,.09);
+    transform: translateY(-3px);
+  }
+  .tool-pub-card.soon { opacity: .5; pointer-events: none; }
+
+  .tpc-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(168,232,79,.18);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tpc-icon svg { width: 24px; height: 24px; color: var(--green-deep); }
+  .tool-pub-card.soon .tpc-icon { background: var(--sand); }
+  .tool-pub-card.soon .tpc-icon svg { color: var(--ink-soft); }
+
+  .tpc-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px;
+    background: rgba(168,232,79,.2); color: #447510;
+  }
+  .tpc-badge.soon-badge { background: var(--sand); color: var(--ink-soft); }
+
+  .tpc-name { font-size: 19px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+  .tpc-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+  .tpc-cta {
+    margin-top: auto;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13.5px; font-weight: 600; color: var(--green-deep);
+    transition: gap .15s;
+  }
+  .tool-pub-card:hover .tpc-cta { gap: 12px; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Zum Hauptinhalt springen</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand brand--line" aria-label="INNERLINE · Startseite">
+      <span class="bl-word"><span class="bl-up">inn</span><span class="bl-tail">erline</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Start</a>
+      <a href="ueber-mich.html">Über mich</a>
+      <a href="zusammenarbeit.html">Zusammenarbeit</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <a href="tools.html" class="active" aria-current="page">Tools</a>
+    </div>
+    <div class="nav-right">
+      <a href="http://localhost:3847/login" class="nav-user-icon" target="_blank" rel="noopener" aria-label="Login Innerline Tools" title="Login">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </a>
+      <a href="index.html#kontakt" class="btn btn--pri btn--sm">Lass uns reden</a>
+      <button type="button" class="nav-burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
+  <a href="index.html">Start</a>
+  <a href="ueber-mich.html">Über mich</a>
+  <a href="zusammenarbeit.html">Zusammenarbeit</a>
+  <a href="index.html#kontakt">Kontakt</a>
+  <a href="tools.html" aria-current="page">Tools</a>
+  <a href="http://localhost:3847" target="_blank" rel="noopener">Login</a>
+  <a href="index.html#kontakt" class="btn btn--pri">Lass uns reden</a>
+</div>
+
+<span id="top"></span>
+
+<main id="main">
+  <div class="wrap">
+
+    <section class="tools-hero">
+      <span class="eyebrow"><span class="dot"></span><span class="lbl">Innerline Tools</span></span>
+      <h1>Lokale KI-Tools für die Arbeit mit Inhalten.</h1>
+      <p>Diese Tools laufen direkt auf deinem Mac. Sicher, offline-fähig und ganz in deinem Stil.</p>
+
+      <div class="tools-start-note">
+        <span class="note-icon">⚡</span>
+        <p>
+          Starte zuerst den lokalen Server:<br>
+          <code>cd &quot;~/Library/CloudStorage/GoogleDrive-vronal.h@gmail.com/Meine Ablage/Vroni Innerline /07_Tools/pdf-maker&quot; &amp;&amp; npm start</code><br><br>
+          Danach öffnet sich der Tool-Hub automatisch, oder du klickst direkt unten.
+        </p>
+      </div>
+    </section>
+
+    <div class="tools-grid-pub">
+
+      <!-- PDF Maker -->
+      <a href="http://localhost:3847/pdf-maker" class="tool-pub-card" target="_blank" rel="noopener">
+        <div class="tpc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <span class="tpc-badge">Aktiv</span>
+        <div class="tpc-name">PDF Maker</div>
+        <p class="tpc-desc">HTML-Dateien oder Claude Design Handoffs in interaktive, barrierefreie PDFs umwandeln: mit Formularfeldern, Links und Copy-Buttons.</p>
+        <span class="tpc-cta">
+          Tool öffnen
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <!-- Brand Voice Checker (bald) -->
+      <div class="tool-pub-card soon">
+        <div class="tpc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+        </div>
+        <span class="tpc-badge soon-badge">Bald</span>
+        <div class="tpc-name">Brand Voice Checker</div>
+        <p class="tpc-desc">Texte auf Ton, Stil und Brand-Voice prüfen, direkt aus dem Innerline Brand-System.</p>
+      </div>
+
+      <!-- Alt-Text Generator (bald) -->
+      <div class="tool-pub-card soon">
+        <div class="tpc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <span class="tpc-badge soon-badge">Bald</span>
+        <div class="tpc-name">Alt-Text Generator</div>
+        <p class="tpc-desc">Barrierefreie Alt-Texte für Bilder automatisch generieren, im Innerline-Stil.</p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
