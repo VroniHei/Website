@@ -2460,3 +2460,29 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 **Learnings:** Doppelt kaputter Verweis (`uploads/Vroni_Brand_Voice_2_0.md` war veraltet UND physisch nicht vorhanden). Solche Pointer driften still, wenn es keine erzwungene Anbindung an die globale Quelle gibt.
 
 **Konsequenzen / Invariante:** Vor Design-/CSS-/Content-Arbeit den `innerline-design`-Skill laden. Web-Tokens-Änderungen nach Deploy via `/design-sync` in den Master spiegeln. MEDIEN.md: keine Änderung. Rechtstexte: unverändert (kein neuer Drittdienst).
+
+### 2026-06-14 — brand/ auf Master-Stand angeglichen (eine Wahrheit, aktuellste) (Claude Code)
+
+**Was:** Die Brand-Dokumente in `brand/` wurden auf den Stand des globalen Innerline-Masters (Claude-Design-Projekt `5de8ecc5-…`) gebracht. Aktive Quellen sind jetzt durchgängig Foundation 2.1, Voice 5.0 und Source Set 2.3. Überholte Stände (Foundation 2.0, Voice 4.0/4.1, Source Set 2.0, Voice 4.0 Kurzprompt, altes Source-Set-README) wurden nach `brand/archiv/` verschoben.
+
+**Neu/aktiv in `brand/`:**
+- `Vroni_Brand_Foundation_2.1_Master.md` (ersetzt 2.0; byte-genau aus dem Master extrahiert)
+- `Vroni_Brand_Foundation_2.1_KI_Kurzbriefing.md` (ersetzt 2.0-Kurzbriefing)
+- `Vroni_Global_Brand_Source_Set_2.3.md` (ersetzt 2.0)
+- `Vroni_Startangebotslogik_1.0.md` (neu)
+- `Vroni_Visuelles_Markenfundament_Bildstil.md` (neu)
+- `Vroni_Brand_Voice_Blueprint_5.0_Master.md` + `Vroni_Voice_5.0_KI_Quick_Brief.md` (zuvor untracked, jetzt festgehalten)
+
+**Nach `brand/archiv/` verschoben:** Foundation 2.0 Master + KI-Kurzbriefing, Voice 4.0 Master, Voice 4.1 Master, Voice 4.0 KI-Kurzprompt, Source Set 2.0, README_Global_Brand_Source_Set.
+
+**Unangetastet:** `brand/bildwelt-und-prompts.md` (laut Master-README wird diese Datei AUS dem Repo importiert, das Repo ist also die Quelle), `brand/logos/`, `Der_Rote-Faden-Check.pdf`, `Briefing_Angebotsseite_Zusammenarbeit.md`.
+
+**Warum:** Eine Wahrheit überall, und zwar die aktuellste. Die Website trug eine gemischte, teils veraltete Brand-Doku (2.0/4.x neben 5.0). Das war die Ursache des stehengebliebenen Voice-2.0-Verweises (vorheriger Eintrag).
+
+**Wie:** Inhalte direkt aus dem Master gezogen (DesignSync). Verschiebungen als `git mv`/Rename (Historie bleibt nachvollziehbar). Identität der Root- vs. bereits angelegten archiv-Kopien per `diff` geprüft (4/4 identisch), dann Root-Duplikate entfernt.
+
+**Alternativen/Abwägungen:** Master-Ordnerstruktur (`voice/`, Nummern-Präfixe im Archiv) spiegeln (verworfen — hätte die gerade gemergten flachen `brand/…`-Verweise gebrochen; flache Struktur beibehalten). Alte Dateien löschen statt archivieren (verworfen — Archiv erhält Nachvollziehbarkeit).
+
+**Learnings:** Doppelte Brand-Quellen (Repo-Kopie + Master) driften zwangsläufig. Lösung: aktive Docs = Master-Stand, alles andere ins Archiv, und die Anbindung (CLAUDE.md) zeigt auf den Master.
+
+**Konsequenzen / Invariante:** Künftig Brand-Docs nicht parallel pflegen. Bei Master-Änderung die aktiven `brand/`-Docs nachziehen; `brand/archiv/` nie als aktive Grundlage nutzen. MEDIEN.md: keine Änderung. Rechtstexte: unverändert (kein neuer Drittdienst).
