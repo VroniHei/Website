@@ -2646,3 +2646,26 @@ node server.js   # startet auf http://localhost:3847
 - `/learnings-review` am Anfang jeder größeren Session laufen lassen — prüft ob bekannte Muster aktiv verletzt werden.
 - `MEDIEN.md`: keine Änderung.
 - Rechtstexte: keine Änderung.
+
+### 2026-06-14 — Bereinigung: CI-Abdeckung, Testimonials, WISSEN.md + /wissen-update Command (Claude Code, PR #71)
+
+**Was:**
+1. **CI (`ci.yml`):** `ueber-mich.html`, `zusammenarbeit.html`, `tools.html` in `html-validate`-Job ergänzt; `ueber-mich.html`, `zusammenarbeit.html` in `links`-Job ergänzt. (`tools.html` aus link-check ausgeschlossen — lokale Seite mit absichtlich totem Nav-Icon.)
+2. **`robots.txt`:** `Disallow: /tools.html` ergänzt (belt-and-suspenders, zusätzlich zum `noindex` im HTML).
+3. **`sitemap.xml`:** Alle `lastmod`-Daten auf tatsächliche Änderungsdaten korrigiert. Reihenfolge: index → ueber-mich/zusammenarbeit → legal. Index und Unterseiten auf 2026-06-14; legal auf 2026-06-03.
+4. **Testimonials (`index.html`):** Placeholder-Kundenstimmen (3 generische Karten mit fiktiven Initialen) entfernt. Section komplett auskommentiert (`<!-- Kundenstimmen: ausgeblendet bis echte Testimonials vorliegen -->`). Die Karten hatten sich über einen Design-Handoff wieder eingeschlichen — Vroni hatte sie bewusst entfernt.
+5. **`WISSEN.md`:** Vollständige Überarbeitung auf Stand 2026-06-14: Multi-Page-Beschreibung, alle Seiten aufgelistet (indexiert/nicht-indexiert), Meilensteine-Tabelle mit PRs, Custom Commands vollständig, Doku-Landkarte mit brand/-Quellen, Offene Punkte aktualisiert (Kundenstimmen, Reserve-Bilder, Performance, Domain, PDF-Maker), KI-Anhänge-Anleitung mit LEARNINGS.md.
+6. **`.claude/commands/wissen-update.md`:** Neuer Command `/wissen-update` — prüft alle 7 WISSEN.md-Abschnitte systematisch, liest aktuellen Projektstand (ls *.html, gh pr list, git log), aktualisiert das Stand-Datum.
+
+**Warum:**
+- CI-Abdeckung: PR #68 (der die CI-Fixes enthielt) hatte Merge-Konflikte wegen zwischenzeitlicher PROTOKOLL/WISSEN-Updates; die wichtigen Änderungen wurden hier direkt übernommen.
+- Testimonials: Schlichen sich via Handoff wieder ein (Vroni-Auftrag „Kundenstimmen ausgeblendet" aus 2026-05-31 war verletzt). Niemals generische/fiktive Inhalte auf dem Live-Stand.
+- WISSEN.md war seit 2026-06-02 eingefroren — 12 Tage und mehrere große PRs veraltet.
+- `/wissen-update`: Ohne expliziten Update-Command verfällt WISSEN.md garantiert. Command erzwingt strukturierte Prüfung statt „ich denke das stimmt noch".
+
+**Konsequenzen / Invarianten:**
+- **Testimonials:** `index.html` darf Kunden-Stimmen-Content nur mit echten, eingewilligten Kundenstimmen zeigen. Nie wieder generische Platzhalter.
+- **CI:** Jetzt 8 HTML-Dateien in html-validate abgedeckt. Bei nächster neuer Seite: `/neue-seite` erledigt das automatisch.
+- **WISSEN.md-Pflege:** Bei jedem größeren PR kurz `/wissen-update` ausführen — oder zumindest Stand-Datum prüfen.
+- `MEDIEN.md`: keine Änderung.
+- Rechtstexte: keine Änderung.
