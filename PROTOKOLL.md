@@ -2486,3 +2486,106 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 **Learnings:** Doppelte Brand-Quellen (Repo-Kopie + Master) driften zwangsläufig. Lösung: aktive Docs = Master-Stand, alles andere ins Archiv, und die Anbindung (CLAUDE.md) zeigt auf den Master.
 
 **Konsequenzen / Invariante:** Künftig Brand-Docs nicht parallel pflegen. Bei Master-Änderung die aktiven `brand/`-Docs nachziehen; `brand/archiv/` nie als aktive Grundlage nutzen. MEDIEN.md: keine Änderung. Rechtstexte: unverändert (kein neuer Drittdienst).
+
+---
+
+### 2026-06-14 — Tools-Hub & Login-Icon in Navigation (Claude Code, Commits 1fb89bb + 48904ff)
+
+**Was:**
+1. Neue Seite `tools.html` (Tools-Hub) mit `<meta name="robots" content="noindex, nofollow">` — drei Karten: PDF Maker (live), zwei Platzhalter für spätere Tools.
+2. Login-Icon (`.nav-user-icon`, SVG) in der primären Navigation von `index.html`, `ueber-mich.html`, `zusammenarbeit.html` und `tools.html` eingebaut; der Icon-Link zeigt auf `http://localhost:3847/login` (PDF-Maker-Login-URL).
+3. Im Commit 48904ff wurde der Tools-Eintrag aus der Haupt-Navigation **wieder entfernt** (Tools-Hub ist nicht für externe Besucher gedacht) — das Login-Icon verblieb als einziger visueller Hinweis.
+
+**Warum:** Der PDF-Maker läuft lokal und braucht einen schnellen Einstiegspunkt aus der laufenden Website. Da er nie auf GitHub Pages deployed wird, ist das Login-Icon nur auf lokalem Betrieb sinnvoll; live auf GitHub Pages ist der Link tot. Diese Entscheidung wurde bewusst getroffen: kein JavaScript-basiertes Ausblenden je nach Host, stattdessen Akzeptanz des toten Links im Live-Kontext.
+
+**Wie:** Navigation-HTML in allen 4 Dateien ergänzt; in `style.css` `.nav-user-icon`-Stile hinzugefügt. Für `tools.html` wurde ein `<style>`-Block in `<head>` für page-spezifische Grid-Layout verwendet (akzeptabel für Utility-Seiten, die nicht zum Innerline-CSS-System gehören).
+
+**Alternativen/Abwägungen:**
+- Tools-Link in Nav belassen (verworfen: die Seite soll nicht öffentlich indexiert werden und kein Haupt-Nav-Eintrag sein).
+- Login-Icon JS-abhängig ausblenden wenn nicht localhost (verworfen: unnötige JS-Komplexität für einen einzigen Link).
+
+**Learnings:** Navigation-Änderungen müssen auf allen 4 HTML-Dateien synchron erfolgen — `index.html`, `ueber-mich.html`, `zusammenarbeit.html`, `tools.html`. Wer eine Seite vergisst, bricht die visuelle Konsistenz.
+
+**Konsequenzen / Invariante:**
+- **Nav-Invariante:** Alle 4 Seiten haben dasselbe Nav-HTML inkl. `.nav-user-icon` mit `href="http://localhost:3847/login"`.
+- **tools.html-Invariante:** `noindex, nofollow` muss immer gesetzt bleiben. Die Seite darf nicht in Google auftauchen.
+- MEDIEN.md: keine Änderung. Rechtstexte: unverändert (kein neuer externer Drittdienst — localhost-Link erzeugt keine Drittverbindung).
+
+---
+
+### 2026-06-14 — PDF Maker Tool (tools/pdf-maker) ins Repo (Claude Code, PR #66)
+
+**Was:** Neues lokales Tool `tools/pdf-maker/` — ein Express-Server (Node.js, Port 3847), der HTML- und Markdown-Dateien in hochwertige PDFs umwandelt. Das Tool ist nie für GitHub Pages gedacht und läuft ausschließlich lokal.
+
+**Funktionsweise:**
+- **HTML → interaktives PDF**: Playwright rendert die Seite, Ghostscript optimiert, pdf-lib macht Formularfelder/Checkboxen interaktiv, qpdf finalisiert.
+- **Markdown → gesetztes Editorial-PDF**: Markdown-Datei → HTML mit Innerline Editorial-CSS → PDF via Playwright.
+- **Web-UI**: `public/` — Login-Seite, Setup (Passwort beim ersten Start), Haupt-Upload-Interface, PDF-Download.
+- **Sicherheit**: Passwort-Hash in `config/.env.local` (gitignored), Session-Tokens im Memory, Upload-Sandbox in `public/uploads/` (gitignored).
+
+**Dateien/Struktur:**
+```
+tools/pdf-maker/
+  server.js              Express: Login, Upload, Pipeline-Stream, Download
+  pipeline/index.js      HTML → PDF (Playwright + Ghostscript + pdf-lib + qpdf)
+  pipeline/markdown.js   Markdown → Editorial-HTML → PDF
+  public/                UI (index.html, pdf-maker.html, login.html, setup.html, style.css)
+  public/fonts/          figtree.woff2, newsreader.woff2, newsreader-italic.woff2, vaelia.woff2
+  config/.env.local      Passwort-Hash + Claude API-Key (gitignored, nur lokal)
+  .gitignore             config/.env.local, node_modules/, public/pdfs/, public/uploads/
+  README.md              Einrichtungs- und Startanleitung
+  package.json           Abhängigkeiten: express, playwright, pdf-lib, qpdf, marked, etc.
+```
+
+**Voraussetzungen lokal:**
+```bash
+brew install ghostscript qpdf
+cd tools/pdf-maker && npm install && npx playwright install chromium
+node server.js   # startet auf http://localhost:3847
+```
+
+**Warum:** Vroni produziert Innerline-Dokumente (Briefings, Checklisten, Editorial-PDFs) die bisher nur aus Claude Design als Handoff kamen. Ein lokales Tool mit Web-UI erlaubt das direkte Erzeugen druckfertiger PDFs aus HTML-Entwürfen oder Markdown-Texten — ohne externen Service, consent-frei, mit vollem Innerline-Styling.
+
+**Alternativen/Abwägungen:** Pandoc (verworfen: kein Browser-Rendering, CSS-Unterstützung schwach). Externer PDF-Dienst (verworfen: Datenschutz, Abhängigkeit). GitHub Pages Deployment (technisch unmöglich: Playwright/Ghostscript/qpdf sind CLI-Tools, kein serverless-Betrieb).
+
+**Learnings:**
+- PDF-Maker läuft nie auf GitHub Pages — der Code liegt im Repo für Versionskontrolle und Portabilität, aber das Deployment-Ziel ist immer localhost.
+- `config/.env.local` enthält Credentials und ist gitignored. Bei Neu-Setup muss `/setup` im Browser aufgerufen werden — das Passwort wird nicht im Repo mitgeliefert.
+- Fonts im Tool (`public/fonts/`) sind Kopien der Repo-Fonts — keine CDN-Verbindung, kein Datenschutz-Problem.
+
+**Konsequenzen / Invariante:**
+- **tools/pdf-maker-Invariante:** `config/.env.local` darf nie committet werden. CI-Job würde es nicht erkennen (gitignored), aber ein unbeabsichtigter `git add -A` könnte die Datei einschließen — vor jedem Commit in `tools/` kurz prüfen.
+- **Port-Invariante:** Port 3847 ist fix — der Nav-Login-Icon und das Setup erwarten diesen Port. Nicht willkürlich ändern.
+- MEDIEN.md: keine Änderung (Fonts sind Werkzeuge, keine Medien im MEDIEN.md-Sinne).
+- Rechtstexte: kein neuer externer Drittdienst eingebunden. Tool ist rein lokal.
+
+---
+
+### 2026-06-14 — MEDIEN.md: Reserve-Bilder ersterfasst + CLAUDE.md aktualisiert (Claude Code)
+
+**Was:**
+1. **19 neue Bildgruppen** (57 Dateien: je `.png` + `.webp` + `-960.webp`) in `MEDIEN.md` unter neuem Abschnitt „3c · Reserve-Bilder" ersterfasst. Alle Bilder lagen bereits untracked im Repo, ohne Registrierung — der CI-Medien-Guard hätte jeden PR blockiert, der diese Images erstmals in einem HTML einbindet ohne einen MEDIEN.md-Eintrag.
+2. **`CLAUDE.md`** aktualisiert: Encoding-Check-Script auf generischen Dateinamen umgestellt (vorher hardcoded auf `zusammenarbeit.html`); neuer Abschnitt „tools/"-Dokumentation mit Login-Icon-Nav-Invariante und PDF-Maker-Invariante.
+3. **`PROTOKOLL.md`**: Drei fehlende Verlaufseinträge nachgetragen (Tools-Hub + Login-Icon, PDF-Maker PR #66, dieser Eintrag).
+
+**Bildgruppen (19 Reserve, noch nicht eingebunden):**
+- **Personen-Shots (KI, V. Heidrich):** `vroni-arbeiten-fenster-sortieren`, `vroni-arbeiten-schreibtisch`, `vroni-journaling-schreibtisch`, `vroni-lesen-fenster`, `vroni-stille-fenster`, `vroni-moodboard-haende-sortieren`
+- **Website-Mockups (KI):** `mockup-website-klare-marken`, `mockup-website-laptop`
+- **Moodboards (KI):** `moodboard-haftnotizen-klarheit`, `moodboard-materialien-flatlay`
+- **Stillleben (KI):** `stillleben-arbeitsplatz-fenster`, `stillleben-journal-morgenlicht`, `stillleben-laptop-notizbuch`, `stillleben-meditation-bodenkissen`, `stillleben-meditation-fensterplatz`, `stillleben-morgenlicht-fenster`, `stillleben-notizbuch-materialien`, `stillleben-notizbuch-stapel`
+- **Landschaft:** `landschaft-see-weg` ⚠️ Provenienz ungeklärt — sieht nach realem Foto aus, nicht nach DALL·E. Vroni muss klären: KI oder Foto? Bei echtem Foto: EXIF-Check, Lizenz, Fotograf:in eintragen. Vor Verwendung sperren.
+
+**Warum:** Der CI-Medien-Guard (`.github/workflows/ci.yml` Job „Medien-Register-Check") blockiert jeden PR, der Bilder aus `images/` berührt ohne MEDIEN.md-Update. Um die Bilder künftig sicher einbinden zu können, müssen sie registriert sein.
+
+**Wie:** Dimensionen per `sips -g pixelWidth pixelHeight` ermittelt (18 Gruppen × 3 Dateien = 54 Dateien). Visueller Check von je einem PNG-Vertreter pro Gruppe. Alt-Texte als Vorlage formuliert (nicht final — bei echtem Einbau an die Kontext-Stelle anpassen).
+
+**Alternativen/Abwägungen:** Bilder erst bei erstem Einbau in MEDIEN.md erfassen (verworfen: widerspricht der Medien-Dokumentationspflicht; Provenienz jetzt klar, später nicht mehr).
+
+**Learnings:**
+- `landschaft-see-weg` wirkt realistisch (kein typisches DALL·E-Motiv). Der DALL·E-vs.-Foto-Unterschied ist bei Landschaften schwieriger erkennbar als bei Personen. Provenienz immer direkt bei der Entstehung festhalten, nicht nachträglich.
+- 54 untracked Bilder kumulieren sich leise. Tipp: nach jeder KI-Bildsession `git status images/` kurz laufen lassen und sofort erfassen.
+
+**Konsequenzen / Invariante:**
+- `landschaft-see-weg` ist in MEDIEN.md als „Rechte offen" markiert → darf nicht in HTML eingebunden werden, bis Provenienz und Rechte geklärt und eingetragen sind.
+- Alle anderen 17 Gruppen sind als Reserve erfasst und können in künftigen PRs eingebunden werden (MEDIEN.md muss dann nur um Verwendung + finalen Alt-Text ergänzt werden, kein neuer Eintrag nötig).
+- Nächster Schritt: 57 Bilder + MEDIEN.md in einem PR committen (CI-Medien-Guard erwartet beides im selben PR).

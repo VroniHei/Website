@@ -169,16 +169,18 @@ Maßstab ist EN 301 549 → faktisch **WCAG 2.1 Level AA**. Bei JEDER Sektion pr
 **Nach dem Einspielen eines Claude-Design-Handoffs oder Paste von HTML-Blöcken** immer prüfen:
 
 ```bash
+# DATEI=zusammenarbeit.html  # ← anpassen
 python3 -c "
 import sys
-data = open('zusammenarbeit.html','rb').read()
+data = open('$DATEI','rb').read()
 hits = [i for i,b in enumerate(data) if b == 0xe2 and data[i+1:i+3] in (b'\x80\x9c', b'\x80\x9d')]
 for h in hits:
     line = data.count(b'\n', 0, h) + 1
     print(f'L{line}: curly quote at byte {h}')
-" 2>/dev/null || echo "OK"
+print('OK' if not hits else f'{len(hits)} curly quotes found!')
+" 2>/dev/null
 ```
-— oder kurz: `grep -Pn '[\x{201C}\x{201D}]' dateiname.html`
+— oder kurz (alle HTML-Dateien auf einmal): `grep -Pln '[\x{201C}\x{201D}]' *.html`
 
 **Diagnoseregel:** Wenn eine Section im Browser komplett leer/unsichtbar ist und kein JS-Fehler vorliegt,
 zuerst prüfen ob das Element überhaupt als DOM-Node existiert (DevTools → Elements → suche `id="kontakt"`).
@@ -192,3 +194,24 @@ Fehlt es im DOM komplett = Parser-Problem (Encoding, unclosed Tag), nicht CSS/JS
 - **Duplicate CSS-Selektoren** in derselben Datei sind immer ein Fehler oder toter Code — einer muss weg.
 - **`@keyframes`-Namen müssen eindeutig sein** über alle geladenen Stylesheets. Wenn `ueber-mich.css` eine
   Animation mit gleichem Namen wie `style.css` braucht: anderen Namen wählen (z. B. `auHbDrift` statt `hbDrift`).
+
+## Lokale Tools (`tools/`) — nie auf GitHub Pages
+
+> `tools/` enthält lokale Hilfsprogramme (Node.js-Server etc.), die **nie auf GitHub Pages deployed werden**.
+> Der Code liegt im Repo für Versionskontrolle und Portabilität — gestartet wird ausschließlich lokal.
+
+### PDF Maker (`tools/pdf-maker/`)
+- **Port:** 3847 — fix, nicht willkürlich ändern (Nav-Login-Icon + Setup erwarten diesen Port).
+- **Start:** `cd tools/pdf-maker && node server.js` → dann `http://localhost:3847`.
+- **Ersteinrichtung:** Beim ersten Start `/setup` aufrufen und Passwort festlegen. Passwort-Hash liegt in `config/.env.local` — diese Datei ist **gitignored und bleibt lokal**. Nie committen.
+- **Voraussetzungen:** Node.js 18+, `brew install ghostscript qpdf`, `npm install`, `npx playwright install chromium`.
+- **Sicherheitsinvariante:** Vor jedem `git add` in `tools/`: prüfen, dass `config/.env.local` nicht mitgeraten wird (`git status` lesen).
+
+### Navigation — Login-Icon
+- Alle 4 HTML-Seiten (`index.html`, `ueber-mich.html`, `zusammenarbeit.html`, `tools.html`) haben ein `.nav-user-icon` mit `href="http://localhost:3847/login"`.
+- Dieser Link ist auf der **Live-Site (GitHub Pages) absichtlich tot** — keine JS-basierte Ausblendung.
+- **Invariante:** Bei jeder neuen HTML-Seite, die zur Nav hinzukommt, dasselbe Icon-HTML übernehmen.
+
+### tools.html (Tools-Hub)
+- `<meta name="robots" content="noindex, nofollow">` — muss immer gesetzt bleiben; Seite soll nicht indexiert werden.
+- Styles: `<style>`-Block in `<head>` (akzeptable Ausnahme für Utility-Seiten außerhalb des Innerline-CSS-Systems).

@@ -482,6 +482,207 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 
 ---
 
+## 3c. Reserve-Bilder (noch nicht eingebunden · 2026-06-14)
+
+> 18 neue Bilder lokal vorhanden und hier erstmals registriert. Keines ist Stand 2026-06-14 im HTML eingebunden.
+> Alle KI-generiert (ChatGPT/DALL·E) von V. Heidrich im Innerline-Bildstil, außer `landschaft-see-weg`
+> (Provenienz unklar — ggf. reales Foto, bitte Vroni prüfen und Eintrag aktualisieren).
+
+### vroni-arbeiten-fenster-sortieren
+- **Dateien:** `images/vroni-arbeiten-fenster-sortieren.png` (2001 KB) · `images/vroni-arbeiten-fenster-sortieren.webp` · `images/vroni-arbeiten-fenster-sortieren-960.webp`
+- **Maße:** 1672×941 px (Querformat)
+- **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Person sortiert Unterlagen am Fenster-Schreibtisch, offenes Notizbuch, warmes Morgenlicht
+- **Dekorativ:** nein · **KI-Darstellung:** ja (Person von hinten/Seite, Gesicht nicht erkennbar)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### vroni-arbeiten-schreibtisch
+- **Dateien:** `images/vroni-arbeiten-schreibtisch.png` (2043 KB) · `images/vroni-arbeiten-schreibtisch.webp` · `images/vroni-arbeiten-schreibtisch-960.webp`
+- **Maße:** 1536×1024 px
+- **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Person arbeitet am Schreibtisch, Laptop und Notizbücher, ruhiger Arbeitsmoment
+- **Dekorativ:** nein · **KI-Darstellung:** ja
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### vroni-journaling-schreibtisch
+- **Dateien:** `images/vroni-journaling-schreibtisch.png` (2206 KB) · `images/vroni-journaling-schreibtisch.webp` · `images/vroni-journaling-schreibtisch-960.webp`
+- **Maße:** 1536×1024 px
+- **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Person schreibt im Journal am Schreibtisch, Morgenlicht, konzentrierter Moment
+- **Dekorativ:** nein · **KI-Darstellung:** ja
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### vroni-lesen-fenster
+- **Dateien:** `images/vroni-lesen-fenster.png` (2206 KB) · `images/vroni-lesen-fenster.webp` · `images/vroni-lesen-fenster-960.webp`
+- **Maße:** 1536×1024 px
+- **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Person liest am Fensterplatz, Buch auf dem Schoß, ruhige Abendroutine
+- **Dekorativ:** nein · **KI-Darstellung:** ja
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### vroni-stille-fenster
+- **Dateien:** `images/vroni-stille-fenster.png` (1962 KB) · `images/vroni-stille-fenster.webp` · `images/vroni-stille-fenster-960.webp`
+- **Maße:** 1672×941 px (Querformat)
+- **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Person sitzt still am Fenster, Blick nach draußen in den Garten, offenes Notizbuch auf dem Schoß, Stille-Moment
+- **Dekorativ:** nein · **KI-Darstellung:** ja (Person von hinten, Gesicht nicht erkennbar)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### landschaft-see-weg
+- **Dateien:** `images/landschaft-see-weg.png` (1924 KB) · `images/landschaft-see-weg.webp` · `images/landschaft-see-weg-960.webp`
+- **Maße:** 1122×1402 px (Hochformat)
+- **Herkunft:** ⚠️ Provenienz ungeklärt — sieht wie ein reales Naturfoto aus (kein typisches DALL·E-Bild). **Bitte Vroni klären:** KI oder echtes Foto? Wenn echtes Foto: Fotograf:in + Lizenz eintragen. Wenn KI: Quelle ergänzen. · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Schmaler Weg durch Gräser mit Blick auf See, goldenes Licht, Natur-Stimmung
+- **Dekorativ:** unklar (abhängig von Verwendung) · **KI-Darstellung:** nicht zutreffend (keine Person)
+- **Rechte:** ⚠️ **offen** — erst klären, dann eintragen
+- **Beachten:** Sieht realistisch aus (kein DALL·E-Charakter) → Lizenzprüfung zwingend vor Verwendung.
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve, Provenienz offen).
+
+### mockup-website-klare-marken
+- **Dateien:** `images/mockup-website-klare-marken.png` (1947 KB) · `images/mockup-website-klare-marken.webp` · `images/mockup-website-klare-marken-960.webp`
+- **Maße:** 1536×1024 px
+- **Herkunft:** KI-generiertes Website-Mockup (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Laptop mit klarer Website-Darstellung, strukturiertes Marken-Design auf dem Screen
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekt/Mockup)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### mockup-website-laptop
+- **Dateien:** `images/mockup-website-laptop.png` (1961 KB) · `images/mockup-website-laptop.webp` · `images/mockup-website-laptop-960.webp`
+- **Maße:** 1672×941 px (Querformat)
+- **Herkunft:** KI-generiertes Website-Mockup (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Laptop mit Website-Design auf dem Schreibtisch, Notizbücher und Pflanze, Arbeitsatmosphäre
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekt/Mockup)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### moodboard-haftnotizen-klarheit
+- **Dateien:** `images/moodboard-haftnotizen-klarheit.png` (2455 KB) · `images/moodboard-haftnotizen-klarheit.webp` · `images/moodboard-haftnotizen-klarheit-960.webp`
+- **Maße:** 1254×1254 px (quadratisch)
+- **Herkunft:** KI-generiertes Moodboard (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Fünf Haftnotizen an der Wand mit Brand-Leitworten: „klare Linie", „richtige Reihenfolge", „Sprache, die trägt", „nachhaltig sichtbar", „nicht lauter, klarer"
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Text)
+- **Rechte:** siehe Abschnitt 1
+- **Beachten:** Enthält Brand-Voice-relevante Texte — bei Verwendung sicherstellen, dass die Wordings mit dem aktuellen Voice-Stand übereinstimmen.
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### moodboard-materialien-flatlay
+- **Dateien:** `images/moodboard-materialien-flatlay.png` (2213 KB) · `images/moodboard-materialien-flatlay.webp` · `images/moodboard-materialien-flatlay-960.webp`
+- **Maße:** 1254×1254 px (quadratisch)
+- **Herkunft:** KI-generiertes Flatlay-Moodboard (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Flatlay mit Materialien, Notizbüchern, Stiften und natürlichen Elementen, ruhige Editorial-Stimmung
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### stillleben-arbeitsplatz-fenster
+- **Dateien:** `images/stillleben-arbeitsplatz-fenster.png` (2177 KB) · `images/stillleben-arbeitsplatz-fenster.webp` · `images/stillleben-arbeitsplatz-fenster-960.webp`
+- **Maße:** 1536×1024 px
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Aufgeräumter Arbeitsplatz am Fenster, Notizbuch und Stift, ruhige Morgenatmosphäre
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### stillleben-journal-morgenlicht
+- **Dateien:** `images/stillleben-journal-morgenlicht.png` (2200 KB) · `images/stillleben-journal-morgenlicht.webp` · `images/stillleben-journal-morgenlicht-960.webp`
+- **Maße:** 1448×1086 px
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Aufgeschlagenes Journal im Morgenlicht, Tasse Kaffee daneben, ruhiger Tagesbeginn
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### stillleben-laptop-notizbuch
+- **Dateien:** `images/stillleben-laptop-notizbuch.png` (1955 KB) · `images/stillleben-laptop-notizbuch.webp` · `images/stillleben-laptop-notizbuch-960.webp`
+- **Maße:** 1448×1086 px
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Laptop und Notizbuch nebeneinander auf dem Schreibtisch, Tasse Tee, ruhige Arbeitsatmosphäre
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### stillleben-meditation-bodenkissen
+- **Dateien:** `images/stillleben-meditation-bodenkissen.png` (2033 KB) · `images/stillleben-meditation-bodenkissen.webp` · `images/stillleben-meditation-bodenkissen-960.webp`
+- **Maße:** 1672×941 px (Querformat)
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Meditationskissen auf dem Boden, warme Lichtquelle, ruhige Bewegungsatmosphäre
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### stillleben-meditation-fensterplatz
+- **Dateien:** `images/stillleben-meditation-fensterplatz.png` (1797 KB) · `images/stillleben-meditation-fensterplatz.webp` · `images/stillleben-meditation-fensterplatz-960.webp`
+- **Maße:** 1672×941 px (Querformat)
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Fensterplatz mit Meditationszubehör, natürliches Licht, ruhige Yoga-/Bewegungsatmosphäre
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### stillleben-morgenlicht-fenster
+- **Dateien:** `images/stillleben-morgenlicht-fenster.png` (1948 KB) · `images/stillleben-morgenlicht-fenster.webp` · `images/stillleben-morgenlicht-fenster-960.webp`
+- **Maße:** 1448×1086 px
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Stillleben am Fenster im Morgenlicht, Pflanze und Tasse, ruhige Tagesbeginn-Stimmung
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### stillleben-notizbuch-materialien
+- **Dateien:** `images/stillleben-notizbuch-materialien.png` (2040 KB) · `images/stillleben-notizbuch-materialien.webp` · `images/stillleben-notizbuch-materialien-960.webp`
+- **Maße:** 1448×1086 px
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Notizbuch mit Materialien und Werkzeugen auf dem Tisch, Editorial-Arrangement
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### stillleben-notizbuch-stapel
+- **Dateien:** `images/stillleben-notizbuch-stapel.png` (2222 KB) · `images/stillleben-notizbuch-stapel.webp` · `images/stillleben-notizbuch-stapel-960.webp`
+- **Maße:** 1448×1086 px
+- **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Stapel Notizbücher (mit Reitern „Master", „Quick Brief", „Check", „Archiv") auf dem Holztisch, Pflanze und Keramiktasse, Innerline-Dokument-Visualisierung
+- **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
+- **Rechte:** siehe Abschnitt 1
+- **Beachten:** Notizbuch-Reiter zeigen Innerline-Dokumentbegriffe — bei öffentlicher Verwendung prüfen, ob Texte noch aktuell sind.
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+### vroni-moodboard-haende-sortieren
+- **Dateien:** `images/vroni-moodboard-haende-sortieren.png` · `images/vroni-moodboard-haende-sortieren.webp` · `images/vroni-moodboard-haende-sortieren-960.webp`
+- **Maße:** 1448×1086 px
+- **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
+- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
+- **Alt-Text-Vorlage:** Hände sortieren Karten oder Zettel auf einem Tisch, Moodboard-Arrangement, konzentrierter Arbeitsprozess
+- **Dekorativ:** nein · **KI-Darstellung:** ja (Hände sichtbar, kein Gesicht)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+
+---
+
 ## 4. Weitere Medien (Nicht-Fotos)
 
 - **Logo/Wortmarke:** `brand/logos/` (SVG/PNG/PDF-Quellen) + `favicon.svg` — Eigenerzeugung InnerLine.
