@@ -2617,3 +2617,32 @@ node server.js   # startet auf http://localhost:3847
 - Bei jeder A11y-Änderung: `ACCESSIBILITY_NOTES.md` im selben PR nachziehen.
 - `PROJECT.md` nur noch als historische Quelle nutzen (vor 2026-06-02); aktiv: WISSEN.md / PROTOKOLL.md.
 - MEDIEN.md: keine Änderung. Rechtstexte: unverändert.
+
+### 2026-06-14 — Learnings-System: LEARNINGS.md + 3 neue Commands (Claude Code, PR #70)
+
+**Was:**
+- `LEARNINGS.md` neu angelegt — lebende Destillat-Datei mit 10 nicht-offensichtlichen Erkenntnissen aus dem Projektverlauf (L-01 bis L-10). Referenziert von WISSEN.md und aktiv nutzbar via `/learnings-review`.
+- `.claude/commands/voice-check.md` neu — 3-stufige Brand-Voice-Prüfung: (1) Verboten-Check aus CLAUDE.md, (2) KI-Muster-Check aus `Vroni_Voice_5.0_KI_Quick_Brief.md` Abschnitt 10+12, (3) Human-Edit-Schnellcheck (10 Fragen, Abschnitt 20) mit Ampelsystem Grün/Gelb/Rot (Abschnitt 21).
+- `.claude/commands/a11y-check.md` neu — systematischer WCAG-2.1-AA-Audit in 5 Checks: Semantik/Struktur, Kontrast (bekannte Problemwerte aus CLAUDE.md), Touch-Targets/Zoom, Fokus-Indikatoren, Reduced-Motion. Ergebnis-Eintrag in `ACCESSIBILITY_NOTES.md`.
+- `.claude/commands/learnings-review.md` neu — aktive Lernüberprüfung: liest LEARNINGS.md, prüft bekannte Muster gegen aktuellen Projektstand (Curly Quotes, CI-Abdeckung, @keyframes-Namen, Script-Reihenfolge, CSS-Scope, neue Seiten, MEDIEN.md), gibt Ampel-Report + konkrete Verbesserungsvorschläge für neue Commands/Workflows.
+- `WISSEN.md` aktualisiert: LEARNINGS.md in Doku-Landkarte eingetragen; Brand-Voice-Quellen auf Voice 5.0 aktualisiert (alter `uploads/Vroni_Brand_Voice_2_0.md`-Verweis entfernt); alle 8 Custom Commands in Tech-Stack-Liste.
+
+**Warum:** Vronis Wunsch: Learnings aktiv in den Workflow einbeziehen, nicht nur im PROTOKOLL begraben. Die Destillat-Datei macht die 10 wichtigsten Erkenntnisse sofort abrufbar. Die Commands kodieren das Wissen in ausführbare Form — damit muss Vroni (oder eine neue KI-Session) nicht wissen, dass es diese Regeln gibt: `/voice-check`, `/a11y-check`, `/learnings-review` triggern den Check automatisch.
+
+**Wie:** LEARNINGS.md aus PROTOKOLL-Analyse destilliert (Learnings-Einträge in 2500+ Zeilen systematisch gelesen). voice-check.md auf KI-Brief-Abschnitte 10, 12, 20, 21 aufgebaut. a11y-check.md auf ACCESSIBILITY_NOTES.md-Checkliste + CLAUDE.md-Kontrastwerte. learnings-review.md als aktiver „Anti-Pattern-Scanner".
+
+**Alternativen/Abwägungen:**
+- Destillat-Section in PROTOKOLL.md einbauen (verworfen — PROTOKOLL ist append-only, ein lebender Abschnitt würde die Logik brechen).
+- Nur `/learnings-review` ohne LEARNINGS.md (verworfen — Command braucht eine Datei als Quelle, sonst ist der Check zu abstrakt und KI-sessions-abhängig).
+- voice-check.md ohne KI-Brief-Einbindung (verworfen — Vroni wollte explizit den KI Brief + Human Check).
+
+**Learnings:**
+- Custom Commands sind das wirksamste Mechanismus zum „Wissen-in-Praxis"-Transfer: ein PROTOKOLL-Eintrag mit Learning wird gelesen, ein Command wird gerufen.
+- Die Human-Edit-Schnellcheck-Fragen aus dem KI Brief (Section 20) sind konkret genug um als strukturierter Check zu funktionieren — kein vages „klingt das gut?".
+- LEARNINGS.md als eigene Datei (nicht in PROTOKOLL) erlaubt Updates ohne die Append-only-Logik zu verletzen.
+
+**Konsequenzen / Invariante:**
+- Bei jedem neuen nicht-offensichtlichen Problem: PROTOKOLL-Eintrag (vollständig) → LEARNINGS.md neuer L-Eintrag → ggf. Command erstellen oder update.
+- `/learnings-review` am Anfang jeder größeren Session laufen lassen — prüft ob bekannte Muster aktiv verletzt werden.
+- `MEDIEN.md`: keine Änderung.
+- Rechtstexte: keine Änderung.
