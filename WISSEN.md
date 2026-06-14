@@ -33,6 +33,7 @@
 - **SEO/GEO:** Meta/OG/Twitter, JSON-LD (`FAQPage` + `Person`/`ProfessionalService`/`WebSite`), Sitemap, robots.txt.
 - **CI (`.github/workflows/ci.yml`):** HTML-Validierung · interner Link-Check · Lighthouse · **Medien-Register-Check**.
 - **Bildwelt:** KI-generiert (ChatGPT), als `<picture>` WebP + PNG-Fallback. Reproduktion: `brand/bildwelt-und-prompts.md`.
+- **Custom Commands (`.claude/commands/`):** `/protokoll` · `/handoff` · `/encoding-check` · `/neue-seite` · `/medien-neu` · `/voice-check` · `/a11y-check` · `/learnings-review`.
 
 ## 4. Wo steht was (Doku-Landkarte)
 
@@ -41,11 +42,13 @@
 | `CLAUDE.md` | **Verbindliche Regeln** (Doku-/Font-/Medien-/Recht-Pflichten, Brand Voice, A11y) — zuerst lesen |
 | `WORKFLOW.md` | Branch-/PR-/Sync-Prozess (kanonisch) |
 | `PROTOKOLL.md` | **Historie & Invarianten** — Begründung jeder Änderung, „darf nicht rausfallen"-Liste |
+| `LEARNINGS.md` | **Destillat** — Top-10 nicht-offensichtliche Erkenntnisse; wird aktiv bei `/learnings-review` genutzt |
 | `MEDIEN.md` | **Bild-/Medienregister** — Herkunft, Varianten, Verwendung, Rechte, Änderungen pro Bild |
 | `brand/bildwelt-und-prompts.md` | **Bildwelt & Prompts** — Masterprompt + Motiv-Prompts für neue Bilder |
+| `brand/Vroni_Voice_5.0_KI_Quick_Brief.md` | **Brand Voice KI-Brief** — kompakte Arbeitsanweisung, Human-Edit-Check, Ampelsystem |
+| `brand/Vroni_Brand_Voice_Blueprint_5.0_Master.md` | **Brand Voice Master** — vollständiger Blueprint (Voice 5.0) |
 | `ACCESSIBILITY_NOTES.md` | A11y-Notizen |
-| `PROJECT.md` / `README.md` | Projekt-Notizen / Repo-Readme |
-| `uploads/Vroni_Brand_Voice_2_0.md` | **Brand Voice** (Tonalität, Verbote, Anker-Sätze) — Basis für ALLE Texte |
+| `PROJECT.md` / `README.md` | Projekt-Notizen / Repo-Readme (PROJECT.md: Stand 2026-06-02, historisch) |
 
 ## 5. Was ist gemacht (Meilensteine — Details in `PROTOKOLL.md`)
 
