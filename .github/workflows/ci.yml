@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 20
       - name: HTML validieren
-        run: npx --yes html-validate@8 index.html impressum.html datenschutz.html barrierefreiheit.html 404.html
+        run: npx --yes html-validate@8 index.html ueber-mich.html zusammenarbeit.html tools.html impressum.html datenschutz.html barrierefreiheit.html 404.html
 
   links:
     name: Link-Check (intern)
@@ -32,7 +32,7 @@ jobs:
       - name: Interne Links & Asset-Pfade prüfen
         uses: lycheeverse/lychee-action@v2
         with:
-          args: "--offline --no-progress index.html impressum.html datenschutz.html barrierefreiheit.html"
+          args: "--offline --no-progress index.html ueber-mich.html zusammenarbeit.html impressum.html datenschutz.html barrierefreiheit.html"
           fail: true
 
   lighthouse:

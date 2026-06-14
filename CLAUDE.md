@@ -25,6 +25,8 @@
   `git pull` → `git switch -c <feat|fix|design|docs|a11y>/<name>` → ändern → `PROTOKOLL.md` ergänzen →
   commit/push → PR (Diff prüfen) → Squash-Merge → Branch löschen → Auto-Deploy.
 - `main` ist auf GitHub geschützt (kein Force-Push/Löschen, PR-Pflicht).
+- **Neue HTML-Seite hinzufügen → im selben PR:** in `.github/workflows/ci.yml` (HTML-Validate + Link-Check),
+  `sitemap.xml` (außer noindex-Seiten) und `robots.txt` (wenn noindex) eintragen + `WISSEN.md` aktualisieren.
 
 ## Arbeitsweise / Sync (WICHTIG)
 - Live-Quelle der Wahrheit = GitHub-Repo `vronihei/Website` (veröffentlicht via Claude Code).

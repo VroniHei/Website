@@ -2589,3 +2589,27 @@ node server.js   # startet auf http://localhost:3847
 - `landschaft-see-weg` ist in MEDIEN.md als „Rechte offen" markiert → darf nicht in HTML eingebunden werden, bis Provenienz und Rechte geklärt und eingetragen sind.
 - Alle anderen 17 Gruppen sind als Reserve erfasst und können in künftigen PRs eingebunden werden (MEDIEN.md muss dann nur um Verwendung + finalen Alt-Text ergänzt werden, kein neuer Eintrag nötig).
 - Nächster Schritt: 57 Bilder + MEDIEN.md in einem PR committen (CI-Medien-Guard erwartet beides im selben PR).
+
+---
+
+### 2026-06-14 — Projekt-Hygiene: WISSEN.md, CI-Abdeckung, robots.txt, sitemap.xml (Claude Code)
+
+**Was:**
+1. **`WISSEN.md`** komplett auf Stand 2026-06-14 gebracht: veralteter Verweis `uploads/Vroni_Brand_Voice_2_0.md` entfernt → aktive Brand-Quellen (Voice 5.0, Foundation 2.1) eingetragen; alle Seiten (`ueber-mich.html`, `zusammenarbeit.html`, `tools.html`) ergänzt; Tech-Stack um PDF-Maker, Innerline-Design-System-Anbindung, alle Schriften und CI-Jobs aktualisiert; Meilensteine-Tabelle auf PR #64–#67 hochgezogen; Roadmap aktualisiert; KI-Content-Abschnitt auf neue Brand-Quellen-Pfade umgestellt.
+2. **`.github/workflows/ci.yml`** — HTML-Validierung und Link-Check-Job erweitert: `ueber-mich.html`, `zusammenarbeit.html` + `tools.html` werden jetzt ebenfalls geprüft. Vorher fielen Fehler in diesen Dateien unbemerkt durch das CI-Netz.
+3. **`robots.txt`** — `Disallow: /tools.html` ergänzt. tools.html hat bereits `noindex, nofollow` im HTML — robots.txt-Eintrag ist belt-and-suspenders, signalisiert Crawlern explizit.
+4. **`sitemap.xml`** — lastmod-Daten auf tatsächliche letzte Änderung aktualisiert (index.html + ueber-mich.html + zusammenarbeit.html: 2026-06-14; Rechtsseiten: 2026-06-03); Reihenfolge nach Priorität sortiert.
+
+**Warum:** Regelmäßige Projekt-Hygiene-Runde nach größerer Umbauphase (PRs #64–#67). WISSEN.md ist die KI-Einstiegsdatei — wenn sie veraltet ist, arbeitet jedes KI-Tool mit falschen Annahmen. Die CI-Lücke war funktional gefährlich: HTML-Fehler in ueber-mich.html hätten jeden Push auf main stillschweigend passiert.
+
+**Wie:** Volles Projekt-Audit (Struktur, Querverweise, CI-Abdeckung, Sitemap-Daten). Alle Korrekturen im selben PR.
+
+**Alternativen/Abwägungen:** Sitemap automatisch generieren (verworfen — statisches Projekt, manuell ausreichend). CI Link-Check für tools.html weglassen (verworfen — es ist eine echte Seite und sollte keine kaputten Links haben, auch wenn sie noindex ist).
+
+**Learnings:**
+- WISSEN.md muss bei jedem PR mitgeprüft werden wie PROTOKOLL.md — bisher nur bei „größeren Änderungen", das reicht nicht. Konsequenz: Künftig bei der Checkliste in CLAUDE.md ergänzen.
+- CI-Dateilistenl werden still veraltet wenn neue Seiten entstehen. Besser: Wildcard `*.html` im CI oder explizite Pflege-Invariante.
+
+**Konsequenzen / Invariante:**
+- **Neue HTML-Seite → sofort in CI-Yml, sitemap.xml und ggf. robots.txt eintragen** (im selben PR).
+- MEDIEN.md: keine Änderung. Rechtstexte: unverändert (kein neuer Drittdienst).
