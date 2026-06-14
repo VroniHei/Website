@@ -18,7 +18,8 @@ Trotzdem wird barrierearme Umsetzung angestrebt — sowohl als gute Praxis als a
 
 ## Datum der letzten Prüfung
 
-2026-05-31 (Formular-Vorauswahl via data-topic + URL-Parameter)
+- **2026-05-31** — Erstprüfung (Formular-Vorauswahl via data-topic + URL-Parameter)
+- **2026-06-07** — PR #61 Code-Audit: Accordion, Formular-ARIA, Mobile-Menu, nav-current, Tag-Chip-Kontrast
 
 ---
 
@@ -104,10 +105,11 @@ Bewertung: ✅ Korrekte Hierarchie, keine Lücken, keine Headings nur aus Design
 
 ### Navigation & Menü
 - [x] Burger-Button: `aria-expanded`, `aria-controls="mobileMenu"`, `aria-label`-Toggle
-- [x] Mobile-Menü: `role="dialog"`, `aria-label="Navigation"`
+- [x] Mobile-Menü: `role="dialog"`, `aria-label="Navigation"` *(ergänzt PR #61)*
 - [x] Escape-Taste schließt Mobile-Menü, Fokus kehrt zum Burger zurück
 - [x] Anchor-Scroll berücksichtigt Sticky-Header-Höhe (92px Offset in script.js)
 - [x] Aktive Nav-Links mit `.active`-Klasse (JS IntersectionObserver)
+- [x] `aria-current="page"` auf aktivem Nav-Link der aktuellen Seite *(ergänzt PR #61)*
 
 ### Bilder
 - [x] Alle inhaltlichen Bilder mit beschreibendem `alt`-Text
@@ -117,9 +119,9 @@ Bewertung: ✅ Korrekte Hierarchie, keine Lücken, keine Headings nur aus Design
 
 ### Formulare
 - [x] Alle Labels explizit mit `for` verknüpft
-- [x] `required` + `aria-required="true"` auf Pflichtfeldern
-- [x] `aria-describedby` zeigt auf Fehler-Spans
-- [x] Fehlermeldungen mit `role="alert"` (automatisch vorgelesen)
+- [x] `required` + `aria-required="true"` auf Pflichtfeldern *(präzisiert PR #61)*
+- [x] `aria-describedby` zeigt auf Fehler-Spans *(präzisiert PR #61)*
+- [x] Fehlermeldungen mit `role="alert"` + `aria-live="polite"` (automatisch vorgelesen) *(präzisiert PR #61)*
 - [x] Fehler-CSS: `.field.error` visuell + semantisch
 - [x] Datenschutz-Hinweis sichtbar im Formular
 - [x] Formular-Validierung vor mailto (JS)
@@ -131,7 +133,7 @@ Bewertung: ✅ Korrekte Hierarchie, keine Lücken, keine Headings nur aus Design
 
 ### FAQ / Accordion
 - [x] `<details>/<summary>` (nativ zugänglich, Browser verwaltet `aria-expanded`)
-- [x] Ansatz-Accordion: `aria-expanded` per JS korrekt getoggelt
+- [x] Prinzipien-Accordion: `<button aria-expanded>` per JS korrekt getoggelt *(ergänzt PR #61)*
 - [x] FAQ Schema.org JSON-LD im `<head>` (für Suchmaschinen)
 
 ### Fokus
@@ -168,10 +170,10 @@ Bewertung: ✅ Korrekte Hierarchie, keine Lücken, keine Headings nur aus Design
 | VoiceOver-Test (Mac) | Hoch | Manuelle Prüfung |
 | NVDA-Test (Windows) | Mittel | Manuelle Prüfung |
 | 200%-Zoom-Test | Mittel | Visuell im Browser prüfen |
-| Hero-Tag-Kontrast verbessern | Niedrig | #9a9486 → ~#6B6258 |
+| Angebots-Karte Tag-Chip-Kontrast | Niedrig | gedämpfte `.offer .tag`-Chips grenzwertig; Farbwert prüfen |
 | Formular: Server-seitige Anbindung | Niedrig | Mailto hat Einschränkungen für Nicht-E-Mail-User |
-| Impressum/Datenschutz finalisieren | Hoch | noindex entfernen nach Rechtscheck |
 | Barrierefreiheitserklärung rechtlich prüfen | Mittel | Aktuell als Entwurf markiert |
+| ueber-mich.html + zusammenarbeit.html vollständig prüfen | Mittel | A11y-Audit bisher nur auf index.html fokussiert |
 
 ---
 
