@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innerline Tools</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="hub-page">
+
+<!-- ── Header ──────────────────────────────────────────────────────────── -->
+<header class="app-header">
+  <h1><span class="dot"></span>Innerline Tools</h1>
+  <a href="/logout" class="logout-btn" title="Ausloggen">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+    </svg>
+    Logout
+  </a>
+</header>
+
+<div class="hub-body">
+
+  <div class="hub-intro">
+    <p class="hub-label">Deine Tools</p>
+    <h2 class="hub-title">Was möchtest du heute erstellen?</h2>
+  </div>
+
+  <div class="tools-grid">
+
+    <!-- PDF Maker -->
+    <a href="/pdf-maker" class="tool-card tool-card--active">
+      <div class="tool-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div class="tool-content">
+        <div class="tool-badge">Aktiv</div>
+        <h3 class="tool-name">PDF Maker</h3>
+        <p class="tool-desc">HTML-Dateien oder Claude Design Handoffs in interaktive, barrierefreie PDFs umwandeln — mit Formularfeldern, Links und Copy-Buttons.</p>
+        <div class="tool-tags">
+          <span>Playwright</span><span>Ghostscript</span><span>AcroForm</span>
+        </div>
+      </div>
+      <div class="tool-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- Placeholder: Brand Voice Tool -->
+    <div class="tool-card tool-card--soon">
+      <div class="tool-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+      </div>
+      <div class="tool-content">
+        <div class="tool-badge tool-badge--soon">Bald</div>
+        <h3 class="tool-name">Brand Voice Checker</h3>
+        <p class="tool-desc">Texte auf Ton, Stil und Brand-Voice prüfen — direkt aus dem Innerline Brand-System.</p>
+        <div class="tool-tags">
+          <span>Claude API</span><span>Brand System</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder: Image Alt Text -->
+    <div class="tool-card tool-card--soon">
+      <div class="tool-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </div>
+      <div class="tool-content">
+        <div class="tool-badge tool-badge--soon">Bald</div>
+        <h3 class="tool-name">Alt-Text Generator</h3>
+        <p class="tool-desc">Barrierefreie Alt-Texte für Bilder automatisch generieren — im Innerline-Stil.</p>
+        <div class="tool-tags">
+          <span>Claude Vision</span><span>Barrierefreiheit</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
