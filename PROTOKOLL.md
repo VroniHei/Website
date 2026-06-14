@@ -2589,3 +2589,31 @@ node server.js   # startet auf http://localhost:3847
 - `landschaft-see-weg` ist in MEDIEN.md als „Rechte offen" markiert → darf nicht in HTML eingebunden werden, bis Provenienz und Rechte geklärt und eingetragen sind.
 - Alle anderen 17 Gruppen sind als Reserve erfasst und können in künftigen PRs eingebunden werden (MEDIEN.md muss dann nur um Verwendung + finalen Alt-Text ergänzt werden, kein neuer Eintrag nötig).
 - Nächster Schritt: 57 Bilder + MEDIEN.md in einem PR committen (CI-Medien-Guard erwartet beides im selben PR).
+
+---
+
+### 2026-06-14 — Projekt-Bereinigung: offene Punkte aus Audit + Custom Commands (Claude Code)
+
+**Was:**
+1. **`ACCESSIBILITY_NOTES.md`** — Stand auf PR #61 nachgezogen: Datum der letzten Prüfung ergänzt (06-07), `aria-current="page"` dokumentiert, `role="dialog"` auf Mobile-Menu ergänzt, `aria-required`/`aria-describedby`/`role="alert"` präzisiert, Prinzipien-Accordion (`<button aria-expanded>`) eingetragen, offene Punkte aktualisiert.
+2. **`PROJECT.md`** — Deprecation-Hinweis oben ergänzt: historische Referenz (Stand 2026-06-02), aktive Dokumente sind WISSEN.md + PROTOKOLL.md + CLAUDE.md.
+3. **`.claude/commands/`** — 5 Custom Commands angelegt:
+   - `/protokoll` — Führt durch korrekten Protokoll-Eintrag mit Pflicht-Feldern
+   - `/encoding-check` — Curly-Quote-Prüfung nach Handoff (Lektion aus PR #59/#60)
+   - `/neue-seite` — Scaffoldet neue HTML-Seite mit CI, sitemap, robots, WISSEN.md
+   - `/medien-neu` — Erstellt vollständigen MEDIEN.md-Eintrag für ein neues Bild
+   - `/handoff` — Vollständiger sicherer Handoff-Import-Workflow
+
+**Warum:** Vollständige Bereinigung aller offenen Punkte aus dem Projekt-Audit. Custom Commands kodieren das Wissen aus PROTOKOLL.md und CLAUDE.md in ausführbare Workflows — damit müssen diese Regeln nicht jedes Mal manuell nachgeschlagen werden.
+
+**Wie:** ACCESSIBILITY_NOTES.md mit PR-#61-Diff abgeglichen. PROJECT.md non-destruktiv mit Hinweis versehen. Commands in `.claude/commands/` als Markdown-Dateien (Claude Code Standard für projektbezogene Slash-Commands).
+
+**Alternativen/Abwägungen:** PROJECT.md löschen (verworfen — historische ADRs bleiben wertvoll). Commands in gitignoriertem `skills/`-Ordner (verworfen — nicht versioniert).
+
+**Learnings:** Custom Commands in `.claude/commands/` werden versioniert (nicht gitignored) und sind sofort invokierbar. Sie kodieren teuer erworbenes Wissen in wiederholbare Schritte.
+
+**Konsequenzen / Invariante:**
+- `.claude/commands/` wird im Repo versioniert — bei neuen Prozessen direkt einen Command anlegen.
+- Bei jeder A11y-Änderung: `ACCESSIBILITY_NOTES.md` im selben PR nachziehen.
+- `PROJECT.md` nur noch als historische Quelle nutzen (vor 2026-06-02); aktiv: WISSEN.md / PROTOKOLL.md.
+- MEDIEN.md: keine Änderung. Rechtstexte: unverändert.

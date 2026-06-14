@@ -1,9 +1,16 @@
-# PROJECT.md — Zentrale Wissensdatenbank
+# PROJECT.md — Historische Wissensdatenbank
 
-> **Zweck:** Dieses Dokument ist das lebendige Gedächtnis des Projekts.
+> ⚠️ **Stand: 2026-06-02 — nicht mehr aktiv gepflegt.**
+> Diese Datei ist eine historische Referenz für Entscheidungen und Lernpfade aus der Frühphase.
+> **Aktive Dokumente** für den laufenden Betrieb:
+> - **`WISSEN.md`** — aktueller Überblick, KI-Einstiegsdatei
+> - **`PROTOKOLL.md`** — vollständige append-only Entscheidungshistorie
+> - **`CLAUDE.md`** — verbindliche Arbeitsregeln
+
+---
+
+> *(Original-Zweck der Datei:)* Dieses Dokument ist das lebendige Gedächtnis des Projekts.
 > Es dokumentiert nicht nur Was und Wie — sondern immer auch Warum, Welche Alternativen es gab, Was funktioniert hat und Was nicht.
-> Jede Entscheidung, jede Erkenntnis, jede Denkrichtung wird hier festgehalten.
-> Ziel: Mit diesem Wissen jederzeit das bestmögliche Ergebnis erzielen.
 
 ---
 
