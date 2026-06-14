@@ -484,9 +484,8 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 
 ## 3c. Reserve-Bilder (noch nicht eingebunden · 2026-06-14)
 
-> 18 neue Bilder lokal vorhanden und hier erstmals registriert. Keines ist Stand 2026-06-14 im HTML eingebunden.
-> Alle KI-generiert (ChatGPT/DALL·E) von V. Heidrich im Innerline-Bildstil, außer `landschaft-see-weg`
-> (Provenienz unklar — ggf. reales Foto, bitte Vroni prüfen und Eintrag aktualisieren).
+> 19 neue Bilder lokal vorhanden und hier erstmals registriert. Keines ist Stand 2026-06-14 im HTML eingebunden.
+> Alle KI-generiert (ChatGPT/DALL·E) von V. Heidrich im Innerline-Bildstil.
 
 ### vroni-arbeiten-fenster-sortieren
 - **Dateien:** `images/vroni-arbeiten-fenster-sortieren.png` (2001 KB) · `images/vroni-arbeiten-fenster-sortieren.webp` · `images/vroni-arbeiten-fenster-sortieren-960.webp`
@@ -541,13 +540,12 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 ### landschaft-see-weg
 - **Dateien:** `images/landschaft-see-weg.png` (1924 KB) · `images/landschaft-see-weg.webp` · `images/landschaft-see-weg-960.webp`
 - **Maße:** 1122×1402 px (Hochformat)
-- **Herkunft:** ⚠️ Provenienz ungeklärt — sieht wie ein reales Naturfoto aus (kein typisches DALL·E-Bild). **Bitte Vroni klären:** KI oder echtes Foto? Wenn echtes Foto: Fotograf:in + Lizenz eintragen. Wenn KI: Quelle ergänzen. · **Erstellt am:** 2026-06 (ca.)
+- **Herkunft:** KI-generiertes Landschaftsbild (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
 - **Verwendung:** aktuell **nicht eingebunden** (Reserve)
 - **Alt-Text-Vorlage:** Schmaler Weg durch Gräser mit Blick auf See, goldenes Licht, Natur-Stimmung
-- **Dekorativ:** unklar (abhängig von Verwendung) · **KI-Darstellung:** nicht zutreffend (keine Person)
-- **Rechte:** ⚠️ **offen** — erst klären, dann eintragen
-- **Beachten:** Sieht realistisch aus (kein DALL·E-Charakter) → Lizenzprüfung zwingend vor Verwendung.
-- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve, Provenienz offen).
+- **Dekorativ:** nein · **KI-Darstellung:** nicht zutreffend (keine Person)
+- **Rechte:** siehe Abschnitt 1
+- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve). `2026-06-14` — Provenienz auf KI-generiert (ChatGPT/DALL·E) korrigiert (Vroni bestätigt).
 
 ### mockup-website-klare-marken
 - **Dateien:** `images/mockup-website-klare-marken.png` (1947 KB) · `images/mockup-website-klare-marken.webp` · `images/mockup-website-klare-marken-960.webp`
