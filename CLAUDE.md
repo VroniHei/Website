@@ -36,8 +36,25 @@
   **Invarianten** prüfen (z. B. Hero-Motion, Logo-NN-Ligatur, Burger-CTA schwarz/weiß), nach
   JEDER Änderung den Verlauf ergänzen. So fällt Bereits-Gefixtes nicht versehentlich wieder raus.
 
+## Designsystem-Anbindung (Innerline Master)
+> Diese Website folgt dem **globalen Innerline-Designsystem**. Keine zweite, konkurrierende Quelle.
+
+- **Designsystem-Quelle = Claude-Design-Projekt „Innerline Design System"** (`5de8ecc5-5aa3-4530-bf46-37a0e7a1ddda`).
+  Vor jeder Design-/CSS-/Content-Arbeit den Skill **`innerline-design`** laden bzw. `/design-sync` nutzen.
+  Voll-Referenz dort: `README.md`, `HANDOFF.md`, `SKILL.md`.
+- **Quellen-Richtung (keine parallelen Wahrheiten):**
+  - **Web-Optik** (`tokens.css` = Tokens, `style.css` = Komponenten) lebt **hier im Repo** und ist die Wahrheit.
+    Werte nie woanders neu deklarieren, immer `var(--…)`. Ändert sie sich, danach via `/design-sync` in den Master spiegeln.
+  - **Strategie, Brand Voice, Bildwelt, Icons, Logos, Komponenten-Vokabular** kommen aus dem **Master**.
+    Bei Widerspruch gewinnen **Foundation 2.1** und **Brand Voice Blueprint 5.0**.
+- **Zwei Welten, nie gemischt:** Website = `tokens.css` + `style.css`. Editorial/PDF = `innerline-print-editorial.css`
+  (+ `innerline-editorial-components.css`). Nie Web-Komponenten in PDFs oder umgekehrt.
+- Sync-Mechanismus im Detail: `_design-system-sync/README.md` (PDF-Handoff-Repo).
+
 ## Brand Voice (Arbeitsgrundlage für ALLE Texte) — Vroni / Veronika Heidrich
-Vollständiges Dokument: `uploads/Vroni_Brand_Voice_2_0.md` (immer als Referenz nutzen).
+Aktive Quellen (global, aus dem Innerline-Master): `brand/Vroni_Voice_5.0_KI_Quick_Brief.md` (Voice 5.0 Quick Brief)
+und `brand/Vroni_Brand_Voice_Blueprint_5.0_Master.md`; Strategie: **Foundation 2.1**.
+Ältere Stände (Voice 2.0/4.x, Foundation 2.0) sind **überholt** — nie als Arbeitsgrundlage nutzen.
 
 Vroni ist eine KI-gestützte Brand- & Website-Strategin. Sie verbindet Branding,
 Webdesign (WordPress/Elementor), Marketing/Content, KI-Workflows, Yoga/Bewegung und
