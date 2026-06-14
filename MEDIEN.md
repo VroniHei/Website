@@ -201,12 +201,12 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Herkunft:** KI (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** — offen — · **Prompt:** — offen —
 - **Verwendung:** `index.html` (Zitat-Band, Hintergrund, dekorativ) · `ueber-mich.html` (Sektion Persönlich, Inhaltsbild, seit 2026-06-03)
 - **Alt-Text (index.html):** `alt=""` — dekorativ (Claim-Band trägt eigenen Overlay-Text)
-- **Alt-Text (ueber-mich.html):** Schmaler Trailpfad durch die Berge im Abendlicht. Bewegung in der Natur als Ort, an dem Gedanken sich sortieren
-- **Dekorativ:** Ja auf `index.html`, nein auf `ueber-mich.html`
+- **Dekorativ:** ja (Hintergrundbild, Overlay-Text trägt den Inhalt)
 - **Rechte:** siehe Abschnitt 1
 - **Änderungen:**
   - `2026-06-02` — Ersterfassung.
   - `2026-06-03` — Redesign v2: Zusätzliche Verwendung auf `ueber-mich.html` (Sektion Persönlich als Inhaltsbild, ersetzt `about-persoenlich`); Alt-Text gepflegt. Auf `index.html` weiterhin dekorativ.
+  - `2026-06-14` — Aus `ueber-mich.html` `#persoenlich` entfernt (ersetzt durch `vroni-stille-fenster`, das semantisch besser zur Sektion passt — Text spricht von Stille, Notizbuch, Kaffee, nicht von Bergpfad). Weiterhin auf `index.html` als Zitat-Band-Hintergrund.
 
 ### claim-weg
 - **Dateien:** `images/claim-weg.png` (1928 KB) · `images/claim-weg.webp` (111 KB)
@@ -531,11 +531,13 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/vroni-stille-fenster.png` (1962 KB) · `images/vroni-stille-fenster.webp` · `images/vroni-stille-fenster-960.webp`
 - **Maße:** 1672×941 px (Querformat)
 - **Herkunft:** KI-generiertes Editorial-Foto (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
-- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
-- **Alt-Text-Vorlage:** Person sitzt still am Fenster, Blick nach draußen in den Garten, offenes Notizbuch auf dem Schoß, Stille-Moment
+- **Verwendung:** `ueber-mich.html` (Sektion Persönlich `#persoenlich`, `.au-personal-media`)
+- **Alt-Text:** „Person sitzt still am Fenster mit Blick in den Garten, offenes Notizbuch auf dem Schoß im Morgenlicht — Stille und Klarheit abseits vom Rechner"
 - **Dekorativ:** nein · **KI-Darstellung:** ja (Person von hinten, Gesicht nicht erkennbar)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+- **Änderungen:**
+  - `2026-06-14` — Ersterfassung (Reserve).
+  - `2026-06-14` — Eingebunden in `ueber-mich.html` `#persoenlich` (ersetzt `zitat-weg`; semantisch passender: Text spricht von Stille, Kaffee, Notizbuch — Person am Fenster trifft das besser als Bergpfad).
 
 ### landschaft-see-weg
 - **Dateien:** `images/landschaft-see-weg.png` (1924 KB) · `images/landschaft-see-weg.webp` · `images/landschaft-see-weg-960.webp`
@@ -561,22 +563,26 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/mockup-website-laptop.png` (1961 KB) · `images/mockup-website-laptop.webp` · `images/mockup-website-laptop-960.webp`
 - **Maße:** 1672×941 px (Querformat)
 - **Herkunft:** KI-generiertes Website-Mockup (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
-- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
-- **Alt-Text-Vorlage:** Laptop mit Website-Design auf dem Schreibtisch, Notizbücher und Pflanze, Arbeitsatmosphäre
+- **Verwendung:** `zusammenarbeit.html` (Angebots-Karte 02 „Website-Strategie & Webdesign", `.offer-cover`)
+- **Alt-Text:** „Laptop mit Website-Design auf dem Schreibtisch, Notizbücher und Pflanze im Hintergrund — Webdesign als strategisches System"
 - **Dekorativ:** nein · **KI-Darstellung:** nein (Objekt/Mockup)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+- **Änderungen:**
+  - `2026-06-14` — Ersterfassung (Reserve).
+  - `2026-06-14` — Eingebunden als Cover-Bild in Angebotskarte 02 auf `zusammenarbeit.html`.
 
 ### moodboard-haftnotizen-klarheit
 - **Dateien:** `images/moodboard-haftnotizen-klarheit.png` (2455 KB) · `images/moodboard-haftnotizen-klarheit.webp` · `images/moodboard-haftnotizen-klarheit-960.webp`
 - **Maße:** 1254×1254 px (quadratisch)
 - **Herkunft:** KI-generiertes Moodboard (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
-- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
-- **Alt-Text-Vorlage:** Fünf Haftnotizen an der Wand mit Brand-Leitworten: „klare Linie", „richtige Reihenfolge", „Sprache, die trägt", „nachhaltig sichtbar", „nicht lauter, klarer"
+- **Verwendung:** `zusammenarbeit.html` (Angebots-Karte 01 „Personal Branding & Brand Strategy", `.offer-cover`)
+- **Alt-Text:** „Haftnotizen mit Brand-Leitworten: klare Linie, richtige Reihenfolge, Sprache die trägt, nachhaltig sichtbar, nicht lauter klarer"
 - **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Text)
 - **Rechte:** siehe Abschnitt 1
-- **Beachten:** Enthält Brand-Voice-relevante Texte — bei Verwendung sicherstellen, dass die Wordings mit dem aktuellen Voice-Stand übereinstimmen.
-- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+- **Beachten:** Enthält Brand-Voice-relevante Texte — bei Änderungen am Voice-Stand prüfen, ob die Wordings auf den Notizen noch passen.
+- **Änderungen:**
+  - `2026-06-14` — Ersterfassung (Reserve).
+  - `2026-06-14` — Eingebunden als Cover-Bild in Angebotskarte 01 auf `zusammenarbeit.html`.
 
 ### moodboard-materialien-flatlay
 - **Dateien:** `images/moodboard-materialien-flatlay.png` (2213 KB) · `images/moodboard-materialien-flatlay.webp` · `images/moodboard-materialien-flatlay-960.webp`
@@ -602,21 +608,25 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 - **Dateien:** `images/stillleben-journal-morgenlicht.png` (2200 KB) · `images/stillleben-journal-morgenlicht.webp` · `images/stillleben-journal-morgenlicht-960.webp`
 - **Maße:** 1448×1086 px
 - **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
-- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
-- **Alt-Text-Vorlage:** Aufgeschlagenes Journal im Morgenlicht, Tasse Kaffee daneben, ruhiger Tagesbeginn
+- **Verwendung:** `zusammenarbeit.html` (Angebots-Karte 03 „Brand Voice & Texte", `.offer-cover`)
+- **Alt-Text:** „Aufgeschlagenes Journal im Morgenlicht, Tasse Kaffee daneben — ruhiger Moment für Texte, die nach dir klingen"
 - **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+- **Änderungen:**
+  - `2026-06-14` — Ersterfassung (Reserve).
+  - `2026-06-14` — Eingebunden als Cover-Bild in Angebotskarte 03 auf `zusammenarbeit.html`.
 
 ### stillleben-laptop-notizbuch
 - **Dateien:** `images/stillleben-laptop-notizbuch.png` (1955 KB) · `images/stillleben-laptop-notizbuch.webp` · `images/stillleben-laptop-notizbuch-960.webp`
 - **Maße:** 1448×1086 px
 - **Herkunft:** KI-generiertes Stillleben (ChatGPT/DALL·E), V. Heidrich · **Erstellt am:** 2026-06 (ca.)
-- **Verwendung:** aktuell **nicht eingebunden** (Reserve)
-- **Alt-Text-Vorlage:** Laptop und Notizbuch nebeneinander auf dem Schreibtisch, Tasse Tee, ruhige Arbeitsatmosphäre
+- **Verwendung:** `zusammenarbeit.html` (Angebots-Karte 04 „KI-Workflows & Content-Systeme", `.offer-cover`)
+- **Alt-Text:** „Laptop und Notizbuch nebeneinander auf dem Schreibtisch, Tasse Tee — KI und eigene Stimme arbeiten zusammen"
 - **Dekorativ:** nein · **KI-Darstellung:** nein (Objekte/Stillleben)
 - **Rechte:** siehe Abschnitt 1
-- **Änderungen:** `2026-06-14` — Ersterfassung (Reserve).
+- **Änderungen:**
+  - `2026-06-14` — Ersterfassung (Reserve).
+  - `2026-06-14` — Eingebunden als Cover-Bild in Angebotskarte 04 auf `zusammenarbeit.html`.
 
 ### stillleben-meditation-bodenkissen
 - **Dateien:** `images/stillleben-meditation-bodenkissen.png` (2033 KB) · `images/stillleben-meditation-bodenkissen.webp` · `images/stillleben-meditation-bodenkissen-960.webp`

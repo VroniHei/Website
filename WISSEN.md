@@ -69,7 +69,7 @@
 ## 6. Offene Punkte / Roadmap
 
 - **Kundenstimmen** (Prio): Echte Testimonials eintragen — Section in `index.html` ist auskommentiert (Platzhalter entfernt).
-- **Reserve-Bilder einbinden**: 19 KI-generierte Bilder in `images/` bereit, noch in keiner HTML-Seite eingesetzt.
+- **Reserve-Bilder einbinden**: 5 von 19 Reserve-Bildern eingebunden (PR #72: 4 Angebotskarten-Cover + 1 Persönlich-Swap). 14 weitere in `images/` bereit.
 - **Performance**: PNG-Optimierung, exakte Core Web Vitals, Hero-LCP messen.
 - **Content-Pass**: Hero-Text schärfen, Proof-Strip, Mini-Cases.
 - **Domain**: Umzug von GitHub Pages auf eigene Domain (Hostinger oder ähnlich) geplant.
@@ -88,4 +88,4 @@ Damit „weiß" eine KI Kontext, Tonalität, Können und Bildsprache ohne separa
 
 ---
 
-_Stand: 2026-06-14 — aktuell. Update via `/wissen-update`._
+_Stand: 2026-06-14 (PR #72) — aktuell. Update via `/wissen-update`._

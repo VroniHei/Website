@@ -1070,3 +1070,25 @@ a.contact-path:hover{border-color:color-mix(in srgb,var(--green-deep) 30%, var(-
   text-align:center;
   margin-top:48px;
 }
+
+/* =========================================================
+   16 · ANGEBOTSKARTEN-COVER (feat/bilder-einbinden 2026-06-14)
+   Cover-Bild oben in jeder .offer-Karte. Negativ-Margin blendet
+   den Karten-Padding aus, damit das Bild randlos wirkt.
+   .offer{overflow:hidden} + border-radius auf .offer übernehmen
+   das Corner-Clipping — kein eigenes border-radius nötig.
+   --------------------------------------------------------- */
+.offer-cover{
+  margin:-36px -36px 28px;
+  overflow:hidden;
+  position:relative;
+  z-index:1;
+  aspect-ratio:2/1;
+  flex:0 0 auto;
+}
+.offer-cover img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+.offer:hover .offer-cover img{transform:scale(1.06);}
