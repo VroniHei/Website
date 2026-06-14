@@ -4,4 +4,7 @@ Allow: /
 # Internes Komponenten-Board nicht indexieren
 Disallow: /Designsystem.html
 
+# Lokales Tool — nur lokal erreichbar, nicht indexieren
+Disallow: /tools.html
+
 Sitemap: https://vronihei.github.io/Website/sitemap.xml
