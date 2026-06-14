@@ -27,9 +27,10 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 
 ### Brand Voice / Texte
 - [ ] **Keine Gedankenstriche / Em-Dashes (`—`)** im Fließtext, in Headlines, Alt-Texten oder Meta-Descriptions (KI-Stilmerkmal, verstößt gegen Vroni Voice). Natürlich ausformulieren: Punkt, Komma, Doppelpunkt. Komposita-Bindestriche („KI-Workflow") sind erlaubt. Prüfbar via Grep auf `—` in `*.html`.
-- [ ] **Ich-Form** wenn Vroni spricht; kein künstliches Agentur-„Wir". Keine Marketing-/Coaching-Floskeln (Liste in `uploads/Vroni_Brand_Voice_2_0.md`).
+- [ ] **Ich-Form** wenn Vroni spricht; kein künstliches Agentur-„Wir". Keine Marketing-/Coaching-Floskeln (aktive Quelle: `brand/Vroni_Voice_5.0_KI_Quick_Brief.md` + `brand/Vroni_Brand_Voice_Blueprint_5.0_Master.md`; ältere Stände 2.0/4.x überholt).
 
 ### Design-System / Single Source of Truth
+- [ ] **Globale Quelle = Innerline-Master** (Claude-Design-Projekt `5de8ecc5-5aa3-4530-bf46-37a0e7a1ddda`). Web-Tokens/`style.css` sind hier im Repo die Wahrheit und werden via `/design-sync` in den Master gespiegelt; Strategie/Voice/Bildwelt/Icons/Logos/Komponenten kommen aus dem Master (Skill `innerline-design`). Details: `CLAUDE.md` › „Designsystem-Anbindung (Innerline Master)".
 - [ ] **Tokens (Farbe, `--fs-*`, `--lh-*`, `--ls-*`, `--space-*`, `--r-*`, `--shadow-*`, `--dur-*`/`--ease-*`, `--z-*`) und alle `@font-face` werden NUR in `tokens.css` definiert.** `style.css` bindet sie per `@import url("tokens.css")` (erste Regel) ein; `Designsystem.html` per `<link rel="stylesheet" href="tokens.css">`. Nirgends ein zweites `:root` mit diesen Tokens.
 - [ ] **`Designsystem.html` ist nur Viewer:** keine eigenen Tokens, keine eigene `@font-face`, keine externe Font-CDN. Eigene Styles dort nur DS-/Doku-Chrome.
 - [ ] **Keine externe Schrift-CDN** in `*.html`/`*.css`; Schriften lokal aus `fonts/`.
@@ -2441,3 +2442,21 @@ Beim nächsten Design-Handoff von Claude Design → Claude Code immer prüfen:
 - Beim nächsten Design-Handoff: nach dem Einfügen neuer HTML-Blöcke immer kurz `grep -P '[\x{201C}\x{201D}]' zusammenarbeit.html` prüfen (oder den HTML-Validate-CI-Job laufen lassen), bevor der PR gemergt wird.
 - MEDIEN.md: keine Änderung (kein Bild berührt).
 - Rechtstexte: unverändert korrekt (kein neuer Drittdienst).
+
+### 2026-06-14 — Designsystem-Anbindung an Innerline-Master + Voice-Verweis aktualisiert (Claude Code)
+
+**Was:** Die Website wird explizit an das globale **Innerline-Designsystem** (Claude-Design-Projekt „Innerline Design System", `5de8ecc5-5aa3-4530-bf46-37a0e7a1ddda`) angebunden. Neuer Abschnitt „Designsystem-Anbindung (Innerline Master)" in `CLAUDE.md`; neue Invariante in `PROTOKOLL.md` › Design-System. Der veraltete und nicht mehr existierende Brand-Voice-Verweis `uploads/Vroni_Brand_Voice_2_0.md` wurde in `CLAUDE.md` und `PROTOKOLL.md` durch die aktiven Quellen `brand/Vroni_Voice_5.0_KI_Quick_Brief.md` + `brand/Vroni_Brand_Voice_Blueprint_5.0_Master.md` (Strategie: Foundation 2.1) ersetzt.
+
+**Warum:** Die Website wurde vor dem globalen Designsystem erstellt und lässt sich in Claude Design nicht nachträglich daran „koppeln". Ohne Anbindung laufen Website und Master auseinander (sichtbar am stehengebliebenen Voice-2.0-Verweis). Quellen- + Skill-Mechanismus statt Kopplung: jede Ebene hat genau eine Wahrheit.
+
+**Wie:** Quellen-Richtung festgeschrieben: Web-Optik (`tokens.css`/`style.css`) bleibt hier im Repo die Wahrheit und wird via `/design-sync` in den Master gespiegelt; Strategie/Voice/Bildwelt/Icons/Logos/Komponenten kommen aus dem Master (Skill `innerline-design`). Zwei-Welten-Regel (Website vs. Editorial/PDF) ergänzt.
+
+**Geänderte Dateien:**
+- `CLAUDE.md`: neuer Abschnitt „Designsystem-Anbindung (Innerline Master)"; Brand-Voice-Quellenzeile auf 5.0/Foundation 2.1 aktualisiert.
+- `PROTOKOLL.md`: neue Design-System-Invariante (globale Quelle = Master); Voice-Verweis in „Brand Voice / Texte" aktualisiert; dieser Verlaufseintrag.
+
+**Alternativen / Abwägungen:** Bestehende `CLAUDE.md` überschreiben (verworfen — hätte vorhandene Regeln zerstört, daher nur additiv ergänzt). Direkt auf `main` committen (verworfen — `main` ist geschützt, PR-Pflicht).
+
+**Learnings:** Doppelt kaputter Verweis (`uploads/Vroni_Brand_Voice_2_0.md` war veraltet UND physisch nicht vorhanden). Solche Pointer driften still, wenn es keine erzwungene Anbindung an die globale Quelle gibt.
+
+**Konsequenzen / Invariante:** Vor Design-/CSS-/Content-Arbeit den `innerline-design`-Skill laden. Web-Tokens-Änderungen nach Deploy via `/design-sync` in den Master spiegeln. MEDIEN.md: keine Änderung. Rechtstexte: unverändert (kein neuer Drittdienst).
