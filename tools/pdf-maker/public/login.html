@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login · Innerline Tools</title>
+  <style>
+    @font-face{font-family:'Figtree';font-weight:300 900;font-style:normal;font-display:swap;src:url('figtree.woff2') format('woff2');}
+    @font-face{font-family:'Newsreader';font-weight:400 600;font-style:italic;font-display:swap;src:url('newsreader-italic.woff2') format('woff2');}
+    .g{font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;letter-spacing:-.005em;font-size:1.06em;color:var(--green);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --chalk:#F8F5EE;--sand:#EFEADD;--ink:#23221A;--forest:#2C3522;
+      --green:#A8E84F;--green-deep:#6E9B2C;--green-text:#447510;
+      --ink-soft:#5d564a;--white:#FFFFFF;--hair:rgba(35,34,26,.12);
+      --r-sm:12px;--r-md:18px;--r-lg:26px;--r-xl:34px;
+      --ff:'Figtree','Open Sauce Sans',system-ui,sans-serif;
+    }
+    html{font-size:16px;-webkit-font-smoothing:antialiased;}
+    body{font-family:var(--ff);color:var(--ink);margin:0;min-height:100vh;display:flex;}
+
+    /* ── Split Layout ──────────────────────────────────────── */
+    .login-split{display:flex;min-height:100vh;width:100%;}
+
+    /* ── Linke Bildseite ───────────────────────────────────── */
+    .login-image{
+      flex:1;position:relative;overflow:hidden;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      padding:48px 52px;
+    }
+    .login-image img{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;object-position:center 40%;
+    }
+    /* Gradient-Overlay: identisch zur Zitat-Section der Website */
+    .login-image .overlay{
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(100deg,rgba(28,33,22,.88),rgba(28,33,22,.65) 60%,rgba(28,33,22,.45));
+    }
+    /* Branding-Text auf dem Bild */
+    .img-content{position:relative;z-index:2;}
+    .img-logo{
+      display:flex;align-items:center;gap:10px;
+      font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:rgba(248,245,238,.7);margin-bottom:auto;
+      position:absolute;top:48px;left:52px;
+    }
+    .img-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;}
+    .img-headline{
+      font-weight:650;
+      font-size:clamp(28px,3.8vw,46px);
+      line-height:1.1;letter-spacing:-.025em;
+      color:var(--chalk);margin-bottom:14px;
+      text-wrap:balance;
+    }
+    .img-sub{
+      font-size:15px;color:rgba(248,245,238,.6);
+      line-height:1.6;max-width:380px;
+    }
+    .img-line{
+      display:flex;align-items:center;gap:12px;
+      margin-top:28px;
+    }
+    .img-line-bar{width:28px;height:2px;background:var(--green);border-radius:2px;flex-shrink:0;}
+    .img-line-label{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--green);}
+
+    /* ── Rechte Formseite ──────────────────────────────────── */
+    .login-form-side{
+      width:460px;flex-shrink:0;
+      background:var(--chalk);
+      display:flex;flex-direction:column;
+      overflow-y:auto;
+    }
+    .form-nav{
+      padding:24px 40px;
+      border-bottom:1px solid var(--hair);
+      display:flex;align-items:center;justify-content:space-between;
+      flex-shrink:0;
+    }
+    .form-nav-brand{
+      font-size:13px;font-weight:700;letter-spacing:-.01em;color:var(--ink);
+      text-decoration:none;display:flex;align-items:center;gap:9px;
+    }
+    .form-nav-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;}
+    .form-nav-back{
+      font-size:12.5px;font-weight:500;color:var(--ink-soft);text-decoration:none;
+      display:flex;align-items:center;gap:6px;transition:color .15s;
+    }
+    .form-nav-back:hover{color:var(--ink);}
+
+    .form-body{
+      flex:1;display:flex;align-items:center;justify-content:center;
+      padding:48px 40px;
+    }
+    .form-inner{width:100%;max-width:340px;}
+
+    .form-eyebrow{
+      font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--green-text);margin-bottom:18px;
+      display:flex;align-items:center;gap:8px;
+    }
+    .form-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+    h1{
+      font-size:30px;font-weight:750;letter-spacing:-.025em;line-height:1.1;
+      color:var(--ink);margin-bottom:8px;
+    }
+    .form-sub{font-size:14.5px;color:var(--ink-soft);line-height:1.55;margin-bottom:36px;}
+
+    /* Form */
+    form{display:flex;flex-direction:column;gap:18px;}
+    .field{display:flex;flex-direction:column;gap:7px;}
+    .field label{
+      font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--ink-soft);
+    }
+    .field input{
+      width:100%;padding:13px 16px;
+      border:1.5px solid var(--hair);border-radius:var(--r-md);
+      font-family:var(--ff);font-size:15px;color:var(--ink);
+      background:var(--white);outline:none;
+      transition:border-color .16s,box-shadow .16s;
+    }
+    .field input:focus{
+      border-color:var(--green-deep);
+      box-shadow:0 0 0 3px rgba(110,155,44,.12);
+    }
+    .field input::placeholder{color:rgba(35,34,26,.28);}
+
+    .btn-submit{
+      width:100%;padding:15px;border:none;border-radius:var(--r-md);
+      font-family:var(--ff);font-size:15px;font-weight:700;letter-spacing:-.01em;
+      background:var(--forest);color:var(--chalk);cursor:pointer;
+      transition:background .18s,transform .15s,box-shadow .18s;
+      display:flex;align-items:center;justify-content:center;gap:9px;
+      margin-top:6px;
+    }
+    .btn-submit:hover{background:#3a4730;transform:translateY(-1px);box-shadow:0 6px 20px rgba(44,53,34,.22);}
+
+    .error-box{
+      background:rgba(200,40,40,.07);border:1px solid rgba(200,40,40,.2);
+      border-radius:var(--r-sm);padding:12px 15px;
+      font-size:13.5px;color:#b03030;line-height:1.5;
+      margin-bottom:4px;
+    }
+
+    .form-footer{
+      padding:24px 40px;
+      font-size:11.5px;color:var(--ink-soft);
+      border-top:1px solid var(--hair);flex-shrink:0;
+      opacity:.6;
+    }
+
+    /* ── Mobile ────────────────────────────────────────────── */
+    @media(max-width:800px){
+      .login-split{flex-direction:column;}
+      .login-image{
+        min-height:220px;flex:none;
+        padding:28px 28px 32px;
+        justify-content:flex-end;
+      }
+      .img-logo{top:24px;left:28px;}
+      .login-form-side{width:100%;}
+      .form-body{padding:36px 28px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-split">
+
+  <!-- ── Linke Seite: Bild + Overlay ────────────────────── -->
+  <div class="login-image">
+    <img src="login-bg.webp" alt="" aria-hidden="true">
+    <div class="overlay"></div>
+
+    <div class="img-logo">
+      <span class="img-logo-dot"></span>
+      Innerline Tools
+    </div>
+
+    <div class="img-content">
+      <p class="img-headline">Klarheit schaffen.<br><span class="g">Sichtbar</span> werden.</p>
+      <p class="img-sub">Deine persönlichen Tools für Branding, Inhalte und KI-Workflows.</p>
+      <div class="img-line">
+        <span class="img-line-bar"></span>
+        <span class="img-line-label">Veronika Heidrich</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Rechte Seite: Login-Form ───────────────────────── -->
+  <div class="login-form-side">
+    <nav class="form-nav">
+      <a href="http://localhost:3847" class="form-nav-brand">
+        <span class="form-nav-dot"></span>
+        Innerline Tools
+      </a>
+      <a href="https://vronihei.github.io/Website/" class="form-nav-back" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Zur Website
+      </a>
+    </nav>
+
+    <div class="form-body">
+      <div class="form-inner">
+        <div class="form-eyebrow">
+          <span class="form-eyebrow-dot"></span>
+          Willkommen zurück
+        </div>
+        <h1>Einloggen.</h1>
+        <p class="form-sub">Gib deine E-Mail-Adresse und dein Passwort ein.</p>
+
+        <div id="errorBox" class="error-box" style="display:none;"></div>
+
+        <form method="POST" action="/login">
+          <div class="field">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email"
+              autofocus autocomplete="email"
+              placeholder="info@veronika-heidrich.de">
+          </div>
+          <div class="field">
+            <label for="password">Passwort</label>
+            <input type="password" id="password" name="password"
+              autocomplete="current-password" placeholder="Dein Passwort">
+          </div>
+          <button type="submit" class="btn-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Einloggen
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="form-footer">Innerline Tools &middot; Lokal &middot; Privat</div>
+  </div>
+
+</div>
+
+<script>
+  const err = new URLSearchParams(location.search).get('error');
+  if (err) {
+    const box = document.getElementById('errorBox');
+    box.textContent = 'E-Mail oder Passwort falsch. Bitte nochmal versuchen.';
+    box.style.display = 'block';
+  }
+</script>
+</body>
+</html>

@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = process.cwd();
-const SKIP_DIRS = new Set(['node_modules', '.git', 'fonts', 'images', 'export', 'scraps', 'uploads']);
+const SKIP_DIRS = new Set(['node_modules', '.git', 'fonts', 'images', 'export', 'scraps', 'uploads', 'tools']);
 const errors = [];
 
 function walk(dir, acc) {

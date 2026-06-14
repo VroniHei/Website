@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Einrichten · Innerline Tools</title>
+  <style>
+    @font-face{font-family:'Figtree';font-weight:300 900;font-style:normal;font-display:swap;src:url('figtree.woff2') format('woff2');}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --chalk:#F8F5EE;--sand:#EFEADD;--ink:#23221A;--forest:#2C3522;
+      --green:#A8E84F;--green-deep:#6E9B2C;--green-text:#447510;
+      --ink-soft:#5d564a;--white:#FFFFFF;--hair:rgba(35,34,26,.12);
+      --r-sm:12px;--r-md:18px;--r-lg:26px;--r-xl:34px;
+      --ff:'Figtree','Open Sauce Sans',system-ui,sans-serif;
+    }
+    html{font-size:16px;-webkit-font-smoothing:antialiased;}
+    body{
+      font-family:var(--ff);color:var(--ink);
+      background:var(--chalk);
+      background-image:
+        radial-gradient(700px 500px at 90% 5%, rgba(168,232,79,.13), transparent 60%),
+        radial-gradient(600px 400px at 5% 95%, rgba(44,53,34,.07), transparent 60%);
+      min-height:100vh;display:flex;flex-direction:column;
+    }
+    .nav{
+      position:sticky;top:0;z-index:60;
+      background:rgba(248,245,238,.88);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--hair);
+    }
+    .nav-inner{
+      max-width:1240px;margin:0 auto;padding:0 28px;
+      height:62px;display:flex;align-items:center;justify-content:space-between;
+    }
+    .brand{font-size:15px;font-weight:750;letter-spacing:-.01em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px;}
+    .brand-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;}
+    main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;}
+    .card{
+      width:100%;max-width:440px;
+      background:var(--white);border:1px solid var(--hair);border-radius:var(--r-xl);
+      box-shadow:0 14px 40px rgba(35,34,26,.09),0 2px 8px rgba(35,34,26,.05);
+      padding:44px 40px 40px;
+    }
+    .card-eyebrow{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green-text);margin-bottom:20px;}
+    .card-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;}
+    .card-title{font-size:28px;font-weight:750;letter-spacing:-.025em;line-height:1.1;color:var(--ink);margin-bottom:8px;}
+    .card-sub{font-size:15px;color:var(--ink-soft);line-height:1.55;margin-bottom:32px;}
+    .form{display:flex;flex-direction:column;gap:18px;}
+    .field{display:flex;flex-direction:column;gap:7px;}
+    .field label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+    .field input{
+      width:100%;padding:13px 16px;border:1.5px solid var(--hair);border-radius:var(--r-md);
+      font-family:var(--ff);font-size:15px;color:var(--ink);background:var(--chalk);outline:none;
+      transition:border-color .16s,box-shadow .16s;
+    }
+    .field input:focus{border-color:var(--green-deep);box-shadow:0 0 0 3px rgba(110,155,44,.12);}
+    .field input::placeholder{color:rgba(35,34,26,.3);}
+    .field-hint{font-size:12px;color:var(--ink-soft);margin-top:3px;}
+    .btn-submit{
+      width:100%;padding:16px;border:none;border-radius:var(--r-md);
+      font-family:var(--ff);font-size:15.5px;font-weight:700;letter-spacing:-.01em;
+      background:var(--forest);color:var(--chalk);cursor:pointer;
+      transition:background .18s,transform .15s,box-shadow .18s;
+      display:flex;align-items:center;justify-content:center;gap:9px;margin-top:6px;
+    }
+    .btn-submit:hover{background:#3a4730;transform:translateY(-1px);box-shadow:0 6px 20px rgba(44,53,34,.2);}
+    .error-box{background:rgba(200,40,40,.07);border:1px solid rgba(200,40,40,.2);border-radius:var(--r-sm);padding:12px 16px;font-size:13.5px;color:#b03030;line-height:1.5;}
+    footer{text-align:center;padding:24px;font-size:12px;color:var(--ink-soft);opacity:.6;}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-dot"></span>Innerline Tools</div>
+    <span style="font-size:12px;font-weight:600;color:var(--green-text);letter-spacing:.08em;text-transform:uppercase;">Ersteinrichtung</span>
+  </div>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="card-eyebrow">
+      <span class="card-eyebrow-dot"></span>
+      Erster Start
+    </div>
+    <h1 class="card-title">Passwort einrichten.</h1>
+    <p class="card-sub">Wähle ein Passwort um deine Tools zu sichern. Es wird lokal gespeichert.</p>
+
+    <form class="form" method="POST" action="/setup">
+      <div class="field">
+        <label for="password">Passwort</label>
+        <input type="password" id="password" name="password"
+          autofocus autocomplete="new-password" placeholder="Mindestens 6 Zeichen">
+        <span class="field-hint">Mindestens 6 Zeichen.</span>
+      </div>
+      <div class="field">
+        <label for="confirm">Passwort bestätigen</label>
+        <input type="password" id="confirm" name="confirm"
+          autocomplete="new-password" placeholder="Nochmals eingeben">
+      </div>
+      <button type="submit" class="btn-submit">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Passwort setzen
+      </button>
+    </form>
+
+    <div id="errorBox" class="error-box" style="display:none;margin-top:16px;"></div>
+  </div>
+</main>
+
+<footer>Innerline Tools &middot; Lokal &middot; Privat</footer>
+
+<script>
+  const msgs = { short: 'Passwort zu kurz (mindestens 6 Zeichen).', mismatch: 'Die Passwörter stimmen nicht überein.' };
+  const err = new URLSearchParams(location.search).get('error');
+  if (err && msgs[err]) {
+    const box = document.getElementById('errorBox');
+    box.textContent = msgs[err];
+    box.style.display = 'block';
+  }
+</script>
+</body>
+</html>
