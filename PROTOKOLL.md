@@ -2669,3 +2669,39 @@ node server.js   # startet auf http://localhost:3847
 - **WISSEN.md-Pflege:** Bei jedem größeren PR kurz `/wissen-update` ausführen — oder zumindest Stand-Datum prüfen.
 - `MEDIEN.md`: keine Änderung.
 - Rechtstexte: keine Änderung.
+
+---
+
+### 2026-06-14 — Reserve-Bilder eingebunden: Angebotskarten-Cover + Persönlich-Swap (Claude Code, PR #72)
+
+**Was:**
+1. **`ueber-mich.html` Sektion `#persoenlich`:** `zitat-weg` (Bergpfad-Landschaft) ersetzt durch `vroni-stille-fenster` (Person am Fenster mit Notizbuch im Morgenlicht). Semantisch weit passender: Text spricht von „Kaffee, Notizbuch, Stille, Tabs" — eine stille Person am Fenster trifft das besser als ein leerer Bergpfad.
+2. **`zusammenarbeit.html` `#angebote`:** Alle 4 Angebotskarten bekommen ein visuelles Cover-Bild (`.offer-cover`):
+   - Karte 01 Personal Branding → `moodboard-haftnotizen-klarheit` (Brand-Leitworte auf Haftnotizen)
+   - Karte 02 Website-Strategie → `mockup-website-laptop` (Laptop mit Website-Design)
+   - Karte 03 Brand Voice → `stillleben-journal-morgenlicht` (Journal im Morgenlicht)
+   - Karte 04 KI-Workflows → `stillleben-laptop-notizbuch` (Laptop + Notizbuch)
+3. **`zusammenarbeit.css`:** Neue Klasse `.offer-cover` + `.offer-cover img` + Hover-Scale. Negativ-Margin (-36px rundum, 28px unten) lässt das Bild randlos in den Karten-Rand bluten; `position:relative;z-index:1` stellt das Bild über das dekorative `::before`-Gradient; `overflow:hidden` auf `.offer` übernimmt Eck-Clipping.
+4. **`MEDIEN.md`:** 6 Einträge aktualisiert (zitat-weg: ueber-mich-Verwendung entfernt; vroni-stille-fenster, mockup-website-laptop, moodboard-haftnotizen-klarheit, stillleben-journal-morgenlicht, stillleben-laptop-notizbuch: Status auf „eingebunden" gesetzt).
+
+**Warum:**
+- 19 Reserve-Bilder lagen bereit, aber kein einziges war eingebunden — verschwendetes Asset-Potenzial.
+- Die Angebotskarten auf `zusammenarbeit.html` waren rein textlich; ein kleines Cover erhöht visuelles Gewicht und Erkennbarkeit pro Angebot.
+- `zitat-weg` auf `ueber-mich.html #persoenlich` war thematisch losgelöst vom Text (Bergpfad, kein Mensch, kein Stille-Moment) — der Tausch ist semantisch klar und macht das Bild-Text-Paar kohärenter.
+
+**Wie (technisch):**
+- `.offer-cover` als erstes Kind jedes `<article class="offer">` platziert.
+- Margin-Bleed-Technik: `margin:-36px -36px 28px` canceliert den Card-Padding (36px links/rechts/oben) und lässt das Bild randlos wirken; `aspect-ratio:2/1` gibt ein einheitliches Querformat-Verhältnis.
+- `position:relative;z-index:1` überschreibt den `::before`-Gradient; so ist das Bild immer sauber oben.
+- `.offer:hover .offer-cover img{transform:scale(1.06)}` — sanfter Zoom beim Card-Hover.
+- Responsiv: Karten werden auf Mobile einspaltig (`.offers{grid-template-columns:1fr}`), Cover skaliert automatisch mit.
+
+**Alternativen erwogen:**
+- Zweites Yoga-Bild in `index.html #yoga` → verworfen, kein drittes Grid-Element ohne CSS-Restrukturierung; aufgeschoben.
+- `mockup-website-klare-marken` in `ueber-mich.html #heute` → `.au-bridge-media` hat einen Slot; `about-wireframe` passt als Prozess-Bild; Mockup wäre Doppelung mit Zusammenarbeit-Seite.
+
+**Konsequenzen / Invarianten:**
+- **`.offer-cover` Pattern:** Wenn weitere `.offer`-Karten Cover bekommen (z.B. auf `index.html`), muss `.offer-cover`-CSS nach `style.css` verschoben werden (aktuell in `zusammenarbeit.css`).
+- **Bild-Semantik:** `moodboard-haftnotizen-klarheit` enthält Brand-Voice-Texte — bei Voice-Änderungen prüfen, ob die Wording-Schnipsel auf den Notizen noch stimmen.
+- `MEDIEN.md`: 6 Einträge aktualisiert (s.o.).
+- Rechtstexte: keine Änderung.
