@@ -17,7 +17,7 @@ jobs:
     name: HTML-Validierung
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: 20
@@ -28,7 +28,7 @@ jobs:
     name: Link-Check (intern)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Interne Links & Asset-Pfade prüfen
         uses: lycheeverse/lychee-action@v2
         with:
@@ -39,7 +39,7 @@ jobs:
     name: Lighthouse (A11y / SEO / Performance)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: 20
@@ -52,7 +52,7 @@ jobs:
     name: Lighthouse Mobil (informativ)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: 20
@@ -67,7 +67,7 @@ jobs:
     name: Design-Hygiene (Tokens / Schriften / Em-Dash)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: 20
@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Bild-Änderung erzwingt MEDIEN.md-Update
