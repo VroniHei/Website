@@ -69,7 +69,9 @@ img{max-width:100%;display:block;}
   box-shadow:0 6px 30px rgba(35,34,26,.06);transition:box-shadow .3s, background .3s;}
 .nav.scrolled .nav-inner{box-shadow:0 8px 36px rgba(35,34,26,.10);background:rgba(248,245,238,.94);}
 .brand{display:flex;align-items:center;gap:5px;color:var(--ink);line-height:1;}
-.nav .brand{transform:translateY(2px);}
+/* Optische Zentrierung: Die Welle sitzt über dem Wort, daher liegt das Wort im unteren
+   Teil der SVG-Box. Leicht nach oben schieben, damit die Wortmarke auf der Nav-Mittellinie sitzt. */
+.nav .brand{transform:translateY(-2.4px);}
 .brand--line{width:fit-content;max-width:100%;}
 /* Innerline-Wortmarke (SVG) — Wort folgt currentColor, Welle im knalligen Grün.
    Im Footer (color:var(--chalk)) steht das Wort dadurch automatisch negativ. */

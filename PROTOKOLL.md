@@ -43,6 +43,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] ~~**Linie hinter dem Wort** (`.bl-word::before`)~~ → **entfernt**. Stattdessen die offizielle **Welle** (oberer st0-Pfad) als Brand-Element.
 - [ ] **NEU — SVG-Logo `.il-logo`**: Wortmarke = `.il-word{fill:currentColor}` (folgt Textfarbe), **Welle = `.il-wave{fill:var(--green)}` (knalliges Grün `#A8E84F`)**. Header: Wort in `--ink`. **Footer: negativ** — `.footer-bottom .il-logo{color:var(--chalk)}` (Wort hell), Welle bleibt grün.
 - [ ] **viewBox eng auf den Inhalt zugeschnitten: `viewBox="35 16 1138 256"`** (NICHT die rohe `0 0 1200 305.7` aus der Quelldatei — die hat oben/unten/seitlich Leerraum und lässt das Logo winzig wirken). So entspricht die gerenderte Wortmarke bei gleicher CSS-Höhe der alten Text-Größe. Höhen: Nav `22px` (mobil 20px), Footer 22px, About 19px → Wort-Versalhöhe ≈ 16px / Breite ≈ 98px (= alter Stand 96×21).
+- [ ] **Optische Zentrierung in der Nav:** `.nav .brand{transform:translateY(-2.4px)}`. Grund: Die Welle sitzt über dem Wort, dadurch liegt das Wort im unteren Teil der SVG-Box; ohne Korrektur säße die Wortmarke ~4px unter der Nav-Mittellinie. Gemessen: Wort-Mitte == Nav-Links-Mitte == Nav-Inner-Mitte (49.6px). (NICHT auf `translateY(2px)` zurückdrehen — das war der alte Text-Logo-Wert und schiebt nach unten.)
 - [ ] **Footer-Tagline**: SVG-Logo in `.footer-mark` gewrappt + `<span class="footer-meaning">Die innere Linie, die sich durch alles zieht.</span>` darunter (kursiv, gedämpft).
 
 ### Motion / Animation ⚠️ schon einmal versehentlich rausgefallen
@@ -2755,3 +2756,15 @@ node server.js   # startet auf http://localhost:3847
 **Wie:** Echte Inhalts-Bounds per `getBBox()` im Browser gemessen (Wort `y 79.8–264.8`, Welle ab `y 22`, x `43–1164.5`), viewBox mit kleinem Rand eng darauf gesetzt. Ergebnis verifiziert: Nav-Logo jetzt svg 98×22, Wort-Glyphen **96×16** — Breite identisch zum alten Text-Logo (96×21), Versalhöhe ~16px statt ~13px. Footer/About gegengeprüft (Render), Design-Hygiene grün.
 
 **Konsequenz / Invariante:** viewBox-Wert ist Teil der Logo-Invariante (siehe Abschnitt „Logo / Wortmarke"). Wird das Logo je aus der Quelldatei neu eingespielt, viewBox wieder eng zuschneiden, sonst wird es zu klein.
+
+---
+
+### 2026-06-29 — Logo optisch in der Nav-Leiste zentriert (Folge-Fix gleicher Tag)
+
+**Was:** `.nav .brand` von `transform:translateY(2px)` auf `translateY(-2.4px)` geändert.
+
+**Warum:** Vroni meldete, das Logo wirke in der Navi tendenziell zu tief, nicht mittig. Doppelte Ursache: (1) das alte `+2px` stammte vom früheren Text-Logo und schob nach unten; (2) die Welle sitzt über der Wortmarke, daher liegt das Wort im unteren ~61% der SVG-Box — bei reiner Box-Zentrierung sitzt das Wort optisch zu tief.
+
+**Wie:** Im Browser gemessen (getBoundingClientRect): Nav-Inner-Mitte 49.6px, Nav-Links-Mitte 49.6px, aber Wort-Mitte 54.0px (4.4px zu tief). Transform so gesetzt, dass die Wort-Mitte auf 49.6px liegt = bündig mit den Nav-Links. Nach Fix verifiziert: Wort-Mitte == Links-Mitte == 49.6px; Screenshot der ganzen Leiste bestätigt.
+
+**Konsequenz / Invariante:** Wert in der Logo-Invariante verankert. Mobile (20px Logo) weicht nur sub-pixel ab, daher derselbe Wert.
