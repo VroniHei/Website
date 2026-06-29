@@ -693,7 +693,7 @@ im gleichen Stil zu erzeugen. Laut Quelle sind die **exakten Original-Prompts ni
 
 ## 4. Weitere Medien (Nicht-Fotos)
 
-- **Logo/Wortmarke:** `brand/logos/` (SVG/PNG/PDF-Quellen) + `favicon.svg` — Eigenerzeugung InnerLine.
+- **Logo/Wortmarke:** `brand/logos/` (SVG/PNG/PDF-Quellen) + `favicon.svg` — Eigenerzeugung InnerLine. **Live-Verwendung (seit 2026-06-29):** die horizontale Wortmarke (`innerline-logo-horizontal-farbe.svg`) ist als **Inline-SVG** (`.il-logo`) in Header + Footer aller Seiten sowie in der About-Signatur eingebettet. Coloring per CSS: Wort = `currentColor` (Header dunkel, Footer negativ/hell), **Welle = knalliges Grün `var(--green)`** (statt Clay aus der Quelldatei). Alt-Beschriftung: `aria-label="innerline"` (Footer/About), Header-Anker trägt eigenes `aria-label`.
 - **Schriften:** lokal in `fonts/` (siehe Font-Regel in `CLAUDE.md`) — keine externe CDN.
 - **Icons:** Inline-SVG im Markup (Wellen-Kurve, Monitor, Sparkle, Herz) — Eigenerzeugung.
 - (Video/Audio: derzeit keine.)

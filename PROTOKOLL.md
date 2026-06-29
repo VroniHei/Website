@@ -37,11 +37,12 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Durchsetzung:** `node .github/design-hygiene.cjs` (CI-Job `design-guard`) muss grün sein. Regeln: `DESIGN-HYGIENE.md`.
 
 ### Logo / Wortmarke
-- [ ] Wortmarke **„innerline"** in der Schrift **Vaelia** (lokal, `fonts/Vaelia.woff2`/`.woff`).
-- [ ] **NN-Ligatur**: `text-transform:uppercase` + `font-feature-settings:"dlig" 1` auf `.bl-up`. DOM-Text bleibt `inn` + `erline`.
-- [ ] **Linie hinter dem Wort** (`.bl-word::before`): Nav = `#B9ED72`, Footer = `#BC7B4C`.
-- [ ] Logo-Größe Nav + Footer **21px**, Nav mit `translateY(2px)`.
-- [ ] **Footer-Tagline**: Wortmarke in `.footer-mark` gewrappt + `<span class="footer-meaning">Die innere Linie, die sich durch alles zieht.</span>` darunter (kursiv, gedämpft).
+> **Aktualisiert 2026-06-29 (siehe Verlauf):** Logo ist jetzt ÜBERALL das offizielle Innerline-SVG (`brand/logos/innerline-logo-horizontal-farbe.svg`), inline eingebettet als `.il-logo` — **kein** Live-Vaelia-Text und **kein** gerader Strich mehr. Die folgenden 3 Einträge (Vaelia-Text, NN-Ligatur, „Linie hinter dem Wort") sind damit **überholt** und nur als Historie hier belassen.
+- [ ] ~~Wortmarke **„innerline"** in der Schrift **Vaelia** als Live-Text~~ → ersetzt durch Inline-SVG `.il-logo` (Wortmarke als Pfade). Vaelia bleibt nur noch als Font-Asset für etwaigen Display-Text.
+- [ ] ~~**NN-Ligatur** via `dlig` auf `.bl-up`~~ → entfällt; die Buchstabenformen sind im SVG fix als Pfade enthalten.
+- [ ] ~~**Linie hinter dem Wort** (`.bl-word::before`)~~ → **entfernt**. Stattdessen die offizielle **Welle** (oberer st0-Pfad) als Brand-Element.
+- [ ] **NEU — SVG-Logo `.il-logo`**: Wortmarke = `.il-word{fill:currentColor}` (folgt Textfarbe), **Welle = `.il-wave{fill:var(--green)}` (knalliges Grün `#A8E84F`)**. Header: Wort in `--ink`. **Footer: negativ** — `.footer-bottom .il-logo{color:var(--chalk)}` (Wort hell), Welle bleibt grün. Größen: Nav 22px (mobil 18px), Footer 24px, About-Signatur 19px.
+- [ ] **Footer-Tagline**: SVG-Logo in `.footer-mark` gewrappt + `<span class="footer-meaning">Die innere Linie, die sich durch alles zieht.</span>` darunter (kursiv, gedämpft).
 
 ### Motion / Animation ⚠️ schon einmal versehentlich rausgefallen
 - [ ] **Hero-Bild Hover-Zoom**: `.hero-portrait img{position:absolute;inset:0;transition:transform 1.5s …}` + `.hero-portrait:hover img{transform:scale(1.06)}`.
@@ -52,7 +53,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] Alle Motion unter `@media (prefers-reduced-motion:reduce)` deaktiviert.
 
 ### Schrift-System
-- [ ] **Vaelia = nur Display/Wortmarke** (Logo + `about-sign .as-brand`). NIEMALS für Fließtext.
+- [ ] **Vaelia = nur Display.** NIEMALS für Fließtext. (Hinweis: Das Logo/die Wortmarke ist seit 2026-06-29 das Inline-SVG `.il-logo`, nicht mehr Vaelia-Text — siehe Abschnitt „Logo / Wortmarke".)
 - [ ] Überschriften = **Open Sauce Sans 800**. Fließtext Open Sauce Sans 400.
 - [ ] **Hero-H1 Skala:** Home (`.hero--bento .hb-h1`) nutzt `var(--fs-display)` (größer, clamp 40–66px), **alle Sub-Seiten** (`.au-hero h1` → Über mich, Zusammenarbeit, künftige) nutzen `var(--fs-display-sub)` (kleiner, clamp 34–52px). Beide Tokens in `tokens.css`. Pro-Seite-Override für Hero-H1-Skala = Anti-Pattern. (2026-06-07 verankert nach Vroni-Inline-Wunsch.)
 - [ ] **Alle Schriften lokal in `fonts/`** (Open Sauce Sans 400 = `.woff`, 500–800 = `.woff2`; Vaelia). **Keine externe Font-CDN** (kein Google Fonts, kein jsDelivr/Fontsource) — datenschutzrechtlich (IP-Übertragung) tabu.
@@ -110,7 +111,7 @@ Sie ist verbindlich und nicht an ein einzelnes Werkzeug gebunden.
 - [ ] **Körper/Energie/Yoga** = Herz-Icon.
 
 ### Über-mich-Signatur
-- [ ] Neue Signatur-Struktur: `.about-sign` mit `as-name-row` (grüner Strich + „VRONI HEIDRICH" in Caps) + `as-brand` (Vaelia „INNERLINE" mit grünem Durchstrich).
+- [ ] Signatur-Struktur: `.about-sign` mit `as-name-row` (grüner Strich + „VRONI HEIDRICH" in Caps) + dem Inline-SVG-Logo `.il-logo` darunter (seit 2026-06-29; vorher `as-brand` = Vaelia „INNERLINE" mit grünem Durchstrich — überholt).
 - [ ] Zitat-Band-Autorenzeile: nur **„Vroni Heidrich"** (kein „Veronika Heidrich", kein Mittelpunkt).
 - [ ] Zitat-Band-Anführungszeichen: **`&ldquo;`** (HTML-Entität, nicht ASCII `"`).
 
@@ -2705,3 +2706,39 @@ node server.js   # startet auf http://localhost:3847
 - **Bild-Semantik:** `moodboard-haftnotizen-klarheit` enthält Brand-Voice-Texte — bei Voice-Änderungen prüfen, ob die Wording-Schnipsel auf den Notizen noch stimmen.
 - `MEDIEN.md`: 6 Einträge aktualisiert (s.o.).
 - Rechtstexte: keine Änderung.
+
+---
+
+### 2026-06-29 — Seiten-Logo überall auf das offizielle Innerline-SVG umgestellt (Welle grün, Footer negativ), grüner Strich entfernt (Claude Code)
+
+**Was:**
+1. **Alle Header-Logos (8 Seiten:** `index`, `ueber-mich`, `zusammenarbeit`, `tools`, `404`, `barrierefreiheit`, `datenschutz`, `impressum`): den Live-Text `<span class="bl-word">…inn/erline…</span>` ersetzt durch ein **Inline-SVG** der offiziellen Wortmarke (`.il-logo`, Pfade aus `brand/logos/innerline-logo-horizontal-farbe.svg`).
+2. **Alle Footer-Logos (7 Seiten,** ohne `tools`): `<span class="footer-brand">…</span>` durch dasselbe Inline-SVG ersetzt (mit `role="img" aria-label="innerline"`).
+3. **About-Signatur (`index.html` `.about-sign`):** `<span class="as-brand">…</span>` ebenfalls durch das SVG-Logo ersetzt.
+4. **`style.css`:** Text-Logo-Regeln entfernt (`.brand` Font-Props, `.brand svg`/`.brand svg path`-Stroke, `.brand--line .bl-word`, **`.bl-word::before` = der gerade grüne Strich inkl. Nav `#B9ED72` / Footer `#BC7B4C`**, `.as-brand`/`.as-up`/`.as-brand::before`, `.footer-brand`-Textregeln, Mobile `.brand svg`). Neu: Komponente `.il-logo` mit `.il-word{fill:currentColor}` + `.il-wave{fill:var(--green)}`; Größen Nav 22px / mobil 18px, Footer 24px, About 19px; Footer-Negativ über `.footer-bottom .il-logo{color:var(--chalk)}`.
+
+**Warum:**
+- Auf Wunsch von Vroni: Das Logo soll **immer und überall ausschließlich** in Form der offiziellen Innerline-Wortmarke erscheinen — wie im Design­system der Journal-Companion-App hinterlegt.
+- Der bisherige „Logo"-Look war kein echtes Logo, sondern Vaelia-Live-Text mit einem **geraden grünen Balken dahinter** (`.bl-word::before`). Dieser Strich „darf einfach nicht dahinter sein"; das echte Brand-Element ist die **Welle** über der Wortmarke.
+- Welle = unser knalliges Grün (`--green #A8E84F`) statt des Clay aus der SVG-Quelle. Footer negativ: Wortmarke hell (Chalk), Welle bleibt grün.
+
+**Wie (technisch):**
+- Quelle der Pfade: `brand/logos/innerline-logo-horizontal-farbe.svg` (viewBox `0 0 1200 305.7`). 8 Wort-Pfade aus der `<g>`-Gruppe → `.il-word`; der obere `st0`-Pfad (`M813.5,22.1…`) = Welle → `.il-wave`.
+- Farb-Steuerung token-konform über CSS: Wort folgt `currentColor` (Header `--ink`, Footer `--chalk`), Welle `var(--green)`. Keine festen Farben im SVG, keine neuen Tokens — `tokens.css` bleibt Single Source of Truth.
+- Ersetzung skriptgesteuert (Python, Pfade direkt aus dem Quell-SVG gelesen statt manuell kopiert → keine Transkriptionsfehler), je Datei exakt 1 Treffer verifiziert (16 Ersetzungen gesamt).
+- Visuell mit Chromium (Playwright) gegengeprüft: Header (Wort dunkel + grüne Welle), Footer (negativ, Wort hell + grüne Welle), About-Signatur.
+
+**Alternativen erwogen:**
+- **Externe SVG-Datei via `<img>` oder `<use href="…#id">`** statt Inline → verworfen: `<img>` lässt sich nicht per CSS umfärben (Welle-Grün/Negativ unmöglich), und CSS-Custom-Properties (`var(--green)`) überschreiten die Grenze zu einem externen SVG-Dokument nicht. Inline-SVG ist die einzige Variante, die token-konformes Coloring + currentColor erlaubt.
+- **Zweizeilige Variante** (`innerline-logo-roh.svg`, inner/line gestapelt) → verworfen; einzeilig-horizontal passt zum bestehenden Header (Bestätigung von Vroni).
+- **Welle im Footer ebenfalls weiß** → verworfen; Vroni wünscht Welle bleibt grün als Akzent.
+
+**Learnings:**
+- Das andere GitHub-Repo `VroniHei/Journal-Companion` ist aus dieser Session **nicht erreichbar** (Repo-Scope auf `vronihei/website` beschränkt). Das passende SVG lag aber ohnehin bereits unter `brand/logos/` im Website-Repo — externe Quelle war nicht nötig.
+- Datei-Uploads im Chat funktionieren in der Web-/Remote-Umgebung nicht zuverlässig; verlässliche Wege: SVG-Code als Text pasten oder ins Repo committen.
+
+**Konsequenzen / Invarianten:**
+- Invarianten-Abschnitt „Logo / Wortmarke" + die Vaelia-/About-Signatur-Invarianten aktualisiert (alte Text-/Strich-Einträge als überholt markiert, nicht gelöscht).
+- **Neue Invariante:** Logo = Inline-SVG `.il-logo`; Welle `var(--green)`; Footer negativ via `color:var(--chalk)`; **kein gerader Strich (`::before`) mehr**. Bei neuen Seiten/Nav-Instanzen dasselbe `.il-logo`-SVG übernehmen.
+- `MEDIEN.md`: Logo-Eintrag um Live-Verwendung (Inline, Welle grün) ergänzt.
+- Rechtstexte: **keine Änderung** — keine neuen externen Ressourcen, keine neue Datenverarbeitung (Pfade waren bereits lokal im Repo).
